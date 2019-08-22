@@ -13,7 +13,7 @@
 	<mvc:annotation-driven />	
 	<context:component-scan base-package="std.fle"></context:component-scan>
 	<context:property-placeholder file-encoding="UTF-8"
-		location="ressources/01_properties/db.properties"
+		location="ressources/01_properties/db.properties,ressources/01_properties/hibernate.properties"
 		ignore-resource-not-found="true" ignore-unresolvable="true" />
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
