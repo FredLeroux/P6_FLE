@@ -1,0 +1,1 @@
+Test 4: test connexion with db after adding transaction manager
