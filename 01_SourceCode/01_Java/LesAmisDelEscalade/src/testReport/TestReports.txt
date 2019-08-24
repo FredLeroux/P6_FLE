@@ -9,3 +9,5 @@ Test 4 :
 Sucessfull issue on database name in db properties url wrong jdbc:postgresql://localhost:5432/mvc instead ofjdbc:postgresql://localhost:5432/lade_db
 issue solve 
 Note: do not forget transaction manager, serialization, check db url 
+Test 5: 
+test on user and privileges
