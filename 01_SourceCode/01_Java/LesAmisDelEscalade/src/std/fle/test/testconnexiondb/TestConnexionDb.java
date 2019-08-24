@@ -1,4 +1,4 @@
-package test.testconnexiondb;
+package std.fle.test.testconnexiondb;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

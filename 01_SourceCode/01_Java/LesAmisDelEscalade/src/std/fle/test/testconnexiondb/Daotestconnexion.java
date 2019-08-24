@@ -1,4 +1,4 @@
-package test.testconnexiondb;
+package std.fle.test.testconnexiondb;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
