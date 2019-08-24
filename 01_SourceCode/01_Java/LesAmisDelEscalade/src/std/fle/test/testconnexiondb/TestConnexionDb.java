@@ -1,5 +1,7 @@
 package std.fle.test.testconnexiondb;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,12 +11,17 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "testconnexiondb")
-public class TestConnexionDb {
+public class TestConnexionDb implements Serializable {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2180998995869221205L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int Id;
 	
 	@Column(name="data1")
 	private String data1;
@@ -23,11 +30,11 @@ public class TestConnexionDb {
 	private String data2;
 
 	public int getId() {
-		return id;
+		return Id;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.Id = id;
 	}
 
 	public String getData1() {
