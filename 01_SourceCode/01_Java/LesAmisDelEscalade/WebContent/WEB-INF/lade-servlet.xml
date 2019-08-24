@@ -9,38 +9,42 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-<mvc:default-servlet-handler />
-	<mvc:annotation-driven />	
+	<mvc:default-servlet-handler />
+	<mvc:annotation-driven />
+	<tx:annotation-driven
+		transaction-manager="transactionManager" />
 	<context:component-scan base-package="std.fle"></context:component-scan>
-	<context:property-placeholder file-encoding="UTF-8"
+	<context:property-placeholder
+		file-encoding="UTF-8"
 		location="ressources/01_properties/db.properties,ressources/01_properties/hibernate.properties"
 		ignore-resource-not-found="true" ignore-unresolvable="true" />
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-	<property name="driverClassName" value="${database.driver}">
-	</property>
-	<property name="url" value="${database.url}"></property>
-	<property name="username" value="${database.username}"></property>
-	<property name="password" value="${database.password}"></property>
+		<property name="driverClassName" value="${database.driver}">
+		</property>
+		<property name="url" value="${database.url}"></property>
+		<property name="username" value="${database.username}"></property>
+		<property name="password" value="${database.password}"></property>
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-	<property name="dataSource" ref="dataSource"></property>
-	<property name="hibernateProperties">
-		<props>
-			<prop key="hibernate.dialect">${hibernate.dialect}</prop>
-			<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
-			<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
-		</props>
-	</property>
-	<property name="packagesToScan" value="std.fle"></property>
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+			</props>
+		</property>
+		<property name="packagesToScan" value="std.fle"></property>
 	</bean>
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-	<property name="viewClass"
-		value="org.springframework.web.servlet.view.JstlView">
-	</property>
-	<property name="prefix" value="/WEB-INF/views/"></property>
-	<property name="suffix" value=".jsp"></property>
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView">
+		</property>
+		<property name="prefix" value="/WEB-INF/views/"></property>
+		<property name="suffix" value=".jsp"></property>
 	</bean>
+
 </beans>
