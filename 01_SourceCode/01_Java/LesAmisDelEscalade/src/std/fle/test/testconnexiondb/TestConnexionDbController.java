@@ -10,8 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class TestConnexionDbController {
 
 	
-	@RequestMapping("/testconnexiondb")
-	public ModelAndView testConnexionDbDisplay() {
+	@RequestMapping(value = "/testconnexiondb", method= RequestMethod.GET)
+	public ModelAndView testConnexionDbDisplay(@ModelAttribute(value ="testConnexionDb") TestConnexionDb test) {
 	return new ModelAndView("/test/testConnexionDb");	
 	}
 }
