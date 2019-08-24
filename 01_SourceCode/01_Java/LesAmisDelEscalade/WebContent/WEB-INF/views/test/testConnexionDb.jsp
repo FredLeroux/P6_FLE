@@ -16,7 +16,7 @@ Control display testConnexionDb
 <form:label path="data1">data1</form:label><form:input path="data1" /><br>
 <form:label path="data2">data2</form:label><form:input path="data2" />
 <br>
-<form:button>send</form:button><br>
+<form:button style="color:red">send</form:button><br>
 <button type="submit">send button</button>
 
 </form:form>
