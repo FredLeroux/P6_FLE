@@ -3,4 +3,9 @@ test connexion with db after adding transaction manager
 Test 4: 
 Failed org.hibernate.exception.SQLGrammarException: could not execute statement + 
 org.postgresql.util.PSQLException: ERREUR: la relation « testconnexiondb » n'existe pas
-Test 4 : add serialVersionUID to TestConnexiondb class 
+Test 4 :
+ add serialVersionUID to TestConnexiondb class 
+Test 4 : 
+Sucessfull issue on database name in db properties url wrong jdbc:postgresql://localhost:5432/mvc instead ofjdbc:postgresql://localhost:5432/lade_db
+issue solve 
+Note: do not forget transaction manager, serialization, check db url 
