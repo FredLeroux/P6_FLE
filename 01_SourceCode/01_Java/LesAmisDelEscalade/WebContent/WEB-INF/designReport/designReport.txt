@@ -7,3 +7,6 @@ HomePageDesign Test 1:
 			failed error on db and hibernate properties path ressources instead of resource		
 HomePageDesign Test 1:
 			successfull + concept spring message as href functionnal
+**Info** 	Do not forget to supress /WebContent to all path on jsp 
+**WARNING** Do not let locale and file extension in bean messageSource baseName value
+**Info**	add folder 00_centralisation + appSkin.css to centralized color through app

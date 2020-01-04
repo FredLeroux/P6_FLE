@@ -1,0 +1,30 @@
+@import url("/LesAmisDelEscalade/resources/00_centralisation/00_01_appSkin.css");
+
+
+
+.list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: var(--menu-bg-color);
+}
+
+.list> li {
+  float: left;
+}
+
+.list> li a {
+  display: block;
+  color: var(--menu-text-color);
+  font-family: cursive;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: var(--menu-bg-hover-color);
+  color: var(--menu-text-hover-color);
+  text-decoration: underline;
+}
