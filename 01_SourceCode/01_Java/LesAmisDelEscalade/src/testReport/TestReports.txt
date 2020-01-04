@@ -13,5 +13,8 @@ Test 5:
 test on user and privileges
 Test 5:
 PostgreSQL user privilege use db, lock create database or table sucessfull, account lade_Users securized
-All fine connexion Securized and Functionnal
-Cleaning test connexion deleted
+**Info**	All fine connexion Securized and Functionnal
+**Info**	Cleaning test connexion deleted
+**Info**	Branch test connexion merged
+**Info** 	Commit before modification project structure in order to be compliant with new approach
+
