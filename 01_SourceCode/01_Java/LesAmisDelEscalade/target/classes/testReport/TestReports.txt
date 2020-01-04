@@ -11,3 +11,5 @@ issue solve
 Note: do not forget transaction manager, serialization, check db url 
 Test 5: 
 test on user and privileges
+Test 5:
+PostgreSQL user privilege use db, lock create database or table sucessfull, account lade_Users securized

@@ -16,7 +16,8 @@
 		<servlet-name>lade</servlet-name>
 		<url-pattern>/home</url-pattern>
 		<url-pattern>/userinfo</url-pattern>
-		<url-pattern>/testconnexiondb</url-pattern>		
+		<url-pattern>/testconnexiondb</url-pattern>	
+		<url-pattern>/savetest</url-pattern>	
 	</servlet-mapping>
 	
 	

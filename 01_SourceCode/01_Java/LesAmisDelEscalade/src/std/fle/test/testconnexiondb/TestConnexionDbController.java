@@ -22,7 +22,7 @@ public class TestConnexionDbController {
 	@RequestMapping(value = "/savetest", method=RequestMethod.POST)
 	public ModelAndView testSave(@ModelAttribute(value ="testConnexionDb") TestConnexionDb test) {
 		serviceTest.createTestConnexion(test);
-		return new ModelAndView("/testconnexionDb");
+		return new ModelAndView("test/testConnexionDb");
 	}
 	
 	

@@ -12,7 +12,7 @@ Control display testConnexionDb
 <div>
 <h1>Test form sending</h1>
 <form:form action="savetest" method = "post" modelAttribute="testConnexionDb">
-<form:hidden path="id" />
+<form:hidden path="Id" />
 <form:label path="data1">data1</form:label><form:input path="data1" /><br>
 <form:label path="data2">data2</form:label><form:input path="data2" />
 <br>
