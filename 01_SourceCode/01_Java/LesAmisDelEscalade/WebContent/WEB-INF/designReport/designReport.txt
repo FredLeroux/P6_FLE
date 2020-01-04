@@ -3,3 +3,5 @@
 **Info** 	add in lade-servlet ReloadableResourceBundleMessageSource with value option allowing multiple properties files
 HomePageDesign Test 1:
 			test menuNavBar template on home page
+HomePageDesign Test 1:
+			failed error on db and hibernate properties path ressources instead of resource		

@@ -21,7 +21,7 @@
 	<context:component-scan base-package="std.fle"></context:component-scan>
 	<context:property-placeholder
 		file-encoding="UTF-8"
-		location="ressources/01_properties/db.properties,ressources/01_properties/hibernate.properties"
+		location="resources/01_properties/db.properties,resources/01_properties/hibernate.properties"
 		ignore-resource-not-found="true" ignore-unresolvable="true" />
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -70,6 +70,8 @@
 		<value>resources/03_messageSrcI18N/03_01_jspCompomentsMessages/03_01_01_menuNavBarMsgSrc_fr_FR.properties</value>		
 		</list>
 		</property>
+		<property name="defaultEncoding" value="utf-8"></property>		
+		<property name="useCodeAsDefaultMessage" value="true"></property>
 	</bean>
 
 	
