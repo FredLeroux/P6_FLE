@@ -1,0 +1,5 @@
+**Info** 	add folders templatesJsp + messageI18N
+**Info**	add in lade-servlet multiple view resolver
+**Info** 	add in lade-servlet ReloadableResourceBundleMessageSource with value option allowing multiple properties files
+HomePageDesign Test 1:
+			test menuNavBar template on home page

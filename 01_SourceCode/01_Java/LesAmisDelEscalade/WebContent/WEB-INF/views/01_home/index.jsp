@@ -14,6 +14,9 @@ test call userinfo : <br>
 <a href="userinfo">go to userinfo</a><br>
 <a href ="testconnexiondb">go to testconnexiondb</a>
 </div>
-
+<div>
+test menu nav bar
+<%@ include file="/resources/02_templatesJsp/02_01_jspCompoments/02_01_02_jspCompomentsFiles/02_01_02_01_menuNavBar.jsp" %>
+</div>
 </body>
 </html>
