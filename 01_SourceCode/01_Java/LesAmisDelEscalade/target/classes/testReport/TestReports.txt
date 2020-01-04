@@ -13,3 +13,5 @@ Test 5:
 test on user and privileges
 Test 5:
 PostgreSQL user privilege use db, lock create database or table sucessfull, account lade_Users securized
+All fine connexion Securized and Functionnal
+Cleaning test connexion deleted
