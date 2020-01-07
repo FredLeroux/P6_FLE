@@ -1,7 +1,7 @@
 <%@ taglib prefix="springTags" uri="http://www.springframework.org/tags"%>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css"
-	href="/LesAmisDelEscalade/resources/02_templatesJsp/02_01_jspCompoments/02_01_01_jspCompomentsCSS/02_01_01_01_menuNavBarCSS.css" />
+	href="${jspCompomentsCSSPath}02_01_01_01_menuNavBarCSS.css" />
 
 <div id="menuIcon" class="icon">
 	<i class="fas fa-bars"></i>
@@ -30,7 +30,7 @@
 </div>
 <script type="text/javascript" 
 
-src="/LesAmisDelEscalade/resources/02_templatesJsp/02_01_jspCompoments/02_01_03_jspCompomentsJavaScript/02_01_03_01_menuNavBarJavaScript.js"></script>
+src="${jspCompomentsJSPath}02_01_03_01_menuNavBarJavaScript.js"></script>
 <script type="text/javascript">
 addToggleDisplayOnclick("menuIcon", "menuNavBar")
 </script>

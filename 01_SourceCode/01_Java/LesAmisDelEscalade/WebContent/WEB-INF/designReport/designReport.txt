@@ -13,3 +13,6 @@ HomePageDesign Test 1:
 **Info**	during research on haw put variable in xml Spring Configuration found issue on place holder for db properties
 **Info**	issue on context place holder db properties corrected add 2 place holder one for hibernate other for db properties
 			with ignore on not resolve and not found
+**Info**	issue on iframe test due to not controller setted for iframetes.jsp
+**Info**	Design complete add a default page to the iframe but all is functionnal 
+**Note**	Connexion / iframe are managed via controller or handler interceptor

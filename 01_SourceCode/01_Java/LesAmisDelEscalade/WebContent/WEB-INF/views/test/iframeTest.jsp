@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1 style="color:red;font-size: 200px">WELCOME BIENVENU BLABLABLA</h1>
+<h1 style="color:red;font-size: 50px">WELCOME BIENVENU BLABLABLA</h1>
 </body>
 </html>
