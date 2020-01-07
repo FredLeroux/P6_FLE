@@ -42,6 +42,14 @@
 			<version>${springframework.version}</version>
 		</dependency>
 
+		<!--  JSTL core allow use "javaCode" in JSTL -->
+		<dependency>
+    		<groupId>javax.servlet</groupId>
+    		<artifactId>jstl</artifactId>
+    		<version>1.2</version>
+		</dependency>
+
+
 		<!-- View management dependencies framework : Javax -->
 
 		<dependency>

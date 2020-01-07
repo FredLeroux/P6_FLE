@@ -1,27 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+
+
+
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:j="http://java.sun.com/jsp/jstl/core"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+
+
+
 
 	<mvc:default-servlet-handler />
 	<mvc:annotation-driven />
 	<tx:annotation-driven
 		transaction-manager="transactionManager" />
-		<bean id="transactionManager"
+	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-	<property name="sessionFactory" ref="sessionFactory"></property>
+		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-		
+
 	<context:component-scan base-package="std.fle"></context:component-scan>
-	<context:property-placeholder
-		file-encoding="UTF-8"
+	<context:property-placeholder file-encoding="UTF-8"
 		location="resources/01_properties/db.properties,resources/01_properties/hibernate.properties"
+		ignore-resource-not-found="true" ignore-unresolvable="true" />
+	<context:property-placeholder file-encoding="UTF-8"
+		location="resources/01_properties/db.properties,resources/01_properties/db.properties"
 		ignore-resource-not-found="true" ignore-unresolvable="true" />
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -43,7 +56,7 @@
 		</property>
 		<property name="packagesToScan" value="std.fle"></property>
 	</bean>
-	
+
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass"
@@ -53,30 +66,45 @@
 		<property name="suffix" value=".jsp"></property>
 		<property name="order" value="0" />
 	</bean>
-	<bean 
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">		
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/resources/02_templatesJsp/"></property>
 		<property name="suffix" value=".jsp"></property>
-		  <property name="order" value="1" />
+		<property name="order" value="1" />
 	</bean>
-	
+
+
+
+	<mvc:interceptors>
+		<bean
+			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property name="paramName" value="lang" />
+		</bean>
+	</mvc:interceptors>
 	<bean id="localeResolver"
 		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
 		<property name="defaultLocale" value="fr"></property>
 	</bean>
-	
-	
+
+
 	<bean id="messageSource"
-		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">			
 		<property name="basenames">
-		<list>
-		<value>resources/03_messageSrcI18N/03_01_jspCompomentsMessages/03_01_01_menuNavBarMsgSrc</value>		
-		</list>
+			<list>			
+				<value>resources/03_messageSrcI18N/03_01_jspCompomentsMessages/03_01_01_menuNavBarMsgSrc
+				</value>
+				<value>resources/03_messageSrcI18N/03_01_jspCompomentsMessages/03_01_02_headMsgSrc
+				</value>
+				
+			</list>
+			
 		</property>
-		<property name="defaultEncoding" value="utf-8"></property>		
-		<property name="useCodeAsDefaultMessage" value="true"></property>
+		<property name="defaultEncoding" value="utf-8"></property>
+		<property name="useCodeAsDefaultMessage" value="true"></property>		
 	</bean>
 
-	
+
+
+
 	
 </beans>

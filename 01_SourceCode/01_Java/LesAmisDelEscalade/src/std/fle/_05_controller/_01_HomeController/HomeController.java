@@ -11,8 +11,13 @@ public class HomeController {
 	
 	
 	@RequestMapping("/home")
-	public ModelAndView homeDisplay() {
-		return new ModelAndView ("01_home/index");
+	public ModelAndView homeDisplay(ModelAndView model) {
+		model.setViewName("01_home/index");
+		model.addObject("connexionHref", "menuNavBarConnexion.href");
+		model.addObject("connexionName", "menuNavBarConnexion.nameToManagInFilterhandler");
+		model.addObject("iFrameSource", "'test/iframeTest.html'");
+		
+		return model;
 		
 	}
 }

@@ -17,7 +17,9 @@
 		<url-pattern>/home</url-pattern>
 		<url-pattern>/userinfo</url-pattern>
 		<url-pattern>/testconnexiondb</url-pattern>	
-		<url-pattern>/savetest</url-pattern>	
+		<url-pattern>/savetest</url-pattern>
+		<url-pattern>/test/iframeTest.html</url-pattern>
+		<url-pattern>/test/iframeTest.jsp</url-pattern>	
 	</servlet-mapping>
 	
 	
