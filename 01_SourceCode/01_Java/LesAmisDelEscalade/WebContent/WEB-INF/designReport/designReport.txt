@@ -16,3 +16,4 @@ HomePageDesign Test 1:
 **Info**	issue on iframe test due to not controller setted for iframetes.jsp
 **Info**	Design complete add a default page to the iframe but all is functionnal 
 **Note**	Connexion / iframe are managed via controller or handler interceptor
+**Info**	put in place centralisation in properties file of all path to jsp compoment and path for servlet
