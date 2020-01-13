@@ -1,0 +1,20 @@
+**Info** 	add folders templatesJsp + messageI18N
+**Info**	add in lade-servlet multiple view resolver
+**Info** 	add in lade-servlet ReloadableResourceBundleMessageSource with value option allowing multiple properties files
+HomePageDesign Test 1:
+			test menuNavBar template on home page
+HomePageDesign Test 1:
+			failed error on db and hibernate properties path ressources instead of resource		
+HomePageDesign Test 1:
+			successfull + concept spring message as href functionnal
+**Info** 	Do not forget to supress /WebContent to all path on jsp 
+**WARNING** Do not let locale and file extension in bean messageSource baseName value
+**Info**	add folder 00_centralisation + appSkin.css to centralized color through app
+**Info**	during research on haw put variable in xml Spring Configuration found issue on place holder for db properties
+**Info**	issue on context place holder db properties corrected add 2 place holder one for hibernate other for db properties
+			with ignore on not resolve and not found
+**Info**	issue on iframe test due to not controller setted for iframetes.jsp
+**Info**	Design complete add a default page to the iframe but all is functionnal 
+**Note**	Connexion / iframe are managed via controller or handler interceptor
+**Info**	put in place centralisation in properties file of all path to jsp compoment and path for servlet
+**Info-Important**	change way of static resources management by use of mvc:resources supress in controller setting of path in jsp path page centarlisation

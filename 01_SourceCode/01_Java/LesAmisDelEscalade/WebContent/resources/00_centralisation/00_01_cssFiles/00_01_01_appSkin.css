@@ -2,32 +2,34 @@
 @import url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_01_appSkin.css"); 
 */
 
+
 @import url("https://use.fontawesome.com/releases/v5.8.1/css/all.css");
 
 @font-face {
-  font-family: hostedHandlee;
+  font-family: menu-font;
   src: url("/LesAmisDelEscalade/resources/00_centralisation/00_03_fonts/00_03_01_Handlee-Regular.ttf");
 }
 @font-face {
-  font-family: hostedLobster;
-  src: url("/LesAmisDelEscalade/resources/00_centralisation/00_03_fonts/00_03_02_Lobster-Regular.ttf");
+  font-family: header-font;
+  src: url("/LesAmisDelEscalade/resources/00_centralisation/00_03_fonts/00_03_02_Lobster-Regular.ttf") format("truetype");  
 }
 
 :root{
-	--header-bg-images : url("/LesAmisDelEscalade/resources/00_centralisation/00_02_ImagesSrc/00_02_01_headerBgImage.jpg");
-	--header-font-familiy : 'hostedLobster', sans-serif;
+	--header-bg-images : url("/LesAmisDelEscalade/resources/00_centralisation/00_02_ImagesSrc/00_02_01_headerBgImage.jpg");	
 	--header-text-color : rgb(17,36,45);
 	--header-text-shadow-lvl1 : orange; 
 	--header-text-shadow-lvl2 : darkOrange;
 	--menu-icon-color : rgb(17,36,45);
-	--menu-bg-color: Silver;
+	--menu-icon-hover-color: darkOrange;
+	--menu-connexion-color: rgb(17,36,45);
+	--menu-connexion-hover-color: darkOrange;
+	--menu-bg-color: rgb(17,36,45);
 	--menu-bg-hover-color: rgb(17,36,45);
-	--menu-text-color: rgb(17,36,45);
+	--menu-text-color: darkOrange;;
 	--menu-text-shadow: rgb(17,36,45);
 	--menu-hover-text-shadow-lvl1: orange;
-	--menu-hover-text-shadow-lvl2: darkOrange;
-	--menu-text-font-family : 'hostedHandlee', cursive;
-	--menu-text-hover-color: Silver;
-	--menu-border-color: Silver;
+	--menu-hover-text-shadow-lvl2: darkOrange;	
+	--menu-text-hover-color: white;
+	--menu-border-color: rgb(17,36,45);
 	--menu-border-hover-color: DarkOrange;
 }

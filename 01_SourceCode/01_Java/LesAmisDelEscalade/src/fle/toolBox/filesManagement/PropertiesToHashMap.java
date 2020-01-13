@@ -38,7 +38,6 @@ public class PropertiesToHashMap  {
 	
 	public LinkedHashMap<String, String> getPropertiesToHashMap() {
 		LinkedHashMap<String, String>  map = new LinkedHashMap<>();
-		prop().forEach((key,value)->System.out.println(key.toString()+ "::" + value.toString()));
 		prop().forEach((key,value)-> map.put(key.toString(), value.toString()));
 		return map;
 		

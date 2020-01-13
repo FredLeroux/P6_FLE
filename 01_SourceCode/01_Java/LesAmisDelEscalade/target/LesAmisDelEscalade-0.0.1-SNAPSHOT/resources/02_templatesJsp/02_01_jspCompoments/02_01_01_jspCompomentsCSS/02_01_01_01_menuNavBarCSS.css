@@ -1,0 +1,98 @@
+@import
+	url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_01_appSkin.css")
+	;
+
+.icon {
+	
+	display: inline-block;
+	color: var(--menu-icon-color);
+	font-size: 2vw;
+	float:left;
+}
+
+.containerConnexion {
+	
+	text-align: right;
+}
+
+.connexion {
+	
+	text-decoration: none;
+	font-size: 1.5vw;
+	font-family: var(--header-font-familiy);
+	color: var(--menu-text-color);
+}
+
+.list {
+	
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: var(--menu-bg-color);
+}
+
+.list>li {
+	float: left;
+}
+
+.list>li a {
+	display: block;
+	padding: 14px 16px;
+	font-size: 1.5vw;
+	font-family: var(--menu-text-font-family);
+	font-weight: bold;
+	cursor: pointer;
+	color: var(--menu-bg-color);
+	text-decoration: none;
+	text-shadow: -1px -1px 1px var(--menu-text-shadow), 1px 1px 1px
+		var(--menu-text-shadow), 2px 2px 1px var(--menu-text-shadow);
+}
+
+.list>li a:hover, .icon:hover, .connexion:hover {
+	color: var(--menu-text-color);
+	font-size: 1.5vw;
+	text-shadow: -1px -1px 1px var(--menu-hover-text-shadow-lvl1), 1px 1px
+		1px var(--menu-hover-text-shadow-lvl2);
+}
+
+.icon:hover {
+	font-size: 2vw;
+	cursor: pointer;
+}
+
+@media all and (max-width: 1400px) {
+	.list>li a, .connexion {
+		font-size: 1.5vw;
+	}
+	.list>li a:hover, .connexion {
+		font-size: 1.5vw;
+	}
+}
+
+@media all and (max-width: 800px) {
+	.list>li {
+		float: none;
+		display: list-item;
+	}
+	.list>.connexion {
+		float: none;
+		display: list-item;
+	}
+	.list>li a {
+		font-size: 2vw;
+		border: solid;
+		border-color: var(--menu-border-color);
+	}
+	.connexion {
+		font-size: 2vw;
+	}
+	.list>li a:hover {
+		font-size: 2vw;
+		border: solid;
+		border-color: var(--menu-border-hover-color);
+	}
+	.connexion:hover {
+		font-size: 2vw;
+	}
+}
