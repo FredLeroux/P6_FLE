@@ -9,7 +9,7 @@
 <div class="containerConnexion">
 	<label id="connexion" class="connexion"> ${connexionName} </label>
 </div>
-<br>
+
 <div id="menuNavBar" style="display: none;">
 	<!-- display not in css allow toggle functional immediatly -->
 	<ul id="menuNavBarList" class="list">

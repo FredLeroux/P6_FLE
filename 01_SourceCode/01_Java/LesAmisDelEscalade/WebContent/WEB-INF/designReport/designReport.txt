@@ -21,3 +21,4 @@ HomePageDesign Test 1:
 					of path in jsp path page centarlisation
 **Warning**	menuNavBarJSP connexion changed from tag a to label cause it is the logModal which will mange connexion
 			link not this connexion label href supressed and link in properties and controller too
+**Info**	lade-servlet centralisation MessageSource nean message file name centralized in propertie file + add to hibernate properties file the base package name 

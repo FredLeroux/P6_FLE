@@ -51,23 +51,25 @@
 	padding:0;
 	background-color: var(--menu-bg-color);
 	width: 100%;
+	
 }
 
 
 
 .list>li {
-	float: left;
+	float: left;	
 }
 
 .list>li a {
 	display: block;
-	padding: 14px 16px;
+	padding-left: 2vw;
 	font-size: 1.5vw;
 	font-family: header-font;
 	font-weight: bold;
 	cursor: pointer;
 	color: var(--menu-text-color);
 	text-decoration: none;
+	
 	
 }
 
@@ -99,7 +101,7 @@
 		display: list-item;
 	}
 	.list>li a {
-		font-size: 2vw;
+		font-size: 1vh;
 		border: solid;
 		border-color: var(--menu-border-color);
 	}

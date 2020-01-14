@@ -29,7 +29,7 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 
-	<context:component-scan base-package="std.fle"></context:component-scan>
+
 
 
 
@@ -40,11 +40,11 @@
 		location="
 		resources/01_properties/hibernate.properties,
 		resources/01_properties/db.properties,
-		resources/01_properties/pathSrc.properties
+		resources/01_properties/pathSrc.properties,
+		resources/01_properties/messageSourcePattern.properties
 		" />
 
-	<util:properties id="pathSrc"
-		location="resources/01_properties/pathSrc.properties" />
+
 
 	<!-- equivalent is <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
 		<property name="locations" > <list> <value>resources/01_properties/hibernate.properties</value> 
@@ -52,7 +52,7 @@
 		</list> </property> <property name="ignoreResourceNotFound" value="true"></property> 
 		<property name="ignoreUnresolvablePlaceholders" value="true"></property> 
 		</bean> -->
-
+	<context:component-scan base-package="std.fle"></context:component-scan>
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -68,11 +68,12 @@
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
-				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
-				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.formatSql}</prop>
+				<prop key="hibernate.show_sql">${hibernate.showSql}</prop>
 			</props>
 		</property>
-		<property name="packagesToScan" value="std.fle"></property>
+		<property name="packagesToScan"
+			value="${packagesToScan.value}"></property>
 	</bean>
 
 	<bean id="viewResolver"
@@ -110,13 +111,13 @@
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basenames">
 			<list>
-				<value>${messageSrc.path}03_01_00_configuration
+				<value>${messageSrc.path}${configuration.fileNamePattern}
 				</value>
-				<value>${messageSrc.path}03_01_01_menuNavBarMsgSrc
+				<value>${messageSrc.path}${menuNavBar.fileNamePattern}
 				</value>
-				<value>${messageSrc.path}03_01_02_headMsgSrc
+				<value>${messageSrc.path}${head.fileNamePattern}
 				</value>
-				<value>${messageSrc.path}03_01_03_logModalMsgSrc
+				<value>${messageSrc.path}${logModal.fileNamePattern}
 				</value>
 			</list>
 

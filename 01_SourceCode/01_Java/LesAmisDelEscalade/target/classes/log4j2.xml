@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status = "trace">
+	<Properties>
+		<Property name="event">		
+			%d{yyyy-MM-dd HH:mm:ss} => Level = *** %-5p *** => message:["%m"]
+					&#9;at:%t %C{2} (from: %F ligne-> %L) %n</Property>
+	</Properties>
+	<Appenders>
+	<!--  <File name="FileLogger" filename="${sys:catalina.base}/WEB-INF/logs/... .log" >
+			<PatternLayout pattern="${event}" />
+		</File>-->	
+		<Console name="consoleDisplay" target="SYSTEM_OUT">
+			<PatternLayout pattern="${event}" />
+		</Console>
+	</Appenders>
+
+	<Loggers>
+		<Root level="info">				
+			<AppenderRef ref="consoleDisplay" level="trace" />
+		<!--  	<AppenderRef ref="FileLogger" level="info" /> -->
+		</Root>
+	</Loggers>
+
+
+</configuration>
