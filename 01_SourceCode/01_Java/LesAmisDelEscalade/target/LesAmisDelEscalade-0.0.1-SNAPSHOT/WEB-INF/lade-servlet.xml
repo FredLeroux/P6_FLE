@@ -19,7 +19,7 @@
 
 
 
-	
+
 	<mvc:default-servlet-handler />
 	<mvc:annotation-driven />
 	<tx:annotation-driven
@@ -29,38 +29,31 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 
-	<context:component-scan base-package="std.fle"></context:component-scan>
-	
-	
-	  
-	
-	<context:property-placeholder file-encoding="UTF-8"
-		ignore-resource-not-found="true" ignore-unresolvable="true"
+
+
+
+
+
+	<context:property-placeholder
+		file-encoding="UTF-8" ignore-resource-not-found="true"
+		ignore-unresolvable="true"
 		location="
 		resources/01_properties/hibernate.properties,
 		resources/01_properties/db.properties,
-		resources/01_properties/pathSrc.properties
+		resources/01_properties/pathSrc.properties,
+		resources/01_properties/messageSourcePattern.properties
 		" />
-		
-	<util:properties id="pathSrc" location="resources/01_properties/pathSrc.properties"/>
-	
-	<!--  equivalent is
-	<bean
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-	<property name="locations" >
-		<list>
-			<value>resources/01_properties/hibernate.properties</value>
-			<value>resources/01_properties/db.properties</value>
-			<value>resources/01_properties/pathSrc.properties</value>
-		</list>
-		
-	</property>	
-	<property name="ignoreResourceNotFound" value="true"></property>
-	<property name="ignoreUnresolvablePlaceholders" value="true"></property>
-	</bean>
-	-->
-	
-	
+
+
+
+	<!-- equivalent is <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
+		<property name="locations" > <list> <value>resources/01_properties/hibernate.properties</value> 
+		<value>resources/01_properties/db.properties</value> <value>resources/01_properties/pathSrc.properties</value> 
+		</list> </property> <property name="ignoreResourceNotFound" value="true"></property> 
+		<property name="ignoreUnresolvablePlaceholders" value="true"></property> 
+		</bean> -->
+	<context:component-scan base-package="std.fle"></context:component-scan>
+
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${database.driver}">
@@ -75,11 +68,12 @@
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
-				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
-				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.formatSql}</prop>
+				<prop key="hibernate.show_sql">${hibernate.showSql}</prop>
 			</props>
 		</property>
-		<property name="packagesToScan" value="std.fle"></property>
+		<property name="packagesToScan"
+			value="${packagesToScan.value}"></property>
 	</bean>
 
 	<bean id="viewResolver"
@@ -90,14 +84,14 @@
 		<property name="prefix" value="/WEB-INF/views/"></property>
 		<property name="suffix" value=".jsp"></property>
 		<property name="order" value="0" />
-		
+
 	</bean>
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/resources/02_templatesJsp/"></property>
 		<property name="suffix" value=".jsp"></property>
 		<property name="order" value="1" />
-		
+
 	</bean>
 
 
@@ -113,27 +107,34 @@
 		<property name="defaultLocale" value="fr"></property>
 	</bean>
 
-<bean id="messageSource"
-		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">			
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basenames">
-			<list>			
-				<value>${messageSrc.path}03_01_01_menuNavBarMsgSrc
+			<list>
+				<value>${messageSrc.path}${configuration.fileNamePattern}
 				</value>
-				<value>${messageSrc.path}03_01_02_headMsgSrc
+				<value>${messageSrc.path}${menuNavBar.fileNamePattern}
 				</value>
-				<value>${messageSrc.path}03_01_03_logModalMsgSrc
-				</value>				
+				<value>${messageSrc.path}${head.fileNamePattern}
+				</value>
+				<value>${messageSrc.path}${logModal.fileNamePattern}
+				</value>
 			</list>
-			
+
 		</property>
 		<property name="defaultEncoding" value="utf-8"></property>
-		<property name="useCodeAsDefaultMessage" value="true"></property>		
+		<property name="useCodeAsDefaultMessage" value="true"></property>
 	</bean>
-	
-  
- 
-<mvc:resources location='${jspCompomentsCss.path}' mapping="/jspCompomentsCss/*"/>
-<mvc:resources location='${jspCompomentsJavaScript.path}' mapping="/jspCompomentsJavaScript/*"/>
-<mvc:resources location='${jspCompomentsFiles.path}' mapping="/jspCompomentsFiles/*"/>
+
+
+
+	<mvc:resources location='${jspCompomentsCss.path}'
+		mapping="/jspCompomentsCss/*" />
+	<mvc:resources location='${jspCompomentsJavaScript.path}'
+		mapping="/jspCompomentsJavaScript/*" />
+	<mvc:resources location='${jspCompomentsFiles.path}'
+		mapping="/jspCompomentsFiles/*" />
+	<mvc:resources location='${toolBox.javascript}'
+		mapping="/toolBoxJavaScript/*" />
 
 </beans>
