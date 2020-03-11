@@ -15,4 +15,9 @@ public class UserInfoController {
 	public ModelAndView displayUserInfoPage(@ModelAttribute(value= "UserInfo") UserInfo userInfo) {
 		return new ModelAndView("/02_AccountManagement/userInfo");
 	}
+	
+	@RequestMapping("/userRegistration")
+	public ModelAndView displayUserRegistrationPage(@ModelAttribute(value= "UserInfo") UserInfo userInfo) {
+		return new ModelAndView("/02_AccountManagement/userRegistration");
+	}
 }

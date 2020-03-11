@@ -1,9 +1,7 @@
 package fle.toolBox.filesManagement;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Properties;
 
 import javax.servlet.ServletContext;
@@ -14,10 +12,7 @@ import fle.toolBox.logger.Log4J2;
 
 public class PropertiesToHashMap  {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 2640077311488824492L;
+	
 
 	private Properties prop = new Properties();
 	private PropertyFile propertyFile = new PropertyFile();

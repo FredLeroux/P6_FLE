@@ -111,13 +111,17 @@
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basenames">
 			<list>
-				<value>${messageSrc.path}${configuration.fileNamePattern}
+				<value>${jspCompomentsMessagesSrc.path}${configuration.fileNamePattern}
 				</value>
-				<value>${messageSrc.path}${menuNavBar.fileNamePattern}
+				<value>${jspCompomentsMessagesSrc.path}${menuNavBar.fileNamePattern}
 				</value>
-				<value>${messageSrc.path}${head.fileNamePattern}
+				<value>${jspCompomentsMessagesSrc.path}${head.fileNamePattern}
 				</value>
-				<value>${messageSrc.path}${logModal.fileNamePattern}
+				<value>${jspCompomentsMessagesSrc.path}${logModal.fileNamePattern}
+				</value>
+				<value>${pageTitlesMessagesSrc.path}${pageTitles.fileNamePattern}
+				</value>
+				<value>${logModalJspHref.path}05_01_logModalJspHref
 				</value>
 			</list>
 
