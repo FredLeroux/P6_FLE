@@ -1,6 +1,6 @@
 package fle.toolBox.springFormManager.builder.configurationClass;
 
-import fle.toolBox.miscellaneous.ConfigurationFileReader;
+import fle.toolBox.ConfigurationFileReader;
 /**
  * 
  * @author Frederic Leroux <br>

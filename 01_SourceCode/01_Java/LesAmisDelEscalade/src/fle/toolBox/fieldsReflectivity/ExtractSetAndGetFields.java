@@ -9,6 +9,12 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+
+import fle.toolBox.IsAnnotationPresent;
+import fle.toolBox.fieldsReflectivity.extractSetAndGetComponents.ClassFields;
+import fle.toolBox.fieldsReflectivity.extractSetAndGetComponents.ClassFieldsSetAndGet;
+import fle.toolBox.fieldsReflectivity.extractSetAndGetComponents.TypeField;
+
 //TODO 1-JAVADOC
 public class ExtractSetAndGetFields<O extends Object> {
 
@@ -30,24 +36,16 @@ public class ExtractSetAndGetFields<O extends Object> {
 		this.entityModel = entityModel;
 	}
 
-	private <A extends Annotation> boolean isPresence(Annotation annotation) {
-		boolean isAnnotationPresence = true;
-		if (annotation == null) {
-			isAnnotationPresence = false;
-		}
-		return isAnnotationPresence;
-	}
-
 	/**
 	 * 
 	 * @param <A>
 	 * @param field
 	 * @param annotationClass
 	 * @return true if field is annotated with annotationClass otherwise false
+	 * @see com.fle.tools.IsAnnotationPresent
 	 */
 	public <A extends Annotation> boolean isAnnotationPresence(Field field, Class<A> annotationClass) {
-		Annotation presence = field.getAnnotation(annotationClass);
-		return isPresence(presence);
+		return IsAnnotationPresent.onField(field, annotationClass);
 	}
 
 	/**
@@ -56,10 +54,10 @@ public class ExtractSetAndGetFields<O extends Object> {
 	 * @param entity
 	 * @param annotationClass
 	 * @return true if classe is annotated with annotationClass otherwise false
+	 * @see com.fle.tools.IsAnnotationPresent
 	 */
 	public <A extends Annotation> boolean isAnnotationPresence(O entity, Class<A> annotationClass) {
-		Annotation presence = entity.getClass().getAnnotation(annotationClass);
-		return isPresence(presence);
+		return IsAnnotationPresent.inClass(entity, annotationClass);
 	}
 
 	/**
@@ -68,10 +66,10 @@ public class ExtractSetAndGetFields<O extends Object> {
 	 * @param entity
 	 * @param annotationClass
 	 * @return true if classe is annotated with annotationClass otherwise false
+	 * @see com.fle.tools.IsAnnotationPresent
 	 */
 	public <A extends Annotation> boolean isAnnotationPresence(Class<A> annotationClass) {
-		Annotation presence = entityModel.getClass().getAnnotation(annotationClass);
-		return isPresence(presence);
+		return IsAnnotationPresent.inClass(entityModel, annotationClass);
 	}
 
 	void fillArrayListWithFieldsName(ArrayList<Field> fieldsArrayList, ArrayList<String> fieldsNameArrayList) {
@@ -84,30 +82,20 @@ public class ExtractSetAndGetFields<O extends Object> {
 	 * 
 	 * @param fieldName
 	 * @return a java.lang.reflect.Field using is simple name as a string
+	 * @see com.fle.tools.fieldsManagement.finalVersion.extractSetAndGetComponents.ClassFields
 	 */
 	public Field getFieldByIsName(String fieldName) {
-		Field field = null;
-		try {
-			field = entityModel.getClass().getDeclaredField(fieldName);
-		} catch (NoSuchFieldException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return field;
+		return ClassFields.getFieldByIsName(entityModel, fieldName);
 	}
 
 	/**
 	 * 
 	 * @return java.lang.reflect.Field array containing all declared entityModel
 	 *         Fields
+	 * @see com.fle.tools.fieldsManagement.finalVersion.extractSetAndGetComponents.ClassFields
 	 */
 	public Field[] getAllFields() {
-		Field[] allFields = null;
-		allFields = entityModel.getClass().getDeclaredFields();
-		return allFields;
+		return ClassFields.getAllFields(entityModel);
 	}
 
 	/**
@@ -127,15 +115,10 @@ public class ExtractSetAndGetFields<O extends Object> {
 	 * @param annotationClass
 	 * @return java.lang.reflect.Field ArrayList containing all declared entityModel
 	 *         Fields annotated with annotationClass
+	 * @see com.fle.tools.fieldsManagement.finalVersion.extractSetAndGetComponents.ClassFields
 	 */
 	public <A extends Annotation> ArrayList<Field> fieldsArrayListByAnnotation(Class<A> annotationClass) {
-		ArrayList<Field> fieldsArrayListByAnnotation = new ArrayList<>();
-		for (Field field : getAllFields()) {
-			if (isAnnotationPresence(field, annotationClass)) {
-				fieldsArrayListByAnnotation.add(field);
-			}
-		}
-		return fieldsArrayListByAnnotation;
+		return ClassFields.getFieldsListByAnnotation(entityModel, annotationClass);
 	}
 
 	/**
@@ -155,147 +138,12 @@ public class ExtractSetAndGetFields<O extends Object> {
 		return fieldsNameArrayListByAnnotation;
 	}
 
-	PropertyDescriptor propertyDesc(String fieldName) throws IntrospectionException {
-		PropertyDescriptor propertyDesc = null;
-		propertyDesc = new PropertyDescriptor(fieldName, entityModel.getClass());
-		return propertyDesc;
-	}
-
 	public void fieldSetter(Field field, Object value) {
-		Method fieldSetter = null;
-		try {
-			fieldSetter = propertyDesc(field.getName()).getWriteMethod();
-		} catch (IntrospectionException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
-			fieldSetter.invoke(entityModel, value);
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ClassFieldsSetAndGet.setField(entityModel, field.getName(), value);
 	}
 
 	public void fieldSetter(String fieldName, Object value) {
-		Method fieldSetter = null;
-		try {
-			fieldSetter = propertyDesc(fieldName).getWriteMethod();
-		} catch (IntrospectionException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
-			fieldSetter.invoke(entityModel, value);
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * 
-	 * @param field
-	 * @return getter method using PropertyDescriptor
-	 * @throws IntrospectionException
-	 */
-	Method fieldGetter(Field field) throws IntrospectionException {
-		Method fieldGetter = null;
-		fieldGetter = propertyDesc(field.getName()).getReadMethod();
-		return fieldGetter;
-	}
-
-	/**
-	 * 
-	 * @param fieldName
-	 * @return getter method using PropertyDescriptor
-	 * @throws IntrospectionException
-	 */
-	Method fieldGetter(String fieldName) throws IntrospectionException {
-		Method fieldGetter = null;
-		fieldGetter = propertyDesc(fieldName).getReadMethod();
-		return fieldGetter;
-	}
-
-	Method fieldGetterViaGetMethods(Field field) {
-		Method[] methods = entityModel.getClass().getMethods();
-		Method fieldGetter = null;
-		for (Method met : methods) {
-			if (met.getName().toLowerCase().contains("get" + field)) {
-				fieldGetter = met;
-			}
-		}
-		return fieldGetter;
-	}
-
-	/**
-	 * 
-	 * @param fieldName
-	 * @return return getter method usin iteration on methods array
-	 */
-	Method fieldGetterViaGetMethods(String fieldName) {
-		Method[] methods = entityModel.getClass().getMethods();
-		Method fieldGetter = null;
-		for (Method met : methods) {
-			if (met.getName().toLowerCase().contains("get" + fieldName.toLowerCase())) {
-				fieldGetter = met;
-			}
-		}
-
-		return fieldGetter;
-	}
-
-	public Object getFieldValue(Field field) {
-		Object value = null;
-		try {
-			value = fieldGetter(field).invoke(entityModel);
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
-				| IntrospectionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return value;
-	}
-
-	public Object getFieldValue(String fieldName) {
-		Object value = null;
-		try {
-			value = fieldGetter(fieldName).invoke(entityModel);
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
-				| IntrospectionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return value;
-	}
-
-	public Object getFieldValueViaGetMethods(Field field) {
-		Object value = null;
-		try {
-			value = fieldGetterViaGetMethods(field).invoke(entityModel);
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return value;
-	}
-
-	/**
-	 * 
-	 * @param fieldName
-	 * @return field value using field name
-	 * @Note this method iterate through a Method array, to use if not setter
-	 *       methods are present in target classe
-	 */
-	public Object getFieldValueViaGetMethods(String fieldName) {
-		Object value = null;
-		try {
-			value = fieldGetterViaGetMethods(fieldName).invoke(entityModel);
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return value;
+		ClassFieldsSetAndGet.setField(entityModel, fieldName, value);
 	}
 
 	/**
@@ -308,23 +156,11 @@ public class ExtractSetAndGetFields<O extends Object> {
 	 *         Rise IllegalAccessException | IllegalArgumentException |
 	 *         InvocationTargetException if method no found
 	 * @Note method created following issue when using method via PropertyDescriptor
-	 *       on classes(Enum) xhich not use setter method
+	 *       on classes(Enum) which not use setter method
 	 * 
 	 */
-	public Object getFieldValueUltimate(String fieldName) {
-		Object value = null;
-		try {
-			value = fieldGetter(fieldName).invoke(entityModel);
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
-				| IntrospectionException e) {
-			try {
-				value = fieldGetterViaGetMethods(fieldName).invoke(entityModel);
-			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		}
-		return value;
+	public Object getFieldValue(String fieldName) {
+		return ClassFieldsSetAndGet.getFieldValue(entityModel, fieldName);
 	}
 
 	/**
@@ -340,20 +176,8 @@ public class ExtractSetAndGetFields<O extends Object> {
 	 *       on classes(Enum) hich not use setter method
 	 * 
 	 */
-	public Object getFieldValueUltimate(Field field) {
-		Object value = null;
-		try {
-			value = fieldGetter(field).invoke(entityModel);
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
-				| IntrospectionException e) {
-			try {
-				value = fieldGetterViaGetMethods(field).invoke(entityModel);
-			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		}
-		return value;
+	public Object getFieldValue(Field field) {
+		return ClassFieldsSetAndGet.getFieldValue(entityModel, field.getName());
 	}
 
 	public String fieldType(Field field) {
@@ -432,23 +256,11 @@ public class ExtractSetAndGetFields<O extends Object> {
 	 * @return
 	 */
 	public Object fieldTypeClassNewInstance(Field field) {
-		return newInstance(field);
+		return TypeField.newInstance(field);
 	}
 
 	public Object fieldTypeClassNewInstance(String fieldName) {
-		Field field = getFieldByIsName(fieldName);
-		return newInstance(field);
-	}
-
-	private Object newInstance(Field field) {
-		Object clazz = null;
-		try {
-			clazz = Class.forName(field.getType().getName()).newInstance();
-		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return clazz;
+		return TypeField.newInstance(entityModel, fieldName);
 	}
 
 	/**

@@ -1,6 +1,6 @@
 package fle.toolBox.springFormManager.builder.annotationsManagement;
 
-import fle.toolBox.miscellaneous.ConfigurationFileReader;
+import fle.toolBox.ConfigurationFileReader;
 
 /**
  * 

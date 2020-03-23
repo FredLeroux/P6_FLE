@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="userFormBtn.align">userFormBtn.align</entry>
+	<entry key="userFormBtn.message">userFormBtn.message</entry>
+	<entry key="userForm.Label">userForm.Label</entry></properties>

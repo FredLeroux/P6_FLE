@@ -1,24 +1,40 @@
 package std.fle._01_entity._01_02_assetsEnum;
 
-public enum SecurityLevel {
+import org.springframework.context.MessageSource;
+
+import fle.toolBox.springFormManager.selectInputManagement.controllerClass.tools.SelectOptions;
+import fle.toolBox.springFormManager.selectInputManagement.controllerClass.tools.SelectOptionsInterface;
+
+public enum SecurityLevel implements SelectOptionsInterface {
 	
-	ADMIN("admin.name",0),
-	SUPER_USER("superUser.name",1),
-	USER("user.name",2),
-	VISITOR("visitor.name",3);
+	ADMIN("0","Administrator"),
+	SUPER_USER("1","Member"),
+	USER("2","User"),
+	VISITOR("3","Visitor");
 	
-	private String levelNameKey;
-	private Integer levelCode;
+	private SelectOptions selectOptions;
 	
-	public String getLevelNameKey() {
-		return levelNameKey;
+	
+	private SecurityLevel(String levelCode,String levelName ) {
+		selectOptions = new SelectOptions(levelCode, levelName);
 	}
-	public Integer getLevelCode() {
-		return levelCode;
+
+
+	@Override
+	public String getValue() {		
+		return selectOptions.getValue();
 	}
-	private SecurityLevel(String levelNameKey, Integer levelCode) {
-		this.levelNameKey = levelNameKey;
-		this.levelCode = levelCode;
+
+
+	@Override
+	public String getDisplayValue() {		
+		return selectOptions.getDisplayValue();
+	}
+
+
+	@Override
+	public String getDisplayValueI18N(MessageSource messageSource, String suffix) {		
+		return selectOptions.getDisplayValueI18N(messageSource, suffix);
 	}
 	
 	

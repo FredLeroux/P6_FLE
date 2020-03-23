@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import fle.toolBox.classType.ENT;
 
 @Entity
-@Table(name = "french_States")
+@Table
 public class States extends ENT implements Serializable{
 	
 	/**

@@ -4,8 +4,8 @@ import java.lang.reflect.Field;
 
 import fle.toolBox.fieldsReflectivity.AssociatedModelManagement;
 import fle.toolBox.fieldsReflectivity.ExtractSetAndGetFields;
-import fle.toolBox.springFormManager.annotations.EntityModelAssociation;
 import fle.toolBox.springFormManager.annotations.SelectInputType;
+import fle.toolBox.springFormManager.annotations.entityModelAssociation.EntityModelAssociation;
 
 
 

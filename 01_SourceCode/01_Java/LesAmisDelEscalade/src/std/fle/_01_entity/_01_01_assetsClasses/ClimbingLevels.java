@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import fle.toolBox.classType.ENT;
 
 @Entity
-@Table(name = "french_climbing_level")
+@Table
 public class ClimbingLevels extends ENT implements Serializable{
 
 	/**

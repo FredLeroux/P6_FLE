@@ -7,11 +7,11 @@ import java.util.LinkedHashMap;
 
 import fle.toolBox.exceptionsThrower.ExceptionsThrower;
 import fle.toolBox.fieldsReflectivity.AssociatedModelManagement;
-import fle.toolBox.springFormManager.annotations.EntityModelAssociation;
 import fle.toolBox.springFormManager.annotations.HiddenPath;
 import fle.toolBox.springFormManager.annotations.PlaceHolderText;
 import fle.toolBox.springFormManager.annotations.ReadOnlyInput;
 import fle.toolBox.springFormManager.annotations.SelectInputType;
+import fle.toolBox.springFormManager.annotations.entityModelAssociation.EntityModelAssociation;
 import fle.toolBox.springFormManager.builder.annotationsManagement.SpringFormSettingsAnnotation;
 import fle.toolBox.springFormManager.builder.annotationsManagement.SpringFormSettingsAnnotationData;
 import fle.toolBox.springFormManager.builder.configurationClass.SpringFormCssConfig;
@@ -61,6 +61,7 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 	public ArrayList<SpringRawFormular> springRawFormulars() {
 		ArrayList<SpringRawFormular> springFormular = new ArrayList<>();
 		for (SpringFormSettingsAnnotationData data : formsettings.formSettingArray(entityModel)) {
+			stringBuilder = new StringBuilder();
 			setFormData(data);
 			springFormTags();
 			springFormParameters();

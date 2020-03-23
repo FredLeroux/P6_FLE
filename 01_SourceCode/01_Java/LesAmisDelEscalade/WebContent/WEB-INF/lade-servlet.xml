@@ -123,6 +123,12 @@
 				</value>
 				<value>${logModalJspHref.path}05_01_logModalJspHref
 				</value>
+				<value>${placeHolderMessagesSrc.path}${placeHolder.filePattern}
+				</value>
+				<value>${labelDisplayNamesSrc.path}${labelDisplayNames.filePattern}
+				</value>
+				<value>${formMessagesSrc.path}${formMessages.FilePattern}
+				</value>
 			</list>
 
 		</property>

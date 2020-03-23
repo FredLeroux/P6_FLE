@@ -18,7 +18,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import fle.toolBox.classType.ENT;
 
 @Entity
-@Table(name = "french_counties")
+@Table
 public class Counties extends ENT implements Serializable{
 
 	/**

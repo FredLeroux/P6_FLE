@@ -9,34 +9,23 @@ import fle.toolBox.filesManagement.FilesManagement;
 import fle.toolBox.springFormManager.builder.SpringFormStringBuilder;
 import fle.toolBox.springFormManager.builder.SpringRawFormular;
 import fle.toolBox.springFormManager.builder.configurationClass.SpringFormCssConfig;
-import fle.toolBox.springFormManager.selectInputManagement.SelectInputJSFunction;
-
-
+import fle.toolBox.springFormManager.selectInputManagement.javascriptFunctions.SelectInputJSFunction;
+import fle.toolBox.springFormManager.test.TestNumericAnnotationFill;
+import fle.toolBox.springFormManager.test.TestSelectInputTypeAnnotationFill;
 
 public class SpringMVCFormGenerator {
 
 	private SpringFormStringBuilder<SFC> springForm;
-	private SpringFormCssConfig springFormCssConfig;
 	private FilesManagement jspCreator;
 	private SelectInputJSFunction<SFC> selectInputJSFunction = new SelectInputJSFunction<>();
-
-	public void cssSettings(SpringFormCssConfig springFormCssConfig) {
-		this.springFormCssConfig = springFormCssConfig;
-	}
+	private TestNumericAnnotationFill testNumericField = new TestNumericAnnotationFill();
+	private TestSelectInputTypeAnnotationFill testSelectField = new TestSelectInputTypeAnnotationFill();
 
 	public void generateForm(ServletContext context, SpringFormCssConfig cssConfig, SFC entityModel) {
+		testNumericField.testNumericAnnotationValidity(entityModel);
+		testSelectField.testSelectInputAnnotationValidity(entityModel);
 		springForm = new SpringFormStringBuilder<SFC>(entityModel);
 		springForm.setSpringFormCssConfig(cssConfig);
-		for (SpringRawFormular form : springForm.springRawFormulars()) {
-			StringBuilder builded = form.getSpringForm();
-			selectInputJSFunction.addSelectInputJSFunction(entityModel, builded, form.getFormName());
-			writeForm(context, builded, form.getJspPath());
-		}
-	}
-
-	public void generateForm(ServletContext context, SFC entityModel) {
-		springForm = new SpringFormStringBuilder<SFC>(entityModel);
-		springForm.setSpringFormCssConfig(springFormCssConfig);
 		for (SpringRawFormular form : springForm.springRawFormulars()) {
 			StringBuilder builded = form.getSpringForm();
 			selectInputJSFunction.addSelectInputJSFunction(entityModel, builded, form.getFormName());

@@ -2,7 +2,9 @@ package fle.toolBox.springFormManager.selectInputManagement.annotationManagement
 
 import java.lang.reflect.Field;
 
-public class SelectInputBoolean extends SelectInputData {
+import fle.toolBox.springFormManager.test.TestSelectInputTypeAnnotationFill;
+
+public class SelectInputBoolean extends TestSelectInputTypeAnnotationFill {
 
 	protected boolean isDependentFieldName(Field fOI) {
 		if (dependentFieldName(fOI).isEmpty()) {
@@ -21,7 +23,7 @@ public class SelectInputBoolean extends SelectInputData {
 	}
 
 	protected boolean isLinkedList(Field fOI) {
-		if ((joinFieldName(fOI).isEmpty()) && (filterByFieldName(fOI).isEmpty())) {
+		if ((masterFieldName(fOI).isEmpty()) && (filterByMasterObjectFieldName(fOI).isEmpty())) {
 			return false;
 		} else {
 			return true;
@@ -29,7 +31,15 @@ public class SelectInputBoolean extends SelectInputData {
 	}
 
 	protected boolean isSourceTypeEnum(Field field) {
-		if (query(field).isEmpty()) {
+		if (queryHQL(field).isEmpty()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	protected boolean isConfigFieldPath(Field field) {
+		if (configFilePath(field).isEmpty()) {
 			return true;
 		} else {
 			return false;

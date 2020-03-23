@@ -29,10 +29,19 @@ public class SelectInputData extends SelectInputBasis {
 		return getAnnotation(fOI).splitter();
 	}
 
-	protected String query(Field fOI) {
-		return getAnnotation(fOI).query();
+	protected String queryHQL(Field fOI) {
+		return getAnnotation(fOI).queryHQL();
 	}
-
+	
+	protected String configFileQueryHQLKey(Field fOI) {
+		return getAnnotation(fOI).configFileQueryHQLKey();
+	}
+	
+	protected String configFilePath(Field fOI) {
+		return getAnnotation(fOI).configFilePath();
+	}
+	
+	
 	protected String optionValueFieldName(Field fOI) {
 		return getAnnotation(fOI).optionValueFieldName();
 	}
@@ -61,20 +70,20 @@ public class SelectInputData extends SelectInputBasis {
 		return getAnnotation(fOI).messageSourceSuffix();
 	}
 
-	protected String joinFieldName(Field fOI) {
+	protected String masterFieldName(Field fOI) {
 		return getAnnotation(fOI).masterFieldName();
 	}
 
-	protected String filterByFieldName(Field fOI) {
-		return getAnnotation(fOI).filterByFieldName();
+	protected String filterByMasterObjectFieldName(Field fOI) {
+		return getAnnotation(fOI).filterByMasterObjectFieldName();
 	}
 
 	protected String dependentFieldName(Field fOI) {
 		return getAnnotation(fOI).dependentFieldName();
 	}
 
-	protected String filteringAction(Field fOI) {
-		return getAnnotation(fOI).filteringAction();
+	protected String dependentFieldNameFilteringAction(Field fOI) {
+		return getAnnotation(fOI).dependentFieldNameFilteringAction();
 	}
 
 	protected Field dependentField(ExtractSetAndGetFields<Object> extract, Field fOI) {
