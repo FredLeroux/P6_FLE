@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityManager;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,20 +27,21 @@ public class SelectInputDAOImpl implements SelectInputDAO {
 
 	@Autowired
 	SessionFactory sessionFactory;
-
+	
+	EntityManager entityManager;
+	
 	private Session session() {
 		return sessionFactory.getCurrentSession();
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	private <T extends ENT, D extends DTO> List<D> entityListToDTOListConverter(List<T> entityList, D dto) {
 		List<D> dtoList = (List<D>) entityList.stream().map(e -> converter.convertEntityToDTO(e, dto))
 				.collect(Collectors.toList());
 		return dtoList;
 	}
 
-	private <D extends DTO, S extends SFC> List<S> dtoListToSFCListConverter(List<D> dtoList, S sfc) {
-		@SuppressWarnings("unchecked")
+	private <D extends DTO, S extends SFC> List<S> dtoListToSFCListConverter(List<D> dtoList, S sfc) {	
 		List<S> sfcList = (List<S>) dtoList.stream().map(d -> converter.converDTOToSFC(d, sfc))
 				.collect(Collectors.toList());
 		return sfcList;
@@ -48,9 +51,11 @@ public class SelectInputDAOImpl implements SelectInputDAO {
 	@Override
 	public <T extends ENT> List<T> tableRawData(String query) {
 		List<T> entityList = session().createQuery(query).getResultList();
+		/*Query ask = entityManager.createQuery(query);
+		List<T> entityList = ask.getResultList();*/
 		return entityList;
 	}
-	//
+	
 
 	@Override
 	public <T extends ENT, D extends DTO> List<D> selectInputDTOList(List<T> entityList, D dto) {

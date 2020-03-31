@@ -23,7 +23,7 @@ public class SelectInputBoolean extends TestSelectInputTypeAnnotationFill {
 	}
 
 	protected boolean isLinkedList(Field fOI) {
-		if ((masterFieldName(fOI).isEmpty()) && (filterByMasterObjectFieldName(fOI).isEmpty())) {
+		if ((relationShipField(fOI).isEmpty()) && (relationShipFieldFilter(fOI).isEmpty())) {
 			return false;
 		} else {
 			return true;
@@ -31,19 +31,9 @@ public class SelectInputBoolean extends TestSelectInputTypeAnnotationFill {
 	}
 
 	protected boolean isSourceTypeEnum(Field field) {
-		if (queryHQL(field).isEmpty()) {
-			return true;
-		} else {
-			return false;
+		return entityClassName(field).contains("void");
 		}
-	}
 	
-	protected boolean isConfigFieldPath(Field field) {
-		if (configFilePath(field).isEmpty()) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+	
 
 }

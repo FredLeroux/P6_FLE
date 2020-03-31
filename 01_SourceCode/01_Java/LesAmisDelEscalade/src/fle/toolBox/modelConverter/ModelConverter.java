@@ -17,22 +17,30 @@ public class ModelConverter {
 		return destinationType;
 	}
 	
-	public  DTO convertEntityToDTO(ENT entityClass, DTO DTOClass) {
-		return   (DTO) convertSourceToDestinationType(entityClass, DTOClass);
+	@SuppressWarnings("unchecked")
+	public<D extends DTO, E extends ENT>  D convertEntityToDTO(E entityClass, D DTOClass) {
+		return   (D) convertSourceToDestinationType(entityClass, DTOClass);
 	}
 	
-	public  ENT convertDTOToEntity(DTO DTOClass, ENT entityClass) {
-		return (ENT) convertSourceToDestinationType(DTOClass, entityClass);
+	@SuppressWarnings("unchecked")
+	public<D extends DTO, E extends ENT> E convertDTOToEntity(D DTOClass, E entityClass) {
+		return (E) convertSourceToDestinationType(DTOClass, entityClass);
 	}
 	
-	public  DTO converSFCToDTO(SFC SFCClass,DTO DTOClass ) {
-		return (DTO) convertSourceToDestinationType(SFCClass, DTOClass);
+	@SuppressWarnings("unchecked")
+	public<D extends DTO,S extends SFC>  D converSFCToDTO(S SFCClass,D DTOClass ) {
+		return  (D) convertSourceToDestinationType(SFCClass, DTOClass);
 	}
 	
 	
-	public  SFC converDTOToSFC(DTO DTOClass, SFC SFCClass) {
-		return  (SFC) convertSourceToDestinationType(DTOClass, SFCClass);
+	@SuppressWarnings("unchecked")
+	public <D extends DTO,S extends SFC> S converDTOToSFC(D DTOClass, S SFCClass) {
+		return  (S) convertSourceToDestinationType(DTOClass, SFCClass);
 		
+	}
+	
+	public<E extends ENT,D extends DTO,S extends SFC> E convertSFCToENT(E entityClass, D DTOClass, S SFCClass) {
+		return convertDTOToEntity(converSFCToDTO(SFCClass, DTOClass), entityClass);
 	}
 
 }

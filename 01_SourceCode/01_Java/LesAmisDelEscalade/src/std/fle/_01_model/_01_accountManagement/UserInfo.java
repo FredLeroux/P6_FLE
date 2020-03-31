@@ -14,9 +14,11 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.annotations.ColumnDefault;
 
+import fle.toolBox.classType.ENT;
+
 @Entity
 @Table(name = "lade_user_info")
-public class UserInfo implements Serializable {
+public class UserInfo extends ENT implements Serializable {
 
 	/**
 	 * 

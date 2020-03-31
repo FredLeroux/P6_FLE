@@ -42,55 +42,41 @@ public class TestSelectInputTypeAnnotationFill extends SelectInputData {
 
 	private void check(Field fOI) {
 		if (IsAnnotationPresent.onField(fOI, SelectInputType.class)) {
+			Assertions.assertTrue(mandatory(fOI));
 			enumUseConstraint(fOI);
-			dataBaseTableUse(fOI);
-			queryHQLUse(fOI);
-			configFileQueryHQLUse(fOI);
+			dataBaseTableUse(fOI);			
 			dependentFieldNameUse(fOI);
 			masterFieldNameUse(fOI);
 		}
 
 	}
+	
+	private boolean mandatory(Field fOI) {
+		return !enumClass(fOI).getSimpleName().contains("void") || !entityClassName(fOI).contains("void");
+	}
 
 	private void enumUseConstraint(Field fOI) {
-		// System.out.println(enumClass(fOI).getCanonicalName());
-		if (!enumClass(fOI).getCanonicalName().equals("void")) {
-			hasToBeEmpty(queryHQL(fOI), fOI);
-			hasToBeEmpty(configFileQueryHQLKey(fOI), fOI);
-			hasToBeEmpty(configFilePath(fOI), fOI);
+		if (!enumClass(fOI).getSimpleName().contains("void")) {
+			hasToBeEqualsTo("void", entityClassName(fOI), fOI);
 			hasToBeNull(dtoClass(fOI), fOI);
 			hasToBeEmpty(optionValueFieldName(fOI), fOI);
 			hasToBeEmpty(optionDisplayValueFieldName(fOI), fOI);
 			hasToBeEmpty(dependentFieldName(fOI), fOI);
 			hasToBeEmpty(dependentFieldNameFilteringAction(fOI), fOI);
-			hasToBeEmpty(masterFieldName(fOI), fOI);
-			hasToBeEmpty(filterByMasterObjectFieldName(fOI), fOI);
+			hasToBeEmpty(relationShipField(fOI), fOI);
+			hasToBeEmpty(relationShipFieldFilter(fOI), fOI);
 		}
 	}
 
 	private void dataBaseTableUse(Field fOI) {
-		if (!queryHQL(fOI).isEmpty()) {
+		if (!entityClassName(fOI).contains("void")) {
 			hasToBeVoid(enumClass(fOI), fOI);
 			hasToBeNotNull(dtoClass(fOI), fOI);
 			hasToBeNotEmpty(optionValueFieldName(fOI), fOI);
 			hasToBeNotEmpty(optionDisplayValueFieldName(fOI), fOI);
 		}
 	}
-
-	private void queryHQLUse(Field fOI) {
-		if (!queryHQL(fOI).isEmpty()) {
-			hasToBeEmpty(configFilePath(fOI), fOI);
-			hasToBeEmpty(configFileQueryHQLKey(fOI), fOI);
-		}
-	}
-
-	private void configFileQueryHQLUse(Field fOI) {
-		if (!configFileQueryHQLKey(fOI).isEmpty() || !configFilePath(fOI).isEmpty()) {
-			hasToBeEmpty(queryHQL(fOI), fOI);
-			hasToBeNotEmpty(configFilePath(fOI), fOI);
-			hasToBeNotEmpty(configFileQueryHQLKey(fOI), fOI);
-		}
-	}
+	
 
 	private void dependentFieldNameUse(Field fOI) {
 		if (!dependentFieldName(fOI).isEmpty() || !dependentFieldNameFilteringAction(fOI).isEmpty()) {
@@ -100,9 +86,9 @@ public class TestSelectInputTypeAnnotationFill extends SelectInputData {
 	}
 
 	private void masterFieldNameUse(Field fOI) {
-		if (!masterFieldName(fOI).isEmpty() || !filterByMasterObjectFieldName(fOI).isEmpty()) {
-			hasToBeNotEmpty(masterFieldName(fOI), fOI);
-			hasToBeNotEmpty(filterByMasterObjectFieldName(fOI), fOI);
+		if (!relationShipField(fOI).isEmpty() || !relationShipFieldFilter(fOI).isEmpty()) {
+			hasToBeNotEmpty(relationShipField(fOI), fOI);
+			hasToBeNotEmpty(relationShipFieldFilter(fOI), fOI);
 		}
 	}
 
@@ -129,5 +115,9 @@ public class TestSelectInputTypeAnnotationFill extends SelectInputData {
 
 	private void hasToBeNotNull(Object object, Field fOI) {
 		Assertions.assertNotNull(object, message(fOI));
+	}
+	
+	private void hasToBeEqualsTo(String criterion, String toTest,Field fOI) {
+		Assertions.assertEquals(criterion,toTest,message (fOI));
 	}
 }

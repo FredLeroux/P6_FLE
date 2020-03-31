@@ -6,6 +6,11 @@ import std.fle._01_model._01_accountManagement.UserInfo;
 
 public class User extends ENT {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3959278804970979531L;
+
 	private UserInfo userInfo; 
 	
 	private UsersAccountInfo usersAccountInfo;

@@ -5,8 +5,6 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,7 +16,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import fle.toolBox.classType.ENT;
 
 @Entity
-@Table
+@Table(name = "french_counties",schema = "cliff")
 public class Counties extends ENT implements Serializable{
 
 	/**
@@ -27,7 +25,6 @@ public class Counties extends ENT implements Serializable{
 	private static final long serialVersionUID = 4250534379898825356L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@Column(name = "county_number")

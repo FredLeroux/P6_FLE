@@ -1,7 +1,7 @@
 package std.fle._02_dto._02_01_assetsClassesDTO;
 
 import fle.toolBox.classType.DTO;
-import std.fle._01_entity._01_01_assetsClasses.States;
+
 
 public class CountiesDTO extends DTO {
 
@@ -11,7 +11,7 @@ public class CountiesDTO extends DTO {
 
 	private String countyName;
 
-	private States state;
+	private StatesDTO state;
 
 	public Integer getId() {
 		return id;
@@ -37,11 +37,11 @@ public class CountiesDTO extends DTO {
 		this.countyName = countyName;
 	}
 
-	public States getState() {
+	public StatesDTO getState() {
 		return state;
 	}
 
-	public void setState(States state) {
+	public void setState(StatesDTO state) {
 		this.state = state;
 	}
 

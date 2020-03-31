@@ -1,5 +1,7 @@
 package fle.toolBox.classType;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author Frederic Leroux
@@ -15,6 +17,11 @@ package fle.toolBox.classType;
  * 
  *
  */
-public abstract class ENT {
+public abstract class ENT implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3202309568296301474L;
 
 }

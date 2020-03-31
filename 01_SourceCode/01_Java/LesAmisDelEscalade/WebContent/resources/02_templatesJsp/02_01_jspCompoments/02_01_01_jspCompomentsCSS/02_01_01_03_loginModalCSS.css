@@ -37,6 +37,7 @@
 	border-radius: var(--borderWidth);
 	grid-template-columns: 25% 25% 25% 25%;
 	grid-template-areas: 'headerA headerA headerA closeA'
+		'errorA errorA errorA errorA'
 		'idA inputIdA inputIdA inputIdA'
 		'passA inputPassA inputPassA inputPassA'
 		'forgot forgot forgot forgot'
@@ -56,6 +57,16 @@
 .header {
 	cursor: default;
 	grid-area: headerA;
+	font-family: header-font;
+	font-size:22.5px;
+	text-align: left;		
+	margin-left: 5%;
+	padding-bottom: 16px;
+}
+
+.error {
+		cursor: default;
+	grid-area: errorA;
 	font-family: header-font;
 	font-size:22.5px;
 	text-align: left;		

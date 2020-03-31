@@ -1,11 +1,12 @@
 package std.fle._02_dto._02_02_modelsDTO._02_02_01_usersDTO;
 
 import fle.toolBox.classType.DTO;
-import std.fle._01_entity._01_01_assetsClasses.ClimbingLevels;
-import std.fle._01_entity._01_01_assetsClasses.Counties;
-import std.fle._01_entity._01_01_assetsClasses.States;
 
-public class UsersInfoDTO extends DTO{
+import std.fle._02_dto._02_01_assetsClassesDTO.ClimbingLevelsDTO;
+import std.fle._02_dto._02_01_assetsClassesDTO.CountiesDTO;
+import std.fle._02_dto._02_01_assetsClassesDTO.StatesDTO;
+
+public class UsersInfoDTO extends DTO {
 
 	private Integer id;
 
@@ -19,11 +20,11 @@ public class UsersInfoDTO extends DTO{
 
 	private String gender;
 
-	private States state;
+	private StatesDTO state;
 
-	private Counties county;
+	private CountiesDTO county;
 
-	private ClimbingLevels climbingLevel;
+	private ClimbingLevelsDTO climbingLevel;
 
 	public Integer getId() {
 		return id;
@@ -73,27 +74,27 @@ public class UsersInfoDTO extends DTO{
 		this.gender = gender;
 	}
 
-	public States getState() {
+	public StatesDTO getState() {
 		return state;
 	}
 
-	public void setState(States state) {
+	public void setState(StatesDTO state) {
 		this.state = state;
 	}
 
-	public Counties getCounty() {
+	public CountiesDTO getCounty() {
 		return county;
 	}
 
-	public void setCounty(Counties county) {
+	public void setCounty(CountiesDTO county) {
 		this.county = county;
 	}
 
-	public ClimbingLevels getClimbingLevel() {
+	public ClimbingLevelsDTO getClimbingLevel() {
 		return climbingLevel;
 	}
 
-	public void setClimbingLevel(ClimbingLevels climbingLevel) {
+	public void setClimbingLevel(ClimbingLevelsDTO climbingLevel) {
 		this.climbingLevel = climbingLevel;
 	}
 

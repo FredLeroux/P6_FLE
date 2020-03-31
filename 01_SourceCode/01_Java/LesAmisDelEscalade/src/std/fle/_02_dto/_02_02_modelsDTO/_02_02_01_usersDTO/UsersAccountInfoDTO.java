@@ -18,9 +18,9 @@ public class UsersAccountInfoDTO extends DTO {
 
 	private Integer loginTentativeNumber = 0;
 
-	private String securityLevel;
+	private Integer securityLevel;
 
-	private String accountActivationStatus;
+	private boolean accountActivationStatus;
 
 	private boolean isMember;
 
@@ -72,19 +72,20 @@ public class UsersAccountInfoDTO extends DTO {
 		this.loginTentativeNumber = loginTentativeNumber;
 	}
 
-	public String getSecurityLevel() {
+	public Integer getSecurityLevel() {
 		return securityLevel;
 	}
 
-	public void setSecurityLevel(String securityLevel) {
+	public void setSecurityLevel(Integer securityLevel) {
 		this.securityLevel = securityLevel;
 	}
 
-	public String getAccountActivationStatus() {
+	
+	public boolean isAccountActivationStatus() {
 		return accountActivationStatus;
 	}
 
-	public void setAccountActivationStatus(String accountActivationStatus) {
+	public void setAccountActivationStatus(boolean accountActivationStatus) {
 		this.accountActivationStatus = accountActivationStatus;
 	}
 

@@ -96,4 +96,6 @@ public @interface Numeric {
 	 * but set in a properties file
 	 */
 	public String precisionKey() default "";
+	
+	public boolean acceptEmptyValue() default false;
 }

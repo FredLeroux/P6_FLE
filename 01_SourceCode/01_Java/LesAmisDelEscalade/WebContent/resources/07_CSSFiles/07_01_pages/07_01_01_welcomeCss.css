@@ -1,0 +1,9 @@
+@import url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_01_appSkin.css");
+
+.welcomeFormatting{
+	color : var(--base-color);
+	text-align: center;
+	font-size: 20vw;
+	font-family: header-font;
+	
+}

@@ -1,5 +1,7 @@
 package std.fle._01_entity._01_03_models;
 
+
+
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
@@ -13,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -22,7 +26,8 @@ import std.fle._01_entity._01_01_assetsClasses.Counties;
 import std.fle._01_entity._01_01_assetsClasses.States;
 
 @Entity
-@Table(name = "users_info")
+@DynamicUpdate
+@Table(name = "users_info",schema = "cliff")
 public class UsersInfo extends ENT implements Serializable {
 
 	/**
@@ -46,7 +51,7 @@ public class UsersInfo extends ENT implements Serializable {
 
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "french_stats_fk")
+	@JoinColumn(name = "french_state_fk")
 	private States state;
 
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
@@ -60,6 +65,7 @@ public class UsersInfo extends ENT implements Serializable {
 	private ClimbingLevels climbingLevel;
 
 	@OneToOne
+	@JoinColumn(name = "account_info_fk")
 	private UsersAccountInfo userAccountInfo;
 
 	public Integer getId() {

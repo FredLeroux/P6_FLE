@@ -6,8 +6,6 @@ import java.util.Properties;
 
 import javax.servlet.ServletContext;
 
-
-
 import fle.toolBox.logger.Log4J2;
 
 public class PropertiesToHashMap  {

@@ -81,7 +81,12 @@ public class SpringFormSettingsAnnotationData {
 	}
 
 	public void setJspFilePath(String jspFilePath) {
-		this.jspFilePath = jspFilePath;
+		if(configFile.getProperty(jspFilePath)==null) {
+			this.jspFilePath = jspFilePath;
+		}else {
+			this.jspFilePath = configFile.getProperty(jspFilePath);
+		}
+		
 	}
 
 	public String getLabelMessageSourceSuffix() {

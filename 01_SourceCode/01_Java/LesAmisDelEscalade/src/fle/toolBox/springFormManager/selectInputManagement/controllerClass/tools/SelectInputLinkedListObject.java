@@ -13,17 +13,17 @@ public class SelectInputLinkedListObject {
 
 	private Field field;
 	private String listName;
-	private String masterFieldName;
-	private String filterByFieldName;
+	private String relationShipField;
+	private String relationShipFieldFilter;
 	private List<DTO> list;
 
-	public SelectInputLinkedListObject(Field field, String listName, String masterFieldName, String filterByFieldName,
+	public SelectInputLinkedListObject(Field field, String listName, String relationShipField, String relationShipFieldFilter,
 			List<DTO> list) {
 		super();
 		this.field = field;
 		this.listName = listName;
-		this.masterFieldName = masterFieldName;
-		this.filterByFieldName = filterByFieldName;
+		this.relationShipField = relationShipField;
+		this.relationShipFieldFilter = relationShipFieldFilter;
 		this.list = list;
 
 	}
@@ -45,19 +45,19 @@ public class SelectInputLinkedListObject {
 	}
 
 	public String getMasterFieldName() {
-		return masterFieldName;
+		return relationShipField;
 	}
 
 	public void setJoinMasterdName(String joinFieldName) {
-		this.masterFieldName = joinFieldName;
+		this.relationShipField = joinFieldName;
 	}
 
 	public String getFilterByFieldName() {
-		return filterByFieldName;
+		return relationShipFieldFilter;
 	}
 
 	public void setFilterByFieldName(String filterByFieldName) {
-		this.filterByFieldName = filterByFieldName;
+		this.relationShipFieldFilter = filterByFieldName;
 	}
 
 	public List<DTO> getList() {
@@ -95,8 +95,8 @@ public class SelectInputLinkedListObject {
 	 * 
 	 * @param <D>
 	 * @param clazz
-	 * @param masterFieldName
-	 * @param filterByFieldName
+	 * @param relationShipField
+	 * @param relationShipFieldFilter
 	 * @return the integer FilterByFieldName value of the masterField 
 	 */
 	private <D extends DTO> Integer getFilterValue(D clazz, String masterFieldName, String filterByFieldName
@@ -109,15 +109,15 @@ public class SelectInputLinkedListObject {
 	}
 	
 	private boolean equalsCriterion( Integer criterion,DTO clazz){		
-		return getFilterValue(clazz, masterFieldName, filterByFieldName).compareTo(criterion) == 0;
+		return getFilterValue(clazz, relationShipField, relationShipFieldFilter).compareTo(criterion) == 0;
 	}
 	
 	private boolean greaterThanCriterion( Integer criterion,DTO clazz){		
-		return getFilterValue(clazz, masterFieldName, filterByFieldName).compareTo(criterion) > 0;
+		return getFilterValue(clazz, relationShipField, relationShipFieldFilter).compareTo(criterion) > 0;
 	}
 	
 	private boolean lessThanCriterion( Integer criterion,DTO clazz){		
-		return getFilterValue(clazz, masterFieldName, filterByFieldName).compareTo(criterion) < 0;
+		return getFilterValue(clazz, relationShipField, relationShipFieldFilter).compareTo(criterion) < 0;
 	}
 
 	

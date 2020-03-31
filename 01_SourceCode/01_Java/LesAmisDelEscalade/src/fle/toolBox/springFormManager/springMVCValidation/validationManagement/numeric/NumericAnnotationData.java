@@ -44,4 +44,8 @@ public class NumericAnnotationData {
 	protected String precisionKey(Field fOI) {
 		return getAnnotation(fOI).precisionKey();
 	}
+	
+	protected boolean acceptEmptyValue(Field fOI) {
+		return getAnnotation(fOI).acceptEmptyValue();
+	}
 }

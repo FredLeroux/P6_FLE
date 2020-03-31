@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import fle.toolBox.ConfigurationFileReader;
+
 import fle.toolBox.EnumToJSONArray;
 import fle.toolBox.classType.DTO;
 import fle.toolBox.fieldsReflectivity.ExtractSetAndGetFields;
@@ -19,7 +19,7 @@ public class SelectInputList extends SelectInputBoolean {
 	@Autowired
 	SelectInputService selectService;
 	
-	private ConfigurationFileReader config;
+	
 
 	protected <S extends SelectOptionsInterface> ArrayList<S> getSelectOptionsList(Field field) {		
 		if (isSourceTypeEnum(field)) {
@@ -31,7 +31,7 @@ public class SelectInputList extends SelectInputBoolean {
 	}
 
 	
-	private <E extends Enum<E>, S extends SelectOptionsInterface> ArrayList<S> enumToList(Field field) {
+	private <E extends Enum<E>, S extends SelectOptionsInterface> ArrayList<S> enumToList(Field field) {		
 		Class<E> enumClass = enumClass(field);
 		return  EnumToJSONArray.enumConstantObject(enumClass);
 	}
@@ -45,6 +45,7 @@ public class SelectInputList extends SelectInputBoolean {
 	}
 
 	private <D extends DTO> Object fieldValue(D dto, String fieldName) {
+		
 		return extract(dto).getFieldValue(fieldName);
 	}
 
@@ -60,17 +61,12 @@ public class SelectInputList extends SelectInputBoolean {
 		return selectService.selectInputDTOList(getQuery(field), dtoClass(field));
 	}
 	
-	protected String getQuery(Field field) {
-		if(isConfigFieldPath(field)) {
-			return queryHQL(field);
-		}else {
-			config = new ConfigurationFileReader(configFilePath(field));
-			return  config.getProperty(configFileQueryHQLKey(field));
-		}
+	private String getQuery(Field field) {
+		return " FROM ".concat(entityClassName(field)); 
 	}
 
 	@SuppressWarnings("unchecked")
-	private <S extends SelectOptionsInterface> ArrayList<S> selectInputListConverter(Field field) {
+	private <S extends SelectOptionsInterface> ArrayList<S> selectInputListConverter(Field field) {		
 		String value = optionValueFieldName(field);
 		String displayValue = optionDisplayValueFieldName(field);
 		return (ArrayList<S>) selectInputDTOList(field).stream().map(d -> selectOptionMapper(d, value, displayValue))

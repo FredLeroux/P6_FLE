@@ -8,6 +8,7 @@ import java.util.LinkedHashMap;
 import fle.toolBox.exceptionsThrower.ExceptionsThrower;
 import fle.toolBox.fieldsReflectivity.AssociatedModelManagement;
 import fle.toolBox.springFormManager.annotations.HiddenPath;
+import fle.toolBox.springFormManager.annotations.PassWordField;
 import fle.toolBox.springFormManager.annotations.PlaceHolderText;
 import fle.toolBox.springFormManager.annotations.ReadOnlyInput;
 import fle.toolBox.springFormManager.annotations.SelectInputType;
@@ -17,7 +18,6 @@ import fle.toolBox.springFormManager.builder.annotationsManagement.SpringFormSet
 import fle.toolBox.springFormManager.builder.configurationClass.SpringFormCssConfig;
 import fle.toolBox.springFormManager.builder.tagLibraries.spring.SpringTagFormular;
 
-
 public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular {
 
 	private Class<SelectInputType> selectAnnotation = SelectInputType.class;
@@ -25,6 +25,7 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 	private Class<PlaceHolderText> placeHolderAnnotation = PlaceHolderText.class;
 	private Class<EntityModelAssociation> entityModelAssociation = EntityModelAssociation.class;
 	private Class<ReadOnlyInput> readOnlyInputAnnotation = ReadOnlyInput.class;
+	private Class<PassWordField> passWordAnnotation = PassWordField.class;
 	private AssociatedModelManagement<O> fieldManager = null;
 	private O entityModel;
 	private ArrayList<String> fieldsNamesList = new ArrayList<>();
@@ -39,6 +40,7 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 	private String formButtonMessage;
 	private String formButtonAlignment;
 	private String labelMessageSourceSuffix;
+	private String lineBreak = "<br>";
 	private SpringFormCssConfig springFormCssConfig;
 	private SpringFormSettingsAnnotation formsettings = new SpringFormSettingsAnnotation();
 
@@ -73,6 +75,7 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 			}
 			addButton();
 			formEnd();
+
 			springFormular.add(new SpringRawFormular(data.getJspFilePath(), data.getFormName(), stringBuilder));
 		}
 		return springFormular;
@@ -144,26 +147,29 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 		return annotatedFieldMap;
 	}
 
-	@SuppressWarnings("unchecked")
 	private <A extends Annotation> ArrayList<String> selectFieldList() {
 		ArrayList<String> selectFieldList = new ArrayList<>();
-		selectFieldList = annotatedFieldList((Class<A>) selectAnnotation);
+		selectFieldList = annotatedFieldList(selectAnnotation);
 		return selectFieldList;
 	}
 
-	@SuppressWarnings("unchecked")
 	private <A extends Annotation> ArrayList<String> hiddenPathFieldList() {
 		ArrayList<String> hiddenPathFieldList = new ArrayList<>();
-		hiddenPathFieldList = annotatedFieldList((Class<A>) hiddenPathAnnotation);
+		hiddenPathFieldList = annotatedFieldList(hiddenPathAnnotation);
 		ExceptionsThrower.ifEmpty(hiddenPathFieldList);
 		return hiddenPathFieldList;
 	}
 
-	@SuppressWarnings("unchecked")
 	private <A extends Annotation> ArrayList<String> readOnlyInputFieldList() {
 		ArrayList<String> readOnlyInputFieldList = new ArrayList<>();
-		readOnlyInputFieldList = annotatedFieldList((Class<A>) readOnlyInputAnnotation);
+		readOnlyInputFieldList = annotatedFieldList(readOnlyInputAnnotation);
 		return readOnlyInputFieldList;
+	}
+
+	private <A extends Annotation> ArrayList<String> passWordInputFieldList() {
+		ArrayList<String> passWordInputFieldList = new ArrayList<>();
+		passWordInputFieldList = annotatedFieldList((passWordAnnotation));
+		return passWordInputFieldList;
 	}
 
 	private void springFormParameters() {
@@ -207,6 +213,9 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 	private void formEnd() {
 		stringBuilder.append(tableEnd());
 		stringBuilder.append(formClose());
+		stringBuilder.append(lineBreak);
+		stringBuilder.append(lineBreak);
+		stringBuilder.append(lineBreak);
 	}
 
 	private void addHiddenPath(String fieldName) {
@@ -230,6 +239,18 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 		}
 	}
 
+	private void addPassWordInputField(String fieldName) {
+		if (passWordInputFieldList().contains(fieldName)) {
+			LinkedHashMap<String, String> placeHolder = placeHolderAnnotatedFieldMap();
+			if (placeHolder.containsKey(fieldName)) {
+				addCell(passWordCssClassCssErrorClassTagMessagePlaceHolder(fieldName, placeHolder.get(fieldName)));
+			} else {
+				addCell(passWordCssClassCssErrorClass(fieldName));
+			}
+			fieldSetInFormIsTrue();
+		}
+	}
+
 	private void addField(int i, String fieldName, boolean readOnly) {
 
 		stringBuilder.append(tableRowStart());
@@ -238,6 +259,7 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 			addCell(label(fieldName, i));
 			addSelectField(fieldName);
 			addReadOnlyInputField(fieldName);
+			addPassWordInputField(fieldName);
 			if (!isFieldSetInForm) {
 				addCell(input(fieldName, readOnly));
 			}

@@ -16,7 +16,7 @@ import fle.toolBox.springFormManager.annotations.SpringFormSettings;
  *          each @springFormSettings present in entityModel
  * @see {@link SpringFormSettingsAnnotationData }
  */
-public class SpringFormSettingsAnnotation {
+public  class SpringFormSettingsAnnotation {
 
 	private Class<SpringFormSettings> springFormSettings = SpringFormSettings.class;
 

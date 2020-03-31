@@ -23,17 +23,23 @@ public class NumericValidation extends NumericAnnotationRegex {
 	public void associatedModelNumericFieldValidation(Field fOI, Object clazz, String entityName,
 			BindingResult result) {
 		if (isNumeric(fOI)) {
+			
 			String value = ClassFieldsSetAndGet.getFieldValue(clazz, fOI.getName()).toString();
 			String fieldValueName = entityName.concat(".").concat(fOI.getName());
+			if(!acceptEmptyValue(fOI) ||!value.equals("")) {
 			isNumericValidation(fOI, numericError, fieldValueName, value, notNumericeDefaultMessage, result);
+			}
+			
 		}
 	}
 
 	public void simpleModelNumericFieldAnnotation(Object cOI, Field fOI, BindingResult result) {
 		if (isNumeric(fOI)) {
+			
 			String value = ClassFieldsSetAndGet.getFieldValue(cOI, fOI.getName()).toString();
+			if(!acceptEmptyValue(fOI)|| !value.equals("")) {
 			isNumericValidation(fOI, numericError, fOI.getName(), value, notNumericeDefaultMessage, result);
-		}
+		}}
 	}
 
 	

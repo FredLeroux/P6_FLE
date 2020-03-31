@@ -46,13 +46,17 @@ public @interface SpringFormSettings {
 
 	/**
 	 * 
-	 * configuration file key to get the button message
+	 * configuration file key to get the button message Internationalization managed
+	 * by Spring Tag Message i.e if property key set in properties file and if this
+	 * one is in a messageSource.properties value will be th eone in message Source
+	 * however if key not find system will return key as display message
 	 */
 	public String buttonMessagePropertyKey();
 
 	/**
 	 * 
-	 * configuration file key to get the button alignment
+	 * configuration file key to get the button alignment value set directly in
+	 * properties file
 	 */
 	public String buttonAlignmentPropertyKey();
 
@@ -68,7 +72,8 @@ public @interface SpringFormSettings {
 	 * Spring Formular, <br>
 	 * as example : <br>
 	 * for a JSP named "form.jsp" in "/resource/template" path will be : <br>
-	 * "/resource/template/form.jsp"
+	 * "/resource/template/form.jsp".
+	 * Can be also setted via a property key 
 	 */
 	public String jspFilePath();
 
@@ -77,7 +82,7 @@ public @interface SpringFormSettings {
 	 * the message source suffix allowing to get the locale MessageSource properties
 	 * key<br>
 	 * i.e. for a key as "identity.name" labelMessageSourceSuffix will be : <br>
-	 * ".name"
+	 * ".name" value set directly in properties file
 	 * 
 	 */
 	public String labelMessageSourceSuffix();

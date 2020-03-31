@@ -1,33 +1,29 @@
 package std.fle._01_entity._01_01_assetsClasses;
 
-
 import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import fle.toolBox.classType.ENT;
 
 @Entity
-@Table
-public class States extends ENT implements Serializable{
-	
+@Table(name = "french_states", schema = "cliff")
+public class States extends ENT implements Serializable {
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2135318378433668599L;
-	
+	private static final long serialVersionUID = 8202326579466179009L;
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@Column(name = "state_number")
 	private Integer stateNumber;
-	
+
 	@Column(name = "state_name")
 	private String stateName;
 
@@ -54,6 +50,5 @@ public class States extends ENT implements Serializable{
 	public void setStateName(String stateName) {
 		this.stateName = stateName;
 	}
-	
-	
+
 }

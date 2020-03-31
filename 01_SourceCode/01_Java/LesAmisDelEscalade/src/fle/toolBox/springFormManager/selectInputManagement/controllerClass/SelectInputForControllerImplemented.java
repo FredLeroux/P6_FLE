@@ -165,8 +165,8 @@ public class SelectInputForControllerImplemented extends SelectInputListAndValue
 	}
 
 	private void addSelectInputLinkedListObject(Field fOI) {
-		linkedList.add(new SelectInputLinkedListObject(fOI, selectListName(fOI), masterFieldName(fOI),
-				filterByMasterObjectFieldName(fOI), selectInputDTOList(fOI)));
+		linkedList.add(new SelectInputLinkedListObject(fOI, selectListName(fOI), relationShipField(fOI),
+				relationShipFieldFilter(fOI), selectInputDTOList(fOI)));
 	}
 
 	private void selectOptions(String key, ArrayList<SelectOptionsInterface> s, String suffix,String splitter) {

@@ -37,9 +37,11 @@ function setIframe() {
 	var iframe = document.createElement("iframe");
 	iframe.id = "iframeNav";
 	iframe.width = "100%";
-	iframe.setAttribute("frameborder", 0)
+	iframe.setAttribute("frameborder", 0);
+	//attribute scrolling avoid the iframe scroll bar keep in mind to adjuste the height and width
+	iframe.setAttribute("scrolling", "no");
 	iframe.setAttribute("onload",
-			"this.style.height=this.contentDocument.body.scrollHeight +'px';")
+			"this.style.height=this.contentDocument.body.scrollHeight +'px';");//this.contentDocument.body.scrollHeight +'px'
 	location.appendChild(iframe);
 }
 

@@ -2,8 +2,6 @@
 .iframe{
 width:100%;
 
-border:  solid;
-border-color: rgb(17,36,45);
 
 
 

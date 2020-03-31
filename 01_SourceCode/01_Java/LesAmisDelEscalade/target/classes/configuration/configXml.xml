@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+
+<entry key="fieldStyle.normal">basicInput</entry>	
+	<entry key="cssFilePath">${pageContext.request.contextPath}/resources/07_CSSFiles/07_02_form/</entry>
+	<entry key="cssFileName">form.css</entry>
+	<entry key="labelStyleClass.normal">labelStyle</entry>
+	<entry key="labelStyleClass.error">labelStyleBad</entry>
+	<entry key="fieldStyleClass.normal">inputStyle</entry>
+	<entry key="fieldStyleClass.error">inputStyleBad</entry>
+	<entry key="buttonStyleClass">formButton</entry>
+	
+	
+	
+	
+	
+
+</properties>

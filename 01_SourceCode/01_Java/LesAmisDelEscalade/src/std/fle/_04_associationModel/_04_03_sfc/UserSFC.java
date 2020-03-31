@@ -2,12 +2,10 @@ package std.fle._04_associationModel._04_03_sfc;
 
 import javax.validation.Valid;
 
-
-
 import fle.toolBox.classType.SFC;
 import fle.toolBox.springFormManager.annotations.SpringFormSettings;
 import fle.toolBox.springFormManager.annotations.entityModelAssociation.EntityModelAssociation;
-import std.fle._03_sfc._03_01_usersSFC.UserInfoSFC;
+import std.fle._03_sfc._03_01_usersSFC.UsersInfoSFC;
 import std.fle._03_sfc._03_01_usersSFC.UsersAccountInfoSFC;
 
 @EntityModelAssociation
@@ -16,25 +14,25 @@ import std.fle._03_sfc._03_01_usersSFC.UsersAccountInfoSFC;
 		method = "post", 
 		modelAttribute = "userManagement", 
 		name = "userFormular", 
-		propertiesFilePath = "configuration/springFormSettings.xml",
+		propertiesFilePath = "configuration/springFormSettings/springFormSettings.xml",
 		buttonAlignmentPropertyKey = "userFormBtn.align", 
 		buttonMessagePropertyKey = "userFormBtn.message", 
-		jspFilePath = "/resources/02_templatesJsp/02_02_form/userForm.jsp", 
-		labelMessageSourceSuffix = "userForm.Label",		 
+		jspFilePath = "userForm.path", 
+		labelMessageSourceSuffix = "userForm.label",		 
 		readOnly = false)
 public class UserSFC extends SFC {
 
 	@Valid
-	private UserInfoSFC userInfoSFC;
+	private UsersInfoSFC usersInfoSFC;
 	@Valid
 	private UsersAccountInfoSFC usersAccountInfoSFC;
 
-	public UserInfoSFC getUserInfoSFC() {
-		return userInfoSFC;
+	public UsersInfoSFC getUsersInfoSFC() {
+		return usersInfoSFC;
 	}
 
-	public void setUserInfoSFC(UserInfoSFC userInfoSFC) {
-		this.userInfoSFC = userInfoSFC;
+	public void setUsersInfoSFC(UsersInfoSFC usersInfoSFC) {
+		this.usersInfoSFC = usersInfoSFC;
 	}
 
 	public UsersAccountInfoSFC getUsersAccountInfoSFC() {

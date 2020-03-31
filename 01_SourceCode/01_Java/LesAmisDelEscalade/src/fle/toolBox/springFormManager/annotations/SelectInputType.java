@@ -19,8 +19,7 @@ import java.lang.annotation.Target;
  *          will generated a form select input with :
  *          <li>select options list setted via an Enum
  *          ({@link #enumClass()})<br>
- *          or DataBaseTable({@link #queryHQL()} or
- *          {@link #configFileQueryHQLKey()})
+ *          or DataBaseTable({@link #entityClass()}
  *          <li>default value {@link #defaultValue()}.
  *          <h1><b><u>Options</u></b></h1>
  *          <li>Using {@link #messageSourceSuffix()} allow to translate in
@@ -36,16 +35,15 @@ import java.lang.annotation.Target;
  *          {@link #dependentFieldName()} and
  *          {@link #dependentFieldNameFilteringAction()}
  *          <li>the second field called dependent field needs to be annotated
- *          with first field name {@link #masterFieldName()} and
+ *          with first field name {@link #dtoClass()} and
  *          {@link #filterByMasterObjectFieldName()}
  *          </ol>
  *          </ol>
  *          <h1><b><u>Contrains</u></b></h1>
  *          <li>In case of {@link #enumClass()} use avoid all other not
  *          mandatory annotation attributes.
- *          <li>In case of {@link #queryHQL()} use avoid
- *          {@link #enumClass()},{@link #configFilePath()} and
- *          {@link #configFileQueryHQLKey()}
+ *          <li>In case of {@link #entityClass()} use avoid
+ *          {@link #enumClass()}.
  *          <ol>
  *          <u> use imperatively :</u> <br>
  *          {@link #dtoClass()} <br>
@@ -54,23 +52,10 @@ import java.lang.annotation.Target;
  *          <u>use optionally :</u> <br>
  *          {@link #dependentFieldName()} <br>
  *          {@link #dependentFieldNameFilteringAction()} <br>
- *          {@link #masterFieldName()} <br>
+ *          {@link #dtoClass()} <br>
  *          {@link #filterByMasterObjectFieldName()}
- *          </ol>
- *          <li>In case of {@link #configFileQueryHQLKey()} use avoid
- *          {@link #enumClass()},{@link #queryHQL()}
- *          <ol>
- *          <u> use imperatively :</u> <br>
- *          {@link #configFilePath()} vice versa
- *          {@link #configFileQueryHQLKey()} <br>
- *          {@link #dtoClass()} <br>
- *          {@link #optionDisplayValueFieldName()} <br>
- *          {@link #optionValueFieldName()} <br>
- *          <u>use optionally :</u> <br>
- *          {@link #dependentFieldName()} <br>
- *          {@link #dependentFieldNameFilteringAction()} <br>
- *          {@link #masterFieldName()} <br>
- *          {@link #filterByMasterObjectFieldName()} </o>
+ * 
+ * 
  * 
  * 
  */
@@ -104,22 +89,10 @@ public @interface SelectInputType {
 
 	/**
 	 * 
-	 * the HQL query to get all data from a data base assets table
+	 * Is the entity class used to generate query in order to get the database table
+	 * data(corresponding to the field type in entity model use to create the SFC)
 	 */
-	String queryHQL() default "";
-
-	/**
-	 * 
-	 * the key to be find in properties file setted with {@link #configFilePath()} .
-	 */
-	String configFileQueryHQLKey() default "";
-
-	/**
-	 * 
-	 * the file path where to find the properties file containing the
-	 * {@link #configFileQueryHQLKey()}
-	 */
-	String configFilePath() default "";
+	Class<?> entityClass() default void.class;
 
 	/**
 	 * 
@@ -166,25 +139,26 @@ public @interface SelectInputType {
 
 	/**
 	 * 
-	 * The field name used to get the criterion value to filter the dependent list
+	 * The dtoClass field name which is the relation ship owner
 	 */
-	String masterFieldName() default "";
+	String relationShipField() default "";
 
 	/**
 	 * 
 	 * 
-	 * the dto field form master field used as filter, usually "id" integer dto
+	 * the dto field form relationShipField used as filter, usually "id" integer dto
 	 * class attribute i.e.<br>
 	 * <ul>
-	 * <li>For a master field using a database table "states" with as list a
-	 * "StatesDTO.class" setted with "id" and "name" attributes.
-	 * <li>The database table being in manyToOne relationship with a database table
-	 * "counties" having as foreing key the "states.id".
-	 * <li>Setting filterByMasterObjectFieldName as "id" will created a filter list
-	 * of "countyDTO.class" containing only setted master field "states.id" value.
+	 * <li>For a relation Ship many-to-one between a table states and a table
+	 * counties with a Foreign key "states_id_fk"
+	 * <li>the relationShipField "state" owner of relationship in CountiesDTO.class
+	 * will create a list of StatesDTO.
+	 * <li>the relationShipFieldFilter "id" representing the states id value will allow
+	 * to filter the StatesDTO list by "id" value and so display only counties where
+	 * "states_id_fk" equals "id"
 	 * 
 	 */
-	String filterByMasterObjectFieldName() default "";
+	String relationShipFieldFilter() default "";
 
 	/**
 	 * 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-	<entry key="states.hql">FROM french_states</entry>
-	<entry key="counties.hql">FROM french_counties</entry>
-	<entry key="climb.hql">FROM french_climbing_level</entry></properties>
+	<entry key="states.hql">FROM States</entry>
+	<entry key="counties.hql">FROM Counties</entry>
+	<entry key="climb.hql">FROM ClimbingLevels</entry></properties>

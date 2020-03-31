@@ -1,5 +1,7 @@
 package std.fle._01_entity._01_03_models;
 
+
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -13,10 +15,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+
+import org.hibernate.annotations.DynamicUpdate;
+
 import fle.toolBox.classType.ENT;
 
 @Entity
-@Table(name = "users_account_info")
+@DynamicUpdate
+@Table(name = "users_account_info", schema = "cliff")
 public class UsersAccountInfo extends ENT implements Serializable {
 
 	private static final long serialVersionUID = 9044155488919897403L;
@@ -30,15 +36,15 @@ public class UsersAccountInfo extends ENT implements Serializable {
 	private String password;
 	@Column(name = "pseudonyme")
 	private String pseudonyme;
-	@Column(name ="sing_up_date")
+	@Column(name ="sign_up_date")
 	private Date signUpDate;
 	@Column(name ="login_tentative_number")
-	private Integer loginTentativeNumber = 0;	
+	private Integer loginTentativeNumber;	
 	@Column(name= "security_level")
-	private String securityLevel;
+	private Integer securityLevel;
 	@Column(name = "account_activation_status")
-	private String accountActivationStatus;	
-	@Column (name = "is_member")
+	private boolean accountActivationStatus;	
+	@Column (name = "is_member")	
 	private boolean isMember;
 	
 	@OneToOne(mappedBy =  "userAccountInfo",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
@@ -93,23 +99,22 @@ public class UsersAccountInfo extends ENT implements Serializable {
 	}
 
 	
-	public String getSecurityLevel() {
+	public Integer getSecurityLevel() {
 		return securityLevel;
 	}
 
-	public void setSecurityLevel(String securityLevel) {
+	public void setSecurityLevel(Integer securityLevel) {
 		this.securityLevel = securityLevel;
 	}
 
-	public String getAccountActivationStatus() {
+	
+	public boolean isAccountActivationStatus() {
 		return accountActivationStatus;
 	}
 
-	public void setAccountActivationStatus(String accountActivationStatus) {
+	public void setAccountActivationStatus(boolean accountActivationStatus) {
 		this.accountActivationStatus = accountActivationStatus;
 	}
-	
-	
 
 	public boolean isMember() {
 		return isMember;

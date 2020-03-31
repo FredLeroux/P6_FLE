@@ -13,7 +13,7 @@ import fle.toolBox.exceptionsThrower.ExceptionsThrower;
  * 
  */
 
-public class SpringTagFormular {
+public abstract class SpringTagFormular {
 
 	private String tagLibFormsUri = "http://www.springframework.org/tags/form";
 	private String tagLibFormsPrefix = "springForm";
@@ -55,6 +55,7 @@ public class SpringTagFormular {
 	private String selectTagName = "select";
 	private String errorTagName = "errors";
 	private String buttonTagName = "button";
+	private String passWordTagName = "password"; 
 
 	protected String getOpenTagFormPrefixed() {
 		return openTagFormPrefixed;
@@ -642,6 +643,8 @@ public class SpringTagFormular {
 		inputFinal.append(input);
 		return inputFinal.toString();
 	}
+	
+	
 
 	protected String select(String path, String targetForm) {
 		return openFormTag(selectTagName, path) + createId(path, selectTagName) + getFormAttribut()
@@ -656,6 +659,29 @@ public class SpringTagFormular {
 	protected String selectCssClassCssErrorClass(String path, String targetForm) {
 		return openFormTag(selectTagName, path) + createId(path, selectTagName) + getFormAttribut()
 				+ argument(targetForm) + getSelectCssClass() + getSelectCssErrorClass() + closeTag + ln;
+	}
+	
+	protected String passWord(String path) {
+		return openFormTag(passWordTagName, path, closeTag) + ln;
+	}
+
+	protected String passWordCssClass(String path) {
+		return openFormTag(passWordTagName, path) + getInputCssClass() + closeTag + ln;
+	}
+
+	protected String passWordCssClassCssErrorClass(String path) {
+		return openFormTag(passWordTagName, path) + getInputCssClass() + getInputCssErrorClass() + closeTag + ln;
+	}
+	
+	protected String passWordCssClassCssErrorClassTagMessagePlaceHolder(String path, String code) {
+		StringBuilder passWordInputFinal = new StringBuilder();
+		String varName = code.replace(" ", ".").replace(".", "");
+		String message = messageWithVar(code, varName) + ln;
+		String input = openFormTag(passWordTagName, path) + getInputCssClass() + getInputCssErrorClass()
+				+ placeHolderAttribut + htmlVar(varName) + closeTag + ln;
+		passWordInputFinal.append(message);
+		passWordInputFinal.append(input);
+		return passWordInputFinal.toString();
 	}
 
 	protected String errors(String path) {
