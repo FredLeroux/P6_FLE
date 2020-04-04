@@ -62,7 +62,6 @@ public class EnumToJSONArray {
 		ExtractSetAndGetFields<E> extract = null;
 		JSONArray array = new JSONArray();
 		for (int i = 0; i < enumeration.getEnumConstants().length; i++) {
-			System.out.println(enumeration.getEnumConstants()[i]);
 			extract = new ExtractSetAndGetFields<E>(enumeration.getEnumConstants()[i]);
 			array.put(extract.getFieldValue(fieldName));
 		}

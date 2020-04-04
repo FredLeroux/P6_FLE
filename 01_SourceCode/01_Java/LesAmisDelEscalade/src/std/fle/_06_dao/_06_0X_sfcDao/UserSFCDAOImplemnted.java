@@ -9,8 +9,8 @@ import std.fle._01_entity._01_03_models.UsersInfo;
 import std.fle._04_associationModel._04_01_model.User;
 import std.fle._04_associationModel._04_02_dto.UserDTO;
 import std.fle._04_associationModel._04_03_sfc.UserSFC;
-import std.fle._07_service._07_01_serviceInterface._07_01_02_modelServiceInterface.UsersAccountInfoService;
-import std.fle._07_service._07_01_serviceInterface._07_01_02_modelServiceInterface.UsersInfoService;
+import std.fle._06_dao._06_01_daoInterface._06_01_02_modelsDao.UsersAccountInfoDAO;
+import std.fle._06_dao._06_01_daoInterface._06_01_02_modelsDao.UsersInfoDAO;
 
 @Repository
 public class UserSFCDAOImplemnted implements UserSFCDao {
@@ -19,18 +19,26 @@ public class UserSFCDAOImplemnted implements UserSFCDao {
 	DAOGenericInterface<User, UserDTO> dao;
 
 	@Autowired
-	UsersInfoService userInfoService;
+	UsersInfoDAO userInfoDAO;
 
 	@Autowired
-	UsersAccountInfoService accountInfoService;
+	UsersAccountInfoDAO accountInfoDAO;
 
 	@Override
 	public void save(UserSFC user) {
-		UsersAccountInfo userAccountInfo = accountInfoService.postTransactionTreatment(user.getUsersAccountInfoSFC());
-		UsersInfo userInfo = userInfoService.postTransactionTreatment(user.getUsersInfoSFC());
+		UsersAccountInfo userAccountInfo = accountInfoDAO.postTransactionTreatment(user.getUsersAccountInfoSFC());
+		UsersInfo userInfo = userInfoDAO.postTransactionTreatment(user.getUsersInfoSFC());
 		userInfo.setUserAccountInfo(userAccountInfo);
 		userAccountInfo.setUserInfo(userInfo);
-		accountInfoService.save(userAccountInfo);
+		accountInfoDAO.save(userAccountInfo);
+	}
+
+	@Override
+	public UserSFC getById(Integer id) {
+		UserSFC sfc = new UserSFC();
+		sfc.setUsersInfoSFC(userInfoDAO.getSFCById(id));
+		sfc.setUsersAccountInfoSFC(accountInfoDAO.getSFCById(id));
+		return sfc;
 	}
 
 }

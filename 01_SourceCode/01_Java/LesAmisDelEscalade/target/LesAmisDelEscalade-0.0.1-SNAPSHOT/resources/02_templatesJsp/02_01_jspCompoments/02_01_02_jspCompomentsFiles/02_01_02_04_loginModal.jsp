@@ -5,13 +5,14 @@
 <div id="loginModal" class="modal" style="display: none;">
 	<!-- display set none here allow immediate action  -->
 	<div>
-		<form class="log-grid" action="${logAction}" method="post">
+		<form class="log-grid" action=<springTag:message code="action.form" /> method="post">
 			<div class="header">
 				<springTag:message code="logModal.name" />
 			</div>
 			<div class="close">
 				<label id="close"><springTag:message code="close.name" /></label>
 			</div>
+			<div id= "error" class="error">${error}</div>
 			<div class="id">
 				<label class="log-text" for="login"><springTag:message code="login.name" /></label>
 			</div>
@@ -32,6 +33,7 @@
 				</a>
 			</div>
 			<div class="createAccount">
+			<!-- id = "creation" onclick="loadIframePageAndToggleDiplay('02_AccountManagement/userFormRegister')"  -->
 				<a href="<springTag:message code ="createAccount.href"/>">
 					<label><springTag:message code="createAccount.name" /></label>
 				</a>
@@ -42,14 +44,18 @@
 			<div id="cancel" class="cancel">
 				<label><springTag:message code="cancel.name" /></label>
 			</div>
-
-
 		</form>
 	</div>
 </div>
 <script type="text/javascript" src="toolBoxJavaScript/04_01_01_toggle.js"></script>
+<script type="text/javascript" src="jspCompomentsJavaScript/02_01_03_02_iFrameJavaScript.js"></script>
 <script type="text/javascript">
-	var logToggle = toggle();
-	logToggle.addToggleDisplayOnClick("cancel", "loginModal");
-	logToggle.addToggleDisplayOnClick("close", "loginModal");
+	var logToggle = toggle();		
+	logToggle.addToggleDisplayOnClickAndClearError("cancel", "loginModal", "error");
+	logToggle.addToggleDisplayOnClickAndClearError("close", "loginModal", "error");
+	var iframe = newIframe("iFrameLoc");
+	logToggle.displayOnError("error","loginModal");
+
+	
 </script>
+

@@ -24,8 +24,6 @@ public class UniqueValidationImplemented extends UniqueAnnotationBoolean impleme
 	public void associatedModelNumericFieldValidation(Field fOI, Object clazz, String entityName,
 			BindingResult result) {
 		if (isUniqueAnnotated(fOI)) {
-			System.out.println(
-					fOI.getName() + " value= " + ClassFieldsSetAndGet.getFieldValue(clazz, fOI.getName()).toString());
 			String value = ClassFieldsSetAndGet.getFieldValue(clazz, fOI.getName()).toString();
 			String fieldValueName = entityName.concat(".").concat(fOI.getName());
 			isUniqueValidation(fOI, uniqueError, fieldValueName, value, notUniqueDefaultMessage, result);
@@ -70,8 +68,6 @@ public class UniqueValidationImplemented extends UniqueAnnotationBoolean impleme
 	 * @see IsUniqueService
 	 */
 	private boolean isUnique(String entityName, String fieldName, String valueTocheckUnicity) {
-		System.out.println(entityName + "  " + fieldName);
-		System.out.println(valueTocheckUnicity);
 		if (service.columnElementsList(fieldName, entityName).contains(valueTocheckUnicity)) {
 			return false;
 		} else {

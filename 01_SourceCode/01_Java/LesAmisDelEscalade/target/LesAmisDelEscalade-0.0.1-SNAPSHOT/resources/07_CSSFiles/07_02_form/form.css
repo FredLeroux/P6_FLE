@@ -1,0 +1,96 @@
+@import
+	url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_01_appSkin.css")
+	;
+
+/* ###############  START : set input and select box size identical ###################*/
+input, select {
+	-webkit-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+@
+supports (-ms-ime-align:auto ) { .selector {input,select{ box-sizing:border-box;
+	
+}
+
+}
+}
+
+/* ###############  END : set input and select box size identical ###################*/
+table {
+	min-width: 360px;
+}
+
+td {
+	min-width: 33.3%;
+}
+
+.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option  {	
+	font-family: menu-font;
+	font-size: 20px;
+}
+
+
+.labelStyle, .inputStyle, option{
+color: var(--base-color);
+}
+
+.labelStyleBad, .inputStyleBad{
+	color: var(--bad-color);
+	
+}
+
+
+.inputStyle {
+	border: solid;
+	border-style: thin dashed;
+	border-color: var(--base-color);
+	width: 90%;
+}
+
+.inputStyleBad {
+	border: solid;
+	border-style: thin dashed;
+	border-color: var(--bad-color);
+	width: 90%;
+	
+}
+
+input[readonly] {
+	cursor: text;
+}
+
+tr:hover .inputStyle {
+	border-color: var(--base-color-opposite);
+	
+}
+
+tr:hover .labelStyle {
+	color: var(--base-color-opposite);;
+}
+
+@media all and (max-width: 650px) {
+	.labelStyle, .inputStyle,option {
+		font-size: 15px;
+	}
+}
+
+@media all and (max-width: 500px) {
+	.labelStyle, .inputStyle,option {
+		font-size: 12.5px;
+	}
+}
+
+@media all and (max-width: 400px) {
+	.labelStyle, .inputStyle,option {
+		font-size: 10px;
+	}
+}
+
+@media all and (max-width: 360px) {
+	.labelStyle, .inputStyle,option {
+		font-size: 8px;
+	}
+}

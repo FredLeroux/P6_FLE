@@ -10,12 +10,14 @@ import org.springframework.stereotype.Component;
 import fle.toolBox.springFormManager.SpringMVCFormGenerator;
 import fle.toolBox.springFormManager.builder.configurationClass.SpringFormCssConfig;
 import std.fle._04_associationModel._04_03_sfc.UserSFC;
+import std.fle._04_associationModel._04_03_sfc.UserUpdateSFC;
 @Component
 public class SpringFormCreation implements ApplicationListener<ContextRefreshedEvent> {
 	@Autowired
 	ServletContext context;
 	private SpringMVCFormGenerator build = new SpringMVCFormGenerator();
 	private UserSFC userSFC = new UserSFC();
+	private UserUpdateSFC userUpdateSFC = new UserUpdateSFC();
 	private static final SpringFormCssConfig config = new SpringFormCssConfig()
 			.cssConfigFile("configuration/configXml.xml")
 			.styleSheetPath("cssFilePath")
@@ -34,6 +36,7 @@ public class SpringFormCreation implements ApplicationListener<ContextRefreshedE
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		
 		build.generateForm(context, config, userSFC);
+		build.generateForm(context, config, userUpdateSFC);
 	}
 
 }

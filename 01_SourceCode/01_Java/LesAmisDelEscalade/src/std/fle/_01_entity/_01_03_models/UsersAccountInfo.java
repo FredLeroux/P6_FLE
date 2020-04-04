@@ -15,7 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
 import org.hibernate.annotations.DynamicUpdate;
 
 import fle.toolBox.classType.ENT;
@@ -43,9 +42,9 @@ public class UsersAccountInfo extends ENT implements Serializable {
 	@Column(name= "security_level")
 	private Integer securityLevel;
 	@Column(name = "account_activation_status")
-	private boolean accountActivationStatus;	
+	private Boolean accountActivationStatus;	
 	@Column (name = "is_member")	
-	private boolean isMember;
+	private Boolean isMember;
 	
 	@OneToOne(mappedBy =  "userAccountInfo",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private UsersInfo userInfo;
@@ -108,19 +107,19 @@ public class UsersAccountInfo extends ENT implements Serializable {
 	}
 
 	
-	public boolean isAccountActivationStatus() {
+	public Boolean isAccountActivationStatus() {
 		return accountActivationStatus;
 	}
 
-	public void setAccountActivationStatus(boolean accountActivationStatus) {
+	public void setAccountActivationStatus(Boolean accountActivationStatus) {
 		this.accountActivationStatus = accountActivationStatus;
 	}
 
-	public boolean isMember() {
+	public Boolean isMember() {
 		return isMember;
 	}
 
-	public void setMember(boolean isMember) {
+	public void setMember(Boolean isMember) {
 		this.isMember = isMember;
 	}
 

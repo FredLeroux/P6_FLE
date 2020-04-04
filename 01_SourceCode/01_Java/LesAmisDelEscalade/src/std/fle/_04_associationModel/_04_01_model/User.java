@@ -2,7 +2,8 @@ package std.fle._04_associationModel._04_01_model;
 
 import fle.toolBox.classType.ENT;
 import std.fle._01_entity._01_03_models.UsersAccountInfo;
-import std.fle._01_model._01_accountManagement.UserInfo;
+import std.fle._01_entity._01_03_models.UsersInfo;
+
 
 public class User extends ENT {
 	
@@ -11,15 +12,15 @@ public class User extends ENT {
 	 */
 	private static final long serialVersionUID = 3959278804970979531L;
 
-	private UserInfo userInfo; 
+	private UsersInfo userInfo; 
 	
 	private UsersAccountInfo usersAccountInfo;
 
-	public UserInfo getUserInfo() {
+	public UsersInfo getUserInfo() {
 		return userInfo;
 	}
 
-	public void setUserInfo(UserInfo userInfo) {
+	public void setUserInfo(UsersInfo userInfo) {
 		this.userInfo = userInfo;
 	}
 

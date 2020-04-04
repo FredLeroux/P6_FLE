@@ -5,19 +5,19 @@ import javax.validation.Valid;
 import fle.toolBox.classType.SFC;
 import fle.toolBox.springFormManager.annotations.SpringFormSettings;
 import fle.toolBox.springFormManager.annotations.entityModelAssociation.EntityModelAssociation;
-import std.fle._03_sfc._03_01_usersSFC.UsersInfoSFC;
 import std.fle._03_sfc._03_01_usersSFC.UsersAccountInfoSFC;
+import std.fle._03_sfc._03_01_usersSFC.UsersInfoSFC;
 
 @EntityModelAssociation
 @SpringFormSettings(
 		action = "userCreation",
 		method = "post", 
 		modelAttribute = "userManagement", 
-		name = "userFormular", 
-		propertiesFilePath = "configuration/springFormSettings/springFormSettings.xml",
+		name = "userRegisterFormular", 
+		propertiesFilePath = "configuration/springFormSettings/formSettings.xml",
 		buttonAlignmentPropertyKey = "userFormBtn.align", 
-		buttonMessagePropertyKey = "userFormBtn.message", 
-		jspFilePath = "userForm.path", 
+		buttonMessagePropertyKey = "userFormBtn.message.register", 
+		jspFilePath = "userRegisterForm.path", 
 		labelMessageSourceSuffix = "userForm.label",		 
 		readOnly = false)
 public class UserSFC extends SFC {

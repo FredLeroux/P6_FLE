@@ -5,6 +5,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
+import fle.toolBox.IsAnnotationPresent;
 import fle.toolBox.exceptionsThrower.ExceptionsThrower;
 import fle.toolBox.fieldsReflectivity.AssociatedModelManagement;
 import fle.toolBox.springFormManager.annotations.HiddenPath;
@@ -32,16 +33,16 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 	private ArrayList<String> fieldsNamesListlabel = new ArrayList<>();
 	private StringBuilder stringBuilder = new StringBuilder();
 	private boolean isFieldSetInForm = false;
-	private String action;
-	private String method;
-	private String modelAttribut;
-	private String formName;
-	private boolean readOnly;
-	private String formButtonMessage;
-	private String formButtonAlignment;
-	private String labelMessageSourceSuffix;
+	private String action = null;
+	private String method = null;
+	private String modelAttribut = null;
+	private String formName = null;
+	private boolean readOnly = false;
+	private String formButtonMessage = null;
+	private String formButtonAlignment = null;
+	private String labelMessageSourceSuffix = null;
 	private String lineBreak = "<br>";
-	private SpringFormCssConfig springFormCssConfig;
+	private SpringFormCssConfig springFormCssConfig = null;
 	private SpringFormSettingsAnnotation formsettings = new SpringFormSettingsAnnotation();
 
 	private boolean associatedModel;
@@ -75,7 +76,6 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 			}
 			addButton();
 			formEnd();
-
 			springFormular.add(new SpringRawFormular(data.getJspFilePath(), data.getFormName(), stringBuilder));
 		}
 		return springFormular;
@@ -141,7 +141,9 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 							clazzField.getAnnotation(placeHolderAnnotation).message());
 				}
 			} else {
-				annotatedFieldMap.put(field.getName(), field.getAnnotation(placeHolderAnnotation).message());
+				if (IsAnnotationPresent.onField(field, placeHolderAnnotation)) {
+					annotatedFieldMap.put(field.getName(), field.getAnnotation(placeHolderAnnotation).message());
+				}
 			}
 		}
 		return annotatedFieldMap;

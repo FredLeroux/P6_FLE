@@ -36,4 +36,29 @@ public class UsersInfoServicesImplemented implements UsersInfoService {
 
 	}
 
+	@Override
+	public UsersInfoSFC getSFCById(Integer id) {		
+		return dao.getSFCById(id);
+	}
+
+	@Override
+	public void updateSFC(UsersInfoSFC SFCObject) {
+		dao.updateSFC(SFCObject);
+		
+	}
+
+	@Override
+	public void updateEntity(UsersInfo entity) {
+		dao.updateEntity(entity);
+		
+	}
+
+	@Override
+	public void updateDTO(UsersInfoDTO DTOClass) {
+		dao.updateDTO(DTOClass);
+		
+	}
+
+	
+
 }

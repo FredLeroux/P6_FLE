@@ -4,7 +4,10 @@ public enum AppVariables {
 	
 	LOGGED("logged"),
 	SECURITY_LEVEL("securityLevel"),
-	CONNEXION("connexion");
+	CONNEXION("connexion"),
+	PSEUDO("pseudo"),
+	ACCOUNT_ID("accountID"),
+	LOGIN_TENTATIVE("loginTentative");
 	
 	private String var;
 

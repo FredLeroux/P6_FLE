@@ -20,18 +20,23 @@ supports (-ms-ime-align:auto ) { .selector {input,select{ box-sizing:border-box;
 
 /* ###############  END : set input and select box size identical ###################*/
 table {
+	width: 60%;
 	min-width: 360px;
 }
 
 td {
-	min-width: 33.3%;
+	min-width: 20%;
 }
 
-.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option  {	
+.labelStyle, .inputStyle  {	
 	font-family: menu-font;
 	font-size: 20px;
 }
 
+.labelStyleBad, .inputStyleBad,option{
+	font-family: menu-font;
+	font-size: 12px;
+}
 
 .labelStyle, .inputStyle, option{
 color: var(--base-color);
@@ -58,8 +63,8 @@ color: var(--base-color);
 	
 }
 
-input[readonly] {
-	cursor: text;
+input[readonly = "readonly"] {
+	cursor: default;
 }
 
 tr:hover .inputStyle {
@@ -71,26 +76,28 @@ tr:hover .labelStyle {
 	color: var(--base-color-opposite);;
 }
 
-@media all and (max-width: 650px) {
-	.labelStyle, .inputStyle,option {
-		font-size: 15px;
+@media all and (max-width: 1000px) {
+	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad {
+		font-size: 12px;
 	}
+	option{
+	font-size: 10px}
 }
 
-@media all and (max-width: 500px) {
-	.labelStyle, .inputStyle,option {
-		font-size: 12.5px;
-	}
-}
-
-@media all and (max-width: 400px) {
-	.labelStyle, .inputStyle,option {
+@media all and (max-width: 790px) {
+	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option {
 		font-size: 10px;
 	}
 }
 
-@media all and (max-width: 360px) {
-	.labelStyle, .inputStyle,option {
+@media all and (max-width: 400px) {
+	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option {
 		font-size: 8px;
+	}
+}
+
+@media all and (max-width: 360px) {
+	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option {
+		font-size: 6px;
 	}
 }

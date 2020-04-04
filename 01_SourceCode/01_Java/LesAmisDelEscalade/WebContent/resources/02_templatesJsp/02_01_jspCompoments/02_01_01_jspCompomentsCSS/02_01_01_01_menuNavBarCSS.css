@@ -25,17 +25,37 @@
 	color: var(--menu-icon-color);
 }
 
-
-
-.containerConnexion {	
-	text-align: right;
+.firstLign{
+	width: 100%;
+	display: flex;
+	
 }
 
-.connexion {	
+.greetings{
+	width: 95%;
+	text-align: justify;	
+}
+
+.containerConnexion {	
+	width: 10%;
+	text-align: right;
+	
+}
+
+
+.connexion,.identifiedAs,.pseudo {	
 	text-decoration: none;
 	font-size: 1.5vw;
 	font-family: header-font;
-	color: var(--menu-connexion-color);
+	
+}
+.connexion,.identifiedAs{
+color: var(--menu-connexion-color);	
+}
+
+.pseudo{
+	text-align: center;
+	color:var(--highlith-color);
 }
 
 .connexion:hover{

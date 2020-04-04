@@ -2,8 +2,6 @@ package std.fle._05_controller;
 
 import java.util.ArrayList;
 
-
-
 import fle.toolBox.ConfigurationFileReader;
 
 public class NavBarOptionsList {

@@ -16,13 +16,13 @@ public class UsersAccountInfoDTO extends DTO {
 
 	private Date signUpDate;
 
-	private Integer loginTentativeNumber = 0;
+	private Integer loginTentativeNumber;
 
 	private Integer securityLevel;
 
-	private boolean accountActivationStatus;
+	private Boolean accountActivationStatus;
 
-	private boolean isMember;
+	private Boolean isMember;
 
 	public Integer getId() {
 		return id;
@@ -81,11 +81,11 @@ public class UsersAccountInfoDTO extends DTO {
 	}
 
 	
-	public boolean isAccountActivationStatus() {
+	public Boolean isAccountActivationStatus() {
 		return accountActivationStatus;
 	}
 
-	public void setAccountActivationStatus(boolean accountActivationStatus) {
+	public void setAccountActivationStatus(Boolean accountActivationStatus) {
 		this.accountActivationStatus = accountActivationStatus;
 	}
 
@@ -93,7 +93,7 @@ public class UsersAccountInfoDTO extends DTO {
 		return isMember;
 	}
 
-	public void setMember(boolean isMember) {
+	public void setMember(Boolean isMember) {
 		this.isMember = isMember;
 	}
 	

@@ -7,6 +7,8 @@ public class UsersAccountInfoAuthentificatorDTO extends DTO {
 	private String password;
 	private Integer securityLevel;
 	private String pseudonyme;
+	private Integer loginTentativeNumber;
+	private Integer id;
 
 	public String getPassword() {
 		return password;
@@ -31,5 +33,23 @@ public class UsersAccountInfoAuthentificatorDTO extends DTO {
 	public void setPseudonyme(String pseudonyme) {
 		this.pseudonyme = pseudonyme;
 	}
+
+	public Integer getLoginTentativeNumber() {
+		return loginTentativeNumber;
+	}
+
+	public void setLoginTentativeNumber(Integer loginTentativeNumber) {
+		this.loginTentativeNumber = loginTentativeNumber;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	
 
 }

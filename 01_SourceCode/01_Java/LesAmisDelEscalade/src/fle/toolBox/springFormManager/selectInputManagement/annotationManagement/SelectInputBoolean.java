@@ -34,6 +34,7 @@ public class SelectInputBoolean extends TestSelectInputTypeAnnotationFill {
 		return entityClassName(field).contains("void");
 		}
 	
+
 	
 
 }

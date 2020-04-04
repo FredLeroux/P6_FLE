@@ -87,6 +87,7 @@ public class SelectInputData extends SelectInputBasis {
 		return extract.getFieldByIsName(dependentFieldName(fOI));
 	}
 
-	
-
+	protected String SFCCriterionField(Field fOI) {
+		return getAnnotation(fOI).SFCCriterionField();
+	}
 }

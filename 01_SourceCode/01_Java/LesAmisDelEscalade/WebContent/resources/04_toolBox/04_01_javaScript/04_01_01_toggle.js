@@ -48,6 +48,21 @@ function addToggleDisplayOnClick(ownerId, elementToToggleId) {
 	element.setAttribute("onclick", "toggleDisplay('" + elementToToggleId
 			+ "')");
 }
+
+
+
+function addToggleDisplayOnClickAndClearError(ownerId, elementToToggleId,errorLoc) {
+	var element = document.getElementById(ownerId);	
+	element.setAttribute("onclick", "toggleDisplay('" + elementToToggleId
+			+ "'),clearError('"+errorLoc+"')");
+}
+
+function clearError(errorLoc){
+	var errro = document.getElementById(errorLoc);
+	error.innerHTML="";
+}
+
+
 /**
  * 
  * @param statusId is the status to check in order to switch the onclick command

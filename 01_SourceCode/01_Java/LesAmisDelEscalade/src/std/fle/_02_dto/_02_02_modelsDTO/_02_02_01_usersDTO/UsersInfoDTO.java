@@ -1,7 +1,6 @@
 package std.fle._02_dto._02_02_modelsDTO._02_02_01_usersDTO;
 
 import fle.toolBox.classType.DTO;
-
 import std.fle._02_dto._02_01_assetsClassesDTO.ClimbingLevelsDTO;
 import std.fle._02_dto._02_01_assetsClassesDTO.CountiesDTO;
 import std.fle._02_dto._02_01_assetsClassesDTO.StatesDTO;

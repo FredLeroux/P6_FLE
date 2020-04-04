@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="userFormBtn.align">center</entry>
+	<entry key="userForm.label">.label</entry>
+	<entry key="userFormBtn.message.register">button.register.label</entry>
+	<entry key="userFormBtn.message.update">button.update.label</entry>
+	<entry key="userRegisterForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/userForm.jsp</entry>
+	<entry key="userUpdateForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/userUpdateForm.jsp</entry>
+	
+	</properties>
+	

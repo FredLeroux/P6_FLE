@@ -1,8 +1,5 @@
 package exceptions;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
-
 public class RowsPerPagesException extends Exception{
 
 	/**

@@ -188,5 +188,7 @@ public @interface SelectInputType {
 	 */
 
 	Class<?> enumClass() default void.class;
+	
+	String SFCCriterionField() default "";
 
 }

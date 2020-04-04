@@ -62,7 +62,7 @@ public class UsersInfoSFC extends SFC {
 			selectValueName = "genderValue",
 			enumClass = Gender.class,
 			messageSourceSuffix = ".name")
-	private String genderValue;
+	private String gender;
 
 	@SelectInputType(
 			selectListName = "statesList",
@@ -83,7 +83,8 @@ public class UsersInfoSFC extends SFC {
 			optionValueFieldName = "id",
 			optionDisplayValueFieldName = "countyName",
 			relationShipField =  "state",
-			relationShipFieldFilter = "id"
+			relationShipFieldFilter = "id",
+			SFCCriterionField = "stateId"
 			)
 	private Integer countyId;
 
@@ -136,12 +137,12 @@ public class UsersInfoSFC extends SFC {
 		this.age = age;
 	}
 
-	public String getGenderValue() {
-		return genderValue;
+	public String getGender() {
+		return gender;
 	}
 
-	public void setGenderValue(String genderValue) {
-		this.genderValue = genderValue;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	public Integer getStateId() {

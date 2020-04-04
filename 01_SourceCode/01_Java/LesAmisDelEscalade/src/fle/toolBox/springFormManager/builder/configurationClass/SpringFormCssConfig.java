@@ -100,7 +100,6 @@ public class SpringFormCssConfig {
 
 	
 	public SpringFormCssConfig labelErrorStyle(String propertyKey) {
-		System.out.println(cssConfig.getProperty(propertyKey));
 		labelErrorStyle = cssConfig.getProperty(propertyKey);
 		return this;
 	}

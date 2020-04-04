@@ -7,7 +7,7 @@ import java.lang.reflect.Method;
 
 public class ClassFieldsSetAndGet {
 
-	public static final void setField(Object cOI, String fieldName, Object value) {
+	public static  void setField(Object cOI, String fieldName, Object value) {
 		Method fieldSetter = propertyDesc(cOI, fieldName).getWriteMethod();
 		try {
 			fieldSetter.invoke(cOI, value);
@@ -17,7 +17,7 @@ public class ClassFieldsSetAndGet {
 		}
 	}
 
-	public static final Object getFieldValue(Object cOI, String fieldName) {
+	public static  Object getFieldValue(Object cOI, String fieldName) {
 		Object value = null;
 		try {
 			value = fieldGetter(cOI, fieldName).invoke(cOI);
@@ -36,7 +36,7 @@ public class ClassFieldsSetAndGet {
 		return propertyDesc(cOI, fieldName).getReadMethod();
 	}
 
-	private static Method fieldGetterViaGetMethods(Object cOI, String fieldName) {
+	public static Method fieldGetterViaGetMethods(Object cOI, String fieldName) {
 		Method[] methods = cOI.getClass().getMethods();
 		Method fieldGetter = null;
 		for (Method methode : methods) {

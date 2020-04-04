@@ -24,7 +24,6 @@ public class TestController {
 		model.setViewName("test/userFormRegister");
 		HttpSession sess = request.getSession();
 		sess.setAttribute("option4", "hello");
-		System.out.println("++++++++++++++++++yoy");
 		return model;
 	
 }}
