@@ -24,9 +24,13 @@ public interface DAOGenericInterface<E extends ENT, D extends DTO> {
 	
 	public void updateDTO(E entity, D DTOClass);
 	
+	public<SD extends DTO> void updateSpecificDTO(E entity, SD DTOClass);
+	
 	public<S extends SFC> void updateSFC(E entity, D DTOCLass, S SFCCLass);
 	
 	public<SD extends DTO> SD getSpecificDTOById(E entity, SD specificDTOClass,Integer id);
+	
+	public D getDTOWhereCondition(String fieldName, String condition, E entity, D DTOClass);
 	
 	/**
 	 * 
@@ -45,6 +49,23 @@ public interface DAOGenericInterface<E extends ENT, D extends DTO> {
 	 * 
 	 */
 	public<SD extends DTO> SD getSpecificDTOWhereCondition(String fieldName, String condition, E entity, SD specificDTOClass);
+	/**
+	 * 
+	 * @param <DA>
+	 * @param fieldName the fieldName to search on
+	 * @param condition the value that fieldName has to meet
+	 * @param entity the origin wich are other than the parametized One
+	 * @param specificDTOClass the specific DTO to return 
+	 * @return allow to return a specific DTO filled with entity value obtained on fieldName Where condition<br>
+	 * For a DTO "PassDTO" conatining only "password" for an entity "LogEntity" containing "login" and "password" if <br>
+	 * fieldname = "login"
+	 * condition = "alpha"
+	 * entity = "LogEntity"
+	 * specificDTOClass = "PassDTO"
+	 * return "PassDTO.password" = "LogEntity.password" where "LogEntity.login" = "alpha"
+	 * 
+	 */
+	public<SE extends ENT,SD extends DTO> SD getSpecificEntitySpecificDTOWhereCondition(String fieldName, String condition, SE entity, SD specificDTOClass);
 	
 	/**
 	 * 
@@ -53,7 +74,7 @@ public interface DAOGenericInterface<E extends ENT, D extends DTO> {
 	 * @param entity
 	 * @return only one entity where fieldname is equals to foreignerkey, allow to
 	 *         retrieve an entity using a column foreignerKey as example:<br>
-	 *         for a user having as foreignerkey address_id we can retrieve the user
+	 *         for a userService having as foreignerkey address_id we can retrieve the userService
 	 *         via the adress id .
 	 */
 	public E getEntityByForeignerKey(String fieldName, Integer foreignerKey, E entity);
@@ -67,5 +88,15 @@ public interface DAOGenericInterface<E extends ENT, D extends DTO> {
 	 * @return converted to DTOClass an entity generated via  {@link #getEntityByForeignerKey(String, Integer, ENT)}
 	 */
 	public D getDTOByForeignerKey(String fieldName, Integer foreignerKey, E entity,DTO DTOClass);
+	
+	/**
+	 * 
+	 * @param fieldName
+	 * @param foreignerKey
+	 * @param entity
+	 * @param SpecificDTOClass other than the one parametized
+	 * @return converted to DTOClass an entity generated via  {@link #getEntityByForeignerKey(String, Integer, ENT)}
+	 */
+	public< SD extends DTO> SD getSpecificDTOByForeignerKey(String fieldName, Integer foreignerKey, E entity,SD SpecificDTOClass);
 
 }

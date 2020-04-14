@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import std.fle._01_entity._01_03_models.UsersInfo;
-import std.fle._02_dto._02_02_modelsDTO._02_02_01_usersDTO.UsersInfoDTO;
-import std.fle._03_sfc._03_01_usersSFC.UsersInfoSFC;
+import std.fle._02_dto._02_02_modelsDTO._02_02_01_usersDTO._02_02_01_02_usersInfoDTO.UsersInfoDTO;
+import std.fle._03_sfc._03_01_usersInfoSFC.UsersInfoSFC;
 import std.fle._06_dao._06_01_daoInterface._06_01_02_modelsDao.UsersInfoDAO;
 import std.fle._07_service._07_01_serviceInterface._07_01_02_modelServiceInterface.UsersInfoService;
 
@@ -58,6 +58,18 @@ public class UsersInfoServicesImplemented implements UsersInfoService {
 		dao.updateDTO(DTOClass);
 		
 	}
+
+	@Override
+	public boolean isEmailExist(String eMail) {		
+		return dao.isEmailExist(eMail);
+	}
+
+	@Override
+	public String getAccountEmailByLogin(String login) {		
+		return dao.getAccountEmailByLogin(login);
+	}
+	
+	
 
 	
 

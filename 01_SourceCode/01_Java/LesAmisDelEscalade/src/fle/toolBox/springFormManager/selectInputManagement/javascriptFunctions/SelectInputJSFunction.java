@@ -11,33 +11,46 @@ public class SelectInputJSFunction<O extends Object> extends SelectInputBoolean 
 
 	private JavaScriptBuilder JSBuilder = new JavaScriptBuilder();
 	private JsFunctionSelectOptions selectJs = new JsFunctionSelectOptions();
-	// private String splitter = MessageSourceAssets.SPLITTER.toString();
-	// private String defaultValue = MessageSourceAssets.DEFAULT_VALUE.toString();
 
 	public void addSelectInputJSFunction(O COI, StringBuilder stringBuilder, String formName) {
+		System.out.println("addInput function->" + COI.getClass().getCanonicalName());
 		String entityName = null;
 		setFieldManager(COI);
-		JSBuilder.openScript(stringBuilder);
-		stringBuilder.append(selectJs.selectJSFunctions());
+		JSBuilder.openScript(stringBuilder);		
 		if (isAssociatedModel()) {
 			for (Field field : fieldManager.getAllFields()) {
 				entityName = getEntityName(field);
 				ExtractSetAndGetFields<Object> extract = extract(field);
-				for (Field subField : extract.fieldsArrayListByAnnotation(selectInputAnnotation)) {
-					addSelectInputOptions(entityName, subField, stringBuilder);
-					;
+				addSelectInputJsFunction(extract, stringBuilder);
+				for (Field subField : extract.fieldsArrayListByAnnotation(selectInputAnnotation)) {					
+					addSelectInputOptions(entityName, subField, stringBuilder);					;
 					addSelectOnchangeAttribute(stringBuilder, entityName, subField, extract, formName);
+
 				}
 			}
 		} else {
-			for (Field field : fieldManager.fieldsArrayListByAnnotation(selectInputAnnotation)) {
+			addSelectInputJsFunction(fieldManager, stringBuilder);
+			for (Field field : fieldManager.fieldsArrayListByAnnotation(selectInputAnnotation)) {				
 				entityName = getEntityName(field);
 				addSelectInputOptions(entityName, field, stringBuilder);
 				addSelectOnchangeAttribute(stringBuilder, entityName, field, getFieldManager(), formName);
-				;
+
 			}
 		}
 		JSBuilder.closeScript(stringBuilder);
+	}
+	
+	/**
+	 * 
+	 * @param extractor
+	 * @param stringBuilder
+	 * add select input javascript option if at least on field in class is annotated by @SelecInputType
+	 * will check size of extractor.fieldsArrayListByAnnotation(selectInputAnnotation)
+	 */
+	private void addSelectInputJsFunction(ExtractSetAndGetFields<Object> extractor, StringBuilder stringBuilder) {
+		if(extractor.fieldsArrayListByAnnotation(selectInputAnnotation).size()>0) {
+			stringBuilder.append(selectJs.selectJSFunctions());
+		}
 	}
 
 	private void addSelectOnchangeAttribute(StringBuilder stringBuilder, String entityName, Field fOI,
@@ -66,6 +79,7 @@ public class SelectInputJSFunction<O extends Object> extends SelectInputBoolean 
 		selectJs.addSelectOptionsListAndValue(stringBuilder, entityName, selectDefaultValue, selectSplitter,
 				listVarName, fieldName, valueToSetVarName);
 	}
+
 //TODO 1-JAVADOC to clarify
 	/**
 	 * 

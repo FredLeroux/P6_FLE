@@ -36,10 +36,8 @@
 <script type="text/javascript" src="toolBoxJavaScript/04_01_01_toggle.js"></script>
 <script type="text/javascript">
 	var menuToggle = toggle();
-
 	menuToggle.addToggleDisplayAndColorOnclick("iconSet", "menuNavBar",
 			"iconSet", "iconBasis", "iconInvert");
-	//menuToggle.addToggleDisplayOnClick("connexion", "loginModal");
 	menuToggle.addSwitchAndToggleDisplayOnClick("conexionStatus", "connexion",
 			"loginModal", "disconnect")
 

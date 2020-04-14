@@ -1,6 +1,6 @@
 <%@ taglib prefix="springTag" uri="http://www.springframework.org/tags"%>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="jspCompomentsCss/02_01_01_03_loginModalCSS.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jspCompomentsCss/02_01_01_03_loginModalCSS.css" />
 
 <div id="loginModal" class="modal" style="display: none;">
 	<!-- display set none here allow immediate action  -->
@@ -47,8 +47,8 @@
 		</form>
 	</div>
 </div>
-<script type="text/javascript" src="toolBoxJavaScript/04_01_01_toggle.js"></script>
-<script type="text/javascript" src="jspCompomentsJavaScript/02_01_03_02_iFrameJavaScript.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/04_01_01_toggle.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/02_01_03_02_iFrameJavaScript.js"></script>
 <script type="text/javascript">
 	var logToggle = toggle();		
 	logToggle.addToggleDisplayOnClickAndClearError("cancel", "loginModal", "error");

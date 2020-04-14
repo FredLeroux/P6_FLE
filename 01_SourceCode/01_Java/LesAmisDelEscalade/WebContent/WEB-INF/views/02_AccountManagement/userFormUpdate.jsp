@@ -18,6 +18,7 @@ visibility: hidden;
 </style>
 </head>
 <body id="budy">
+<a href = "passwordModification">pass modif</a>
 <%@ include file = "/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/userUpdateForm.jsp" %>
 <script type="text/javascript">
 window.onload = function displayWhenReady() {

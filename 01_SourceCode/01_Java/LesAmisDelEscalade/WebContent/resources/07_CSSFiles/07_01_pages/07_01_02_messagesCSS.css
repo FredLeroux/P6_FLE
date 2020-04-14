@@ -1,0 +1,92 @@
+@import
+	url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_01_appSkin.css");
+
+.centerDiv{
+	width : 70%;	
+	margin: auto;
+}
+
+.messageContainer{
+	width: 50%;
+	margin: auto;
+	color: var(--base-color);
+	font-family: menu-font;
+	font-size: 2vw;
+}
+
+.messageTitleGood,.messageTitleBad,.messageTitleMitaMita {	
+	text-align: center;
+	font-size: 2.5vw;
+	font-weight: bold;
+	
+	
+}
+
+.messageTitleBad {
+	color: var(--bad-color);	
+}
+
+.messageTitleGood {
+	color: var(--highlith-color);	
+}
+
+.messageTitleMitaMita {
+	color: var(--mita-mita-color);	
+}
+
+.messageBodyLeftAlign,.messageBodyCenterAlign,.messageBodyRightAlign,li{
+	font-size: 1.2vw;
+}
+.messageBodyLeftAlign{
+	text-align: left;
+}
+
+.messageBodyCenterAlign{
+	text-align: center;
+}
+
+.messageBodyRightAlign{
+	text-align: right;
+}
+
+.mailUnknown{
+	color : var(--bad-color);
+	font-weight: bold;
+	font-size: 2vw;
+}
+
+.linkContainer{
+	text-align: center;
+}
+
+.link {
+	text-decoration: underline;
+	color: var(--base-color);	
+}
+
+a{
+	color : var(--highlith-color);
+	font-size: 1.2vw;
+}
+
+a:visited{
+	color : var(--highlith-color);
+}
+
+ol {
+	display: block;
+	text-align: center;
+}
+
+li {	
+	text-align: left;
+	margin-bottom: 4px;
+}
+
+
+
+.link:hover, a:hover {
+	cursor: pointer;
+	color: var(--base-color-opposite);
+}
+

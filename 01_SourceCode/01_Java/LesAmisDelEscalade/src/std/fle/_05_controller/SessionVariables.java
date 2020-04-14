@@ -15,6 +15,8 @@ public class SessionVariables {
 	private String pseudo = AppVariables.PSEUDO.var();
 	private String accountID = AppVariables.ACCOUNT_ID.var();
 	private String loginTentative = AppVariables.LOGIN_TENTATIVE.var();
+	private String login = AppVariables.LOGIN.var();
+	private String allowResetPass = AppVariables.ALLOW_RESET_PASS.var();
 
 	public SessionVariables(HttpServletRequest request) {
 		this.request = request;
@@ -68,11 +70,9 @@ public class SessionVariables {
 	public void setAccountID(Integer accountID) {
 		session().setAttribute(this.accountID, accountID);
 	}
-	
-	
 
 	public Integer getLoginTentative() {
-		if(session().getAttribute(loginTentative)== null) {
+		if (session().getAttribute(loginTentative) == null) {
 			setLoginTentative(0);
 		}
 		return (Integer) session().getAttribute(loginTentative);
@@ -80,6 +80,25 @@ public class SessionVariables {
 
 	public void setLoginTentative(Integer loginTentative) {
 		session().setAttribute(this.loginTentative, loginTentative);
+	}
+
+	public String getLogin() {
+		return (String) session().getAttribute(login);
+	}
+
+	public void setLogin(String login) {
+		session().setAttribute(this.login, login);
+	}
+	
+	
+
+	public Boolean getAllowResetPass() {
+		return (Boolean) session().getAttribute(allowResetPass);
+		
+	}
+
+	public void setAllowResetPass(Boolean allowResetPass) {
+		session().setAttribute(this.allowResetPass, allowResetPass);
 	}
 
 	public void clearSession() {

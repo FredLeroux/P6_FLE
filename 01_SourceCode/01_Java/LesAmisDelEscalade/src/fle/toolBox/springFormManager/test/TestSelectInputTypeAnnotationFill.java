@@ -46,7 +46,7 @@ public class TestSelectInputTypeAnnotationFill extends SelectInputData {
 			enumUseConstraint(fOI);
 			dataBaseTableUse(fOI);			
 			dependentFieldNameUse(fOI);
-			masterFieldNameUse(fOI);
+			relationShipUse(fOI);
 		}
 
 	}
@@ -82,13 +82,15 @@ public class TestSelectInputTypeAnnotationFill extends SelectInputData {
 		if (!dependentFieldName(fOI).isEmpty() || !dependentFieldNameFilteringAction(fOI).isEmpty()) {
 			hasToBeNotEmpty(dependentFieldName(fOI), fOI);
 			hasToBeNotEmpty(dependentFieldNameFilteringAction(fOI), fOI);
+			
 		}
 	}
 
-	private void masterFieldNameUse(Field fOI) {
+	private void relationShipUse(Field fOI) {
 		if (!relationShipField(fOI).isEmpty() || !relationShipFieldFilter(fOI).isEmpty()) {
 			hasToBeNotEmpty(relationShipField(fOI), fOI);
 			hasToBeNotEmpty(relationShipFieldFilter(fOI), fOI);
+			hasToBeNotEmpty(masterFieldName(fOI), fOI);
 		}
 	}
 

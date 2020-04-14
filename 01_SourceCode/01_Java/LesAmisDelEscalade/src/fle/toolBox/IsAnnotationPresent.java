@@ -9,6 +9,7 @@ import java.lang.reflect.Field;
  * @version 1.0
  * @apiNote Check if an annotation is present :<br>
  *          <li>in Class {@link #inClass(Object, Class)}
+ *          <li>on field {@link #onField(Field, Class)} 
  */
 public class IsAnnotationPresent {
 	/**

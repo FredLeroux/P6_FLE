@@ -10,7 +10,8 @@ import fle.toolBox.ConfigurationFileReader;
 import fle.toolBox.FredParser;
 import fle.toolBox.Internationalization.LocalMessage;
 import fle.toolBox.security.bcrypt.PassWord;
-import std.fle._02_dto._02_02_modelsDTO._02_02_01_usersDTO.UsersAccountInfoAuthentificatorDTO;
+import std.fle._02_dto._02_02_modelsDTO._02_02_01_usersDTO._02_02_01_01_usersAccountInfoDTO.UsersAccountInfoAccessDTO;
+import std.fle._02_dto._02_02_modelsDTO._02_02_01_usersDTO._02_02_01_01_usersAccountInfoDTO.UsersAccountInfoAuthentificatorDTO;
 import std.fle._05_controller.SessionVariables;
 import std.fle._07_service._07_01_serviceInterface._07_01_02_modelServiceInterface.UsersAccountInfoService;
 
@@ -23,10 +24,14 @@ public class Authentificator extends HandlerInterceptorAdapter {
 	UsersAccountInfoService uAccservice;
 
 	private PassWord passManager = new PassWord();
-	private ConfigurationFileReader config = new ConfigurationFileReader("configuration/securitySettings/LogTentativeMax.xml");
+	private ConfigurationFileReader config = new ConfigurationFileReader(
+			"configuration/securitySettings/LogTentativeMax.xml");
+	private Integer maxTentative = FredParser.toInteger(config.getProperty("maxTentatativesAllowed"));
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+
 		SessionVariables sessVar = new SessionVariables(request);
 		String login = request.getParameter("login");
 		String pass = request.getParameter("pass");
@@ -38,16 +43,22 @@ public class Authentificator extends HandlerInterceptorAdapter {
 				response.sendRedirect("incorrectConnexion");
 				return false;
 			}
-			if(sessVar.getLoginTentative()>= FredParser.toInteger(config.getProperty("maxTentatativesAllowed"))) {
-				response.sendRedirect("fuckedUp");
+			if (!isAccountActivated(login)) {
+				response.sendRedirect("accountNotActivated");
+				return false;
+			}
+			lockAccount(login, sessVar.getLoginTentative(), maxTentative);
+			if (isAccountLocked(login, maxTentative)) {
+				sessVar.setLogin(login);
+				response.sendRedirect("lockedAccount");
 				return false;
 			}
 			if (passManager.isPassMatch(pass, authen.getPassword())) {
-					setSessionVar(authen, sessVar);		
+				setSessionVar(authen, sessVar);
 				response.sendRedirect("index.html");
 			} else {
 				setTentative(sessVar);
-				response.sendRedirect("wrongConnexion?tentative="+sessVar.getLoginTentative());
+				response.sendRedirect("wrongConnexion?tentative=" + sessVar.getLoginTentative());
 				return false;
 			}
 		} else {
@@ -56,22 +67,44 @@ public class Authentificator extends HandlerInterceptorAdapter {
 		}
 		return false;
 	}
-	
-	
-	private void setSessionVar(UsersAccountInfoAuthentificatorDTO authen,SessionVariables sessVar) {
+
+	private void setSessionVar(UsersAccountInfoAuthentificatorDTO authen, SessionVariables sessVar) {
 		sessVar.setConnexion(local.message("logOut.name"));
 		sessVar.setLogged(true);
 		sessVar.setSecurityLevel(authen.getSecurityLevel());
 		sessVar.setPseudo(authen.getPseudonyme());
-		sessVar.setAccountID(authen.getId());	
+		sessVar.setAccountID(authen.getId());
 	}
-	
+
 	private void setTentative(SessionVariables sessVar) {
-		if(sessVar.getLoginTentative() == null) {
+		if (sessVar.getLoginTentative() == null) {
 			sessVar.setLoginTentative(1);
-		}else {
-		sessVar.setLoginTentative(sessVar.getLoginTentative()+1);}				
-		
+		} else {
+			sessVar.setLoginTentative(sessVar.getLoginTentative() + 1);
+		}
+
+	}
+
+	private boolean isTentativeOver(Integer tentativeNumber, Integer maxTentativeAllowed) {
+		return tentativeNumber >= maxTentativeAllowed;
+	}
+
+	private void lockAccount(String login, Integer tentativeNumber, Integer maxTentativeAllowed) {
+		if (isTentativeOver(tentativeNumber, maxTentativeAllowed)) {
+			uAccservice.lockAccount(maxTentativeAllowed, login);
+		}
+	}
+
+	private boolean isAccountLocked(String login, Integer maxTentativeAllowed) {
+		return access(login).getLoginTentativeNumber() >= maxTentativeAllowed;
+	}
+
+	private boolean isAccountActivated(String login) {
+		return access(login).getAccountActivationStatus();
+	}
+
+	private UsersAccountInfoAccessDTO access(String login) {
+		return uAccservice.accountAcces(login);
 	}
 
 }

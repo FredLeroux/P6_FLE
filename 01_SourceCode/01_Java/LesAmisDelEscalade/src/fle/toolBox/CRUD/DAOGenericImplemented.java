@@ -71,6 +71,16 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 		E newEntity = (E) query.getSingleResult();
 		return (SD) converter.convertEntityToDTO(newEntity, specificDTOClass);
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public <SE extends ENT, SD extends DTO> SD getSpecificEntitySpecificDTOWhereCondition(String fieldName,
+			String condition, SE entity, SD specificDTOClass) {
+		Query query = session().createQuery(
+				"FROM " + entity.getClass().getName() + " T WHERE T." + fieldName + "=" + hibernateQueryArg(condition));
+		SE newEntity = (SE) query.getSingleResult();
+		return (SD) converter.convertEntityToDTO(newEntity, specificDTOClass);
+	}
 
 	
 	@Override
@@ -85,6 +95,12 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 	public D getDTOByForeignerKey(String fieldName, Integer foreignerKey, E entity,DTO DTOClass) {
 		return (D) converter.convertEntityToDTO(getEntityByForeignerKey(fieldName, foreignerKey, entity), DTOClass);
 	}
+	
+	@Override
+	public <SD extends DTO> SD getSpecificDTOByForeignerKey(String fieldName, Integer foreignerKey, E entity,
+			SD SpecificDTOClass) {
+		return (SD) converter.convertEntityToDTO(getEntityByForeignerKey(fieldName, foreignerKey, entity), SpecificDTOClass);
+	}
 
 	@Override
 	public <SD extends DTO> SD getSpecificDTOById(E entity, SD specificDTOClass,Integer id) {		
@@ -95,12 +111,31 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 		session().merge(entity);
 	}
 	@Override
-	public void updateDTO(E entity, D DTOCLass) {
-		session().update(converter.convertDTOToEntity(DTOCLass, entity));
+	public void updateDTO(E entity, D DTOClass) {
+		session().merge(converter.convertDTOToEntity(DTOClass, entity));
 	}
 	@Override
 	public<S extends SFC> void updateSFC(E entity, D DTOCLass, S SFCCLass) {
-		session().update(converter.convertDTOToEntity(converter.converSFCToDTO(SFCCLass, DTOCLass), entity));
+		session().merge(converter.convertDTOToEntity(converter.converSFCToDTO(SFCCLass, DTOCLass), entity));
 	}
+
+	@Override
+	public <SD extends DTO> void updateSpecificDTO(E entity, SD DTOClass) {
+		session().merge(converter.convertDTOToEntity(DTOClass, entity));
+		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public D getDTOWhereCondition(String fieldName, String condition, E entity, D DTOClass) {
+		Query query = session().createQuery("FROM " + entity.getClass().getName() + " A WHERE A." + fieldName + "=" + hibernateQueryArg(condition));
+		System.out.println(query.toString());
+		E newEntity = (E) query.getSingleResult();
+		return (D) converter.convertEntityToDTO(newEntity, DTOClass);
+	}
+
+	
+
+	
 
 }

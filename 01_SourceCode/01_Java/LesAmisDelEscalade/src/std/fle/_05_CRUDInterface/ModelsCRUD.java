@@ -26,5 +26,7 @@ public interface ModelsCRUD<E extends ENT,D extends DTO,S extends SFC> {
 	public void updateSFC(S SFCObject);
 	
 	
+	
+	
 
 }

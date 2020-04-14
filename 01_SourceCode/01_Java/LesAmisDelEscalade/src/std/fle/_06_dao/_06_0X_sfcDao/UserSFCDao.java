@@ -10,7 +10,9 @@ public interface UserSFCDao {
 	
 	public UserSFC getById(Integer id);
 		
-	public void save(UserSFC user);	
+	public void save(UserSFC user);
+	
+	
 	
 	
 

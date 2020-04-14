@@ -1,6 +1,5 @@
 @import
-	url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_01_appSkin.css")
-	;
+	url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_01_appSkin.css");
 
 /* ###############  START : set input and select box size identical ###################*/
 input, select {
@@ -11,21 +10,47 @@ input, select {
 }
 
 @
-supports (-ms-ime-align:auto ) { .selector {input,select{ box-sizing:border-box;
+supports (-ms-ime-align:auto ) { 
+.selector {
+	input,select{ box-sizing:border-box;
 	
+}
+.tableForm{
+	padding-bottom: 15px;
 }
 
 }
 }
 
 /* ###############  END : set input and select box size identical ###################*/
-table {
+.tableForm {	
 	width: 60%;
-	min-width: 360px;
+	min-width: 360px;	
+	padding-bottom: 15px;
+	
 }
 
-td {
+.tableForm2{	
+	width: 100%;
+	margin: auto;
+}
+
+.trForm2{
+	display:table-row;	
+}
+
+.tdForm1 {
 	min-width: 20%;
+}
+
+
+.tdForm2 {
+	min-width: 33%;
+}
+
+.tdForm3 {
+	display:flex;
+	min-width: 50%%;
 }
 
 .labelStyle, .inputStyle  {	
@@ -35,7 +60,7 @@ td {
 
 .labelStyleBad, .inputStyleBad,option{
 	font-family: menu-font;
-	font-size: 12px;
+	font-size: 18px;
 }
 
 .labelStyle, .inputStyle, option{
@@ -47,24 +72,50 @@ color: var(--base-color);
 	
 }
 
+.labelStyleHide{
+	display: none;
+	color: blue;
+}
+
 
 .inputStyle {
 	border: solid;
 	border-style: thin dashed;
 	border-color: var(--base-color);
-	width: 90%;
+	width:90%;
 }
 
 .inputStyleBad {
 	border: solid;
 	border-style: thin dashed;
 	border-color: var(--bad-color);
-	width: 90%;
-	
+	width: 90%;	
 }
 
 input[readonly = "readonly"] {
-	cursor: default;
+	cursor: not-allowed;;
+}
+
+.formButton{
+	text-decoration: none;
+	display: block;
+	font-family: menu-font;
+	background-color: var(--base-color);
+	color:var(--base-color-opposite);
+	border: none;
+	padding: 5px;
+	font-size: 20px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+
+
+
+.formButton:hover{	
+	background-color: var(--base-color-opposite) ;
+	color:var(--base-color);
+	
 }
 
 tr:hover .inputStyle {
@@ -77,27 +128,27 @@ tr:hover .labelStyle {
 }
 
 @media all and (max-width: 1000px) {
-	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad {
+	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,.formButton {
 		font-size: 12px;
 	}
 	option{
-	font-size: 10px}
+	font-size: 12px}
 }
 
 @media all and (max-width: 790px) {
-	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option {
+	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option,.formButton  {
 		font-size: 10px;
 	}
 }
 
 @media all and (max-width: 400px) {
-	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option {
+	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option,.formButton  {
 		font-size: 8px;
 	}
 }
 
 @media all and (max-width: 360px) {
-	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option {
+	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option,.formButton {
 		font-size: 6px;
 	}
 }

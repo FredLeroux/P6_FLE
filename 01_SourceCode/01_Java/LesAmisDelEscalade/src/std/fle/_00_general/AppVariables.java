@@ -7,7 +7,9 @@ public enum AppVariables {
 	CONNEXION("connexion"),
 	PSEUDO("pseudo"),
 	ACCOUNT_ID("accountID"),
-	LOGIN_TENTATIVE("loginTentative");
+	LOGIN_TENTATIVE("loginTentative"),
+	LOGIN("login"),
+	ALLOW_RESET_PASS("allowResetPass");
 	
 	private String var;
 

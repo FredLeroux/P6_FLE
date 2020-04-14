@@ -14,6 +14,7 @@ function toggleDisplay(elementId) {
 	} else {
 		element.style.display = "none";
 	}
+
 }
 
 /**
@@ -44,44 +45,49 @@ function togglecolor(elementId, basis, invert) {
 }
 
 function addToggleDisplayOnClick(ownerId, elementToToggleId) {
-	var element = document.getElementById(ownerId);	
+	var element = document.getElementById(ownerId);
 	element.setAttribute("onclick", "toggleDisplay('" + elementToToggleId
 			+ "')");
 }
 
-
-
-function addToggleDisplayOnClickAndClearError(ownerId, elementToToggleId,errorLoc) {
-	var element = document.getElementById(ownerId);	
+function addToggleDisplayOnClickAndClearError(ownerId, elementToToggleId,
+		errorLoc) {
+	var element = document.getElementById(ownerId);
 	element.setAttribute("onclick", "toggleDisplay('" + elementToToggleId
-			+ "'),clearError('"+errorLoc+"')");
+			+ "'),clearError('" + errorLoc + "')");
 }
 
-function clearError(errorLoc){
+function clearError(errorLoc) {
 	var errro = document.getElementById(errorLoc);
-	error.innerHTML="";
+	error.innerHTML = "";
 }
-
 
 /**
  * 
- * @param statusId is the status to check in order to switch the onclick command
- * @param ownerId is the owner div
- * @param elementToToggleId is the element to toggle display
- * @param switchValue is the other value to swith on function of status
- * @returns for example if status is false display modal , if status is true display another page via href
+ * @param statusId
+ *            is the status to check in order to switch the onclick command
+ * @param ownerId
+ *            is the owner div
+ * @param elementToToggleId
+ *            is the element to toggle display
+ * @param switchValue
+ *            is the other value to swith on function of status
+ * @returns for example if status is false display modal , if status is true
+ *          display another page via href
  */
-function addSwitchAndToggleDisplayOnClick(statusId,ownerId, elementToToggleId,switchValue) {
+function addSwitchAndToggleDisplayOnClick(statusId, ownerId, elementToToggleId,
+		switchValue) {
 	var element = document.getElementById(ownerId);
-	var status = document.getElementById(statusId);	
-	if(status.textContent === "true"){
-		element.setAttribute("onclick", "href('"+switchValue+"')")
-	}else{
-	element.setAttribute("onclick", "toggleDisplay('" + elementToToggleId
-			+ "')");}
+	var status = document.getElementById(statusId);
+	if (status.textContent === "true") {
+		element.setAttribute("onclick", "href('" + switchValue + "')")
+	} else {
+		element.setAttribute("onclick", "toggleDisplay('" + elementToToggleId
+				+ "')");
+	}
 }
 
-function href(loc){
+function href(loc) {
 	return location.href = loc;
 }
 
@@ -114,13 +120,14 @@ function addToggleDisplayAndColorOnclick(onclickOwnerElementId,
  * 
  * @param elementToCheckEmptyness
  * @param elementToToggleDisplay
- * @returns check if the elementToCheckEmptyness is empty if false the display element to toggle display
+ * @returns check if the elementToCheckEmptyness is empty if false the display
+ *          element to toggle display
  */
-function displayOnError(elementToCheckEmptyness, elementToToggleDisplay){
-	var error =document.getElementById(elementToCheckEmptyness);
-	bool = error.textContent.length === 0;	
-	if(bool === false){
-	var modal = document.getElementById(elementToToggleDisplay);
-	modal.style.display = "block";
-		}
-}	
+function displayOnError(elementToCheckEmptyness, elementToToggleDisplay) {
+	var error = document.getElementById(elementToCheckEmptyness);
+	bool = error.textContent.length === 0;
+	if (bool === false) {
+		var modal = document.getElementById(elementToToggleDisplay);
+		modal.style.display = "block";
+	}
+}

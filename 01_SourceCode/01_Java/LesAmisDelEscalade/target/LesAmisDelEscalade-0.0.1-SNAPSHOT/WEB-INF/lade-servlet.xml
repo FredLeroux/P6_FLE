@@ -106,8 +106,12 @@
 	<!-- HandlerInterceptor -->
 	<mvc:interceptors>
 	<mvc:interceptor>
-	<mvc:mapping path="/index.html"/>
-	<bean class="std.fle._08_filter.Opening"></bean>
+	<mvc:mapping path="/index.html"/>	
+	<bean class="std.fle._08_filter.Opening"></bean>	
+	</mvc:interceptor>
+	<mvc:interceptor>
+	<mvc:mapping path="/01_home/index" />
+	<bean class = "std.fle._08_filter.ReloadIndex"></bean>
 	</mvc:interceptor>
 	<mvc:interceptor>
 	<mvc:mapping path="/authentification"/>
@@ -165,6 +169,6 @@
 	<mvc:resources location='${jspCompomentsFiles.path}'
 		mapping="/jspCompomentsFiles/*" />
 	<mvc:resources location='${toolBox.javascript}'
-		mapping="/toolBoxJavaScript/*" />
+		mapping="/toolBoxJavaScript/**" />
 
 </beans>

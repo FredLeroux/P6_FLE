@@ -7,13 +7,15 @@ import org.springframework.stereotype.Repository;
 
 import fle.toolBox.CRUD.DAOGenericInterface;
 import fle.toolBox.Internationalization.LocalMessage;
-import fle.toolBox.security.bcrypt.PassWord;
 import std.fle._01_entity._01_03_models.UsersAccountInfo;
-import std.fle._02_dto._02_02_modelsDTO._02_02_01_usersDTO.UsersAccountInfoAuthentificatorDTO;
-import std.fle._02_dto._02_02_modelsDTO._02_02_01_usersDTO.UsersAccountInfoDTO;
-import std.fle._02_dto._02_02_modelsDTO._02_02_01_usersDTO.UsersAccountInfoUpdateDTO;
-import std.fle._03_sfc._03_01_usersSFC.UsersAccountInfoSFC;
-import std.fle._03_sfc._03_01_usersSFC.UsersAccountInfoUpdateSFC;
+import std.fle._01_entity._01_03_models.UsersInfo;
+import std.fle._02_dto._02_02_modelsDTO._02_02_01_usersDTO._02_02_01_01_usersAccountInfoDTO.UsersAccountInfoAccessDTO;
+import std.fle._02_dto._02_02_modelsDTO._02_02_01_usersDTO._02_02_01_01_usersAccountInfoDTO.UsersAccountInfoAuthentificatorDTO;
+import std.fle._02_dto._02_02_modelsDTO._02_02_01_usersDTO._02_02_01_01_usersAccountInfoDTO.UsersAccountInfoDTO;
+import std.fle._02_dto._02_02_modelsDTO._02_02_01_usersDTO._02_02_01_01_usersAccountInfoDTO.UsersAccountInfoUpdateDTO;
+import std.fle._02_dto._02_02_modelsDTO._02_02_01_usersDTO._02_02_01_02_usersInfoDTO.UsersInfoUsersAccountInfoDTO;
+import std.fle._03_sfc._03_02_usersAccountInfoSFC.UsersAccountInfoSFC;
+import std.fle._03_sfc._03_02_usersAccountInfoSFC.UsersAccountInfoUpdateSFC;
 import std.fle._06_dao._06_01_daoInterface._06_01_02_modelsDao.UsersAccountInfoDAO;
 import std.fle._0X_security.SecurityLevel;
 
@@ -30,8 +32,11 @@ public class UsersAccountInfoDAOImplmented implements UsersAccountInfoDAO {
 	private UsersAccountInfoDTO usersAccountInfoDTO = new UsersAccountInfoDTO();
 	private UsersAccountInfoAuthentificatorDTO passwordDTO = new UsersAccountInfoAuthentificatorDTO();
 	private UsersAccountInfoUpdateDTO updateDTO = new UsersAccountInfoUpdateDTO();
+	private UsersInfoUsersAccountInfoDTO usersAccountInfoDTOViaUsersInfo = new UsersInfoUsersAccountInfoDTO();
+	private UsersAccountInfoAccessDTO accountAccess = new UsersAccountInfoAccessDTO();
 	private UsersAccountInfoSFC usersAccountInfoSFC = new UsersAccountInfoSFC();
 	private UsersAccountInfoUpdateSFC updateSFC = new UsersAccountInfoUpdateSFC();
+	private UsersInfo usersInfo = new UsersInfo();
 
 	@Override
 	public UsersAccountInfo getEntityById(Integer id) {
@@ -46,8 +51,7 @@ public class UsersAccountInfoDAOImplmented implements UsersAccountInfoDAO {
 	@Override
 	public UsersAccountInfo postTransactionTreatment(UsersAccountInfoSFC SFCClass) {
 		UsersAccountInfoDTO dto = dao.converter().converSFCToDTO(SFCClass, usersAccountInfoDTO);
-		setAccountDefaultValue(dto);
-		encodePassWord(SFCClass, dto);
+		setAccountDefaultValue(dto);		
 		return dao.converter().convertDTOToEntity(dto, usersAccountInfo);
 	}
 
@@ -77,28 +81,6 @@ public class UsersAccountInfoDAOImplmented implements UsersAccountInfoDAO {
 		return sfc;
 	}
 
-	private void setAccountDefaultValue(UsersAccountInfoDTO dto) {
-		dto.setMember(false);
-		dto.setLoginTentativeNumber(0);
-		dto.setSecurityLevel(SecurityLevel.USER.rank());
-		dto.setAccountActivationStatus(false);
-		dto.setSignUpDate(new Date());
-	}
-
-	private void encodePassWord(UsersAccountInfoSFC SFCClass, UsersAccountInfoDTO dto) {
-		PassWord encoder = new PassWord();
-		dto.setPassword(encoder.encode(SFCClass.getPassword()));
-	}
-
-	private void parseIsMemberToString(UsersAccountInfoUpdateDTO dto, UsersAccountInfoUpdateSFC sfc) {
-		if (dto.isMember().equals("true")) {
-			sfc.setAssociationMember(locale.message("memberTrue.name"));
-		} 
-		if (dto.isMember().equals("false")){
-			sfc.setAssociationMember(locale.message("memberFalse.name"));
-		}
-	}
-
 	@Override
 	public void updateSFC(UsersAccountInfoSFC SFCObject) {
 		dao.updateSFC(usersAccountInfo, usersAccountInfoDTO, SFCObject);
@@ -119,10 +101,141 @@ public class UsersAccountInfoDAOImplmented implements UsersAccountInfoDAO {
 
 	@Override
 	public UsersAccountInfo converteUpdateSFCToEntity(UsersAccountInfoUpdateSFC updatedSFC) {
-		
 		UsersAccountInfoUpdateDTO dto = dao.converter().converSFCToDTO(updatedSFC, updateDTO);
 		parseIsMemberToBoolean(dto, updatedSFC);
 		return dao.converter().convertDTOToEntity(dto, usersAccountInfo);
+	}
+
+	@Override
+	public boolean activateAccount(String activationCode) {
+		UsersAccountInfoDTO dto = null;
+		try {
+			dto = dao.getSpecificDTOWhereCondition("activationCode", activationCode, usersAccountInfo,
+					usersAccountInfoDTO);
+		} catch (Exception e) {
+			System.out.println("not found ");
+			return false;
+		}
+		if (dto.isAccountActivationStatus()) {
+			System.out.println("set to true already ");
+			return false;
+		} else {
+			dto.setAccountActivationStatus(true);
+			dao.updateDTO(usersAccountInfo, dto);
+			System.out.println("set true activated ");
+			return true;
+		}
+	}
+
+	@Override
+	public UsersAccountInfoAccessDTO accountAcces(String login) {
+		return dao.getSpecificDTOWhereCondition("login", login, usersAccountInfo, accountAccess);
+	}
+
+	@Override
+	public boolean isAccountActivated(String eMail) {
+		return accountAccessByEmail(eMail).getAccountActivationStatus();
+
+	}
+
+	@Override
+	public void lockAccount(Integer maxTentativeAllowed, String login) {
+		UsersAccountInfoDTO dto = accountInfoDTOByLogin(login);
+		dto.setLoginTentativeNumber(maxTentativeAllowed);		
+		dao.updateDTO(usersAccountInfo, dto);
+	}
+
+	@Override
+	public void unLockAccountByLogin(String login) {
+		UsersAccountInfoDTO dto = accountInfoDTOByLogin(login);
+		unlockAccount(dto);
+	}
+	
+	@Override
+	public void unLockAccountById(Integer id) {
+		UsersAccountInfoDTO dto = getDTOByID(id);
+		unlockAccount(dto);
+		
+	}
+
+	@Override
+	public void updateActivationCode(String eMail, String activationCode) {
+		UsersAccountInfoDTO dto1 = accountInfoDTOByEMail(eMail);
+		dto1.setActivationCode(activationCode);
+		dao.updateDTO(usersAccountInfo, dto1);
+	}
+	
+	@Override
+	public Integer usersAccountInfoIdByResetPassword(String resetCode) {
+		UsersAccountInfoDTO dto = null;
+		try {
+			dto = accountInfoDTOByResetCode(resetCode);
+		} catch (Exception e) {
+			return null;
+		}
+		if(dto.getPasswordResetCode()==null) {
+			return null;
+		}else {
+			dto.setPasswordResetCode(null);
+			dao.updateDTO(usersAccountInfo, dto);
+			return dto.getId(); 
+		}
+	}
+	@Override
+	public void updatePassword(Integer id,String newPassword) {
+		UsersAccountInfoDTO dto = dao.getDtoByID(usersAccountInfo, usersAccountInfoDTO, id);		
+		dto.setPassword(newPassword);
+		dao.updateDTO(usersAccountInfo, dto);
+	}
+	
+	@Override
+	public void addResetPassCode(String eMail,String resetPassCode) {
+		UsersAccountInfoDTO dto =accountInfoDTOByEMail(eMail);
+		dto.setPasswordResetCode(resetPassCode);
+		dao.updateDTO(usersAccountInfo, dto);
+	}
+
+	private void setAccountDefaultValue(UsersAccountInfoDTO dto) {
+		dto.setMember(false);
+		dto.setLoginTentativeNumber(0);
+		dto.setSecurityLevel(SecurityLevel.USER.rank());
+		dto.setAccountActivationStatus(false);
+		dto.setSignUpDate(new Date());
+	}
+
+	
+
+	private void parseIsMemberToString(UsersAccountInfoUpdateDTO dto, UsersAccountInfoUpdateSFC sfc) {
+		if (dto.isMember().equals("true")) {
+			sfc.setAssociationMember(locale.message("memberTrue.name"));
+		}
+		if (dto.isMember().equals("false")) {
+			sfc.setAssociationMember(locale.message("memberFalse.name"));
+		}
+	}
+
+	private UsersInfoUsersAccountInfoDTO usersAccountInfoDTOByEmail(String eMail) {
+		return dao.getSpecificEntitySpecificDTOWhereCondition("email", eMail, usersInfo, usersAccountInfoDTOViaUsersInfo);
+	}
+
+	private UsersAccountInfoDTO accountInfoDTOByLogin(String login) {
+		return dao.getSpecificDTOWhereCondition("login", login, usersAccountInfo, usersAccountInfoDTO);
+	}
+	
+	private UsersAccountInfoDTO accountInfoDTOByEMail(String eMail) {
+		return usersAccountInfoDTOByEmail(eMail).getUserAccountInfo();
+	}
+	
+	
+	private UsersAccountInfoDTO accountInfoDTOByResetCode(String resetCode) {
+		return dao.getDTOWhereCondition("passwordResetCode", resetCode, usersAccountInfo, usersAccountInfoDTO);
+	}
+	
+	
+
+	private UsersAccountInfoAccessDTO accountAccessByEmail(String eMail) {
+		return dao.getSpecificDTOById(usersAccountInfo, accountAccess,
+				usersAccountInfoDTOByEmail(eMail).getUserAccountInfo().getId());
 	}
 
 	private void parseIsMemberToBoolean(UsersAccountInfoUpdateDTO dto, UsersAccountInfoUpdateSFC sfc) {
@@ -132,6 +245,11 @@ public class UsersAccountInfoDAOImplmented implements UsersAccountInfoDAO {
 		if (sfc.getAssociationMember().equals(locale.message("memberFalse.name"))) {
 			dto.setMember("false");
 		}
+	}
+	
+	private void unlockAccount(UsersAccountInfoDTO dto) {
+		dto.setLoginTentativeNumber(0);
+		dao.updateDTO(usersAccountInfo, dto);
 	}
 
 }

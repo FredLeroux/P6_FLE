@@ -41,7 +41,7 @@ function setIframe() {
 	//attribute scrolling avoid the iframe scroll bar keep in mind to adjuste the height and width
 	iframe.setAttribute("scrolling", "no");
 	iframe.setAttribute("onload",
-			"this.style.height=this.contentDocument.body.scrollHeight +'px';");//this.contentDocument.body.scrollHeight +'px'
+			"this.style.height=this.contentDocument.body.scrollHeight + 'px'");//this.contentDocument.body.scrollHeight +'px'
 	location.appendChild(iframe);
 }
 

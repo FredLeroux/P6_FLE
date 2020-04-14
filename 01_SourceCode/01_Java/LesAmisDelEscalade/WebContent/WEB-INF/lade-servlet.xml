@@ -52,7 +52,8 @@
 		</list> </property> <property name="ignoreResourceNotFound" value="true"></property> 
 		<property name="ignoreUnresolvablePlaceholders" value="true"></property> 
 		</bean> -->
-	<context:component-scan base-package="std.fle,fle.toolBox"></context:component-scan>
+	<context:component-scan
+		base-package="std.fle,fle.toolBox"></context:component-scan>
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -105,18 +106,26 @@
 	</mvc:interceptors>
 	<!-- HandlerInterceptor -->
 	<mvc:interceptors>
-	<mvc:interceptor>
-	<mvc:mapping path="/index.html"/>
-	<bean class="std.fle._08_filter.Opening"></bean>
-	</mvc:interceptor>
-	<mvc:interceptor>
-	<mvc:mapping path="/authentification"/>
-	<bean class="std.fle._08_filter.Authentificator"></bean>
-	</mvc:interceptor>
-	<mvc:interceptor>
-	<mvc:mapping path="/disconnect"/>
-	<bean class="std.fle._08_filter.Disconnect"></bean>
-	</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/index.html" />
+			<bean class="std.fle._08_filter.Opening"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/authentification" />
+			<bean class="std.fle._08_filter.Authentificator"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/disconnect" />
+			<bean class="std.fle._08_filter.Disconnect"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+		<mvc:mapping path="/activation"/>
+		<bean class="std.fle._08_filter.AccountActivation"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+		<mvc:mapping path="/unlockMyAccount"/>
+		<bean class="std.fle._08_filter.ResetPassword"></bean>
+		</mvc:interceptor>
 	</mvc:interceptors>
 	<bean id="localeResolver"
 		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
@@ -149,6 +158,8 @@
 				</value>
 				<value>${validationMessages.path}${validationMessages.filePattern}
 				</value>
+				<value>${mailContentMessages.path}${mailContentMessages.filePattern}
+				</value>
 			</list>
 
 		</property>
@@ -166,5 +177,7 @@
 		mapping="/jspCompomentsFiles/*" />
 	<mvc:resources location='${toolBox.javascript}'
 		mapping="/toolBoxJavaScript/*" />
+	<mvc:resources location="${cssFiles.path}"
+		mapping="/cssFiles/**"></mvc:resources>
 
 </beans>

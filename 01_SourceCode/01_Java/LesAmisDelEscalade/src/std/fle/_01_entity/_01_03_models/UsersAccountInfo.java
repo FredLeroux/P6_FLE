@@ -20,8 +20,8 @@ import org.hibernate.annotations.DynamicUpdate;
 import fle.toolBox.classType.ENT;
 
 @Entity
-@DynamicUpdate
 @Table(name = "users_account_info", schema = "cliff")
+@DynamicUpdate
 public class UsersAccountInfo extends ENT implements Serializable {
 
 	private static final long serialVersionUID = 9044155488919897403L;
@@ -45,6 +45,10 @@ public class UsersAccountInfo extends ENT implements Serializable {
 	private Boolean accountActivationStatus;	
 	@Column (name = "is_member")	
 	private Boolean isMember;
+	@Column (name = "activation_code")
+	private String activationCode;
+	@Column (name = "password_reset_code")
+	private String passwordResetCode;
 	
 	@OneToOne(mappedBy =  "userAccountInfo",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private UsersInfo userInfo;
@@ -130,6 +134,24 @@ public class UsersAccountInfo extends ENT implements Serializable {
 	public void setUserInfo(UsersInfo userInfo) {
 		this.userInfo = userInfo;
 	}
+
+	public String getActivationCode() {
+		return activationCode;
+	}
+
+	public void setActivationCode(String activationCode) {
+		this.activationCode = activationCode;
+	}
+
+	public String getPasswordResetCode() {
+		return passwordResetCode;
+	}
+
+	public void setPasswordResetCode(String passwordResetCode) {
+		this.passwordResetCode = passwordResetCode;
+	}
+	
+	
 	
 	
 	

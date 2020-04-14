@@ -29,15 +29,18 @@ public class FredCodeGenerator extends ArrayList<String> {
 	private Random random = new Random();
 	private char toAppend = 0;
 	private StringBuilder codeGenerated = new StringBuilder();
-	private Integer[] acceptedSymbolList = { 33, 35, 36, 37, 38, 42, 43, 45, 63, 64, 95 };
+	/**
+	 * @apiNote w/o symbols : ' " , + # and .
+	 */
+	private Integer[] acceptedSymbolList = { 33, 36, 37, 42, 63, 64, 95 };
 	private boolean isSymbolAccepted = false;
 
 	/**
 	 * 
 	 * @param codeSize
 	 * @param isSymbolAccepted
-	 * @note Generate a radom code of size = codeSize with or not symbol
-	 *       isSymbolAccepted true or false, Use toString to get the codeGenerated
+	 * @apiNote Generate a radom code of size = codeSize with or not symbol<br>
+	 *       isSymbolAccepted true(w/o symbols : ' " , + # - & and .) or false.<br> Use toString to get the codeGenerated
 	 *       as string however return a String ArrayList size = codeSize containing
 	 *       random char
 	 * 

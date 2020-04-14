@@ -74,8 +74,8 @@ public class JsFunctionSelectOptions extends JavaScriptTag {
 				+ "	select.value = valueToSet;}	\r\n" + "}\r\n";
 		
 
-	public String selectJSFunctions() {
-		StringBuilder functions = new StringBuilder();
+	public String selectJSFunctions() {		
+		StringBuilder functions = new StringBuilder();		
 		functions.append(varFromModel("formError", "formError"));
 		functions.append(selectIdJSFunction);
 		functions.append(selectListJSFunction);

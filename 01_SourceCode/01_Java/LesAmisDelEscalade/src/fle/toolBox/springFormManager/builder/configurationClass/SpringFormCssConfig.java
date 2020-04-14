@@ -10,16 +10,19 @@ import fle.toolBox.ConfigurationFileReader;
  */
 public class SpringFormCssConfig {
 
-	private String styleSheetPath;
-	private String cssFileName;
-	private String labelStyle;
-	private String labelErrorStyle;
-	private String inputStyle;
-	private String inputStyleError;
-	private String selectStyle;
-	private String selectStyleError;
-	private String errorStyle;
-	private String buttonStyle;
+	private String styleSheetPath= null;
+	private String cssFileName= null;
+	private String labelStyle= null;
+	private String labelErrorStyle= null;
+	private String inputStyle= null;
+	private String inputStyleError= null;
+	private String selectStyle= null;
+	private String selectStyleError= null;
+	private String errorStyle= null;
+	private String buttonStyle = null;
+	private String tableStyle = null;
+	private String trStyle = null;
+	private String tdStyle = null;
 	private ConfigurationFileReader cssConfig;
 
 	public String getStyleSheetPath() {
@@ -60,6 +63,20 @@ public class SpringFormCssConfig {
 
 	public String getButtonStyle() {
 		return buttonStyle;
+	}
+	
+	
+
+	public String getTableStyle() {
+		return tableStyle;
+	}
+
+	public String getTrStyle() {
+		return trStyle;
+	}
+
+	public String getTdStyle() {
+		return tdStyle;
 	}
 
 	/**
@@ -134,6 +151,20 @@ public class SpringFormCssConfig {
 		return this;
 	}
 
+	public SpringFormCssConfig tableStyle(String propertyKey) {
+		tableStyle = cssConfig.getProperty(propertyKey);
+		return this;
+	}
+	
+	public SpringFormCssConfig trStyle(String propertyKey) {
+		trStyle = cssConfig.getProperty(propertyKey);
+		return this;
+	}
+	
+	public SpringFormCssConfig tdStyle(String propertyKey) {
+		tdStyle = cssConfig.getProperty(propertyKey);
+		return this;
+	}
 	
 
 

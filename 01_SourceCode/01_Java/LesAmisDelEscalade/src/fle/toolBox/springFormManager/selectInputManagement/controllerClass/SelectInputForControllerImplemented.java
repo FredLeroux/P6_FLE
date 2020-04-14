@@ -26,10 +26,9 @@ public class SelectInputForControllerImplemented extends SelectInputListAndValue
 
 	private LinkedHashMap<String, JSONArray> listToAddToModel = new LinkedHashMap<>();
 	private LinkedHashMap<String, Object> valueToAddToModel = new LinkedHashMap<>();
-	// TODO change this three linkedhasmpa for a Class
+	// TODO 3-Improvement change this two linkedhashmap for a Class
 	private LinkedHashMap<String, String> formularAndRequestMap = new LinkedHashMap<>();
 	private LinkedHashMap<String, String> formularOnErrorAndRequestMap = new LinkedHashMap<>();
-	private LinkedHashMap<String, Object> formularLinkedObject = new LinkedHashMap<>();
 	private ArrayList<SelectInputLinkedListObject> linkedList = new ArrayList<>();
 	private String listName;
 	private String criterion;
@@ -42,13 +41,13 @@ public class SelectInputForControllerImplemented extends SelectInputListAndValue
 				for (Field subClassField : extract(field).fieldsArrayListByAnnotation(selectInputAnnotation)) {
 					addSelectOptions(subClassField);
 					Object clazz = ClassFieldsSetAndGet.getFieldValue(cOI, field.getName());
-					addLinkedListToListToAddToModel(subClassField,clazz);
+					addLinkedListToListToAddToModel(subClassField, clazz);
 				}
 			}
 		} else {
 			for (Field field : getFieldManager().fieldsArrayListByAnnotation(selectInputAnnotation)) {
 				addSelectOptions(field);
-				addLinkedListToListToAddToModel(field,cOI);
+				addLinkedListToListToAddToModel(field, cOI);
 			}
 		}
 		return listToAddToModel;
@@ -57,14 +56,9 @@ public class SelectInputForControllerImplemented extends SelectInputListAndValue
 	@Override
 	public LinkedHashMap<String, JSONArray> listToAddToModelFiltered() {
 		listName = request.getParameter("listName");
-		if (request.getParameter("criterion") != null) {
+		
 			criterion = request.getParameter("criterion");
-		} else {
-			criterion = "";
-		}
-		if (criterion.isEmpty()) {
-			criterion = (String) request.getAttribute("criterionAttribute");
-		}
+		if(criterion !=null && !criterion.isEmpty()) {
 		for (SelectInputLinkedListObject o : linkedList) {
 			if (o.getListName().equals(listName)) {
 				listToAddToModel.put(listName,
@@ -73,7 +67,7 @@ public class SelectInputForControllerImplemented extends SelectInputListAndValue
 										o.getFilterdListEqualsTo(FredParser.toInteger(criterion))),
 								messageSourceSuffix(o.getField()), splitter(o.getField())));
 			}
-		}
+		}}
 		return listToAddToModel;
 	}
 
@@ -160,22 +154,29 @@ public class SelectInputForControllerImplemented extends SelectInputListAndValue
 
 	private JSONArray emptyJSONArray() {
 		JSONArray array = new JSONArray();
-		// array.put(SpringFormAssets.EMPTY_VALUE.toString());
 		return array;
 	}
 
-	private void addLinkedListToListToAddToModel(Field fOI,Object cOI) {
+	private void addLinkedListToListToAddToModel(Field fOI, Object cOI) {
 		if (isLinkedList(fOI)) {
 			addSelectInputLinkedListObject(fOI);
-			if(!SFCCriterionField(fOI).isEmpty()) {
-				if(cOI != null) {
-				Object alpha = ClassFieldsSetAndGet.getFieldValue(cOI, SFCCriterionField(fOI));
-				
-				listToAddToModel.put(selectListName(fOI), filteredList(alpha.toString(), selectListName(fOI)));}
-			}else {
-			listToAddToModel.put(selectListName(fOI), emptyJSONArray());
-		}}
-
+			if (!masterFieldName(fOI).isEmpty()) {
+				if (cOI != null) {
+					Object criterion = ClassFieldsSetAndGet.getFieldValue(cOI, masterFieldName(fOI));
+					if(criterion!=null) {
+					listToAddToModel.put(selectListName(fOI), filteredList(criterion.toString(), selectListName(fOI)));
+				}else{
+					addEmptyArrayToListToAddToModel(fOI);	}
+				}else{
+					addEmptyArrayToListToAddToModel(fOI);	}
+			} else {
+				addEmptyArrayToListToAddToModel(fOI);
+			}
+		}
+	}
+	
+	private void addEmptyArrayToListToAddToModel(Field fOI) {
+		listToAddToModel.put(selectListName(fOI), emptyJSONArray());
 	}
 
 	private JSONArray filteredList(String criterion, String listName) {

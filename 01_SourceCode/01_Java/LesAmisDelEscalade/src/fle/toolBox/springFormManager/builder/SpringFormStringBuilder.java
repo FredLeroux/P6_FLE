@@ -3,6 +3,7 @@ package fle.toolBox.springFormManager.builder;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 
 import fle.toolBox.IsAnnotationPresent;
@@ -116,7 +117,7 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 	 *         annotationClass<br>
 	 *         this method will manage simple classe as well as associated classes
 	 */
-	<A extends Annotation> ArrayList<String> annotatedFieldList(Class<A> annotationClass) {
+	private <A extends Annotation> ArrayList<String> annotatedFieldNameList(Class<A> annotationClass) {
 		boolean entityName = true;
 		Class<A> annotation = (Class<A>) annotationClass;
 		ArrayList<String> annotatedFieldList = new ArrayList<>();
@@ -151,26 +152,55 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 
 	private <A extends Annotation> ArrayList<String> selectFieldList() {
 		ArrayList<String> selectFieldList = new ArrayList<>();
-		selectFieldList = annotatedFieldList(selectAnnotation);
+		selectFieldList = annotatedFieldNameList(selectAnnotation);
 		return selectFieldList;
 	}
 
 	private <A extends Annotation> ArrayList<String> hiddenPathFieldList() {
 		ArrayList<String> hiddenPathFieldList = new ArrayList<>();
-		hiddenPathFieldList = annotatedFieldList(hiddenPathAnnotation);
+		hiddenPathFieldList = annotatedFieldNameList(hiddenPathAnnotation);
 		ExceptionsThrower.ifEmpty(hiddenPathFieldList);
 		return hiddenPathFieldList;
 	}
 
-	private <A extends Annotation> ArrayList<String> readOnlyInputFieldList() {
+	
+
+	private <A extends Annotation> ArrayList<String> readOnlyInputFieldList(String formName) {
 		ArrayList<String> readOnlyInputFieldList = new ArrayList<>();
-		readOnlyInputFieldList = annotatedFieldList(readOnlyInputAnnotation);
+		if (associatedModel) {
+			fieldManager.associatedModelFields(readOnlyInputAnnotation).forEach((key, value) -> {
+				for (Field field : value) {
+					if (readOnlyFormList(field).isEmpty()) {
+						readOnlyInputFieldList.add(key.getName().concat(".").concat(field.getName()));
+					} else {
+						if (readOnlyFormList(field).contains(formName)) {
+							readOnlyInputFieldList.add(key.getName().concat(".").concat(field.getName()));
+						}
+					}
+				}
+			});
+		}
+		for (Field field : fieldManager.fieldsArrayListByAnnotation(readOnlyInputAnnotation)) {
+			if (readOnlyFormList(field).isEmpty()) {
+				readOnlyInputFieldList.add(field.getName());
+			} else {
+				if (readOnlyFormList(field).contains(formName)) {
+					readOnlyInputFieldList.add(field.getName());
+				}
+			}
+		}
 		return readOnlyInputFieldList;
+	}
+
+	
+	private ArrayList<String> readOnlyFormList (Field field) {
+		ArrayList<String> list = new ArrayList<>(Arrays.asList(field.getAnnotation(readOnlyInputAnnotation).applyToForm()));
+	return list ;
 	}
 
 	private <A extends Annotation> ArrayList<String> passWordInputFieldList() {
 		ArrayList<String> passWordInputFieldList = new ArrayList<>();
-		passWordInputFieldList = annotatedFieldList((passWordAnnotation));
+		passWordInputFieldList = annotatedFieldNameList((passWordAnnotation));
 		return passWordInputFieldList;
 	}
 
@@ -185,6 +215,9 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 		setSelectCssErrorClass(springFormCssConfig.getSelectStyleError());
 		setErrorsCssClass(springFormCssConfig.getErrorStyle());
 		setButtonCssClass(springFormCssConfig.getButtonStyle());
+		setTableCssClass(springFormCssConfig.getTableStyle());
+		setTrCssClass(springFormCssConfig.getTrStyle());
+		setTdCssClass(springFormCssConfig.getTdStyle());
 
 	}
 
@@ -216,8 +249,9 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 		stringBuilder.append(tableEnd());
 		stringBuilder.append(formClose());
 		stringBuilder.append(lineBreak);
-		stringBuilder.append(lineBreak);
-		stringBuilder.append(lineBreak);
+		/*
+		 * stringBuilder.append(lineBreak); stringBuilder.append(lineBreak);
+		 */
 	}
 
 	private void addHiddenPath(String fieldName) {
@@ -235,7 +269,7 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 	}
 
 	private void addReadOnlyInputField(String fieldName) {
-		if (readOnlyInputFieldList().contains(fieldName)) {
+		if (readOnlyInputFieldList(formName).contains(fieldName)) {
 			addCell(input(fieldName, true));
 			fieldSetInFormIsTrue();
 		}

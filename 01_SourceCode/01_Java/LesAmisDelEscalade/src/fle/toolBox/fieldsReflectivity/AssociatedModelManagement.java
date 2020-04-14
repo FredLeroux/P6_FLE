@@ -3,7 +3,7 @@ package fle.toolBox.fieldsReflectivity;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-
+import java.util.LinkedHashMap;
 
 /**
  * 
@@ -24,25 +24,29 @@ public class AssociatedModelManagement<O extends Object> extends FieldsAndAnnota
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @param withEntitiesNames boolean true or false allow to add the origin entity
-	 *                          name to the fieldNames.
-	 * @return a java.lang.String ArrayList containing fieldNames of all entities
-	 *         associated if withEntitiesNames = false<br>
-	 *         add the origin entity as follow entity.fieldName if with
-	 *         withEntitiesNames = true
-	 */
+	public <A extends Annotation> LinkedHashMap<Field, ArrayList<Field>> associatedModelFields(Class<A> annotationClass) {
+		LinkedHashMap<Field, ArrayList<Field>> modelsFields = new LinkedHashMap<>();
+		for (Field classField : fieldsArrayList()) {			
+			modelsFields.put(classField, fieldClassTypeExtractor(classField).fieldsArrayListByAnnotation(annotationClass));
+		}		
+		return modelsFields;
+	}
+	
+	private void iterateThroughValue(Field key, ArrayList<Field> value,ArrayList<String> modelsFieldsNames,boolean withEntitiesNames) {
+		for(Field field:value) {
+			fillArrayList(entityName(key, withEntitiesNames), field.getName(), modelsFieldsNames);
+		}
+	}
+
 	public <A extends Annotation> ArrayList<String> AssociatedModelFieldsName(Class<A> annotationClass,
 			boolean withEntitiesNames) {
 		ArrayList<String> modelsFieldsNames = new ArrayList<>();
-		for (Field classField : fieldsArrayList()) {
-			for (String entityFieldName : fieldClassTypeExtractor(classField)
-					.fieldsNameArrayListByAnnotation(annotationClass)) {
-				fillArrayList(entityName(classField, withEntitiesNames), entityFieldName, modelsFieldsNames);
-			}
-		}
+		associatedModelFields(annotationClass).forEach(
+				(key, value) -> iterateThroughValue(key, value, modelsFieldsNames, withEntitiesNames));
 		return modelsFieldsNames;
 	}
+
+	
 
 	// TODO 0-Urgent change name causse this method allow to use associated model or
 	// not non c pas vrai mais comme elle extends fau trouver unb autre nom plus

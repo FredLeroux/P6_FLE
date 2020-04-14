@@ -27,13 +27,14 @@ visibility: hidden;
 </div>
 <%@ include file ="/resources/02_templatesJsp/02_01_jspCompoments/02_01_02_jspCompomentsFiles/02_01_02_04_loginModal.jsp" %>
 
-
+<%@ include file ="/resources/02_templatesJsp/02_01_jspCompoments/02_01_02_jspCompomentsFiles/02_01_02_05_loadModal.jsp" %>
 
 <script type="text/javascript">
 window.onload = function displayWhenReady() {
 	//Allow to display page only when all elements are ready needs style body visibility="hidden"
 	  document.getElementById("budy").style.visibility= "visible";
 	}
+
 </script>
 
 </body>

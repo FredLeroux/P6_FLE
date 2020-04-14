@@ -1,8 +1,7 @@
 package std.fle._01_entity._01_03_models;
 
-
-
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,7 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -25,15 +23,14 @@ import std.fle._01_entity._01_01_assetsClasses.Counties;
 import std.fle._01_entity._01_01_assetsClasses.States;
 
 @Entity
-@DynamicUpdate
-@Table(name = "users_info",schema = "cliff")
+@Table(name = "users_info", schema = "cliff")
 public class UsersInfo extends ENT implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -8778656555947368495L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -43,13 +40,13 @@ public class UsersInfo extends ENT implements Serializable {
 	private String lastName;
 	@Column(name = "email_address")
 	private String email;
-	@Column(name = "age")
-	private Integer age;
+	@Column(name = "birth_date")
+	private Date birthDate;
 	@Column(name = "gender")
 	private String gender;
 
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "french_state_fk")
 	private States state;
 
@@ -99,12 +96,12 @@ public class UsersInfo extends ENT implements Serializable {
 		this.email = email;
 	}
 
-	public Integer getAge() {
-		return age;
+	public Date getBirthDate() {
+		return birthDate;
 	}
 
-	public void setAge(Integer age) {
-		this.age = age;
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 
 	public String getGender() {
@@ -195,7 +192,5 @@ public class UsersInfo extends ENT implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
 
 }

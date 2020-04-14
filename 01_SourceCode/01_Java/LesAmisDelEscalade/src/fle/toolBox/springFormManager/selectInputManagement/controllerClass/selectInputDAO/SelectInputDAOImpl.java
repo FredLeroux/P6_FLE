@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.persistence.EntityManager;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +26,7 @@ public class SelectInputDAOImpl implements SelectInputDAO {
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	EntityManager entityManager;
+	
 	
 	private Session session() {
 		return sessionFactory.getCurrentSession();
@@ -50,9 +48,7 @@ public class SelectInputDAOImpl implements SelectInputDAO {
 	@SuppressWarnings({ "unchecked" })
 	@Override
 	public <T extends ENT> List<T> tableRawData(String query) {
-		List<T> entityList = session().createQuery(query).getResultList();
-		/*Query ask = entityManager.createQuery(query);
-		List<T> entityList = ask.getResultList();*/
+		List<T> entityList = session().createQuery(query).getResultList();		
 		return entityList;
 	}
 	

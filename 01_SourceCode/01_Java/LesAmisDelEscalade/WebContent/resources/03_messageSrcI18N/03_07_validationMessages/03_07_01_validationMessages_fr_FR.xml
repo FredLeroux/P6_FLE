@@ -6,8 +6,8 @@
 	<entry key="NotUnique.userManagement.usersAccountInfoSFC.login">Cet identifiant éxiste déjà</entry>
 	<entry key="NotUnique.userManagement.usersAccountInfoSFC.pseudonyme">Ce nom n'est plus disponible</entry>
 	<entry key="NotUnique.userManagement.usersInfoSFC.email">Cette adresse e-mail éxiste déja</entry>
-	<entry key="NotNumeric.userManagement.usersInfoSFC.age">Format incorrect renseigné 1 à 3 chiffre</entry>
 	<entry key="logEmpty.error">Identifiant et/ou Mot de passe vide</entry>
 	<entry key="logIncorrect.error">Identifiant et/ou mot de passe incorrecte</entry>
 	<entry key="wrong.error"> tentative(s) restante</entry>
+	<entry key="Pattern.password"> le mot de passe doit contenir 1 minuscule, 1 majsucule et 1 chiffre au minimum </entry>
 </properties>

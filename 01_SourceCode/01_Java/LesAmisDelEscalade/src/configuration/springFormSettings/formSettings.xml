@@ -3,10 +3,15 @@
 <properties>
 	<entry key="userFormBtn.align">center</entry>
 	<entry key="userForm.label">.label</entry>
+	<entry key="resetPassForm.label">.resetPassLabel</entry>
 	<entry key="userFormBtn.message.register">button.register.label</entry>
 	<entry key="userFormBtn.message.update">button.update.label</entry>
+	<entry key="userFormBtn.message.reSend">button.reSend.label</entry>
+	<entry key="userFormBtn.message.resetPass">button.resetPass.label</entry>
 	<entry key="userRegisterForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/userForm.jsp</entry>
 	<entry key="userUpdateForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/userUpdateForm.jsp</entry>
-	
+	<entry key="userMailForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/askMail.jsp</entry>	
+	<entry key="resetPassForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/resetPass.jsp</entry>
+	<entry key="updatePassForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/updatePassForm.jsp</entry>
 	</properties>
 	

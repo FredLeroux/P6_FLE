@@ -29,6 +29,9 @@ public abstract class SpringTagFormular {
 	private String closeTag = "/>";
 	private String ln = "\n";// may add <br> but I don't think is use full in a table
 	private String statusError = null;
+	private String tableCssClass = null;
+	private String trCssClass = null;
+	private String tdCssClass = null;
 	private String labelCssClass = null;
 	private String labelCssErrorClass = null;
 	private String inputCssClass = null;
@@ -370,11 +373,11 @@ public abstract class SpringTagFormular {
 	}
 
 	protected String tableStart() {
-		return "<table>" + ln;
+		return "<table"+getTableCssClass()+">" + ln;
 	}
 
 	protected String tableStart(String tableId) {
-		return "<table" + idAttribut + argument(tableId) + ">" + ln;
+		return "<table" + idAttribut + argument(tableId) + getTableCssClass()+ ">" + ln;
 	}
 
 	protected String tableEnd() {
@@ -382,11 +385,11 @@ public abstract class SpringTagFormular {
 	}
 
 	protected String tableRowStart() {
-		return "<tr>" + ln;
+		return "<tr "+ getTrCssClass()+">" + ln;
 	}
 
 	protected String tableRowStart(String tableRowId) {
-		return "<tr" + idAttribut + argument(tableRowId) + ">" + ln;
+		return "<tr" + idAttribut + argument(tableRowId) + getTrCssClass()+">" + ln;
 	}
 
 	protected String tableRowEnd() {
@@ -394,19 +397,19 @@ public abstract class SpringTagFormular {
 	}
 
 	protected String tableCellStart() {
-		return "<td>" + ln;
+		return "<td"+getTdCssClass()+">" + ln;
 	}
 
 	protected String tableCellStart(String tableCellId) {
-		return "<td" + idAttribut + argument(tableCellId) + endTagAttributes + ln;
+		return "<td" + idAttribut + argument(tableCellId)  + getTdCssClass()+endTagAttributes + ln;
 	}
 
 	protected String tableCellStartWithColSpan(int cellNumber, String align) {
-		return "<td colspan= " + argument(Integer.toString(cellNumber)) + " align= " + align + endTagAttributes + ln;
+		return "<td colspan= " + argument(Integer.toString(cellNumber)) + " align= " + align+ getTdCssClass() + endTagAttributes + ln;
 	}
 
 	protected String tableCellStartWithColSpan(String tableCellId, int cellNumber) {
-		return "<td" + idAttribut + argument(tableCellId) + argument(Integer.toString(cellNumber)) + endTagAttributes
+		return "<td" + idAttribut + argument(tableCellId) + argument(Integer.toString(cellNumber))+ getTdCssClass() + endTagAttributes
 				+ ln;
 	}
 
@@ -456,9 +459,42 @@ public abstract class SpringTagFormular {
 	protected String cssClass(String cssClass) {
 		return " cssClass = " + argument(cssClass);
 	}
+	
+	protected String classHTML(String cssClass) {
+		return " class = " + argument(cssClass);
+	}
 
 	protected String cssErrorClass(String cssClass) {
 		return " cssErrorClass = " + argument(cssClass);
+	}
+	
+	
+
+	protected String getTableCssClass() {
+		ExceptionsThrower.ifNull(tableCssClass);
+		return tableCssClass;
+	}
+
+	protected void setTableCssClass(String tableCssClass) {
+		this.tableCssClass = classHTML(tableCssClass);
+	}
+
+	protected String getTrCssClass() {
+		ExceptionsThrower.ifNull(trCssClass);
+		return trCssClass;
+	}
+
+	protected void setTrCssClass(String trCssClass) {		
+		this.trCssClass =  classHTML(trCssClass);
+	}
+
+	protected String getTdCssClass() {
+		ExceptionsThrower.ifNull(tdCssClass);
+		return tdCssClass;
+	}
+
+	protected void setTdCssClass(String tdCssClass) {
+		this.tdCssClass =  classHTML(tdCssClass);
 	}
 
 	protected String getLabelCssClass() throws NullPointerException {

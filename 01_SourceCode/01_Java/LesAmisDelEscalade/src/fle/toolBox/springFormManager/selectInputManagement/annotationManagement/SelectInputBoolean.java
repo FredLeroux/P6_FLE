@@ -6,6 +6,7 @@ import fle.toolBox.springFormManager.test.TestSelectInputTypeAnnotationFill;
 
 public class SelectInputBoolean extends TestSelectInputTypeAnnotationFill {
 
+		
 	protected boolean isDependentFieldName(Field fOI) {
 		if (dependentFieldName(fOI).isEmpty()) {
 			return false;

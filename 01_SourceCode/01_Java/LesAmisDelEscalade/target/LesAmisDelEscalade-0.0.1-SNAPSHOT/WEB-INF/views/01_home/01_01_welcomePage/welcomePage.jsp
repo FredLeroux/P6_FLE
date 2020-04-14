@@ -13,6 +13,7 @@
 <br>
 <div id="welcome" class="welcomeFormatting">
 <springTags:message  code = "welcome.locale"></springTags:message>
+<a href ="index">aaaaaaaaaaaaaaaa</a>
 </div>
 <br>
 <br>

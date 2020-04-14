@@ -21,6 +21,7 @@
 		<modelMapper.version>2.3.6</modelMapper.version>
 		<junit.version>5.6.0</junit.version>
 		<bcrypt.version>5.1.5.RELEASE</bcrypt.version>
+		<sunMail.version>1.6.2</sunMail.version>
 	</properties>
 
 	<dependencies>
@@ -161,6 +162,13 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-crypto</artifactId>
 			<version>${bcrypt.version}</version>
+		</dependency>
+
+		<!-- mail -->
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>${sunMail.version}</version>
 		</dependency>
 
 	</dependencies>

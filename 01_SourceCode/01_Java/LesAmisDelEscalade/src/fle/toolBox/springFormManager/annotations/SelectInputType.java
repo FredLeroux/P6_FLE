@@ -35,8 +35,9 @@ import java.lang.annotation.Target;
  *          {@link #dependentFieldName()} and
  *          {@link #dependentFieldNameFilteringAction()}
  *          <li>the second field called dependent field needs to be annotated
- *          with first field name {@link #dtoClass()} and
- *          {@link #filterByMasterObjectFieldName()}
+ *          with first field name {@link #dtoClass()}
+ *          {@link #relationShipField()} and
+ *          {@link #relationShipFieldFilter()}
  *          </ol>
  *          </ol>
  *          <h1><b><u>Contrains</u></b></h1>
@@ -50,10 +51,12 @@ import java.lang.annotation.Target;
  *          {@link #optionDisplayValueFieldName()} <br>
  *          {@link #optionValueFieldName()} <br>
  *          <u>use optionally :</u> <br>
+ *          note : this optional list becames mandatory if one element of the bellow list is used/needed<br>
  *          {@link #dependentFieldName()} <br>
  *          {@link #dependentFieldNameFilteringAction()} <br>
- *          {@link #dtoClass()} <br>
- *          {@link #filterByMasterObjectFieldName()}
+ *          {@link #relationShipField()}<br>
+ *          {@link #relationShipFieldFilter()}<br>
+ *          {@link #masterFieldName()}
  * 
  * 
  * 
@@ -153,9 +156,9 @@ public @interface SelectInputType {
 	 * counties with a Foreign key "states_id_fk"
 	 * <li>the relationShipField "state" owner of relationship in CountiesDTO.class
 	 * will create a list of StatesDTO.
-	 * <li>the relationShipFieldFilter "id" representing the states id value will allow
-	 * to filter the StatesDTO list by "id" value and so display only counties where
-	 * "states_id_fk" equals "id"
+	 * <li>the relationShipFieldFilter "id" representing the states id value will
+	 * allow to filter the StatesDTO list by "id" value and so display only counties
+	 * where "states_id_fk" equals "id"
 	 * 
 	 */
 	String relationShipFieldFilter() default "";
@@ -188,7 +191,14 @@ public @interface SelectInputType {
 	 */
 
 	Class<?> enumClass() default void.class;
-	
-	String SFCCriterionField() default "";
+
+	/**
+	 * 
+	 * is the field in this class which will be used to generate this field select
+	 * list.<br>
+	 * for a countiesId list dependending on a stateId field, the master field is
+	 * stateId cause state contains counties
+	 */
+	String masterFieldName() default "";
 
 }
