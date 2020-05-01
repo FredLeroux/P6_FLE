@@ -19,12 +19,12 @@ visibility: hidden;
 
 <%@ include file ="/resources/02_templatesJsp/02_01_jspCompoments/02_01_02_jspCompomentsFiles/02_01_02_02_headerJSP.jsp" %> 
 
-<div>
 <%@ include file ="/resources/02_templatesJsp/02_01_jspCompoments/02_01_02_jspCompomentsFiles/02_01_02_01_menuNavBarJSPDynamic.jsp" %>
-
+<br>
+<br>
 <%@ include file ="/resources/02_templatesJsp/02_01_jspCompoments/02_01_02_jspCompomentsFiles/02_01_02_03_iFrameJSP.jsp" %>
 
-</div>
+
 <%@ include file ="/resources/02_templatesJsp/02_01_jspCompoments/02_01_02_jspCompomentsFiles/02_01_02_04_loginModal.jsp" %>
 
 <%@ include file ="/resources/02_templatesJsp/02_01_jspCompoments/02_01_02_jspCompomentsFiles/02_01_02_05_loadModal.jsp" %>

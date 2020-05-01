@@ -5,7 +5,7 @@
 <div id="loginModal" class="modal" style="display: none;">
 	<!-- display set none here allow immediate action  -->
 	<div>
-		<form class="log-grid" action=<springTag:message code="action.form" /> method="post">
+		<form class="log-grid" action=<springTag:message code="loginAction.form" /> method="post">
 			<div class="header">
 				<springTag:message code="logModal.name" />
 			</div>
@@ -24,8 +24,8 @@
 				<label class="log-text" for="pass"><springTag:message code="pass.name" /></label>
 			</div>
 			<div class="inputPass">
-				<input type="password" name="pass" id="pass"
-					placeholder='<springTag:message code ="pass.placeHolder"/>'>
+				<input type="password" name="pass" id="pass"  
+					placeholder='<springTag:message code ="pass.placeHolder"/>' onmouseenter="type='text'" onmouseleave="type='password'">
 			</div>
 			<div class="forgot">
 				<a href="<springTag:message code ="forgot.href"/>">
@@ -43,7 +43,7 @@
 			</div>
 			<div id="cancel" class="cancel">
 				<label><springTag:message code="cancel.name" /></label>
-			</div>
+			</div>			
 		</form>
 	</div>
 </div>

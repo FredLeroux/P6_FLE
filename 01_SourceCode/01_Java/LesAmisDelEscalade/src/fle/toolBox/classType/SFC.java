@@ -6,13 +6,13 @@ package fle.toolBox.classType;
  *          classes as SFC by extending this class.<br>
  *          Instead of type a class as follow :<br>
  *          public class x{@code<O extends Object>} for a O destinated to be a
- *          DTO<br>
+ *          SFC<br>
  *          do the following : <br>
  *          public class x{@code<O extends SFC>} and so only SFC extended
  *          classes will be accepted
  * 
  *
  */
-public class SFC {
+public abstract class SFC {
 
 }

@@ -22,6 +22,17 @@ import fle.toolBox.springFormManager.annotations.SpringFormSettings;
 		jspFilePath = "userMailForm.path", 
 		labelMessageSourceSuffix = "userForm.label",		 
 		readOnly = false)
+@SpringFormSettings(
+		action = "forgotPasswordReset",
+		method = "post", 
+		modelAttribute = "forgotPasswordMail", 
+		name = "forgotPasswordFormular", 
+		propertiesFilePath = "configuration/springFormSettings/formSettings.xml",
+		buttonAlignmentPropertyKey = "userFormBtn.align", 
+		buttonMessagePropertyKey = "userFormBtn.message.forgotPass", 
+		jspFilePath = "forgotPasswordForm.path", 
+		labelMessageSourceSuffix = "userForm.label",		 
+		readOnly = false)
 @Validated
 public class UsersInfoMailSFC extends SFC {
 

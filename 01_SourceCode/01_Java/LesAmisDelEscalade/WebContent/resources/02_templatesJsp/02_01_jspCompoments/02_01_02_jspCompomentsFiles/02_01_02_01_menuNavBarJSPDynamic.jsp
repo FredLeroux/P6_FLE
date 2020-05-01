@@ -12,11 +12,10 @@
 		
 	</div>
 </div>
+<div>
 <div id="menuIcon" class="icon">
 	<span id="iconSet" class="iconBasis"><i class="fas fa-bars"></i></span>
 </div>
-
-
 <div id="menuNavBar" style="display: none;">
 	<!-- display not in css allow toggle functional immediatly -->
 	<ul id="menuNavBarList" class="list">
@@ -25,11 +24,13 @@
 					<springTags:message code="${option.name}"></springTags:message>
 				</a>
 		</jstl:forEach>
-
 	</ul>
 </div>
-<div id="conexionStatus" style="display: none;">${sessionScope.logged}</div>
+</div>
+ <div id="connexionStatus" style="display: none;">${sessionScope.logged}</div>
+<span id="isMenuToDisplay" style="display: none">
 
+</span>
 
 
 
@@ -38,11 +39,9 @@
 	var menuToggle = toggle();
 	menuToggle.addToggleDisplayAndColorOnclick("iconSet", "menuNavBar",
 			"iconSet", "iconBasis", "iconInvert");
-	menuToggle.addSwitchAndToggleDisplayOnClick("conexionStatus", "connexion",
+	menuToggle.addSwitchAndToggleDisplayOnClick("connexionStatus", "connexion",
 			"loginModal", "disconnect")
 
-	function getOption(option) {
-		return option;
-	}
+	
 </script>
 

@@ -8,6 +8,8 @@ public class UsersAccountInfoAccessDTO extends DTO {
 	private Integer loginTentativeNumber;
 	
 	private Boolean accountActivationStatus;
+	
+	private String passwordResetCode;
 
 	public Integer getLoginTentativeNumber() {
 		return loginTentativeNumber;
@@ -24,6 +26,15 @@ public class UsersAccountInfoAccessDTO extends DTO {
 	public void setAccountActivationStatus(Boolean accountActivationStatus) {
 		this.accountActivationStatus = accountActivationStatus;
 	}
+
+	public String getPasswordResetCode() {
+		return passwordResetCode;
+	}
+
+	public void setPasswordResetCode(String passwordResetCode) {
+		this.passwordResetCode = passwordResetCode;
+	}
+	
 	
 	
 }

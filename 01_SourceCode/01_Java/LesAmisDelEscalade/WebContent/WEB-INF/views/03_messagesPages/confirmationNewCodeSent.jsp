@@ -11,7 +11,7 @@
 <body>
 <div class = "messageContainer">
 <div class = "messageTitleGood"><springTags:message code ="newCodeSentTitle.message"></springTags:message></div><br><br>
-<div class = "messageBodyCenterAlign"><springTags:message code ="newCodeSentBody.message"></springTags:message></div><br><br>
+<div class = "messageBodyCenterAlign">${confirmationMessage}</div><br><br>
 <div class = "linkContainer">
 <label class = "link"   onclick="changeParentLocation('${pageContext.request.contextPath}/index.html')" ><springTags:message code ="backHome.message"></springTags:message></label>
 </div><br><br>

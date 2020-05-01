@@ -17,5 +17,10 @@
 </div><br><br>
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/04_01_02_link.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/02_01_03_02_loadModalJavaScript.js"></script>
+<script type="text/javascript">
+		var loadModal = newLoadModal();
+		loadModal.disableLoadModal();
+</script>
 </body>
 </html>

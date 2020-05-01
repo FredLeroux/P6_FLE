@@ -1,11 +1,14 @@
 @import
 	url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_01_appSkin.css");
 
-.icon {	
+.icon {		
+	z-index: 2;
+	position:absolute;
 	display: inline-block;	
 	font-size: 2vw;
-	float:left;
 	cursor: pointer;
+	
+	
 }
 
 
@@ -22,10 +25,10 @@
 }
 
 .iconInvert:hover{
-	color: var(--menu-icon-color);
+	color: var(--menu-icon-invert-hover-color);
 }
 
-.firstLign{
+.firstLign{	
 	width: 100%;
 	display: flex;
 	
@@ -63,6 +66,8 @@ color: var(--menu-connexion-color);
 }
 
 .list {	
+	position:absolute;
+	z-index: 1;
 	list-style-type: none;	
 	overflow: hidden;
 	border:solid;	
@@ -70,15 +75,15 @@ color: var(--menu-connexion-color);
 	margin:0;
 	padding:0;
 	background-color: var(--menu-bg-color);
-	width: 100%;
+	width: 99%;
 	
 }
 
 
 
 .list>li {
-	float: left;	
-}
+	float: left;
+	}
 
 .list>li a {
 	display: block;

@@ -56,6 +56,8 @@ public abstract class SpringTagFormular {
 	private String messageTagName = "message";
 	private String inputTagName = "input";
 	private String selectTagName = "select";
+	//TODO implement all textArea CSSClass and option CSS like input and Select
+	private String textAreaTagName = "textarea";
 	private String errorTagName = "errors";
 	private String buttonTagName = "button";
 	private String passWordTagName = "password"; 
@@ -679,6 +681,17 @@ public abstract class SpringTagFormular {
 		inputFinal.append(input);
 		return inputFinal.toString();
 	}
+	//TODO implement css textarea
+	protected String textAreaCssClassCssErrorClassTagMessagePlaceHolder(String path, String code) {
+		StringBuilder textAreaFinal = new StringBuilder();
+		String varName = code.replace(" ", ".").replace(".", "");
+		String message = messageWithVar(code, varName) + ln;
+		String input = openFormTag(textAreaTagName, path) + getInputCssClass() + getInputCssErrorClass()
+				+ placeHolderAttribut + htmlVar(varName) + closeTag + ln;
+		textAreaFinal.append(message);
+		textAreaFinal.append(input);
+		return textAreaFinal.toString();
+	}
 	
 	
 
@@ -695,6 +708,10 @@ public abstract class SpringTagFormular {
 	protected String selectCssClassCssErrorClass(String path, String targetForm) {
 		return openFormTag(selectTagName, path) + createId(path, selectTagName) + getFormAttribut()
 				+ argument(targetForm) + getSelectCssClass() + getSelectCssErrorClass() + closeTag + ln;
+	}
+	//TODO complete implementation
+	protected String textAreaCssClassCssErrorClass(String path) {
+		return openFormTag(textAreaTagName, path) + getInputCssClass() + getInputCssErrorClass() + closeTag + ln;
 	}
 	
 	protected String passWord(String path) {
@@ -715,6 +732,18 @@ public abstract class SpringTagFormular {
 		String message = messageWithVar(code, varName) + ln;
 		String input = openFormTag(passWordTagName, path) + getInputCssClass() + getInputCssErrorClass()
 				+ placeHolderAttribut + htmlVar(varName) + closeTag + ln;
+		passWordInputFinal.append(message);
+		passWordInputFinal.append(input);
+		return passWordInputFinal.toString();
+	}
+	
+	
+	protected String passWordCssClassCssErrorClassTagMessagePlaceHolderToggleDisplay(String path, String code) {
+		StringBuilder passWordInputFinal = new StringBuilder();
+		String varName = code.replace(" ", ".").replace(".", "");
+		String message = messageWithVar(code, varName) + ln;
+		String input = openFormTag(passWordTagName, path) + getInputCssClass() + getInputCssErrorClass()
+				+ placeHolderAttribut + htmlVar(varName)+"  onmouseenter=\"type='text'\" onmouseleave=\"type='password'\"" + closeTag + ln;
 		passWordInputFinal.append(message);
 		passWordInputFinal.append(input);
 		return passWordInputFinal.toString();

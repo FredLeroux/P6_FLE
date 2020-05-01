@@ -10,7 +10,8 @@ import org.springframework.stereotype.Component;
 import fle.toolBox.springFormManager.SpringMVCFormGenerator;
 import fle.toolBox.springFormManager.builder.configurationClass.SpringFormCssConfig;
 import std.fle._03_sfc._03_01_usersInfoSFC.UsersInfoMailSFC;
-import std.fle._03_sfc._03_02_usersAccountInfoSFC.UsersAccountInfoPassModifSFC;
+import std.fle._03_sfc._03_02_usersAccountInfoSFC.UsersAccountInfoPassResetSFC;
+import std.fle._03_sfc._03_02_usersAccountInfoSFC.UsersAccountInfoPassUpdateSFC;
 import std.fle._04_associationModel._04_03_sfc.UserSFC;
 import std.fle._04_associationModel._04_03_sfc.UserUpdateSFC;
 
@@ -22,7 +23,8 @@ public class SpringFormCreation implements ApplicationListener<ContextRefreshedE
 	private UserSFC userSFC = new UserSFC();
 	private UserUpdateSFC userUpdateSFC = new UserUpdateSFC();
 	private UsersInfoMailSFC usersInfoMailSFC = new UsersInfoMailSFC();
-	private UsersAccountInfoPassModifSFC usersAccountInfoPassModifSFC = new UsersAccountInfoPassModifSFC();
+	private UsersAccountInfoPassResetSFC usersAccountInfoPassResetfSFC = new UsersAccountInfoPassResetSFC();
+	private UsersAccountInfoPassUpdateSFC usersAccountInfoPassUpdateSFC = new UsersAccountInfoPassUpdateSFC();
 	
 
 	@Override
@@ -30,7 +32,8 @@ public class SpringFormCreation implements ApplicationListener<ContextRefreshedE
 		build.generateForm(context, basisConfig(), userSFC);
 		build.generateForm(context, basisConfig(), userUpdateSFC);
 		build.generateForm(context, mailFormConfig(), usersInfoMailSFC);
-		build.generateForm(context, updatepassConfig(), usersAccountInfoPassModifSFC);
+		build.generateForm(context, updatepassConfig(), usersAccountInfoPassResetfSFC);
+		build.generateForm(context, updatepassConfig(), usersAccountInfoPassUpdateSFC);
 	}
 	
 	private SpringFormCssConfig basisConfig() {

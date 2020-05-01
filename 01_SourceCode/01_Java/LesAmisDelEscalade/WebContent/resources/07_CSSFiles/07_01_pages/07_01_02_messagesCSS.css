@@ -64,6 +64,11 @@
 	color: var(--base-color);	
 }
 
+.errorMessage{
+	position: absolute;
+	color: var(--bad-color);
+}
+
 a{
 	color : var(--highlith-color);
 	font-size: 1.2vw;

@@ -1,5 +1,9 @@
 package fle.toolBox;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+
 import exceptions.TypeNotConfiguredException;
 
 /**
@@ -74,6 +78,11 @@ public class FredParser {
 		String parsed = String.valueOf(value);
 		return parsed;
 	}
+	
+	public static final String asString(Boolean value) {
+		String parsed = String.valueOf(value);
+		return parsed;
+	}
 
 	public static final int intValue(Double num) {
 		int intValue = num.intValue();
@@ -88,6 +97,23 @@ public class FredParser {
 	public static final int intValue(Float num) {
 		int intValue = num.intValue();
 		return intValue;
+	}
+	
+	public static final Boolean asBoolean(String value) {
+		return Boolean.parseBoolean(value);
+	}
+	
+	public static final Boolean asBoolean(Object value) {
+		return Boolean.parseBoolean(value.toString());
+	}
+	
+	public static final LocalDate asDate(String value,FormatStyle formatStyle) {		
+		return LocalDate.parse(value,dateTimeFormatter(formatStyle));
+	}
+	
+	public static final LocalDate asDate(Object value,FormatStyle formatStyle) {
+		System.out.println("herre");		
+		return LocalDate.parse(value.toString(),dateTimeFormatter(formatStyle));
 	}
 
 	public static final Object numericParser(String type, String value) throws TypeNotConfiguredException  {
@@ -110,10 +136,12 @@ public class FredParser {
 		if(parsedValue==null) {
 			throw new TypeNotConfiguredException();	
 		}		 
-		return parsedValue;
+		return parsedValue;	
 
-		
-
+	}
+	
+	private static DateTimeFormatter dateTimeFormatter(FormatStyle formatStyle) {
+		return DateTimeFormatter.ofLocalizedDate(formatStyle);
 	}
 
 }

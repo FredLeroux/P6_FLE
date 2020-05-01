@@ -10,6 +10,7 @@ import fle.toolBox.IsAnnotationPresent;
 import fle.toolBox.exceptionsThrower.ExceptionsThrower;
 import fle.toolBox.fieldsReflectivity.AssociatedModelManagement;
 import fle.toolBox.springFormManager.annotations.HiddenPath;
+import fle.toolBox.springFormManager.annotations.InputTextArea;
 import fle.toolBox.springFormManager.annotations.PassWordField;
 import fle.toolBox.springFormManager.annotations.PlaceHolderText;
 import fle.toolBox.springFormManager.annotations.ReadOnlyInput;
@@ -28,6 +29,7 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 	private Class<EntityModelAssociation> entityModelAssociation = EntityModelAssociation.class;
 	private Class<ReadOnlyInput> readOnlyInputAnnotation = ReadOnlyInput.class;
 	private Class<PassWordField> passWordAnnotation = PassWordField.class;
+	private Class<InputTextArea> texteAreaAnnotation = InputTextArea.class;
 	private AssociatedModelManagement<O> fieldManager = null;
 	private O entityModel;
 	private ArrayList<String> fieldsNamesList = new ArrayList<>();
@@ -115,7 +117,7 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 	 * @param annotationClass
 	 * @return a string array list containing all fields annotated whith
 	 *         annotationClass<br>
-	 *         this method will manage simple classe as well as associated classes
+	 *         this method will manager simple classe as well as associated classes
 	 */
 	private <A extends Annotation> ArrayList<String> annotatedFieldNameList(Class<A> annotationClass) {
 		boolean entityName = true;
@@ -163,7 +165,11 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 		return hiddenPathFieldList;
 	}
 
-	
+	private <A extends Annotation> ArrayList<String> textAreaFieldList() {
+		ArrayList<String> selectFieldList = new ArrayList<>();
+		selectFieldList = annotatedFieldNameList(texteAreaAnnotation);
+		return selectFieldList;
+	}
 
 	private <A extends Annotation> ArrayList<String> readOnlyInputFieldList(String formName) {
 		ArrayList<String> readOnlyInputFieldList = new ArrayList<>();
@@ -192,10 +198,10 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 		return readOnlyInputFieldList;
 	}
 
-	
-	private ArrayList<String> readOnlyFormList (Field field) {
-		ArrayList<String> list = new ArrayList<>(Arrays.asList(field.getAnnotation(readOnlyInputAnnotation).applyToForm()));
-	return list ;
+	private ArrayList<String> readOnlyFormList(Field field) {
+		ArrayList<String> list = new ArrayList<>(
+				Arrays.asList(field.getAnnotation(readOnlyInputAnnotation).applyToForm()));
+		return list;
 	}
 
 	private <A extends Annotation> ArrayList<String> passWordInputFieldList() {
@@ -279,9 +285,22 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 		if (passWordInputFieldList().contains(fieldName)) {
 			LinkedHashMap<String, String> placeHolder = placeHolderAnnotatedFieldMap();
 			if (placeHolder.containsKey(fieldName)) {
-				addCell(passWordCssClassCssErrorClassTagMessagePlaceHolder(fieldName, placeHolder.get(fieldName)));
+				addCell(passWordCssClassCssErrorClassTagMessagePlaceHolderToggleDisplay(fieldName,
+						placeHolder.get(fieldName)));
 			} else {
 				addCell(passWordCssClassCssErrorClass(fieldName));
+			}
+			fieldSetInFormIsTrue();
+		}
+	}
+
+	private void addTextArea(String fieldName) {
+		LinkedHashMap<String, String> placeHolder = placeHolderAnnotatedFieldMap();
+		if (textAreaFieldList().contains(fieldName)) {
+			if (placeHolder.containsKey(fieldName)) {
+				addCell(textAreaCssClassCssErrorClassTagMessagePlaceHolder(fieldName, placeHolder.get(fieldName)));
+			} else {
+				addCell(textAreaCssClassCssErrorClass(fieldName));
 			}
 			fieldSetInFormIsTrue();
 		}
@@ -296,6 +315,7 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 			addSelectField(fieldName);
 			addReadOnlyInputField(fieldName);
 			addPassWordInputField(fieldName);
+			addTextArea(fieldName);
 			if (!isFieldSetInForm) {
 				addCell(input(fieldName, readOnly));
 			}

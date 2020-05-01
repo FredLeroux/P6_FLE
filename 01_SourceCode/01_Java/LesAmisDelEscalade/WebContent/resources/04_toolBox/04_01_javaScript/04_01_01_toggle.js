@@ -70,17 +70,17 @@ function clearError(errorLoc) {
  *            is the owner div
  * @param elementToToggleId
  *            is the element to toggle display
- * @param switchValue
- *            is the other value to swith on function of status
- * @returns for example if status is false display modal , if status is true
- *          display another page via href
+ * @param newHrefValue
+ *            is the new href value to swith on function of status
+ * @returns for example if status is false onclick will display modal , if status is true
+ *         onclick will follow newHrefValue
  */
 function addSwitchAndToggleDisplayOnClick(statusId, ownerId, elementToToggleId,
-		switchValue) {
+		newHrefValue) {
 	var element = document.getElementById(ownerId);
 	var status = document.getElementById(statusId);
 	if (status.textContent === "true") {
-		element.setAttribute("onclick", "href('" + switchValue + "')")
+		element.setAttribute("onclick", "href('" + newHrefValue + "')")
 	} else {
 		element.setAttribute("onclick", "toggleDisplay('" + elementToToggleId
 				+ "')");

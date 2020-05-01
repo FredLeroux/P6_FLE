@@ -1,0 +1,142 @@
+.hidden{
+	display: none;
+}
+
+
+
+/* Style buttons */
+
+.button1 {
+  background-color: Tan; /* Blue background */ 
+  border: solid;
+  border-color: sienna;
+  color: sienna; /* color of text */
+  padding: 0.5% 1%; /* Some padding */
+  font-style:italic;
+  text-align:center;  
+  font-weight:900;
+  font-size: 110%; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+ 
+}
+
+/* Darker background on mouse-over */
+.button1:hover {
+  background-color: sienna; /* Blue background */ 
+  border: solid;
+  border-color: tan;
+  color: tan; /* color of text */
+ /* box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);/* to study*/
+}
+
+.filterButton p{
+	width:100%;
+	display:inline-block;
+	text-align: center;
+}
+
+
+.filterButton button{		
+	color:LightSlateGray ;
+	border: none;
+  
+  
+  text-align: center;
+  text-decoration: none;
+  display: inline;
+  font-size: 100%;
+ 
+  cursor:pointer;
+  padding-right: 0.5%;
+  padding-left: 0.5%;
+  
+	border-radius: 5%;
+}
+
+.filterButton button:hover{
+	color:FireBrick  ;
+}
+
+
+.divDisplay{
+	width:100%;
+	display:inline-block;
+	text-align:center;
+	
+}
+.aDisplay {
+	display:inline-table;
+	text-align:left;
+	padding-left: 1% ;
+	padding-right: 0.5%;
+	color: burlywood;
+	font-weight: bolder;
+	text-align: justify;
+	font-family: cursive;
+	
+	
+}
+
+.aDisplay:Hover{
+	color:fireBrick;
+}
+
+.aDisplay button::before{
+	
+	color:LightSlateGray ;
+	border: none;    
+  
+  text-decoration: none;  
+  font-size:90%;
+  min-width:2.5%;
+  cursor:pointer; 
+	border-radius: 10%;
+	content: '';
+  position:absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+ background-color: firebrick;
+ transform-origin: center right;
+  transform: scaleX(0) translateY(-50%);
+  transition: transform 0.3s ease;
+}
+
+.aDisplay button{
+	display:list-item;
+	
+	color:LightSlateGray ;
+	border: none;  
+	position:relative;
+	transform-origin: center right;
+	background-color: white;
+	text-align:center;
+	
+	
+}
+
+.aDisplay button:hover{
+	color:FireBrick; 
+}
+
+
+.aDisplay button:hover::before{
+	
+	 transform-origin: center left;
+  transform: scaleX(1) translateY(-50%);
+	
+}
+
+.aDisplay i{
+	font-size:60%;
+	float:right;
+	color: red;
+}
+
+
+
+
+
+
+	

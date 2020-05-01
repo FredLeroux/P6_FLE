@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-<entry key="from.user">LesAmisDeLEscalade@Notification.org</entry>
-<entry key="user.name">Les Amis de l'Escalade</entry>
-<entry key="accountCreation.subject">Création de compte</entry>
-<entry key = "accountCreation.body">Ton compte n'attends plus qu une petite activation click sur le lien ci-dessous</entry>
-<entry key="endMail.message">Merci ;)</entry>
-<entry key="user1.name">Sécurité Les Amis de l'Escalade</entry>
-<entry key="accountLocked.subject">Compte bloqué</entry>
-<entry key = "accountLocked.body">Activité suspecte détectée, compte vérouillé, réinitialisation de mot de passe via le lien ci-dessous</entry>
-<entry key="endMail1.message">Nous vous prions de bien vouloir accepter toutes nos excuses pour ce désagrément.</entry>
+	<entry key="from.user">LesAmisDeLEscalade@Notification.org</entry>
+	<entry key="user.name">Les Amis de l'Escalade</entry>
+	<entry key="user1.name">Sécurité Les Amis de l'Escalade</entry>
+	<entry key="accountCreation.subject">Création de compte</entry>
+	<entry key="accountLocked.subject">Compte bloqué</entry>
+	<entry key="forgotPass.subject">kit "je sais plus"</entry>
+	<entry key="accountCreation.body">Ton compte n'attends plus qu une petite activation click sur le lien ci-dessous</entry>
+	<entry key="forgotPass.login">L'identifiant associé à cette adresse e-mail est : </entry>
+	<entry key="forgotPassOnlyLogin.message">Voici ton identifiant: </entry>
+	<entry key="forgotPassOnlyLogin.body">Ci-dessous un lien direct vers le site.</entry>
+	<entry key="forgotPass.body">Suite à la perte de ton mot de passe et comme demandé, tu trouveras ci-dessous un lien de réinitialisation de celui-ci
+	(attention action obligatoire ou ton compte reste verrouiller)</entry>
+	<entry key="accountLocked.body">Activité suspecte détectée, compte vérouillé, réinitialisation de mot de passe via le lien ci-dessous</entry>
+	<entry key="endMail.message">Merci ;)</entry>
+	<entry key="endMail1.message">Nous vous prions de bien vouloir accepter toutes nos excuses pour ce désagrément.</entry>
+	<entry key="endMail2.message">A ton service, bonne récupération ;) </entry>
+
+
 </properties>

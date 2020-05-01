@@ -5,6 +5,7 @@ import org.modelmapper.ModelMapper;
 import fle.toolBox.classType.DTO;
 import fle.toolBox.classType.ENT;
 import fle.toolBox.classType.SFC;
+import fle.toolBox.classType.SLO;
 
 
 
@@ -41,6 +42,11 @@ public class ModelConverter {
 	
 	public<E extends ENT,D extends DTO,S extends SFC> E convertSFCToENT(E entityClass, D DTOClass, S SFCClass) {
 		return convertDTOToEntity(converSFCToDTO(SFCClass, DTOClass), entityClass);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public<L extends SLO> L convertObjectToSLO(L SLOClass, Object object) {
+		return (L) convertSourceToDestinationType(object, SLOClass);
 	}
 
 }

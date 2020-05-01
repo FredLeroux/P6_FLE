@@ -8,7 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  * 
  * @author Frederic Leroux <br>
  * @version 1.0
- * @apiNote allow to manage encode password:
+ * @apiNote allow to manager encode password:
  *          <li>{@link #encode(String)} create a hashed string using Bcrypt with
  *          by default a strength at 10 (can be change via
  *          {@link #setStrength(Integer)}), and the use of a SecureRandom.

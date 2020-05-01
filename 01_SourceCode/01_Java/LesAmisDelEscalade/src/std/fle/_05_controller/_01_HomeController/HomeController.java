@@ -22,6 +22,8 @@ public class HomeController {
 
 	@Autowired
 	LocalMessage locale;
+	
+	
 
 	private Log4J2<HomeController> log = new Log4J2<HomeController>(this);
 	private NavBarOptionsList optionList = new NavBarOptionsList(
@@ -33,20 +35,21 @@ public class HomeController {
 	@GetMapping(value = "/navbar")
 	public ModelAndView navbar(ModelAndView model, HttpServletRequest request) {
 		SessionVariables sessVar = new SessionVariables(request);
-		ArrayList<NavBarOptions> option = optionList.getAllNavBarOptions(sessVar.getSecurityLevel());
+		ArrayList<NavBarOptions> option =  optionList.getAllNavBarOptions(sessVar.getSecurityLevel());		
 		model.setViewName("01_home/index");
 		model.addObject("optionList", option);
-		log.log().info("in homeController");
 		return model;
 	}
-
+	 
 	@GetMapping(value = "/index")
-	public ModelAndView indexDisplay(ModelAndView model) {
+	public ModelAndView indexDisplay(ModelAndView model) {		
 		model.addObject("iFrameSource", "'01_home/01_01_welcomePage/welcomePage'");
-		model.setViewName("forward:/navbar");
+		model.setViewName("forward:/navbar");		
 		return model;
 
 	}
+	
+	
 
 	@GetMapping(value = "/createAccount")
 	public ModelAndView createAccountNav(ModelAndView model) {
@@ -56,8 +59,7 @@ public class HomeController {
 	}
 
 	@GetMapping(value = "/emptyConnexion")
-	public ModelAndView emptyError(ModelAndView model) {
-		/* model.setViewName("01_home/index"); */
+	public ModelAndView emptyError(ModelAndView model) {		
 		model.addObject("error", locale.message("logEmpty.error"));
 		model.addObject("iFrameSource", "'01_home/01_01_welcomePage/welcomePage'");
 		model.setViewName("forward:/navbar");
@@ -120,9 +122,12 @@ public class HomeController {
 
 	
 	@GetMapping(value = "/unlockMyAccount")
-	public ModelAndView unlockMyAccount(ModelAndView model) {
+	public ModelAndView unlockMyAccount(ModelAndView model,HttpServletRequest request) {
+		
 		model.addObject("iFrameSource", "'02_AccountManagement/resetCompromisedPassword'");
+		model.addObject("forgot",request.getAttribute("forgot"));
 		model.setViewName("forward:/navbar");
+		
 		return model;
 	}
 	
@@ -133,11 +138,48 @@ public class HomeController {
 		return model;
 	}
 	
-	/*@GetMapping(value = "/passwordChangeSuccess")
-	public ModelAndView passwordChangeSuccess(ModelAndView model) {
-		model.addObject("iFrameSource", "'03_messagesPages/passwordChangeConfirmation'");
+	@GetMapping(value = "/error")
+	public ModelAndView error(ModelAndView model) {
+		model.addObject("iFrameSource", "'03_messagesPages/errorsPage'");
 		model.setViewName("forward:/navbar");
 		return model;
-	}*/
-
+	}
+	
+/*	@GetMapping(value = "/errorNotException")
+	public ModelAndView errorNotException(ModelAndView model) {
+		model.setViewName("03_messagesPages/errorsPage");
+		return model;
+	}
+*/	
+	@GetMapping(value = { "/internalError","/errorNotException"})
+	public ModelAndView internalError(ModelAndView model) {
+		model.setViewName("03_messagesPages/errorsPage");		
+		return model;
+	}
+	
+	
+	@GetMapping(value = "/forgotPassword")
+	public ModelAndView forgotPassword(ModelAndView model) {
+		model.addObject("iFrameSource", "'03_messagesPages/forgotPassword'");
+		model.setViewName("forward:/navbar");
+		return model;
+	}
+	
+	@GetMapping(value = "/callList")
+	public ModelAndView list(ModelAndView model,HttpServletRequest request) {	
+		String listType = request.getParameter("listType");
+		model.addObject("iFrameSource", "'04_listPage/listPage?listType="+listType+"'");
+		model.setViewName("forward:/navbar");		
+		return model;
+	}
+	
+	
+	@GetMapping(value = "/accesDenied")
+	public ModelAndView accesDenied(ModelAndView model,HttpServletRequest request) {		
+		model.addObject("iFrameSource", "'03_messagesPages/accesDenied'");
+		model.setViewName("forward:/navbar");		
+		return model;
+	}
+	
+	
 }

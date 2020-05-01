@@ -28,7 +28,7 @@ public class ClassFieldsSetAndGet {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-		}
+		}		
 		return value;
 	}
 

@@ -44,7 +44,10 @@ public class UsersInfoSFC extends SFC {
 	@PlaceHolderText(message = "email.pht")
 	@Email(regexp = "^[a-zA-Z0-9+\\p{javaLetter}_/*\\.\\-]+[a-zA-Z0-9+\\p{javaLetter}_/*\\.\\-]?@[a-zA-Z0-9_\\-]{3,63}\\.[a-z]{2,4}$")
 	@Length(max = 254)
-	@Unique(entityName = "UsersInfo", fieldName = "email", modelAttributeValue = "userManagement")
+	@Unique(
+			entityName = "UsersInfo",
+			fieldName = "email",
+			modelAttributeValue = "userManagement")
 	@ReadOnlyInput(applyToForm = { "userUpdateFormular" })
 	private String email;
 

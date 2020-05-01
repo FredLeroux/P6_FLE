@@ -38,10 +38,15 @@ public class UsersAccountInfoServiceImplemented implements UsersAccountInfoServi
 		dao.save(entity);
 
 	}
+	
+	@Override
+	public UsersAccountInfoAuthentificatorDTO getAuthentificatorById(Integer id) {		
+		return dao.getAuthentificatorById(id);
+	}
 
 	@Override
-	public UsersAccountInfoAuthentificatorDTO getAuthentificatorDTO(String login) {
-		return dao.getAuthentificatorDTO(login);
+	public UsersAccountInfoAuthentificatorDTO getAuthentificatorDTOByLogin(String login) {
+		return dao.getAuthentificatorDTOByLogin(login);
 	}
 
 	@Override
@@ -126,5 +131,12 @@ public class UsersAccountInfoServiceImplemented implements UsersAccountInfoServi
 		dao.addResetPassCode(login, resetPassCode);
 		
 	}
+
+	@Override
+	public String getLoginByEmail(String eMail) {		
+		return dao.getLoginByEmail(eMail);
+	}
+
+
 
 }

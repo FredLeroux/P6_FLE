@@ -15,13 +15,17 @@
 <div class = "messageBodyCenterAlign"><span class="mailUnknown" >${mail}</span></div><br><br>
 <div class = "centerDiv">
 <div class = "messageBodyLeftAlign"><springTags:message code ="unknownBody.message"></springTags:message>
-<a href="accountActivationError"><springTags:message code ="unknownReTryLink.message"></springTags:message></a></div><br><br>
+<a href="${backToCallPageHref}"><springTags:message code ="unknownReTryLink.message"></springTags:message></a></div><br><br>
 </div>
 <div class = "linkContainer">
 <label class = "link"   onclick="changeParentLocation('${pageContext.request.contextPath}/index.html')" ><springTags:message code ="backHome.message"></springTags:message></label><br><br>
 </div>
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/04_01_02_link.js"></script>
-</body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/02_01_03_02_loadModalJavaScript.js"></script>
+		<script type="text/javascript">
+		var loadModal = newLoadModal();
+		loadModal.disableLoadModal();
+</script>
 </body>
 </html>

@@ -14,7 +14,9 @@ public interface UsersAccountInfoDAO extends ModelsCRUD<UsersAccountInfo, UsersA
 	
 	public UsersAccountInfoUpdateSFC getUserAccountInfoUpdateById(Integer id);
 	
-	public UsersAccountInfoAuthentificatorDTO getAuthentificatorDTO(String login);
+	public UsersAccountInfoAuthentificatorDTO getAuthentificatorById(Integer id);
+	
+	public UsersAccountInfoAuthentificatorDTO getAuthentificatorDTOByLogin(String login);
 	
 	public UsersAccountInfo converteUpdateSFCToEntity(UsersAccountInfoUpdateSFC updatedSFC);
 	
@@ -37,6 +39,8 @@ public interface UsersAccountInfoDAO extends ModelsCRUD<UsersAccountInfo, UsersA
 	public Integer usersAccountInfoIdByResetPassword(String resetCode);
 	
 	public void updatePassword(Integer id,String newPassword);
+	
+	public String getLoginByEmail(String eMail);
 	
 	
 	

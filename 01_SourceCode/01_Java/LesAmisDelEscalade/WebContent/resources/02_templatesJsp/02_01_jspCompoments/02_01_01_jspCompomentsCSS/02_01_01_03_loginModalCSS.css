@@ -40,8 +40,8 @@
 		'idA inputIdA inputIdA inputIdA'
 		'passA inputPassA inputPassA inputPassA'
 		'forgot forgot forgot forgot'
-		'createAccount createAccount log log'
-		'cancelA cancelA cancelA cancelA';
+		'createAccount createAccount cancelA cancelA'
+		'log log log log';
 }
 
 
@@ -151,6 +151,8 @@ input:focus {
 	grid-area: inputPassA;	
 	padding-bottom: 1px;
 }
+
+
 
 
 

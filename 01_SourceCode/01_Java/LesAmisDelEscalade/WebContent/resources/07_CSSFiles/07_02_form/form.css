@@ -18,9 +18,7 @@ supports (-ms-ime-align:auto ) {
 .tableForm{
 	padding-bottom: 15px;
 }
-
-}
-}
+}}
 
 /* ###############  END : set input and select box size identical ###################*/
 .tableForm {	
@@ -118,6 +116,21 @@ input[readonly = "readonly"] {
 	
 }
 
+.formBecarefull{
+	text-decoration: none;
+	font-family: menu-font;
+	color: var(--mita-mita-color);
+	font-size: 18px;
+}
+
+.formBecarefull:hover{
+	color: var(--bad-color);
+	font-weight: bolder;
+	text-decoration:overline;	
+	cursor: pointer;
+}
+
+
 tr:hover .inputStyle {
 	border-color: var(--base-color-opposite);
 	
@@ -128,7 +141,7 @@ tr:hover .labelStyle {
 }
 
 @media all and (max-width: 1000px) {
-	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,.formButton {
+	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,.formButton,.formBecarefull {
 		font-size: 12px;
 	}
 	option{
@@ -136,19 +149,19 @@ tr:hover .labelStyle {
 }
 
 @media all and (max-width: 790px) {
-	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option,.formButton  {
+	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option,.formButton,.formBecarefull  {
 		font-size: 10px;
 	}
 }
 
 @media all and (max-width: 400px) {
-	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option,.formButton  {
+	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option,.formButton,.formBecarefull  {
 		font-size: 8px;
 	}
 }
 
 @media all and (max-width: 360px) {
-	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option,.formButton {
+	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option,.formButton,.formBecarefull {
 		font-size: 6px;
 	}
 }

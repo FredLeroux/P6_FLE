@@ -5,8 +5,9 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import fle.toolBox.CRUD.DAOGenericInterface;
+import fle.toolBox.CRUD.dao.DAOGenericInterface;
 import fle.toolBox.Internationalization.LocalMessage;
+import std.fle._01_entity._01_02_assetsEnum.SecurityLevel;
 import std.fle._01_entity._01_03_models.UsersAccountInfo;
 import std.fle._01_entity._01_03_models.UsersInfo;
 import std.fle._02_dto._02_02_modelsDTO._02_02_01_usersDTO._02_02_01_01_usersAccountInfoDTO.UsersAccountInfoAccessDTO;
@@ -17,7 +18,6 @@ import std.fle._02_dto._02_02_modelsDTO._02_02_01_usersDTO._02_02_01_02_usersInf
 import std.fle._03_sfc._03_02_usersAccountInfoSFC.UsersAccountInfoSFC;
 import std.fle._03_sfc._03_02_usersAccountInfoSFC.UsersAccountInfoUpdateSFC;
 import std.fle._06_dao._06_01_daoInterface._06_01_02_modelsDao.UsersAccountInfoDAO;
-import std.fle._0X_security.SecurityLevel;
 
 @Repository
 public class UsersAccountInfoDAOImplmented implements UsersAccountInfoDAO {
@@ -68,9 +68,14 @@ public class UsersAccountInfoDAOImplmented implements UsersAccountInfoDAO {
 		parseIsMemberToString(dto, sfc);
 		return sfc;
 	}
+	
+	@Override
+	public UsersAccountInfoAuthentificatorDTO getAuthentificatorById(Integer id) {
+		return dao.getSpecificDTOById(usersAccountInfo, passwordDTO, id);
+	}
 
 	@Override
-	public UsersAccountInfoAuthentificatorDTO getAuthentificatorDTO(String login) {
+	public UsersAccountInfoAuthentificatorDTO getAuthentificatorDTOByLogin(String login) {
 		return dao.getSpecificDTOWhereCondition("login", login, usersAccountInfo, passwordDTO);
 	}
 
@@ -113,16 +118,13 @@ public class UsersAccountInfoDAOImplmented implements UsersAccountInfoDAO {
 			dto = dao.getSpecificDTOWhereCondition("activationCode", activationCode, usersAccountInfo,
 					usersAccountInfoDTO);
 		} catch (Exception e) {
-			System.out.println("not found ");
 			return false;
 		}
 		if (dto.isAccountActivationStatus()) {
-			System.out.println("set to true already ");
 			return false;
 		} else {
 			dto.setAccountActivationStatus(true);
 			dao.updateDTO(usersAccountInfo, dto);
-			System.out.println("set true activated ");
 			return true;
 		}
 	}
@@ -193,6 +195,11 @@ public class UsersAccountInfoDAOImplmented implements UsersAccountInfoDAO {
 		UsersAccountInfoDTO dto =accountInfoDTOByEMail(eMail);
 		dto.setPasswordResetCode(resetPassCode);
 		dao.updateDTO(usersAccountInfo, dto);
+	}
+	
+	@Override
+	public String getLoginByEmail(String eMail) {
+		return usersAccountInfoDTOByEmail(eMail).getUserAccountInfo().getLogin();
 	}
 
 	private void setAccountDefaultValue(UsersAccountInfoDTO dto) {

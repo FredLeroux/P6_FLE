@@ -8,11 +8,12 @@
 
 :root{	
 	--header-bg-images : url("/LesAmisDelEscalade/resources/00_centralisation/00_02_ImagesSrc/00_02_01_headerBgImage.jpg");	
-	--header-text-color : var(--base-color)/**/;
+	--header-text-color : var(--base-color);
 	--header-text-shadow-lvl1 : var(--text-shadow-lvl1); 
 	--header-text-shadow-lvl2 : var(--text-shadow-lvl2);
 	--menu-icon-color : var(--base-color);
 	--menu-icon-hover-color: var(--base-color-opposite);
+	--menu-icon-invert-hover-color: var(--hover-color1);
 	--menu-connexion-color: var(--base-color);
 	--menu-connexion-hover-color: var(--base-color-opposite);
 	--menu-bg-color: var(--base-color);

@@ -12,8 +12,10 @@ public interface UsersAccountInfoService
 		extends ModelsCRUD<UsersAccountInfo, UsersAccountInfoDTO, UsersAccountInfoSFC> {
 
 	public UsersAccountInfoUpdateSFC getUserAccountInfoUpdateById(Integer id);
+	
+	public UsersAccountInfoAuthentificatorDTO getAuthentificatorById(Integer id);
 
-	public UsersAccountInfoAuthentificatorDTO getAuthentificatorDTO(String login);
+	public UsersAccountInfoAuthentificatorDTO getAuthentificatorDTOByLogin(String login);
 
 	/**
 	 * 
@@ -50,5 +52,7 @@ public interface UsersAccountInfoService
 	public Integer usersAccountInfoIdByResetPassword(String resetCode);
 
 	public void updatePassword(Integer id, String newPassword);
+	
+	public String getLoginByEmail(String eMail);
 
 }

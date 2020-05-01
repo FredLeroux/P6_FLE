@@ -8,7 +8,7 @@ import std.fle._00_general.AppVariables;
 public class SessionVariables {
 
 	private HttpServletRequest request = null;
-
+	private String isAppInitiated = AppVariables.IS_APP_INITIATED.var();
 	private String securityLevel = AppVariables.SECURITY_LEVEL.var();
 	private String logged = AppVariables.LOGGED.var();
 	private String connexion = AppVariables.CONNEXION.var();
@@ -17,8 +17,23 @@ public class SessionVariables {
 	private String loginTentative = AppVariables.LOGIN_TENTATIVE.var();
 	private String login = AppVariables.LOGIN.var();
 	private String allowResetPass = AppVariables.ALLOW_RESET_PASS.var();
+	
 
 	public SessionVariables(HttpServletRequest request) {
+		this.request = request;
+	}
+	
+	public SessionVariables() {
+		
+	}
+	
+	
+
+	public HttpServletRequest getRequest() {
+		return request;
+	}
+
+	public void setRequest(HttpServletRequest request) {
 		this.request = request;
 	}
 
@@ -89,17 +104,27 @@ public class SessionVariables {
 	public void setLogin(String login) {
 		session().setAttribute(this.login, login);
 	}
-	
-	
 
 	public Boolean getAllowResetPass() {
 		return (Boolean) session().getAttribute(allowResetPass);
-		
+
 	}
 
 	public void setAllowResetPass(Boolean allowResetPass) {
 		session().setAttribute(this.allowResetPass, allowResetPass);
 	}
+
+	public Boolean getIsAppInitiated() {
+		if (session().getAttribute(isAppInitiated) == null) {
+			return false;
+		} else {
+			return (Boolean) session().getAttribute(isAppInitiated);
+		}
+	}
+
+	public void setIsAppInitiated(Boolean isAppInitiated) {
+		session().setAttribute(this.isAppInitiated, isAppInitiated);
+	}	
 
 	public void clearSession() {
 		session().invalidate();

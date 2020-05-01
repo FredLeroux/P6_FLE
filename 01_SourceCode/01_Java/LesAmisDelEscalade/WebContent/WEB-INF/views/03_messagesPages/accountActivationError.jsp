@@ -30,6 +30,7 @@
 		<label class="link"	onclick="changeParentLocation('${pageContext.request.contextPath}/index.html')"><springTags:message
 				code="backHome.message"></springTags:message></label></div><br><br>
 	</div>
+
 	
 
 	<script type="text/javascript"	src="${pageContext.request.contextPath}/toolBoxJavaScript/04_01_02_link.js"></script>	

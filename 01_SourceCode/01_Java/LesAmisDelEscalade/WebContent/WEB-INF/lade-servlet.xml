@@ -107,24 +107,41 @@
 	<!-- HandlerInterceptor -->
 	<mvc:interceptors>
 		<mvc:interceptor>
+			<mvc:mapping path="/index.jsp" />
 			<mvc:mapping path="/index.html" />
-			<bean class="std.fle._08_filter.Opening"></bean>
+			<bean class="std.fle._08_interceptors.OpeningInterceptor"></bean>
+		</mvc:interceptor>
+		 <mvc:interceptor>
+			<mvc:mapping path="/error" />
+			<bean class="std.fle._08_interceptors.OnErrorInterceptor"></bean>
 		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/authentification" />
-			<bean class="std.fle._08_filter.Authentificator"></bean>
+			<bean class="std.fle._08_interceptors.AuthentificatorInterceptor"></bean>
 		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/disconnect" />
-			<bean class="std.fle._08_filter.Disconnect"></bean>
+			<bean class="std.fle._08_interceptors.DisconnectInterceptor"></bean>
 		</mvc:interceptor>
 		<mvc:interceptor>
-		<mvc:mapping path="/activation"/>
-		<bean class="std.fle._08_filter.AccountActivation"></bean>
+			<mvc:mapping path="/activation" />
+			<bean class="std.fle._08_interceptors.AccountActivationInterceptor"></bean>
 		</mvc:interceptor>
 		<mvc:interceptor>
-		<mvc:mapping path="/unlockMyAccount"/>
-		<bean class="std.fle._08_filter.ResetPassword"></bean>
+			<mvc:mapping path="/unlockMyAccount" />
+			<bean class="std.fle._08_interceptors.ResetPasswordInterceptor"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/02_AccountManagement/updatePasswordForm" />
+			<bean class="std.fle._08_interceptors.UpdatePasswordInterceptor"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/04_listPage/listPage" />
+			<bean class="std.fle._08_interceptors.ListDisplayerInterceptors"></bean>
+		</mvc:interceptor>		
+		<mvc:interceptor>
+			<mvc:mapping path="/errorNotException" />
+			<bean class="std.fle._08_interceptors.OnNoExceptionError"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
 	<bean id="localeResolver"

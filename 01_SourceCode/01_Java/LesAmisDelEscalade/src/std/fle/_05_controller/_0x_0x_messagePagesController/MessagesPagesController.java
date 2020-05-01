@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import fle.toolBox.Internationalization.LocalMessage;
 import std.fle._03_sfc._03_01_usersInfoSFC.UsersInfoMailSFC;
 import std.fle._05_controller.SessionVariables;
 import std.fle._07_service._07_01_serviceInterface._07_01_02_modelServiceInterface.UsersAccountInfoService;
 import std.fle._07_service._07_01_serviceInterface._07_01_02_modelServiceInterface.UsersInfoService;
 import std.fle._09_mailCreation.MailCreator;
+import std.fle._0x_modelManagement.ModelManagement;
 
 @Controller
 public class MessagesPagesController {
@@ -28,6 +30,12 @@ public class MessagesPagesController {
 
 	@Autowired
 	MailCreator mail;
+	
+	@Autowired
+	LocalMessage locale;
+	
+	@Autowired
+	ModelManagement manager;
 
 	@GetMapping(value = "/01_home/01_01_welcomePage/welcomePage")
 	public ModelAndView welcome() {
@@ -65,13 +73,17 @@ public class MessagesPagesController {
 				return new ModelAndView("03_messagesPages/accountAlreadyActivated");
 			} else {
 				mail.sendActivationLink(eMail);
-				return new ModelAndView("03_messagesPages/confirmationNewCodeSent");
+				model =new ModelAndView("03_messagesPages/confirmationNewCodeSent");
+				model.addObject("confirmationMessage",locale.message("newCodeSentBody.message"));
+				return model;
 			}
 		} else {
 			model.setViewName("03_messagesPages/unknownMail");
 			model.addObject("mail", usersInfoMailSfc.getEmail());
+			model.addObject("backToCallPageHref","accountActivationError");
 			return model;
 		}
+		
 	}
 
 	@GetMapping(value = "/03_messagesPages/accountAlreadyActivated")
@@ -98,7 +110,10 @@ public class MessagesPagesController {
 	public ModelAndView accountLocked(HttpServletRequest request) {
 		SessionVariables sessVar = new SessionVariables(request);
 		String login = sessVar.getLogin();
+		System.out.println(accountServices.accountAcces(login).getPasswordResetCode());
+		if(accountServices.accountAcces(login).getPasswordResetCode()==null) {
 		mail.sendLockedAccountMailMessage(usersInfoService.getAccountEmailByLogin(login));
+		}
 		sessVar.setLogin("");
 		return new ModelAndView("/03_messagesPages/accountLocked");
 	}
@@ -113,5 +128,40 @@ public class MessagesPagesController {
 	public ModelAndView passwordChangeConfirmation() {
 		return new ModelAndView("/03_messagesPages/passwordChangeConfirmation");
 	}
+	
+	
+	
+	@GetMapping(value = "/03_messagesPages/errorsPage")
+	public ModelAndView errorsPage() {
+		return new ModelAndView("/03_messagesPages/errorsPage");
+	}
+	
+	
+	@GetMapping(value = "/03_messagesPages/accesDenied")
+	public ModelAndView accesDenied() {
+		return new ModelAndView("/03_messagesPages/accesDenied");
+	}
 
+	/*@GetMapping(value = "/internalError")
+	public ModelAndView internalError() {
+		return new ModelAndView("/03_messagesPages/errorsPage");
+	}*/
+	
+	@GetMapping(value = "/03_messagesPages/forgotPassword")
+	public ModelAndView forgotPasswordPage(@ModelAttribute(value = "forgotPasswordMail")UsersInfoMailSFC usersInfoMailSFC) {
+		return new ModelAndView("/03_messagesPages/forgotPassword");
+	}
+	
+	@PostMapping(value = "/03_messagesPages/forgotPasswordReset")
+	public ModelAndView forgotPasswordReset(ModelAndView model,
+			@ModelAttribute(value = "forgotPasswordMail") @Validated UsersInfoMailSFC usersInfoMailSFC, BindingResult result,HttpServletRequest request) {
+		if (result.hasErrors()) {
+			model.setViewName("/03_messagesPages/forgotPassword");
+			return model;
+		}
+		return manager.manageForgotPassModel(model,  usersInfoMailSFC, request);
+		
+	}
+	
+	
 }

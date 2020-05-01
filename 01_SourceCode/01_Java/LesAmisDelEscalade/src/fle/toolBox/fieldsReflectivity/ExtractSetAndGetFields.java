@@ -41,6 +41,7 @@ public class ExtractSetAndGetFields<O extends Object> {
 	 * @see com.fle.tools.IsAnnotationPresent
 	 */
 	public <A extends Annotation> boolean isAnnotationPresence(Field field, Class<A> annotationClass) {
+		System.out.println(IsAnnotationPresent.onField(field, annotationClass));
 		return IsAnnotationPresent.onField(field, annotationClass);
 	}
 
@@ -207,6 +208,16 @@ public class ExtractSetAndGetFields<O extends Object> {
 	public LinkedHashMap<String, Object> getFieldNameWhithValueMap(ArrayList<String> fieldNameList) {
 		LinkedHashMap<String, Object> fieldNameWithValueMap = new LinkedHashMap<>();
 		for (String fieldName : fieldNameList) {
+			String key = fieldName;
+			Object value = getFieldValue(fieldName);
+			fieldNameWithValueMap.put(key, value);
+		}
+		return fieldNameWithValueMap;
+	}
+
+	public LinkedHashMap<String, Object> getFieldNameWhithValueMapAllClassFields() {
+		LinkedHashMap<String, Object> fieldNameWithValueMap = new LinkedHashMap<>();
+		for (String fieldName : fieldsNameArrayList()) {
 			String key = fieldName;
 			Object value = getFieldValue(fieldName);
 			fieldNameWithValueMap.put(key, value);
