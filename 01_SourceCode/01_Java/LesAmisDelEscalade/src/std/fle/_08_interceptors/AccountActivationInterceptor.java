@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import fle.toolBox.Internationalization.LocalMessage;
-import std.fle._07_service._07_01_serviceInterface._07_01_02_modelServiceInterface.UsersAccountInfoService;
+import std.fle._07_service.usersAccountInfoService.UsersAccountInfoService;
 
 public class AccountActivationInterceptor extends HandlerInterceptorAdapter {
 	

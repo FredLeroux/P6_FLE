@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-GO FUCK YOURSELF
+ACCESSS DENIED TO IMPLEMENT<br><br><br><br><br>
 </body>
 </html>

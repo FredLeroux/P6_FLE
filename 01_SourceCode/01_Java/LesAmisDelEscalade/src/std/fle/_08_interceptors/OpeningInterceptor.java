@@ -24,12 +24,6 @@ public class OpeningInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		InitiateAppInterceptor.initiateApp(request,local);
-	/*	//List<MembersListSLO> sloList = service.getList(slo,"fember");
-		System.out.println(sloList.get(0).getPseudonyme());
-		System.out.println(sloList.get(0).getIsMember());
-		System.out.println(sloList.get(0).getLastName());
-		System.out.println(sloList.get(0).getId());
-		System.out.println(sloList.get(0).getSignUpDate());*/
 		return true;
 	}
 

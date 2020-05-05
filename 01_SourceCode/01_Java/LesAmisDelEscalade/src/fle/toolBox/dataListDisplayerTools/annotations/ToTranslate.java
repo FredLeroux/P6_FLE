@@ -9,6 +9,13 @@ import java.lang.annotation.Target;
 
 @Retention(RUNTIME)
 @Target({ FIELD, METHOD })
+
+//TODO javadoc preciser qu il faut l epoint anat le suffix
+/**
+ * 
+ * @author Frederic Leroux <br>
+ *
+ */
 public @interface ToTranslate {
 	
 	String suffix();

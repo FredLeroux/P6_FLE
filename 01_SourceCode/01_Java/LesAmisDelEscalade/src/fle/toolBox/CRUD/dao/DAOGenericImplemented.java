@@ -63,19 +63,17 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 	public void saveSFC(E entity, D dtoClass, SFC sfcClass) {
 		save((E) converter.convertDTOToEntity(converter.converSFCToDTO(sfcClass, dtoClass), entity));
 	}
-	
-	
-	
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <SD extends DTO> SD getSpecificDTOWhereCondition(String fieldName, String condition, E entity, SD specificDTOClass) {
+	public <SD extends DTO> SD getSpecificDTOWhereCondition(String fieldName, String condition, E entity,
+			SD specificDTOClass) {
 		Query query = session().createQuery(
 				"FROM " + entity.getClass().getName() + " T WHERE T." + fieldName + "=" + hibernateQueryArg(condition));
 		E newEntity = (E) query.getSingleResult();
 		return (SD) converter.convertEntityToDTO(newEntity, specificDTOClass);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public <SE extends ENT, SD extends DTO> SD getSpecificEntitySpecificDTOWhereCondition(String fieldName,
@@ -86,7 +84,6 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 		return (SD) converter.convertEntityToDTO(newEntity, specificDTOClass);
 	}
 
-	
 	@Override
 	@SuppressWarnings("unchecked")
 	public E getEntityByForeignerKey(String fieldName, Integer foreignerKey, E entity) {
@@ -94,46 +91,51 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 				.createQuery("FROM " + entity.getClass().getName() + " T WHERE T." + fieldName + "=" + foreignerKey);
 		return (E) query.getSingleResult();
 	}
+
 	@SuppressWarnings("unchecked")
 	@Override
-	public D getDTOByForeignerKey(String fieldName, Integer foreignerKey, E entity,DTO DTOClass) {
+	public D getDTOByForeignerKey(String fieldName, Integer foreignerKey, E entity, DTO DTOClass) {
 		return (D) converter.convertEntityToDTO(getEntityByForeignerKey(fieldName, foreignerKey, entity), DTOClass);
-	}
-	
-	@Override
-	public <SD extends DTO> SD getSpecificDTOByForeignerKey(String fieldName, Integer foreignerKey, E entity,
-			SD SpecificDTOClass) {
-		return (SD) converter.convertEntityToDTO(getEntityByForeignerKey(fieldName, foreignerKey, entity), SpecificDTOClass);
 	}
 
 	@Override
-	public <SD extends DTO> SD getSpecificDTOById(E entity, SD specificDTOClass,Integer id) {		
+	public <SD extends DTO> SD getSpecificDTOByForeignerKey(String fieldName, Integer foreignerKey, E entity,
+			SD SpecificDTOClass) {
+		return (SD) converter.convertEntityToDTO(getEntityByForeignerKey(fieldName, foreignerKey, entity),
+				SpecificDTOClass);
+	}
+
+	@Override
+	public <SD extends DTO> SD getSpecificDTOById(E entity, SD specificDTOClass, Integer id) {
 		return converter.convertEntityToDTO(getEntityByID(entity, id), specificDTOClass);
 	}
+
 	@Override
 	public void update(E entity) {
 		session().merge(entity);
 	}
+
 	@Override
 	public void updateDTO(E entity, D DTOClass) {
 		session().merge(converter.convertDTOToEntity(DTOClass, entity));
 	}
+
 	@Override
-	public<S extends SFC> void updateSFC(E entity, D DTOCLass, S SFCCLass) {
+	public <S extends SFC> void updateSFC(E entity, D DTOCLass, S SFCCLass) {
 		session().merge(converter.convertDTOToEntity(converter.converSFCToDTO(SFCCLass, DTOCLass), entity));
 	}
 
 	@Override
 	public <SD extends DTO> void updateSpecificDTO(E entity, SD DTOClass) {
 		session().merge(converter.convertDTOToEntity(DTOClass, entity));
-		
+
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public D getDTOWhereCondition(String fieldName, String condition, E entity, D DTOClass) {
-		Query query = session().createQuery("FROM " + entity.getClass().getName() + " A WHERE A." + fieldName + "=" + hibernateQueryArg(condition));
-		System.out.println(query.toString());
+		Query query = session().createQuery(
+				"FROM " + entity.getClass().getName() + " A WHERE A." + fieldName + "=" + hibernateQueryArg(condition));
 		E newEntity = (E) query.getSingleResult();
 		return (D) converter.convertEntityToDTO(newEntity, DTOClass);
 	}
@@ -141,9 +143,8 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Object> getList(SLO joinClass) {
-		ParseListObjectArrayToListObjectImplemented parser = new ParseListObjectArrayToListObjectImplemented();		
+		ParseListObjectArrayToListObjectImplemented parser = new ParseListObjectArrayToListObjectImplemented();
 		return parser.namedQueryParsedList(joinClass);
 	}
-	
 
 }

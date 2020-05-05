@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import fle.toolBox.Internationalization.LocalMessage;
-import std.fle._05_controller.SessionVariables;
+import std.fle._0x_controller.SessionVariables;
 
 public class DisconnectInterceptor extends HandlerInterceptorAdapter {
 	@Autowired

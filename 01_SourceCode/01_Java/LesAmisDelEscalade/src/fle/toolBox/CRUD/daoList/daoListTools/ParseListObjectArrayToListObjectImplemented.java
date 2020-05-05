@@ -1,7 +1,6 @@
 package fle.toolBox.CRUD.daoList.daoListTools;
 
 import java.lang.reflect.Field;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -57,7 +56,6 @@ public class ParseListObjectArrayToListObjectImplemented implements ParseListObj
 		if (type.equals("string")) {			
 			if(field.getAnnotation(DateTimeRawFormat.class) != null) {								
 				value = FredDateTimeFormatter.date(field, valueToParse.toString());
-				System.out.println(FredDateTimeFormatter.time(field, valueToParse.toString()));
 			}else {
 			value = valueToParse.toString();}
 		} else if (type.equals("boolean")) {

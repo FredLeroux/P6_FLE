@@ -49,6 +49,8 @@ public abstract class SpringTagFormular {
 	private String inputReadOnly = " readonly = 'true' ";
 	private String placeHolderAttribut = " placeholder=";
 	private String colSpanAttribut = " colspan =";
+	private String textAreaRowsAttribut = " rows = " ;
+	private String textAreaColsAttribut = " cols = " ;
 	private String formtagName = "form";
 	private String hiddenTagName = "hidden";
 	private String labelTagName = "label";
@@ -56,8 +58,10 @@ public abstract class SpringTagFormular {
 	private String messageTagName = "message";
 	private String inputTagName = "input";
 	private String selectTagName = "select";
+	
 	//TODO implement all textArea CSSClass and option CSS like input and Select
 	private String textAreaTagName = "textarea";
+	
 	private String errorTagName = "errors";
 	private String buttonTagName = "button";
 	private String passWordTagName = "password"; 
@@ -682,11 +686,11 @@ public abstract class SpringTagFormular {
 		return inputFinal.toString();
 	}
 	//TODO implement css textarea
-	protected String textAreaCssClassCssErrorClassTagMessagePlaceHolder(String path, String code) {
+	protected String textAreaCssClassCssErrorClassTagMessagePlaceHolder(String path, String code,String rowsNb,String cols) {
 		StringBuilder textAreaFinal = new StringBuilder();
 		String varName = code.replace(" ", ".").replace(".", "");
 		String message = messageWithVar(code, varName) + ln;
-		String input = openFormTag(textAreaTagName, path) + getInputCssClass() + getInputCssErrorClass()
+		String input = openFormTag(textAreaTagName, path) + textAreaRowsAttribut+argument(rowsNb)+textAreaColsAttribut+argument(cols)+ getInputCssClass() + getInputCssErrorClass()
 				+ placeHolderAttribut + htmlVar(varName) + closeTag + ln;
 		textAreaFinal.append(message);
 		textAreaFinal.append(input);
@@ -710,8 +714,8 @@ public abstract class SpringTagFormular {
 				+ argument(targetForm) + getSelectCssClass() + getSelectCssErrorClass() + closeTag + ln;
 	}
 	//TODO complete implementation
-	protected String textAreaCssClassCssErrorClass(String path) {
-		return openFormTag(textAreaTagName, path) + getInputCssClass() + getInputCssErrorClass() + closeTag + ln;
+	protected String textAreaCssClassCssErrorClass(String path,String rowsNb,String cols) {
+		return openFormTag(textAreaTagName, path) + textAreaRowsAttribut+argument(rowsNb)+textAreaColsAttribut+argument(cols) + getInputCssClass() + getInputCssErrorClass() + closeTag + ln;
 	}
 	
 	protected String passWord(String path) {
@@ -752,9 +756,14 @@ public abstract class SpringTagFormular {
 	protected String errors(String path) {
 		return openFormTag(errorTagName, path) + getErrorsCssClass() + closeTag + ln;
 	}
-
-	protected String inputButton(String buttonText) {
-		return openFormTag(buttonTagName) + getButtonCssClass() + endTagAttributes + message(buttonText)
+	/**
+	 * 
+	 * @param buttonText
+	 * @param name the name which be suffixed by "Button"
+	 * @return the submit button with id = formNameButton
+	 */
+	protected String inputButton(String buttonText,String name) {
+		return openFormTag(buttonTagName) + getButtonCssClass() + getIdAttribut()+argument(name+"Button") + endTagAttributes + message(buttonText)
 				+ closeFormTag(buttonTagName) + ln;
 	}
 

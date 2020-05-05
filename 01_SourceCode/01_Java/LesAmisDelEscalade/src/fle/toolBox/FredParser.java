@@ -112,7 +112,6 @@ public class FredParser {
 	}
 	
 	public static final LocalDate asDate(Object value,FormatStyle formatStyle) {
-		System.out.println("herre");		
 		return LocalDate.parse(value.toString(),dateTimeFormatter(formatStyle));
 	}
 

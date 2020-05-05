@@ -5,8 +5,8 @@ import javax.validation.Valid;
 import fle.toolBox.classType.SFC;
 import fle.toolBox.springFormManager.annotations.SpringFormSettings;
 import fle.toolBox.springFormManager.annotations.entityModelAssociation.EntityModelAssociation;
-import std.fle._03_sfc._03_01_usersInfoSFC.UsersInfoSFC;
-import std.fle._03_sfc._03_02_usersAccountInfoSFC.UsersAccountInfoSFC;
+import std.fle._03_sfc.usersAccountInfoSFC.UsersAccountInfoSFC;
+import std.fle._03_sfc.usersInfoSFC.UsersInfoSFC;
 
 @EntityModelAssociation
 @SpringFormSettings(

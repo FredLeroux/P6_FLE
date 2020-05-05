@@ -9,9 +9,10 @@ import org.springframework.stereotype.Component;
 
 import fle.toolBox.springFormManager.SpringMVCFormGenerator;
 import fle.toolBox.springFormManager.builder.configurationClass.SpringFormCssConfig;
-import std.fle._03_sfc._03_01_usersInfoSFC.UsersInfoMailSFC;
-import std.fle._03_sfc._03_02_usersAccountInfoSFC.UsersAccountInfoPassResetSFC;
-import std.fle._03_sfc._03_02_usersAccountInfoSFC.UsersAccountInfoPassUpdateSFC;
+import std.fle._03_sfc.usersAccountInfoSFC.UsersAccountInfoMemberStatusSFC;
+import std.fle._03_sfc.usersAccountInfoSFC.UsersAccountInfoPassResetSFC;
+import std.fle._03_sfc.usersAccountInfoSFC.UsersAccountInfoPassUpdateSFC;
+import std.fle._03_sfc.usersInfoSFC.UsersInfoMailSFC;
 import std.fle._04_associationModel._04_03_sfc.UserSFC;
 import std.fle._04_associationModel._04_03_sfc.UserUpdateSFC;
 
@@ -25,7 +26,7 @@ public class SpringFormCreation implements ApplicationListener<ContextRefreshedE
 	private UsersInfoMailSFC usersInfoMailSFC = new UsersInfoMailSFC();
 	private UsersAccountInfoPassResetSFC usersAccountInfoPassResetfSFC = new UsersAccountInfoPassResetSFC();
 	private UsersAccountInfoPassUpdateSFC usersAccountInfoPassUpdateSFC = new UsersAccountInfoPassUpdateSFC();
-	
+	private UsersAccountInfoMemberStatusSFC UsersAccountInfoMemberStatusSFC = new UsersAccountInfoMemberStatusSFC();
 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -34,6 +35,7 @@ public class SpringFormCreation implements ApplicationListener<ContextRefreshedE
 		build.generateForm(context, mailFormConfig(), usersInfoMailSFC);
 		build.generateForm(context, updatepassConfig(), usersAccountInfoPassResetfSFC);
 		build.generateForm(context, updatepassConfig(), usersAccountInfoPassUpdateSFC);
+		build.generateForm(context, basisConfig(), UsersAccountInfoMemberStatusSFC);
 	}
 	
 	private SpringFormCssConfig basisConfig() {

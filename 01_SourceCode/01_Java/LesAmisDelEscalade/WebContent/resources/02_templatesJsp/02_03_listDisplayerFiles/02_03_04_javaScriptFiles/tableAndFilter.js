@@ -365,19 +365,21 @@ function sendRowIdToBacKEnd(id){
 }
 
 function createTableBody(table, data, idName) {
+	var dataUsed = null;
+	datUsed = data;
 	var tableBody = table.createTBody();
 	var i = 0;
-	for (i = 0; i < data.length; i++) {
+	for (i = 0; i < datUsed.length; i++) {
 		var row = tableBody.insertRow();
-		row.id = "trSendId" + data[i][idName];
-		row.setAttribute("onclick", "getRowObjectId(" + data[i][idName] + ")");
+		row.id = "trSendId" + datUsed[i][idName];
+		row.setAttribute("onclick", "getRowObjectId(" + datUsed[i][idName] + ")");
 		for (j = 0; j < getColumnsFieldAndIname().length; j++) {
 			var infoSplit = getColumnsFieldAndIname()[j].split(getSplitter());
 			var arrayName = infoSplit[0];// arrayName is used to call the
 											// array contained in data JSONArray
 											// from backend
 			var cell = tableBody.rows[i].insertCell();
-			cell.innerHTML = data[i][arrayName];
+			cell.innerHTML = datUsed[i][arrayName];
 		}		
 	}
 	
@@ -386,11 +388,13 @@ function createTableBody(table, data, idName) {
 // * = DOM HTML5 not in autocompletion
 
 function generateTable(LocToSetTableId, tableID, data, cssStyle, idName) {
-	bool = data.includes("empty")
+	var dataToLoad = null;
+	dataToLoad = data;
+	bool = dataToLoad.includes("empty")
 	if (!bool) {
 		var table = createTable(tableID);
 		createTableHead(table)
-		createTableBody(table, data, idName);
+		createTableBody(table, dataToLoad, idName);
 		table.setAttribute("class", cssStyle)
 		document.getElementById(LocToSetTableId).innerHTML = "";
 		// erase message

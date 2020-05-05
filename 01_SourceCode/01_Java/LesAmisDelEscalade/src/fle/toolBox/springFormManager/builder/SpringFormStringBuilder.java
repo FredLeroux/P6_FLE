@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 
+import fle.toolBox.FredParser;
 import fle.toolBox.IsAnnotationPresent;
 import fle.toolBox.exceptionsThrower.ExceptionsThrower;
 import fle.toolBox.fieldsReflectivity.AssociatedModelManagement;
@@ -16,6 +17,7 @@ import fle.toolBox.springFormManager.annotations.PlaceHolderText;
 import fle.toolBox.springFormManager.annotations.ReadOnlyInput;
 import fle.toolBox.springFormManager.annotations.SelectInputType;
 import fle.toolBox.springFormManager.annotations.entityModelAssociation.EntityModelAssociation;
+import fle.toolBox.springFormManager.builder.annotationsManagement.InputTextAreaAnnotation;
 import fle.toolBox.springFormManager.builder.annotationsManagement.SpringFormSettingsAnnotation;
 import fle.toolBox.springFormManager.builder.annotationsManagement.SpringFormSettingsAnnotationData;
 import fle.toolBox.springFormManager.builder.configurationClass.SpringFormCssConfig;
@@ -77,7 +79,7 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 				String fieldName = fieldsNamesList.get(i);
 				addField(i, fieldName, data.isReadOnly());
 			}
-			addButton();
+			addButton(data.getFormName());
 			formEnd();
 			springFormular.add(new SpringRawFormular(data.getJspFilePath(), data.getFormName(), stringBuilder));
 		}
@@ -151,6 +153,32 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 		}
 		return annotatedFieldMap;
 	}
+	
+	private LinkedHashMap<String, InputTextAreaAnnotation> InputTextAreaAnnotationFieldMap() {
+		LinkedHashMap<String, InputTextAreaAnnotation> annotatedFieldMap = new LinkedHashMap<>();
+		for (Field field : fieldManager.getAllFields()) {
+			if (associatedModel) {
+				for (Field clazzField : fieldManager.fieldClassTypeExtractor(field)
+						.fieldsArrayListByAnnotation(texteAreaAnnotation)) {
+					System.out.println(fieldManager.fieldClassTypeExtractor(field)
+						.fieldsArrayListByAnnotation(texteAreaAnnotation));
+					annotatedFieldMap.put(field.getName() + "." + clazzField.getName(),
+							inputTextAreaAnnotation(clazzField));
+				}
+			} else {
+				if (IsAnnotationPresent.onField(field,texteAreaAnnotation)) {
+					annotatedFieldMap.put(field.getName(), inputTextAreaAnnotation(field));
+				}
+			}
+		}
+		return annotatedFieldMap;
+	}
+	
+	private InputTextAreaAnnotation inputTextAreaAnnotation(Field clazzField) {
+		System.out.println(clazzField.getName());
+		InputTextArea fieldInputTextArea = clazzField.getAnnotation(texteAreaAnnotation);
+		return new InputTextAreaAnnotation(fieldInputTextArea.rows(), fieldInputTextArea.charByRows());
+	}
 
 	private <A extends Annotation> ArrayList<String> selectFieldList() {
 		ArrayList<String> selectFieldList = new ArrayList<>();
@@ -164,12 +192,12 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 		ExceptionsThrower.ifEmpty(hiddenPathFieldList);
 		return hiddenPathFieldList;
 	}
-
-	private <A extends Annotation> ArrayList<String> textAreaFieldList() {
-		ArrayList<String> selectFieldList = new ArrayList<>();
-		selectFieldList = annotatedFieldNameList(texteAreaAnnotation);
-		return selectFieldList;
-	}
+//HERE SUPRESS
+	/*private <A extends Annotation> LinkedHashMap<String, InputTextAreaAnnotation> textAreaFieldList() {
+		LinkedHashMap<String, InputTextAreaAnnotation> textAreaFieldList= new LinkedHashMap<>();
+		textAreaFieldList = InputTextAreaAnnotationFieldMap();
+		return textAreaFieldList;
+	}*/
 
 	private <A extends Annotation> ArrayList<String> readOnlyInputFieldList(String formName) {
 		ArrayList<String> readOnlyInputFieldList = new ArrayList<>();
@@ -296,11 +324,14 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 
 	private void addTextArea(String fieldName) {
 		LinkedHashMap<String, String> placeHolder = placeHolderAnnotatedFieldMap();
-		if (textAreaFieldList().contains(fieldName)) {
+		LinkedHashMap<String, InputTextAreaAnnotation> textArea = InputTextAreaAnnotationFieldMap();
+		if (textArea.containsKey(fieldName)) {
+			String rows = FredParser.asString(textArea.get(fieldName).getRows());
+			String cols = FredParser.asString(textArea.get(fieldName).getCols());
 			if (placeHolder.containsKey(fieldName)) {
-				addCell(textAreaCssClassCssErrorClassTagMessagePlaceHolder(fieldName, placeHolder.get(fieldName)));
+				addCell(textAreaCssClassCssErrorClassTagMessagePlaceHolder(fieldName, placeHolder.get(fieldName), rows, cols));
 			} else {
-				addCell(textAreaCssClassCssErrorClass(fieldName));
+				addCell(textAreaCssClassCssErrorClass(fieldName, rows, cols));
 			}
 			fieldSetInFormIsTrue();
 		}
@@ -326,11 +357,11 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 
 	}
 
-	private void addButton() {
+	private void addButton(String name) {
 		if (!readOnly) {
 			stringBuilder.append(tableRowStart());
 			stringBuilder.append(tableCellStartWithColSpan(3, formButtonAlignment));
-			stringBuilder.append(inputButton(formButtonMessage));
+			stringBuilder.append(inputButton(formButtonMessage,name));
 			stringBuilder.append(tableCellEnd());
 			stringBuilder.append(tableRowEnd());
 		}

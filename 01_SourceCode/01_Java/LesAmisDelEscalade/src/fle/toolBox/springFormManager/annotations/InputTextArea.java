@@ -18,5 +18,8 @@ import java.lang.annotation.Target;
 @Target(FIELD)
 
 public @interface InputTextArea {
+	int rows();
+	int charByRows();
+	
 
 }

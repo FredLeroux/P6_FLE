@@ -1,16 +1,21 @@
 package std.fle._0x_modelManagement.accountModelManagement;
 
+
 import org.springframework.web.servlet.ModelAndView;
 
 import std.fle._04_associationModel._04_03_sfc.UserSFC;
-import std.fle._04_associationModel._04_03_sfc.UserUpdateSFC;
 
 public interface AccountModelManagement {
 
 	public ModelAndView manageUserFormRegister(ModelAndView model, UserSFC userSFC);
 	
-	public ModelAndView manageUserFormUpdate(ModelAndView model, UserUpdateSFC userUpdateSFC);
+	public ModelAndView manageUserFormUpdate(ModelAndView model);
 
 	public ModelAndView manageUserCreation(UserSFC userSFC);
+	
+	public ModelAndView displayMemeberStatus(ModelAndView model,String modelAttributeName,Integer id);
+	
+	public ModelAndView doUpdateMemberStatus(ModelAndView model,Integer id, String memberStatusSFC);
+		
 
 }

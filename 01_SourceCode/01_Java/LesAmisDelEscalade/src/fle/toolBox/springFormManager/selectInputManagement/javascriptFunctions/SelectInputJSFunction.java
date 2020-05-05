@@ -13,7 +13,6 @@ public class SelectInputJSFunction<O extends Object> extends SelectInputBoolean 
 	private JsFunctionSelectOptions selectJs = new JsFunctionSelectOptions();
 
 	public void addSelectInputJSFunction(O COI, StringBuilder stringBuilder, String formName) {
-		System.out.println("addInput function->" + COI.getClass().getCanonicalName());
 		String entityName = null;
 		setFieldManager(COI);
 		JSBuilder.openScript(stringBuilder);		

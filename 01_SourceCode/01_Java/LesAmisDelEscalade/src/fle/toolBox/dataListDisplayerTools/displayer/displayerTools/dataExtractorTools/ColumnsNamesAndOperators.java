@@ -103,7 +103,6 @@ public class ColumnsNamesAndOperators<O extends Object> {
 						.put(fieldName + splitter + columnI18N + splitter + operator + splitter + operatorNameI18N);
 			}
 		}
-		System.out.println("fileterHed from generator " + columnsAndOperatorsListI18N);
 		return columnsAndOperatorsListI18N;
 	}
 

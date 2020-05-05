@@ -1,8 +1,8 @@
 package std.fle._04_associationModel._04_01_model;
 
 import fle.toolBox.classType.ENT;
-import std.fle._01_entity._01_03_models.UsersAccountInfo;
-import std.fle._01_entity._01_03_models.UsersInfo;
+import std.fle._01_entity.models.users.UsersAccountInfo;
+import std.fle._01_entity.models.users.UsersInfo;
 
 
 public class User extends ENT {

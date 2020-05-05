@@ -10,10 +10,10 @@ import fle.toolBox.ConfigurationFileReader;
 import fle.toolBox.FredParser;
 import fle.toolBox.Internationalization.LocalMessage;
 import fle.toolBox.security.bcrypt.PassWord;
-import std.fle._02_dto._02_02_modelsDTO._02_02_01_usersDTO._02_02_01_01_usersAccountInfoDTO.UsersAccountInfoAccessDTO;
-import std.fle._02_dto._02_02_modelsDTO._02_02_01_usersDTO._02_02_01_01_usersAccountInfoDTO.UsersAccountInfoAuthentificatorDTO;
-import std.fle._05_controller.SessionVariables;
-import std.fle._07_service._07_01_serviceInterface._07_01_02_modelServiceInterface.UsersAccountInfoService;
+import std.fle._02_dto.modelsDTO.usersDTO._02_02_01_01_usersAccountInfoDTO.UsersAccountInfoAccessDTO;
+import std.fle._02_dto.modelsDTO.usersDTO._02_02_01_01_usersAccountInfoDTO.UsersAccountInfoAuthentificatorDTO;
+import std.fle._07_service.usersAccountInfoService.UsersAccountInfoService;
+import std.fle._0x_controller.SessionVariables;
 
 public class AuthentificatorInterceptor extends HandlerInterceptorAdapter {
 

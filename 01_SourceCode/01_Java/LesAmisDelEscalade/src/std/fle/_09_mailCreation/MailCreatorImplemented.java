@@ -9,7 +9,7 @@ import fle.toolBox.AppURI;
 import fle.toolBox.FredCodeGenerator;
 import fle.toolBox.Internationalization.LocalMessage;
 import fle.toolBox.mail.EmailSender;
-import std.fle._07_service._07_01_serviceInterface._07_01_02_modelServiceInterface.UsersAccountInfoService;
+import std.fle._07_service.usersAccountInfoService.UsersAccountInfoService;
 
 @Service
 public class MailCreatorImplemented implements MailCreator {

@@ -2,7 +2,6 @@ package std.fle._08_interceptors;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -41,6 +40,7 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 		LinkedHashMap<String, Object> map = new LinkedHashMap<>();
 		if (ismembersListType(listInitiate)) {
 			if (granting.toAdmin()) {
+				System.out.println("generate new list");
 				map= listGenerator.elementList();
 			} else {				
 				redirectToForbiddenMessage(request,response);
@@ -52,7 +52,6 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 	}
 
 	private boolean ismembersListType(String listType) {
-		System.out.println(membersListType + "=" + listType + membersListType.equals(listType) );
 		return membersListType.equals(listType);
 	}
 

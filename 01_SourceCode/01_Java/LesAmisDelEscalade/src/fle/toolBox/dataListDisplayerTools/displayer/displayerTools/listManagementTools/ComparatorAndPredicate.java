@@ -96,7 +96,6 @@ public class ComparatorAndPredicate<O extends Object> extends ExtractSetAndGetFi
 			check = true;
 		} else if (fieldType.equals(str)) {
 			fredComparator = comparatorString(fieldName);
-			System.out.println("if annotation date below this has to not be here");
 			check = true;
 		} else if (fieldType.equals(integer) || fieldType.equals(intNum)) {
 			fredComparator = comparatorInteger(fieldName);
@@ -120,7 +119,7 @@ public class ComparatorAndPredicate<O extends Object> extends ExtractSetAndGetFi
 	public Predicate<O> fredPredicate(String criterion, String fieldName, String operator)
 			throws TypeNotConfiguredException {
 		String fieldType = fieldTypeName(fieldName).toLowerCase();/// fieldType(fieldName, javaClass).toLowerCase();
-		System.out.println(fieldName + " type = " + fieldType);
+		
 		boolean check = false;
 		Predicate<O> fredPredicate = null;
 		if (fieldType.equals(str)) {
@@ -204,7 +203,6 @@ public class ComparatorAndPredicate<O extends Object> extends ExtractSetAndGetFi
 
 	Comparator<O> comparatorStringDate(String fieldName, FormatStyle formatStyle) {
 		Comparator<O> comparator = null;
-		System.out.println("Comparator" + fieldName);
 		DateTimeFormatter dtf = DateTimeFormatter.ofLocalizedDate(formatStyle);
 		comparator = (O o1, O o2) ->  LocalDate.parse(fieldValue(fieldName, o1),dtf)
 				.compareTo(LocalDate.parse(fieldValue(fieldName, o2),dtf));		

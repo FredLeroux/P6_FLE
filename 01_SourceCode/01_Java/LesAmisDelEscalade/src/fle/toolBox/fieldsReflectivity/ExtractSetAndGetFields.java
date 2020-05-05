@@ -41,7 +41,6 @@ public class ExtractSetAndGetFields<O extends Object> {
 	 * @see com.fle.tools.IsAnnotationPresent
 	 */
 	public <A extends Annotation> boolean isAnnotationPresence(Field field, Class<A> annotationClass) {
-		System.out.println(IsAnnotationPresent.onField(field, annotationClass));
 		return IsAnnotationPresent.onField(field, annotationClass);
 	}
 

@@ -1,5 +1,6 @@
 package fle.toolBox.dataListDisplayerTools.displayer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -55,13 +56,14 @@ public class DataListDisplayImplemented implements DataListDisplay {
 		frontViewList.setFrontViewStoreFilterName(frontViewStoreFilterName);
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	// inital entyModel = O entityModel
 	public ModelAndView initiatePage(List<?> fullData, Object entityModel,
 			String frontViewAddObjectHandlerName,String internationalizationSuffix) {
-		frontViewList.setTools(entityModel);
-		frontViewList.initializingComponents((List<Object>)fullData, request, messageSource, frontViewList.getRowsPerPagesList(),
+		List<Object> list = new ArrayList<>(fullData);
+		frontViewList.setTools(entityModel);//(List<Object>)fullData
+		frontViewList.initializingComponents(list, request, messageSource, frontViewList.getRowsPerPagesList(),
 				frontViewList.getDefaultRowsPerPages(),internationalizationSuffix);
 		frontView.setViewName(forwardTo(frontViewAddObjectHandlerName));
 		return frontView;
@@ -70,7 +72,7 @@ public class DataListDisplayImplemented implements DataListDisplay {
 	
 	@Override
 	public ModelAndView setDataToDisplay(String frontViewAddObjectHandlerName) {
-		frontView.setViewName(forwardTo(frontViewAddObjectHandlerName));
+		frontView.setViewName(redirectTo(frontViewAddObjectHandlerName));
 		try {
 			frontViewList.setComponentsToDisplay();
 		} catch (Exception e) {

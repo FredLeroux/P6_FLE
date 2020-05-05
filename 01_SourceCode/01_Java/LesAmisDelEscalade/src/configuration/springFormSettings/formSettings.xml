@@ -9,11 +9,15 @@
 	<entry key="userFormBtn.message.reSend">button.reSend.label</entry>
 	<entry key="userFormBtn.message.resetPass">button.resetPass.label</entry>
 	<entry key="userFormBtn.message.forgotPass">button.forgotPass.label</entry>
+	<entry key="userFormBtn.message.memberStatus">button.memeberStatus.label</entry>
+	<entry key="userFormBtn.message.createTopo">button.createTopo.label</entry>
 	<entry key="userRegisterForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/userForm.jsp</entry>
 	<entry key="userUpdateForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/userUpdateForm.jsp</entry>
 	<entry key="userMailForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/askMail.jsp</entry>	
 	<entry key="resetPassForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/resetPassFormTmplt.jsp</entry>
 	<entry key="updatePassForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/updatePassFormTmplt.jsp</entry>
 	<entry key="forgotPasswordForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/forgotPasswordFormTmplt.jsp</entry>
+	<entry key="updateMemberStatusForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/updateMemberStatusTmplt.jsp</entry>
+	<entry key="createNewTopoForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/createNewTopoTmplt.jsp</entry>
 	</properties>
 	

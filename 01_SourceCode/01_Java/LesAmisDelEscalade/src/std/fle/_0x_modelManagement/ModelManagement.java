@@ -4,10 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.servlet.ModelAndView;
 
-import std.fle._03_sfc._03_01_usersInfoSFC.UsersInfoMailSFC;
-import std.fle._03_sfc._03_02_usersAccountInfoSFC.UsersAccountInfoPassResetSFC;
-import std.fle._03_sfc._03_02_usersAccountInfoSFC.UsersAccountInfoPassUpdateSFC;
-import std.fle._04_associationModel._04_03_sfc.UserSFC;
+import std.fle._03_sfc.usersAccountInfoSFC.UsersAccountInfoPassResetSFC;
+import std.fle._03_sfc.usersAccountInfoSFC.UsersAccountInfoPassUpdateSFC;
+import std.fle._03_sfc.usersInfoSFC.UsersInfoMailSFC;
 
 public interface ModelManagement {
 	

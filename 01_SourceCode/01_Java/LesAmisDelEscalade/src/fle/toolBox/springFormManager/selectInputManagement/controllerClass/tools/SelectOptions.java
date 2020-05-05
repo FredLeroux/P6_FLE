@@ -43,7 +43,7 @@ public class SelectOptions extends Internationalization implements SelectOptions
 	@Override
 	public String getDisplayValueI18N(MessageSource messageSource, String suffix) {
 		setSuffix(suffix);
-		return messI18n(keyFinal(displayValue.toLowerCase()), messageSource);
+		return messI18n(keyFinal(value), messageSource);//TODO why is displayValue.toLowerCase() before
 	}
 
 }

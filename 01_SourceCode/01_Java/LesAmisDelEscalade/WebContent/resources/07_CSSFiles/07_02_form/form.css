@@ -91,7 +91,11 @@ color: var(--base-color);
 }
 
 input[readonly = "readonly"] {
-	cursor: not-allowed;;
+	cursor: not-allowed;
+}
+
+textarea{
+	resize: none;
 }
 
 .formButton{

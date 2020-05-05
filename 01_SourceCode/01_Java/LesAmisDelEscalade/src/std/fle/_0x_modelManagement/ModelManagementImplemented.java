@@ -10,16 +10,15 @@ import fle.toolBox.ConfigurationFileReader;
 import fle.toolBox.FredParser;
 import fle.toolBox.Internationalization.LocalMessage;
 import fle.toolBox.springFormManager.selectInputManagement.controllerClass.SelectInputForController;
-import std.fle._03_sfc._03_01_usersInfoSFC.UsersInfoMailSFC;
-import std.fle._03_sfc._03_02_usersAccountInfoSFC.UsersAccountInfoPassResetSFC;
-import std.fle._03_sfc._03_02_usersAccountInfoSFC.UsersAccountInfoPassUpdateSFC;
-import std.fle._04_associationModel._04_03_sfc.UserSFC;
-import std.fle._05_controller.SessionVariables;
-import std.fle._07_service._07_01_serviceInterface._07_01_02_modelServiceInterface.UsersAccountInfoService;
+import std.fle._03_sfc.usersAccountInfoSFC.UsersAccountInfoPassResetSFC;
+import std.fle._03_sfc.usersAccountInfoSFC.UsersAccountInfoPassUpdateSFC;
+import std.fle._03_sfc.usersInfoSFC.UsersInfoMailSFC;
 import std.fle._07_service._07_01_serviceInterface._07_01_02_modelServiceInterface.UsersInfoService;
 import std.fle._07_service._07_01_serviceInterface._07_01_03_associatedModelServiceInterface.UserService;
+import std.fle._07_service.usersAccountInfoService.UsersAccountInfoService;
 import std.fle._09_mailCreation.MailCreator;
 import std.fle._0X_security.PassEncoder;
+import std.fle._0x_controller.SessionVariables;
 
 @Service
 public class ModelManagementImplemented implements ModelManagement {

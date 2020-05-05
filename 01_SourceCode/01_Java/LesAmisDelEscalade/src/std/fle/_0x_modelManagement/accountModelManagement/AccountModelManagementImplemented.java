@@ -6,17 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
-import fle.toolBox.Internationalization.LocalMessage;
 import fle.toolBox.springFormManager.selectInputManagement.controllerClass.SelectInputForController;
 import std.fle._04_associationModel._04_03_sfc.UserSFC;
-import std.fle._04_associationModel._04_03_sfc.UserUpdateSFC;
-import std.fle._05_controller.SessionVariables;
-import std.fle._07_service._07_01_serviceInterface._07_01_02_modelServiceInterface.UsersAccountInfoService;
 import std.fle._07_service._07_01_serviceInterface._07_01_02_modelServiceInterface.UsersInfoService;
 import std.fle._07_service._07_01_serviceInterface._07_01_03_associatedModelServiceInterface.UserService;
 import std.fle._07_service._07_01_serviceInterface._07_01_03_associatedModelServiceInterface.UserUpdateService;
+import std.fle._07_service.usersAccountInfoService.UsersAccountInfoService;
 import std.fle._09_mailCreation.MailCreator;
 import std.fle._0X_security.PassEncoder;
+import std.fle._0x_controller.SessionVariables;
+import std.fle._0x_modelManagement.listManagement.ListGenerator;
 
 @Service
 public class AccountModelManagementImplemented implements AccountModelManagement {
@@ -44,11 +43,14 @@ public class AccountModelManagementImplemented implements AccountModelManagement
 
 	@Autowired
 	UserUpdateService userUpdate;
+	
+	@Autowired
+	ListGenerator listGenerator;
 
 	private SessionVariables sessVar = new SessionVariables();
 
 	@Override
-	public ModelAndView manageUserFormUpdate(ModelAndView model, UserUpdateSFC userUpdateSFC) {
+	public ModelAndView manageUserFormUpdate(ModelAndView model) {
 		sessVar.setRequest(request);
 		model.setViewName("02_AccountManagement/userFormUpdate");
 		model.addObject("userManagement", userUpdate.getById(sessVar.getAccountID()));
@@ -70,6 +72,20 @@ public class AccountModelManagementImplemented implements AccountModelManagement
 		userService.save(userSFC);
 		mail.sendActivationLink(userSFC.getUsersInfoSFC().getEmail());
 		return new ModelAndView("redirect:/accountCreated");
+	}
+	
+	@Override
+	public ModelAndView displayMemeberStatus(ModelAndView model,String modelAttributeName,Integer id) {
+		model.setViewName("02_AccountManagement/UserFormUpdateMemberStatus");		
+		model.addObject(modelAttributeName,usersAccountInfoService.getUserAccountInfoMemberStatusById(id));
+		select.addSelectListsAndValues(usersAccountInfoService.getUserAccountInfoMemberStatusById(id), model);
+		return model;
+	}
+	@Override
+	public ModelAndView doUpdateMemberStatus(ModelAndView model,Integer id, String memberStatusSFC) {
+		usersAccountInfoService.updateMemberStatus(id, memberStatusSFC);
+		model.setViewName("redirect:/04_listPage/listPage");
+		return model;
 	}
 
 }

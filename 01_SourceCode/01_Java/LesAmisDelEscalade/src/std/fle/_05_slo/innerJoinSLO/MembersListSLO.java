@@ -11,7 +11,7 @@ import fle.toolBox.dataListDisplayerTools.annotations.Operator;
 import fle.toolBox.dataListDisplayerTools.annotations.ToTranslate;
 import fle.toolBox.dateAndTime.annotation.DateTimeRawFormat;
 
-@NamedQuery(name = "MembersListSLO", query = "SELECT  B.id,A.firstName,A.lastName,B.pseudonyme,B.signUpDate,B.isMember"
+@NamedQuery(name = "MembersListSLO", query = "SELECT  B.id,A.firstName,A.lastName,B.pseudonyme,B.signUpDate,B.member"
 		+ " FROM UsersInfo A INNER JOIN  UsersAccountInfo B ON A.userAccountInfo = B.id ORDER by B.signUpDate")
 
 @Entity
@@ -31,7 +31,7 @@ public class MembersListSLO extends SLO {
 	private String signUpDate;
 	@Operator(signsArray = { "=" })
 	@ToTranslate(suffix = "isMember")
-	private String isMember;
+	private String member;
 
 	public Integer getId() {
 		return Id;
@@ -69,16 +69,16 @@ public class MembersListSLO extends SLO {
 		return signUpDate;
 	}
 
-	public void setSignUpDate(String  signUpDate) {
+	public void setSignUpDate(String   signUpDate) {
 		this.signUpDate = signUpDate;
 	}
 
-	public String getIsMember() {
-		return isMember;
+	public String getMember() {
+		return member;
 	}
 
-	public void setIsMember(String isMember) {
-		this.isMember = isMember;
+	public void setMember(String member) {
+		this.member = member;
 	}
 
 	

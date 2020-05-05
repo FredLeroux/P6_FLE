@@ -21,7 +21,10 @@
 	<entry key="option1">option1.name/option1.href/1/3</entry>
 	<entry key="option2">option2.name/option2.href/2/3</entry>
 	<entry key="option3">option3.name/option3.href/3/2</entry>
-	<entry key="option4">option4.name/option4.href/4/2</entry>
-	<entry key="option5">option5.name/option5.href/5/0</entry>
+	<entry key="option4">option4.name/option4.href/4/3</entry>
+	<entry key="option5">option5.name/option5.href/5/2</entry>
+	<entry key="option6">option6.name/option6.href/6/2</entry>
+	<entry key="option7">option7.name/option7.href/7/2</entry>
+	<entry key="option8">option8.name/option8.href/8/0</entry>
 
 </properties>
