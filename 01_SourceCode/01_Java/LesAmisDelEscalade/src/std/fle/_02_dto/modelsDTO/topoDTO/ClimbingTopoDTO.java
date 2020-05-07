@@ -3,8 +3,8 @@ package std.fle._02_dto.modelsDTO.topoDTO;
 import java.time.LocalDate;
 
 import fle.toolBox.classType.DTO;
-import std.fle._01_entity.assetsClasses.States;
-import std.fle._01_entity.models.users.UsersInfo;
+import std.fle._02_dto.assetsClassesDTO.StatesDTO;
+import std.fle._02_dto.modelsDTO.usersDTO._02_02_01_02_usersInfoDTO.UsersInfoDTO;
 
 public class ClimbingTopoDTO extends DTO {
 
@@ -18,9 +18,9 @@ public class ClimbingTopoDTO extends DTO {
 
 	private String topoDescription;
 
-	private States state;
+	private StatesDTO state;
 
-	private UsersInfo userInfo;
+	private UsersInfoDTO userInfo;
 
 	public Integer getId() {
 		return id;
@@ -62,19 +62,19 @@ public class ClimbingTopoDTO extends DTO {
 		this.topoDescription = topoDescription;
 	}
 
-	public States getState() {
+	public StatesDTO getState() {
 		return state;
 	}
 
-	public void setState(States state) {
+	public void setState(StatesDTO state) {
 		this.state = state;
 	}
 
-	public UsersInfo getUserInfo() {
+	public UsersInfoDTO getUserInfo() {
 		return userInfo;
 	}
 
-	public void setUserInfo(UsersInfo userInfo) {
+	public void setUserInfo(UsersInfoDTO userInfo) {
 		this.userInfo = userInfo;
 	}
 

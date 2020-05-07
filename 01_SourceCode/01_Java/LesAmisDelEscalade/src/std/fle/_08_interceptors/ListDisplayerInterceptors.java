@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import std.fle._0X_security.AccesGranting;
-import std.fle._0x_modelManagement.listManagement.ListGenerator;
+import std.fle._0x_controller.modelManagement.listManagement.ListGenerator;
 
 public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 

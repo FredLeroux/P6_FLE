@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import fle.toolBox.springFormManager.SpringMVCFormGenerator;
 import fle.toolBox.springFormManager.builder.configurationClass.SpringFormCssConfig;
+import std.fle._03_sfc.topoSFC.ClimbingTopoSFC;
 import std.fle._03_sfc.usersAccountInfoSFC.UsersAccountInfoMemberStatusSFC;
 import std.fle._03_sfc.usersAccountInfoSFC.UsersAccountInfoPassResetSFC;
 import std.fle._03_sfc.usersAccountInfoSFC.UsersAccountInfoPassUpdateSFC;
@@ -27,6 +28,7 @@ public class SpringFormCreation implements ApplicationListener<ContextRefreshedE
 	private UsersAccountInfoPassResetSFC usersAccountInfoPassResetfSFC = new UsersAccountInfoPassResetSFC();
 	private UsersAccountInfoPassUpdateSFC usersAccountInfoPassUpdateSFC = new UsersAccountInfoPassUpdateSFC();
 	private UsersAccountInfoMemberStatusSFC UsersAccountInfoMemberStatusSFC = new UsersAccountInfoMemberStatusSFC();
+	private ClimbingTopoSFC ClimbingTopoSFC = new ClimbingTopoSFC();
 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -36,6 +38,7 @@ public class SpringFormCreation implements ApplicationListener<ContextRefreshedE
 		build.generateForm(context, updatepassConfig(), usersAccountInfoPassResetfSFC);
 		build.generateForm(context, updatepassConfig(), usersAccountInfoPassUpdateSFC);
 		build.generateForm(context, basisConfig(), UsersAccountInfoMemberStatusSFC);
+		build.generateForm(context, basisConfig(), ClimbingTopoSFC);
 	}
 	
 	private SpringFormCssConfig basisConfig() {

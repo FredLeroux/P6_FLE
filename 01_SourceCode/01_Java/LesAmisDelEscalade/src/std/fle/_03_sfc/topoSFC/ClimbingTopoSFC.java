@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.FormatStyle;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -26,7 +27,7 @@ import std.fle._02_dto.assetsClassesDTO.StatesDTO;
 		jspFilePath = "createNewTopoForm.path",
 		labelMessageSourceSuffix = "userForm.label",
 		buttonAlignmentPropertyKey = "center",
-		buttonMessagePropertyKey = "button.createTopo.label",
+		buttonMessagePropertyKey = "userFormBtn.message.createTopo",
 		readOnly = false )
 public class ClimbingTopoSFC extends SFC {
 	
@@ -44,12 +45,13 @@ public class ClimbingTopoSFC extends SFC {
 
 	@ToTranslate(suffix = "isAvailable")
 	@SelectInputType(enumClass = BooleanValue.class,messageSourceSuffix = ".isAvailabe", selectListName = "availableList",selectValueName = "availableValue")
-	private Boolean available;
+	private String available;
 
 	@Length(max = 200)
 	@PlaceHolderText(message = "topoDescription.pht")
 	private String topoDescription;
 
+	@NotNull
 	@SelectInputType(
 			selectListName = "topoStatesList",
 			selectValueName = "topoStateValue",
@@ -57,8 +59,58 @@ public class ClimbingTopoSFC extends SFC {
 			dtoClass = StatesDTO.class,
 			optionValueFieldName = "id",
 			optionDisplayValueFieldName = "stateName")
-	private States state;
+	private Integer state;
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public LocalDate getEditionYear() {
+		return editionYear;
+	}
+
+	public void setEditionYear(LocalDate editionYear) {
+		this.editionYear = editionYear;
+	}
+
+	public String getAvailable() {
+		return available;
+	}
+
+	public void setAvailable(String available) {
+		this.available = available;
+	}
+
+	public String getTopoDescription() {
+		return topoDescription;
+	}
+
+	public void setTopoDescription(String topoDescription) {
+		this.topoDescription = topoDescription;
+	}
+
+	public Integer getState() {
+		return state;
+	}
+
+	public void setState(Integer state) {
+		this.state = state;
+	}
+
+	
+	
 	
 
 

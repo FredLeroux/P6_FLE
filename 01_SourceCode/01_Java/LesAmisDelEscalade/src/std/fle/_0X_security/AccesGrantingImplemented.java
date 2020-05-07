@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import std.fle._00_general.SessionVariables;
 import std.fle._01_entity._assetsEnum.SecurityLevel;
-import std.fle._0x_controller.SessionVariables;
 
 @Service
 public class AccesGrantingImplemented implements AccesGranting {

@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import fle.toolBox.security.bcrypt.PassWord;
+import std.fle._00_general.SessionVariables;
 import std.fle._07_service.usersAccountInfoService.UsersAccountInfoService;
-import std.fle._0x_controller.SessionVariables;
 
 public class UpdatePasswordInterceptor extends HandlerInterceptorAdapter {
 

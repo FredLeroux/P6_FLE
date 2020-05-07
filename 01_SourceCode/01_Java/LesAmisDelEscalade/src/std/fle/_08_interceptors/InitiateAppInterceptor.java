@@ -3,8 +3,8 @@ package std.fle._08_interceptors;
 import javax.servlet.http.HttpServletRequest;
 
 import fle.toolBox.Internationalization.LocalMessage;
+import std.fle._00_general.SessionVariables;
 import std.fle._01_entity._assetsEnum.SecurityLevel;
-import std.fle._0x_controller.SessionVariables;
 
 public class InitiateAppInterceptor {
 	
