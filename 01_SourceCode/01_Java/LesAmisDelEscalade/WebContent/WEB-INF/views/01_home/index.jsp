@@ -22,11 +22,9 @@ visibility: hidden;
 <%@ include file ="/resources/02_templatesJsp/02_01_jspCompoments/02_01_02_jspCompomentsFiles/02_01_02_01_menuNavBarJSPDynamic.jsp" %>
 <br>
 <br>
-<%@ include file ="/resources/02_templatesJsp/02_01_jspCompoments/02_01_02_jspCompomentsFiles/02_01_02_03_iFrameJSP.jsp" %>
-
-
+<div id="pagesViewer">
 <%@ include file ="/resources/02_templatesJsp/02_01_jspCompoments/02_01_02_jspCompomentsFiles/02_01_02_04_loginModal.jsp" %>
-
+</div>
 <%@ include file ="/resources/02_templatesJsp/02_01_jspCompoments/02_01_02_jspCompomentsFiles/02_01_02_05_loadModal.jsp" %>
 
 <script type="text/javascript">
@@ -35,6 +33,13 @@ window.onload = function displayWhenReady() {
 	  document.getElementById("budy").style.visibility= "visible";
 	}
 
+</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/02_01_03_02_iFrameJavaScript.js"></script>
+<script type="text/javascript">
+var src= ${iFrameSource};
+var loc =${iFrameLoc};
+var iframe = newIframe(loc);
+iframe.loadIframe(src);
 </script>
 
 </body>

@@ -29,9 +29,7 @@
 </div>
 
  <div id="connexionStatus" style="display: none;">${sessionScope.logged}</div>
-<span id="isMenuToDisplay" style="display: none">
 
-</span>
 
 
 

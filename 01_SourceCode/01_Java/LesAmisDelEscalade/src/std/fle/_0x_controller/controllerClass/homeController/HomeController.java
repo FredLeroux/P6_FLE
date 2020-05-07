@@ -44,6 +44,7 @@ public class HomeController {
 	@GetMapping(value = "/index")
 	public ModelAndView indexDisplay(ModelAndView model) {		
 		model.addObject("iFrameSource", "'01_home/01_01_welcomePage/welcomePage'");
+		model.addObject("iFrameLoc","'pagesViewer'");
 		model.setViewName("forward:/navbar");		
 		return model;
 
@@ -54,6 +55,7 @@ public class HomeController {
 	@GetMapping(value = "/createAccount")
 	public ModelAndView createAccountNav(ModelAndView model) {
 		model.addObject("iFrameSource", "'02_AccountManagement/userFormRegister'");
+		model.addObject("iFrameLoc","'pagesViewer'");
 		model.setViewName("forward:/navbar");
 		return model;
 	}
@@ -62,6 +64,7 @@ public class HomeController {
 	public ModelAndView emptyError(ModelAndView model) {		
 		model.addObject("error", locale.message("logEmpty.error"));
 		model.addObject("iFrameSource", "'01_home/01_01_welcomePage/welcomePage'");
+		model.addObject("iFrameLoc","'pagesViewer'");
 		model.setViewName("forward:/navbar");
 		return model;
 	}
@@ -70,16 +73,18 @@ public class HomeController {
 	public ModelAndView incorrectError(ModelAndView model) {
 		model.addObject("error", locale.message("logIncorrect.error"));
 		model.addObject("iFrameSource", "'01_home/01_01_welcomePage/welcomePage'");
+		model.addObject("iFrameLoc","'pagesViewer'");
 		model.setViewName("forward:/navbar");
 		return model;
 	}
 
-	// TODO 0-Implemented countdown on tentative
+	
 	@GetMapping(value = "/wrongConnexion")
 	public ModelAndView wrong(ModelAndView model, HttpServletRequest request) {
 		Integer tentativeLeft = maxTentative - FredParser.toInteger(request.getParameter("tentative"));
 		model.addObject("error", tentativeLeft + locale.message("wrong.error"));
 		model.addObject("iFrameSource", "'01_home/01_01_welcomePage/welcomePage'");
+		model.addObject("iFrameLoc","'pagesViewer'");
 		model.setViewName("forward:/navbar");
 		return model;
 	}
@@ -87,6 +92,7 @@ public class HomeController {
 	@GetMapping(value = "/myAccount")
 	public ModelAndView myAccount(ModelAndView model) {
 		model.addObject("iFrameSource", "'02_AccountManagement/userFormUpdate'");
+		model.addObject("iFrameLoc","'pagesViewer'");
 		model.setViewName("forward:/navbar");
 		return model;
 	}
@@ -94,6 +100,7 @@ public class HomeController {
 	@GetMapping(value = "/accountActivated")
 	public ModelAndView activation(ModelAndView model) {
 		model.addObject("iFrameSource", "'03_messagesPages/accountActivated'");
+		model.addObject("iFrameLoc","'pagesViewer'");
 		model.setViewName("forward:/navbar");
 		return model;
 	}
@@ -101,6 +108,7 @@ public class HomeController {
 	@GetMapping(value = "/accountActivationError")
 	public ModelAndView activationError(ModelAndView model) {
 		model.addObject("iFrameSource", "'03_messagesPages/accountActivationError'");
+		model.addObject("iFrameLoc","'pagesViewer'");
 		model.setViewName("forward:/navbar");
 		return model;
 	}
@@ -108,6 +116,7 @@ public class HomeController {
 	@GetMapping(value = "/accountNotActivated")
 	public ModelAndView accountNotActivated(ModelAndView model) {
 		model.addObject("iFrameSource", "'03_messagesPages/accountNotYetActivated'");
+		model.addObject("iFrameLoc","'pagesViewer'");
 		model.setViewName("forward:/navbar");
 		return model;
 	}
@@ -115,6 +124,7 @@ public class HomeController {
 	@GetMapping(value = "/lockedAccount")
 	public ModelAndView lockedAccount(ModelAndView model) {
 		model.addObject("iFrameSource", "'03_messagesPages/accountLocked'");
+		model.addObject("iFrameLoc","'pagesViewer'");
 		model.setViewName("forward:/navbar");
 		return model;
 	}
@@ -125,6 +135,7 @@ public class HomeController {
 	public ModelAndView unlockMyAccount(ModelAndView model,HttpServletRequest request) {
 		
 		model.addObject("iFrameSource", "'02_AccountManagement/resetCompromisedPassword'");
+		model.addObject("iFrameLoc","'pagesViewer'");
 		model.addObject("forgot",request.getAttribute("forgot"));
 		model.setViewName("forward:/navbar");
 		
@@ -134,6 +145,7 @@ public class HomeController {
 	@GetMapping(value = "/resetCodeExpired")
 	public ModelAndView resetCodeExpired(ModelAndView model) {
 		model.addObject("iFrameSource", "'03_messagesPages/codeExpired'");
+		model.addObject("iFrameLoc","'pagesViewer'");
 		model.setViewName("forward:/navbar");
 		return model;
 	}
@@ -141,6 +153,7 @@ public class HomeController {
 	@GetMapping(value = "/error")
 	public ModelAndView error(ModelAndView model) {
 		model.addObject("iFrameSource", "'03_messagesPages/errorsPage'");
+		model.addObject("iFrameLoc","'pagesViewer'");
 		model.setViewName("forward:/navbar");
 		return model;
 	}
@@ -161,6 +174,7 @@ public class HomeController {
 	@GetMapping(value = "/forgotPassword")
 	public ModelAndView forgotPassword(ModelAndView model) {
 		model.addObject("iFrameSource", "'03_messagesPages/forgotPassword'");
+		model.addObject("iFrameLoc","'pagesViewer'");
 		model.setViewName("forward:/navbar");
 		return model;
 	}
@@ -169,6 +183,7 @@ public class HomeController {
 	public ModelAndView list(ModelAndView model,HttpServletRequest request) {
 		String listType = request.getParameter("listType");
 		model.addObject("iFrameSource", "'04_listPage/listPage?listType="+listType+"'");
+		model.addObject("iFrameLoc","'pagesViewer'");
 		model.setViewName("forward:/navbar");		
 		return model;
 	}
@@ -177,6 +192,7 @@ public class HomeController {
 	@GetMapping(value = "/accesDenied")
 	public ModelAndView accesDenied(ModelAndView model) {		
 		model.addObject("iFrameSource", "'03_messagesPages/accesDenied'");
+		model.addObject("iFrameLoc","'pagesViewer'");
 		model.setViewName("forward:/navbar");		
 		return model;
 	}
@@ -185,6 +201,7 @@ public class HomeController {
 	public ModelAndView addMineTopo(ModelAndView model) {
 		System.out.println("homecontroller");
 		model.addObject("iFrameSource", "'05_topo/createNewTopoForm'");
+		model.addObject("iFrameLoc","'pagesViewer'");
 		model.setViewName("forward:/navbar");		
 		return model;
 	}
