@@ -1,7 +1,5 @@
 package std.fle._01_entity.models.topo;
 
-import java.time.LocalDate;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -19,6 +18,7 @@ import std.fle._01_entity.assetsClasses.States;
 import std.fle._01_entity.models.users.UsersInfo;
 
 @Entity
+@Table(name = "climbing_topo", schema = "cliff")
 public class ClimbingTopo extends ENT {
 
 	/**
@@ -34,7 +34,7 @@ public class ClimbingTopo extends ENT {
 	private String title;
 	
 	@Column(name = "edition_year")
-	private LocalDate editionYear;
+	private String editionYear;
 	
 	@Column(name = "availabe")
 	private Boolean available;
@@ -47,7 +47,8 @@ public class ClimbingTopo extends ENT {
 	@JoinColumn(name = "french_state_fk")
 	private States state;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OnDelete(action = OnDeleteAction.NO_ACTION)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "users_info_fk")
 	private UsersInfo userInfo;
 
@@ -67,11 +68,11 @@ public class ClimbingTopo extends ENT {
 		this.title = title;
 	}
 
-	public LocalDate getEditionYear() {
+	public String getEditionYear() {
 		return editionYear;
 	}
 
-	public void setEditionYear(LocalDate editionYear) {
+	public void setEditionYear(String editionYear) {
 		this.editionYear = editionYear;
 	}
 

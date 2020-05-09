@@ -1,6 +1,7 @@
 package fle.toolBox;
 
 import java.time.LocalDate;
+import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
@@ -80,6 +81,16 @@ public class FredParser {
 	}
 	
 	public static final String asString(Boolean value) {
+		String parsed = String.valueOf(value);
+		return parsed;
+	}
+	
+	public static final String asString(Year value) {
+		String parsed = String.valueOf(value);
+		return parsed;
+	}
+	
+	public static final String asString(Object value) {
 		String parsed = String.valueOf(value);
 		return parsed;
 	}

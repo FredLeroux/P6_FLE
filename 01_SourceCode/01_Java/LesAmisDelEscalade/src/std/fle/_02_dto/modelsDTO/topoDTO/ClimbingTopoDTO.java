@@ -1,6 +1,6 @@
 package std.fle._02_dto.modelsDTO.topoDTO;
 
-import java.time.LocalDate;
+import java.time.Year;
 
 import fle.toolBox.classType.DTO;
 import std.fle._02_dto.assetsClassesDTO.StatesDTO;
@@ -12,7 +12,7 @@ public class ClimbingTopoDTO extends DTO {
 
 	private String title;
 
-	private LocalDate editionYear;
+	private String editionYear;
 
 	private Boolean available;
 
@@ -38,11 +38,11 @@ public class ClimbingTopoDTO extends DTO {
 		this.title = title;
 	}
 
-	public LocalDate getEditionYear() {
+	public String getEditionYear() {
 		return editionYear;
 	}
 
-	public void setEditionYear(LocalDate editionYear) {
+	public void setEditionYear(String editionYear) {
 		this.editionYear = editionYear;
 	}
 

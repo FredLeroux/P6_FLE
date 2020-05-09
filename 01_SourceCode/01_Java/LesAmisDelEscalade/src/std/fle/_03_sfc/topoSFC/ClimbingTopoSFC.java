@@ -1,13 +1,13 @@
 package std.fle._03_sfc.topoSFC;
 
-import java.time.LocalDate;
-import java.time.format.FormatStyle;
+import java.time.Year;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.validation.annotation.Validated;
 
 import fle.toolBox.classType.SFC;
 import fle.toolBox.dataListDisplayerTools.annotations.ToTranslate;
@@ -18,6 +18,8 @@ import fle.toolBox.springFormManager.annotations.SpringFormSettings;
 import std.fle._01_entity._assetsEnum.BooleanValue;
 import std.fle._01_entity.assetsClasses.States;
 import std.fle._02_dto.assetsClassesDTO.StatesDTO;
+
+@Validated
 @SpringFormSettings(
 		action = "createNewTopo",
 		method = "post",
@@ -39,9 +41,9 @@ public class ClimbingTopoSFC extends SFC {
 	@PlaceHolderText(message = "topoTitle.pht")
 	private String title;
 
-	@NotEmpty
+	
 	@DateTimeFormat(pattern = "YYYY")	
-	private LocalDate editionYear;
+	private Year editionYear;
 
 	@ToTranslate(suffix = "isAvailable")
 	@SelectInputType(enumClass = BooleanValue.class,messageSourceSuffix = ".isAvailabe", selectListName = "availableList",selectValueName = "availableValue")
@@ -77,11 +79,11 @@ public class ClimbingTopoSFC extends SFC {
 		this.title = title;
 	}
 
-	public LocalDate getEditionYear() {
+	public Year getEditionYear() {
 		return editionYear;
 	}
 
-	public void setEditionYear(LocalDate editionYear) {
+	public void setEditionYear(Year	 editionYear) {
 		this.editionYear = editionYear;
 	}
 

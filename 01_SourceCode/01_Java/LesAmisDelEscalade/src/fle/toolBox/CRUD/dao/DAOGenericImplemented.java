@@ -48,18 +48,22 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 		return (D) converter.convertEntityToDTO(getEntityByID(entity, id), dtoClass);
 	}
 
+	@Override
 	public void save(E entity) {
 		session().save(entity);
 	}
 
+	@Override
 	public void saveEntity(ENT entity) {
 		session().save(entity);
 	}
-
+	
+	@Override
 	public void saveDTO(E entity, D dtoClass) {
 		save((E) converter.convertDTOToEntity(dtoClass, entity));
 	}
 
+	@Override
 	public void saveSFC(E entity, D dtoClass, SFC sfcClass) {
 		save((E) converter.convertDTOToEntity(converter.converSFCToDTO(sfcClass, dtoClass), entity));
 	}

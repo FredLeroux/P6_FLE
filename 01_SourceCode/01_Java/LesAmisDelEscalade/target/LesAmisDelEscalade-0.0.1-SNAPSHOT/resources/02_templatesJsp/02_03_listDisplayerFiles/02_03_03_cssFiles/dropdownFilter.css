@@ -1,0 +1,100 @@
+html, body {
+	width: 100%;
+}
+
+.filterDisplay {
+	width: 100%;
+	text-align: center;
+	background-color: BurlyWood;
+	display:inline-block;
+}
+
+.dropdownList {
+	display: none;
+	background-color: white;
+	/*width: 100%; not needed width managed by font-size*/
+	max-height: 20%;
+	color: chocolate;
+	overflow: auto;
+	font-style: italic;
+	font-size: medium;
+	position: absolute;
+	border: solid 1px black;
+	z-index: 1;
+	text-align: center;
+}
+
+.dropdownList a {
+	display: block;
+	text-decoration: none;
+}
+
+/*.show {
+	display: block;
+}*/
+.dropdownList a:hover {
+	background-color: OliveDrab;
+	color: burlywood;
+}
+
+.dropdown {
+	vertical-align: middle;
+	display: inline-block;
+	
+}
+
+.dropdown:hover .dropdownList{
+	float:none;
+	display: block;
+}
+
+.button {
+	/*width: auto;*/
+	/*float:left;*/
+	font-size: large;
+	border: none;
+	background-color: BurlyWood;
+	/*text-align: center;*/
+	font-size: large;
+	font-family: cursive;
+	font-weight: bold;
+	cursor: pointer;
+	color: OliveDrab;
+	/*width: 100%;*/
+	/*display:inline-block;*/
+	text-shadow: -1px -1px 1px black, 1px 1px 1px black, 2px 2px 1px black;
+}
+
+.dropdown:hover .button, .button:hover {
+	color: burlywood;
+	text-shadow: -2px -2px 1px black, -1px -1px 1px black, 1px 1px 1px black,
+		2px 2px 1px black;
+}
+
+@media screen and (max-width:900px) {
+	
+	
+	.dropdown{
+	display:block;
+	text-align: left;	
+	
+	}
+	
+	.dropdown:hover{
+	background-color: blue;
+	}
+	.button {		
+	background-color: BurlyWood;	
+	font-size: medium;
+	font-family: cursive;
+	font-weight: normal;
+	cursor: pointer;
+	color: green;
+	text-shadow: none;
+	
+}
+	
+
+	
+	
+}

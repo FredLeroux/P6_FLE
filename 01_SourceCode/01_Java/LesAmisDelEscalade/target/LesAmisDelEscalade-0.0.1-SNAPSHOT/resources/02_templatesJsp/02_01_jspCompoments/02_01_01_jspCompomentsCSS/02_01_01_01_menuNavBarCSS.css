@@ -1,0 +1,145 @@
+@import
+	url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_01_appSkin.css");
+
+
+
+
+
+
+
+
+.firstLign{	
+	align-content:center;
+	width: 99%;
+	display: flex;
+	border:solid;	
+	border-color: var(--menu-border-color);
+	border-bottom-color :var(--menu-text-color);
+	border-bottom-style:solid;
+	border-bottom-width:thin;
+	margin-top:0.1%;
+	margin-left:auto;
+	margin-right:auto;
+	padding-bottom: 0.5%;
+	padding-top:0.5%;
+	background-color: var(--menu-bg-color);
+	border-radius: 20px 20px 7.5px 7.5px ;
+}
+
+.greetings{
+	width: 90%;
+	text-align: justify;
+	margin-left: 2%;
+	
+	
+	
+}
+
+.containerConnexion {	
+	width: 10%;
+	text-align: right;
+	margin-right: 2%;
+	
+}
+
+
+.connexion,.identifiedAs,.pseudo {	
+	text-decoration: none;
+	font-size: 1.5vw;
+	font-family: header-font;
+	
+}
+.connexion,.identifiedAs{
+color: var(--menu-text-color);	
+}
+
+.pseudo{
+	text-align: center;
+	color:var(--highlith-color);
+}
+
+.connexion:hover{
+	color: var(--menu-text-hover-color);
+}
+
+.list {	
+	display:block;
+	z-index: 1;
+	list-style-type: none;	
+	overflow: hidden;
+	border:solid;	
+	border-color: var(--menu-border-color);
+	margin:auto;
+	padding:0;
+	background-color: var(--menu-bg-color);
+	width: 99%;
+	border-top-color :var(--menu-text-color);
+	border-top-style:solid;
+	border-top-width:thin;
+	border-radius: 7.5px 7.5px 20px 20px ;
+	
+}
+
+
+
+.list>li {
+	float: left;
+	}
+
+.list>li a {
+	display: block;
+	padding-left: 2vw;
+	font-size: 1.5vw;
+	font-family: menu-font;
+	font-weight: bold;
+	cursor: pointer;
+	color: var(--menu-text-color);
+	text-decoration: none;
+	
+	
+}
+
+.list>li a:hover {
+	color: var(--menu-text-hover-color);
+	font-size: 1.5vw;	
+}
+
+
+
+
+
+@media all and (max-width: 1400px) {
+	.list>li a, .connexion {
+		font-size: 1.5vw;
+	}
+	.list>li a:hover, .connexion {
+		font-size: 1.5vw;
+	}
+}
+
+@media all and (max-width: 800px) {
+	.list>li {
+		float: none;
+		display: list-item;
+	}
+	.list>.connexion {
+		float: none;
+		display: list-item;
+	}
+	.list>li a {
+		font-size: 1vh;
+		border: solid;
+		border-color: var(--menu-border-color);
+	}
+	.connexion {
+		font-size: 2vw;
+	}
+	.list>li a:hover {
+		font-size: 2vw;
+		border: solid;
+		border-color: var(--menu-border-hover-color);
+	}
+	.connexion:hover {
+		font-size: 2vw;
+	}
+}
