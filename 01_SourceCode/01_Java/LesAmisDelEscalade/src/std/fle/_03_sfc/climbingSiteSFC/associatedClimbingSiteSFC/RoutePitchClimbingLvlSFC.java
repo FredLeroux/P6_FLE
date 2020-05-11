@@ -3,7 +3,7 @@ package std.fle._03_sfc.climbingSiteSFC.associatedClimbingSiteSFC;
 import fle.toolBox.classType.SFC;
 import fle.toolBox.springFormManager.annotations.SpringFormSettings;
 import fle.toolBox.springFormManager.annotations.entityModelAssociation.EntityModelAssociation;
-import std.fle._03_sfc.ClimbingLevelSFC;
+import std.fle._03_sfc.assetsSFC.ClimbingLevelSFC;
 import std.fle._03_sfc.climbingSiteSFC.RoutePitchSFC;
 
 @EntityModelAssociation

@@ -1,4 +1,4 @@
-package std.fle._03_sfc;
+package std.fle._03_sfc.assetsSFC;
 
 import fle.toolBox.classType.SFC;
 import fle.toolBox.springFormManager.annotations.HiddenPath;

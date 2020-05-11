@@ -10,7 +10,7 @@ import fle.toolBox.springFormManager.annotations.entityModelAssociation.EntityMo
 import std.fle._01_entity.assetsClasses.ClimbingLevels;
 import std.fle._01_entity.models.site.SiteRoutes;
 import std.fle._02_dto.assetsClassesDTO.ClimbingLevelsDTO;
-import std.fle._03_sfc.ClimbingLevelSFC;
+import std.fle._03_sfc.assetsSFC.ClimbingLevelSFC;
 
 @SpringFormSettings(
 		action = "createRoutePitch",
