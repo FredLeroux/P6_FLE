@@ -1,10 +1,8 @@
 package std.fle._02_dto.modelsDTO.topoDTO;
 
-import java.time.Year;
-
 import fle.toolBox.classType.DTO;
 import std.fle._02_dto.assetsClassesDTO.StatesDTO;
-import std.fle._02_dto.modelsDTO.usersDTO._02_02_01_02_usersInfoDTO.UsersInfoDTO;
+import std.fle._02_dto.modelsDTO.usersDTO.usersInfoDTO.UsersInfoDTO;
 
 public class ClimbingTopoDTO extends DTO {
 

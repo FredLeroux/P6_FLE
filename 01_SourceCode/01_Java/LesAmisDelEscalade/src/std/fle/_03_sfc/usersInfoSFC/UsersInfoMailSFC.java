@@ -17,8 +17,8 @@ import fle.toolBox.springFormManager.annotations.SpringFormSettings;
 		modelAttribute = "userMail", 
 		name = "userMailFormular", 
 		propertiesFilePath = "configuration/springFormSettings/formSettings.xml",
-		buttonAlignmentPropertyKey = "userFormBtn.align", 
-		buttonMessagePropertyKey = "userFormBtn.message.reSend", 
+		submitButtonAlignmentPropertyKey = "userFormBtn.align", 
+		submitButtonMessagePropertyKey = "userFormBtn.message.reSend", 
 		jspFilePath = "userMailForm.path", 
 		labelMessageSourceSuffix = "userForm.label",		 
 		readOnly = false)
@@ -28,8 +28,8 @@ import fle.toolBox.springFormManager.annotations.SpringFormSettings;
 		modelAttribute = "forgotPasswordMail", 
 		name = "forgotPasswordFormular", 
 		propertiesFilePath = "configuration/springFormSettings/formSettings.xml",
-		buttonAlignmentPropertyKey = "userFormBtn.align", 
-		buttonMessagePropertyKey = "userFormBtn.message.forgotPass", 
+		submitButtonAlignmentPropertyKey = "userFormBtn.align", 
+		submitButtonMessagePropertyKey = "userFormBtn.message.forgotPass", 
 		jspFilePath = "forgotPasswordForm.path", 
 		labelMessageSourceSuffix = "userForm.label",		 
 		readOnly = false)

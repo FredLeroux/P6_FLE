@@ -2,9 +2,9 @@ package std.fle._06_dao.usersAccountInfoDao;
 
 
 import std.fle._01_entity.models.users.UsersAccountInfo;
-import std.fle._02_dto.modelsDTO.usersDTO._02_02_01_01_usersAccountInfoDTO.UsersAccountInfoAccessDTO;
-import std.fle._02_dto.modelsDTO.usersDTO._02_02_01_01_usersAccountInfoDTO.UsersAccountInfoAuthentificatorDTO;
-import std.fle._02_dto.modelsDTO.usersDTO._02_02_01_01_usersAccountInfoDTO.UsersAccountInfoDTO;
+import std.fle._02_dto.modelsDTO.usersDTO.usersAccountInfoDTO.UsersAccountInfoAccessDTO;
+import std.fle._02_dto.modelsDTO.usersDTO.usersAccountInfoDTO.UsersAccountInfoAuthentificatorDTO;
+import std.fle._02_dto.modelsDTO.usersDTO.usersAccountInfoDTO.UsersAccountInfoDTO;
 import std.fle._03_sfc.usersAccountInfoSFC.UsersAccountInfoMemberStatusSFC;
 import std.fle._03_sfc.usersAccountInfoSFC.UsersAccountInfoSFC;
 import std.fle._03_sfc.usersAccountInfoSFC.UsersAccountInfoUpdateSFC;

@@ -1,0 +1,15 @@
+@import
+	url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_01_appSkin.css");
+
+/* annimated border from : https://speckyboy.com/css-border-effects/*/
+.modal {	
+	position: fixed;
+	z-index: 4;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: white
+}
+

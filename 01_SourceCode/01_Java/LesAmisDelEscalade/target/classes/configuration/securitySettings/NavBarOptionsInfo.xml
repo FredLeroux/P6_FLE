@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+	<comment>fill options as follow arg1/arg2/arg3:
+		- arg1 = option name
+		ethier message to display or key to message source
+		to message source
+		properties file.
+		- arg2 = option href
+		either the link to the wished page
+		or action or key
+		to message source properties file.		
+		-arg3 = position in menu bar
+		-arg4 = security
+		level to be greater or equals to, in order to get it displayed i.e if an option is a
+		level security of 2 only account with a level security at 2,3,4,... can
+		acces to it
+		
+	</comment>
+	<entry key="option1">option1.name/option1.href/1/3</entry>
+	<entry key="option2">option2.name/option2.href/2/3</entry>
+	<entry key="option3">option3.name/option3.href/3/2</entry>
+	<entry key="option4">option4.name/option4.href/4/3</entry>
+	<entry key="option5">option5.name/option5.href/5/2</entry>
+	<entry key="option6">option6.name/option6.href/6/2</entry>
+	<entry key="option7">option7.name/option7.href/7/2</entry>
+	<entry key="option8">option8.name/option8.href/8/0</entry>
+
+</properties>

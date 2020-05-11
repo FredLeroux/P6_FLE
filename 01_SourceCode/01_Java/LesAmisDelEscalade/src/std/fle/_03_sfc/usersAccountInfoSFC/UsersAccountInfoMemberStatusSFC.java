@@ -11,7 +11,7 @@ import fle.toolBox.springFormManager.annotations.HiddenPath;
 import fle.toolBox.springFormManager.annotations.ReadOnlyInput;
 import fle.toolBox.springFormManager.annotations.SelectInputType;
 import fle.toolBox.springFormManager.annotations.SpringFormSettings;
-import std.fle._01_entity._assetsEnum.BooleanValue;
+import std.fle._01_entity.assetsEnum.BooleanValue;
 
 @SpringFormSettings(
 		action = "updateMemberStatus",
@@ -19,8 +19,8 @@ import std.fle._01_entity._assetsEnum.BooleanValue;
 		modelAttribute = "memberStatus",
 		name = "updateMemberStatusForm",
 		propertiesFilePath = "configuration/springFormSettings/formSettings.xml",
-		buttonAlignmentPropertyKey = "userFormBtn.align",
-		buttonMessagePropertyKey = "userFormBtn.message.memberStatus",
+		submitButtonAlignmentPropertyKey = "userFormBtn.align",
+		submitButtonMessagePropertyKey = "userFormBtn.message.memberStatus",
 		jspFilePath = "updateMemberStatusForm.path",
 		labelMessageSourceSuffix = "userForm.label",
 		

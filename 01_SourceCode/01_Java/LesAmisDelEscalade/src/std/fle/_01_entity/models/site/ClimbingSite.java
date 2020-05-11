@@ -1,13 +1,17 @@
 package std.fle._01_entity.models.site;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -58,6 +62,9 @@ public class ClimbingSite extends ENT {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "french_county_fk")
 	private Counties county;
+	
+	@OneToMany(mappedBy = "climbingSite",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
+	private List<SiteRoutes> sitesRoutes;
 
 	public Integer getId() {
 		return id;
@@ -138,6 +145,16 @@ public class ClimbingSite extends ENT {
 	public void setCounty(Counties county) {
 		this.county = county;
 	}
+
+	public List<SiteRoutes> getSitesRoutes() {
+		return sitesRoutes;
+	}
+
+	public void setSitesRoutes(List<SiteRoutes> sitesRoutes) {
+		this.sitesRoutes = sitesRoutes;
+	}
+	
+	
 	
 	
 

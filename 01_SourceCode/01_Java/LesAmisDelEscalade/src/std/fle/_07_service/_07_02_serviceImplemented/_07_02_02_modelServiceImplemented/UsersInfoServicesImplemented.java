@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import std.fle._01_entity.models.users.UsersInfo;
-import std.fle._02_dto.modelsDTO.usersDTO._02_02_01_02_usersInfoDTO.UsersInfoDTO;
+import std.fle._02_dto.modelsDTO.usersDTO.usersInfoDTO.UsersInfoDTO;
 import std.fle._03_sfc.usersInfoSFC.UsersInfoSFC;
 import std.fle._05_slo.innerJoinSLO.MembersListSLO;
 import std.fle._06_dao._06_01_daoInterface._06_01_02_modelsDao.UsersInfoDAO;

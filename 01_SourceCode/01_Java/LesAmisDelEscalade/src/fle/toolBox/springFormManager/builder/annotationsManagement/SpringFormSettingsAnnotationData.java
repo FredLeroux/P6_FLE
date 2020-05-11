@@ -13,8 +13,8 @@ public class SpringFormSettingsAnnotationData {
 	private String action;
 	private String method;
 	private String modelAttribute;
-	private String buttonMessage;
-	private String buttonAlignment;
+	private String submitButtonMessage;
+	private String submitButtonAlignment;
 	private boolean readOnly;
 	private String jspFilePath;
 	private String labelMessageSourceSuffix;	
@@ -53,19 +53,19 @@ public class SpringFormSettingsAnnotationData {
 	}
 
 	public String getButtonMessage() {
-		return buttonMessage;
+		return submitButtonMessage;
 	}
 
-	public void setButtonMessage(String buttonMessage) {
-		this.buttonMessage = buttonMessage;
+	public void setSubmitButtonMessage(String buttonMessage) {
+		this.submitButtonMessage = buttonMessage;
 	}
 
 	public String getButtonAlignment() {
-		return buttonAlignment;
+		return submitButtonAlignment;
 	}
 
-	public void setButtonAlignment(String buttonAlignment) {
-		this.buttonAlignment = buttonAlignment;
+	public void setSubmitButtonAlignment(String buttonAlignment) {
+		this.submitButtonAlignment = buttonAlignment;
 	}
 
 	public boolean isReadOnly() {
@@ -81,12 +81,12 @@ public class SpringFormSettingsAnnotationData {
 	}
 
 	public void setJspFilePath(String jspFilePath) {
-		if(configFile.getProperty(jspFilePath)==null) {
+		if (configFile.getProperty(jspFilePath) == null) {
 			this.jspFilePath = jspFilePath;
-		}else {
+		} else {
 			this.jspFilePath = configFile.getProperty(jspFilePath);
 		}
-		
+
 	}
 
 	public String getLabelMessageSourceSuffix() {
@@ -97,6 +97,7 @@ public class SpringFormSettingsAnnotationData {
 		this.labelMessageSourceSuffix = labelMessageSourceSuffix;
 	}
 
+
 	public ConfigurationFileReader getConfigFile() {
 		return configFile;
 	}
@@ -105,5 +106,4 @@ public class SpringFormSettingsAnnotationData {
 		this.configFile = new ConfigurationFileReader(propertiesFilePath);
 	}
 
-	
 }

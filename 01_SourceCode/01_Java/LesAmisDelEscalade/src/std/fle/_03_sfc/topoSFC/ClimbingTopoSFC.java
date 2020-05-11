@@ -4,6 +4,7 @@ import java.time.Year;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,24 +13,25 @@ import org.springframework.validation.annotation.Validated;
 import fle.toolBox.classType.SFC;
 import fle.toolBox.dataListDisplayerTools.annotations.ToTranslate;
 import fle.toolBox.springFormManager.annotations.HiddenPath;
+import fle.toolBox.springFormManager.annotations.InputTextArea;
 import fle.toolBox.springFormManager.annotations.PlaceHolderText;
 import fle.toolBox.springFormManager.annotations.SelectInputType;
 import fle.toolBox.springFormManager.annotations.SpringFormSettings;
-import std.fle._01_entity._assetsEnum.BooleanValue;
 import std.fle._01_entity.assetsClasses.States;
+import std.fle._01_entity.assetsEnum.BooleanValue;
 import std.fle._02_dto.assetsClassesDTO.StatesDTO;
 
 @Validated
 @SpringFormSettings(
 		action = "createNewTopo",
 		method = "post",
-		name = "createNewTopoForm",
+		name = "createNewTopoFormular",
 		modelAttribute = "createTopo",
 		propertiesFilePath = "configuration/springFormSettings/formSettings.xml",
 		jspFilePath = "createNewTopoForm.path",
 		labelMessageSourceSuffix = "userForm.label",
-		buttonAlignmentPropertyKey = "center",
-		buttonMessagePropertyKey = "userFormBtn.message.createTopo",
+		submitButtonAlignmentPropertyKey = "center",
+		submitButtonMessagePropertyKey = "userFormBtn.message.createTopo",
 		readOnly = false )
 public class ClimbingTopoSFC extends SFC {
 	
@@ -41,18 +43,11 @@ public class ClimbingTopoSFC extends SFC {
 	@PlaceHolderText(message = "topoTitle.pht")
 	private String title;
 
-	
-	@DateTimeFormat(pattern = "YYYY")	
+	@Past
+	@NotNull
+	@DateTimeFormat(pattern = "yyyy")
 	private Year editionYear;
-
-	@ToTranslate(suffix = "isAvailable")
-	@SelectInputType(enumClass = BooleanValue.class,messageSourceSuffix = ".isAvailabe", selectListName = "availableList",selectValueName = "availableValue")
-	private String available;
-
-	@Length(max = 200)
-	@PlaceHolderText(message = "topoDescription.pht")
-	private String topoDescription;
-
+	
 	@NotNull
 	@SelectInputType(
 			selectListName = "topoStatesList",
@@ -62,6 +57,18 @@ public class ClimbingTopoSFC extends SFC {
 			optionValueFieldName = "id",
 			optionDisplayValueFieldName = "stateName")
 	private Integer state;
+
+	@NotEmpty
+	@ToTranslate(suffix = "isAvailable")
+	@SelectInputType(enumClass = BooleanValue.class,messageSourceSuffix = ".isAvailabe", selectListName = "availableList",selectValueName = "availableValue")
+	private String available;
+
+	@Length(max = 200)
+	@PlaceHolderText(message = "topoDescription.pht")
+	@InputTextArea(rows = 5,charByRows = 40)
+	private String topoDescription;
+
+
 
 	public Integer getId() {
 		return id;

@@ -15,8 +15,8 @@ import std.fle._03_sfc.usersInfoSFC.UsersInfoSFC;
 		modelAttribute = "userManagement", 
 		name = "userUpdateFormular", 
 		propertiesFilePath = "configuration/springFormSettings/formSettings.xml",
-		buttonAlignmentPropertyKey = "userFormBtn.align", 
-		buttonMessagePropertyKey = "userFormBtn.message.update", 
+		submitButtonAlignmentPropertyKey = "userFormBtn.align", 
+		submitButtonMessagePropertyKey = "userFormBtn.message.update", 
 		jspFilePath = "userUpdateForm.path", 
 		labelMessageSourceSuffix = "userForm.label",		 
 		readOnly = false)

@@ -7,11 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
 
-import fle.toolBox.FredParser;
 import fle.toolBox.springFormManager.selectInputManagement.controllerClass.SelectInputForController;
 import std.fle._00_general.SessionVariables;
 import std.fle._03_sfc.topoSFC.ClimbingTopoSFC;
-import std.fle._06_dao.topoDao.TopoDAO;
 import std.fle._07_service.climbingTopoService.TopoService;
 
 @Service

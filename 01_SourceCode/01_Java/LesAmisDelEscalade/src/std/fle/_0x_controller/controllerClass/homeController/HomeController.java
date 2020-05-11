@@ -206,5 +206,13 @@ public class HomeController {
 		return model;
 	}
 	
+	@GetMapping(value="/addSite")
+	public ModelAndView addSite(ModelAndView model) {		
+		model.addObject("iFrameSource", "'06_climbingSite/createNewSiteForm'");
+		model.addObject("iFrameLoc","'pagesViewer'");
+		model.setViewName("forward:/navbar");		
+		return model;
+	}
+	
 	
 }

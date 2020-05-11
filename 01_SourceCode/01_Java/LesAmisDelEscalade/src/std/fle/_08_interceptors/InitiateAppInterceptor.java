@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import fle.toolBox.Internationalization.LocalMessage;
 import std.fle._00_general.SessionVariables;
-import std.fle._01_entity._assetsEnum.SecurityLevel;
+import std.fle._01_entity.assetsEnum.SecurityLevel;
 
 public class InitiateAppInterceptor {
 	

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import std.fle._00_general.SessionVariables;
-import std.fle._01_entity._assetsEnum.SecurityLevel;
+import std.fle._01_entity.assetsEnum.SecurityLevel;
 
 @Service
 public class AccesGrantingImplemented implements AccesGranting {

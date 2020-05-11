@@ -15,8 +15,8 @@ import std.fle._03_sfc.usersInfoSFC.UsersInfoSFC;
 		modelAttribute = "userManagement", 
 		name = "userRegisterFormular", 
 		propertiesFilePath = "configuration/springFormSettings/formSettings.xml",
-		buttonAlignmentPropertyKey = "userFormBtn.align", 
-		buttonMessagePropertyKey = "userFormBtn.message.register", 
+		submitButtonAlignmentPropertyKey = "userFormBtn.align", 
+		submitButtonMessagePropertyKey = "userFormBtn.message.register", 
 		jspFilePath = "userRegisterForm.path", 
 		labelMessageSourceSuffix = "userForm.label",		 
 		readOnly = false)

@@ -35,7 +35,7 @@ visibility: hidden;
 	 	 document.getElementById("budy").style.visibility= "visible";
 		}
 		var loadModal = newLoadModal();
-		loadModal.addButtonOnclickParentModalToggle("passForm");
+		loadModal.addButtonOnclickParentModalToggle("resetPassFormularButton");
 </script>
 </body>
 </html>

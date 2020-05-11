@@ -36,8 +36,8 @@ visibility: hidden;
 	//Allow to display page only when all elements are ready needs style body visibility="hidden"
 	 	 document.getElementById("budy").style.visibility= "visible";
 		}
-	//	var loadModal = newLoadModal();
-	//	loadModal.addButtonOnclickParentModalToggle("passForm");
+		var loadModal = newLoadModal();
+		loadModal.addButtonOnclickParentModalToggle("updatePassFormularButton");
 </script>
 </body>
 </html>

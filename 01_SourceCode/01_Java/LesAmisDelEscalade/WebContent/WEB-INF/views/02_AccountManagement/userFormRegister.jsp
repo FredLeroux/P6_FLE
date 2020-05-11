@@ -28,7 +28,7 @@ window.onload = function displayWhenReady() {
 	  document.getElementById("userFormRegisterBody").style.visibility= "visible";
 	}
 var loadModal = newLoadModal();
-loadModal.addButtonOnclickParentModalToggle("registerFormularPlace");	
+loadModal.addButtonOnclickParentModalToggle("userRegisterFormularButton");	
 </script>
 </body>
 </html>

@@ -44,6 +44,7 @@ public class TopoController {
 	public ModelAndView createNewTopo(ModelAndView model,
 			@ModelAttribute(name = "createTopo") @Validated ClimbingTopoSFC climbingTopoSFC,BindingResult results) {
 		if(results.hasErrors()) {
+			System.out.println(results.getFieldErrors());
 			model.setViewName("05_topo/createNewTopoForm");
 			selectFieldManager.selectListAndValueOnBindingError(climbingTopoSFC, model);
 			return model;

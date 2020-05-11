@@ -32,6 +32,7 @@ public abstract class SpringTagFormular {
 	private String tableCssClass = null;
 	private String trCssClass = null;
 	private String tdCssClass = null;
+	private String labelClass = null;
 	private String labelCssClass = null;
 	private String labelCssErrorClass = null;
 	private String inputCssClass = null;
@@ -49,8 +50,8 @@ public abstract class SpringTagFormular {
 	private String inputReadOnly = " readonly = 'true' ";
 	private String placeHolderAttribut = " placeholder=";
 	private String colSpanAttribut = " colspan =";
-	private String textAreaRowsAttribut = " rows = " ;
-	private String textAreaColsAttribut = " cols = " ;
+	private String textAreaRowsAttribut = " rows = ";
+	private String textAreaColsAttribut = " cols = ";
 	private String formtagName = "form";
 	private String hiddenTagName = "hidden";
 	private String labelTagName = "label";
@@ -58,13 +59,13 @@ public abstract class SpringTagFormular {
 	private String messageTagName = "message";
 	private String inputTagName = "input";
 	private String selectTagName = "select";
-	
-	//TODO implement all textArea CSSClass and option CSS like input and Select
+
+	// TODO implement all textArea CSSClass and option CSS like input and Select
 	private String textAreaTagName = "textarea";
-	
+
 	private String errorTagName = "errors";
 	private String buttonTagName = "button";
-	private String passWordTagName = "password"; 
+	private String passWordTagName = "password";
 
 	protected String getOpenTagFormPrefixed() {
 		return openTagFormPrefixed;
@@ -369,7 +370,7 @@ public abstract class SpringTagFormular {
 				+ ln;
 	}
 
-	protected String formHeader(String action, String method, String modelAttribut, String name) {		
+	protected String formHeader(String action, String method, String modelAttribut, String name) {
 		return openFormTag(formtagName) + " action = " + argument(action) + " method = " + argument(method)
 				+ " modelAttribute = " + argument(modelAttribut) + createId(name) + endTagAttributes + ln;
 	}
@@ -379,11 +380,11 @@ public abstract class SpringTagFormular {
 	}
 
 	protected String tableStart() {
-		return "<table"+getTableCssClass()+">" + ln;
+		return "<table" + getTableCssClass() + ">" + ln;
 	}
 
 	protected String tableStart(String tableId) {
-		return "<table" + idAttribut + argument(tableId) + getTableCssClass()+ ">" + ln;
+		return "<table" + idAttribut + argument(tableId) + getTableCssClass() + ">" + ln;
 	}
 
 	protected String tableEnd() {
@@ -391,11 +392,11 @@ public abstract class SpringTagFormular {
 	}
 
 	protected String tableRowStart() {
-		return "<tr "+ getTrCssClass()+">" + ln;
+		return "<tr " + getTrCssClass() + ">" + ln;
 	}
 
 	protected String tableRowStart(String tableRowId) {
-		return "<tr" + idAttribut + argument(tableRowId) + getTrCssClass()+">" + ln;
+		return "<tr" + idAttribut + argument(tableRowId) + getTrCssClass() + ">" + ln;
 	}
 
 	protected String tableRowEnd() {
@@ -403,20 +404,21 @@ public abstract class SpringTagFormular {
 	}
 
 	protected String tableCellStart() {
-		return "<td"+getTdCssClass()+">" + ln;
+		return "<td" + getTdCssClass() + ">" + ln;
 	}
 
 	protected String tableCellStart(String tableCellId) {
-		return "<td" + idAttribut + argument(tableCellId)  + getTdCssClass()+endTagAttributes + ln;
+		return "<td" + idAttribut + argument(tableCellId) + getTdCssClass() + endTagAttributes + ln;
 	}
 
 	protected String tableCellStartWithColSpan(int cellNumber, String align) {
-		return "<td colspan= " + argument(Integer.toString(cellNumber)) + " align= " + align+ getTdCssClass() + endTagAttributes + ln;
+		return "<td colspan= " + argument(Integer.toString(cellNumber)) + " align= " + align + getTdCssClass()
+				+ endTagAttributes + ln;
 	}
 
 	protected String tableCellStartWithColSpan(String tableCellId, int cellNumber) {
-		return "<td" + idAttribut + argument(tableCellId) + argument(Integer.toString(cellNumber))+ getTdCssClass() + endTagAttributes
-				+ ln;
+		return "<td" + idAttribut + argument(tableCellId) + argument(Integer.toString(cellNumber)) + getTdCssClass()
+				+ endTagAttributes + ln;
 	}
 
 	protected String tableCellEnd() {
@@ -465,7 +467,7 @@ public abstract class SpringTagFormular {
 	protected String cssClass(String cssClass) {
 		return " cssClass = " + argument(cssClass);
 	}
-	
+
 	protected String classHTML(String cssClass) {
 		return " class = " + argument(cssClass);
 	}
@@ -473,8 +475,6 @@ public abstract class SpringTagFormular {
 	protected String cssErrorClass(String cssClass) {
 		return " cssErrorClass = " + argument(cssClass);
 	}
-	
-	
 
 	protected String getTableCssClass() {
 		ExceptionsThrower.ifNull(tableCssClass);
@@ -490,8 +490,8 @@ public abstract class SpringTagFormular {
 		return trCssClass;
 	}
 
-	protected void setTrCssClass(String trCssClass) {		
-		this.trCssClass =  classHTML(trCssClass);
+	protected void setTrCssClass(String trCssClass) {
+		this.trCssClass = classHTML(trCssClass);
 	}
 
 	protected String getTdCssClass() {
@@ -500,7 +500,7 @@ public abstract class SpringTagFormular {
 	}
 
 	protected void setTdCssClass(String tdCssClass) {
-		this.tdCssClass =  classHTML(tdCssClass);
+		this.tdCssClass = classHTML(tdCssClass);
 	}
 
 	protected String getLabelCssClass() throws NullPointerException {
@@ -510,6 +510,15 @@ public abstract class SpringTagFormular {
 
 	protected void setLabelCssClass(String labelCssClass) {
 		this.labelCssClass = cssClass(labelCssClass);
+	}
+
+	protected String getLabelClass() throws NullPointerException {
+		ExceptionsThrower.ifNull(labelClass);
+		return labelClass;
+	}
+
+	protected void setLabelClass(String labelCssClass) {
+		this.labelClass = " class= " + argument(labelCssClass);
 	}
 
 	protected String getLabelCssErrorClass() throws NullPointerException {
@@ -685,19 +694,20 @@ public abstract class SpringTagFormular {
 		inputFinal.append(input);
 		return inputFinal.toString();
 	}
-	//TODO implement css textarea
-	protected String textAreaCssClassCssErrorClassTagMessagePlaceHolder(String path, String code,String rowsNb,String cols) {
+
+	// TODO implement css textarea
+	protected String textAreaCssClassCssErrorClassTagMessagePlaceHolder(String path, String code, String rowsNb,
+			String cols) {
 		StringBuilder textAreaFinal = new StringBuilder();
 		String varName = code.replace(" ", ".").replace(".", "");
 		String message = messageWithVar(code, varName) + ln;
-		String input = openFormTag(textAreaTagName, path) + textAreaRowsAttribut+argument(rowsNb)+textAreaColsAttribut+argument(cols)+ getInputCssClass() + getInputCssErrorClass()
+		String input = openFormTag(textAreaTagName, path) + textAreaRowsAttribut + argument(rowsNb)
+				+ textAreaColsAttribut + argument(cols) + getInputCssClass() + getInputCssErrorClass()
 				+ placeHolderAttribut + htmlVar(varName) + closeTag + ln;
 		textAreaFinal.append(message);
 		textAreaFinal.append(input);
 		return textAreaFinal.toString();
 	}
-	
-	
 
 	protected String select(String path, String targetForm) {
 		return openFormTag(selectTagName, path) + createId(path, selectTagName) + getFormAttribut()
@@ -713,11 +723,13 @@ public abstract class SpringTagFormular {
 		return openFormTag(selectTagName, path) + createId(path, selectTagName) + getFormAttribut()
 				+ argument(targetForm) + getSelectCssClass() + getSelectCssErrorClass() + closeTag + ln;
 	}
-	//TODO complete implementation
-	protected String textAreaCssClassCssErrorClass(String path,String rowsNb,String cols) {
-		return openFormTag(textAreaTagName, path) + textAreaRowsAttribut+argument(rowsNb)+textAreaColsAttribut+argument(cols) + getInputCssClass() + getInputCssErrorClass() + closeTag + ln;
+
+	// TODO complete implementation
+	protected String textAreaCssClassCssErrorClass(String path, String rowsNb, String cols) {
+		return openFormTag(textAreaTagName, path) + textAreaRowsAttribut + argument(rowsNb) + textAreaColsAttribut
+				+ argument(cols) + getInputCssClass() + getInputCssErrorClass() + closeTag + ln;
 	}
-	
+
 	protected String passWord(String path) {
 		return openFormTag(passWordTagName, path, closeTag) + ln;
 	}
@@ -729,7 +741,7 @@ public abstract class SpringTagFormular {
 	protected String passWordCssClassCssErrorClass(String path) {
 		return openFormTag(passWordTagName, path) + getInputCssClass() + getInputCssErrorClass() + closeTag + ln;
 	}
-	
+
 	protected String passWordCssClassCssErrorClassTagMessagePlaceHolder(String path, String code) {
 		StringBuilder passWordInputFinal = new StringBuilder();
 		String varName = code.replace(" ", ".").replace(".", "");
@@ -740,14 +752,14 @@ public abstract class SpringTagFormular {
 		passWordInputFinal.append(input);
 		return passWordInputFinal.toString();
 	}
-	
-	
+
 	protected String passWordCssClassCssErrorClassTagMessagePlaceHolderToggleDisplay(String path, String code) {
 		StringBuilder passWordInputFinal = new StringBuilder();
 		String varName = code.replace(" ", ".").replace(".", "");
 		String message = messageWithVar(code, varName) + ln;
 		String input = openFormTag(passWordTagName, path) + getInputCssClass() + getInputCssErrorClass()
-				+ placeHolderAttribut + htmlVar(varName)+"  onmouseenter=\"type='text'\" onmouseleave=\"type='password'\"" + closeTag + ln;
+				+ placeHolderAttribut + htmlVar(varName)
+				+ "  onmouseenter=\"type='text'\" onmouseleave=\"type='password'\"" + closeTag + ln;
 		passWordInputFinal.append(message);
 		passWordInputFinal.append(input);
 		return passWordInputFinal.toString();
@@ -756,15 +768,25 @@ public abstract class SpringTagFormular {
 	protected String errors(String path) {
 		return openFormTag(errorTagName, path) + getErrorsCssClass() + closeTag + ln;
 	}
+
 	/**
 	 * 
 	 * @param buttonText
-	 * @param name the name which be suffixed by "Button"
+	 * @param name       the name which be suffixed by "Button"
 	 * @return the submit button with id = formNameButton
 	 */
-	protected String inputButton(String buttonText,String name) {
-		return openFormTag(buttonTagName) + getButtonCssClass() + getIdAttribut()+argument(name+"Button") + endTagAttributes + message(buttonText)
-				+ closeFormTag(buttonTagName) + ln;
+	protected String inputButton(String buttonText, String name) {
+		return openFormTag(buttonTagName) + getButtonCssClass() + getIdAttribut() + argument(name + "Button")
+				+ endTagAttributes + message(buttonText) + closeFormTag(buttonTagName) + ln;
+	}
+
+	protected String actionButton(String fieldname, String displayMessageKey) {
+		return "<button type='button' " + getIdAttribut() + argument(fieldname) + getButtonCssClass() + " >"
+				+ message(displayMessageKey) + "</button>";
+	}
+
+	protected String actionButtonLabelCssClass(String text) {
+		return "<label " + getLabelClass() + " >" + text + "</label>" + ln;
 	}
 
 }

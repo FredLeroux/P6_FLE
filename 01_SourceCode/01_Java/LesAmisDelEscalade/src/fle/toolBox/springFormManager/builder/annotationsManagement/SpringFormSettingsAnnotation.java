@@ -59,12 +59,12 @@ public  class SpringFormSettingsAnnotation {
 		return annotation.modelAttribute();
 	}
 
-	private String buttonMessagePropertyKey(SpringFormSettings annotation) {
-		return annotation.buttonMessagePropertyKey();
+	private String submitButtonMessagePropertyKey(SpringFormSettings annotation) {
+		return annotation.submitButtonMessagePropertyKey();
 	}
 
-	private String buttonAlignmentPropertyKey(SpringFormSettings annotation) {
-		return annotation.buttonAlignmentPropertyKey();
+	private String submitButtonAlignmentPropertyKey(SpringFormSettings annotation) {
+		return annotation.submitButtonAlignmentPropertyKey();
 	}
 
 	private boolean readOnly(SpringFormSettings annotation) {
@@ -82,6 +82,8 @@ public  class SpringFormSettingsAnnotation {
 	private String propertiesFilePath(SpringFormSettings annotation) {
 		return annotation.propertiesFilePath();
 	}
+	
+	
 
 	private SpringFormSettingsAnnotationData springFormAnnotationData(SpringFormSettings annotation) {
 		SpringFormSettingsAnnotationData data = new SpringFormSettingsAnnotationData();
@@ -91,8 +93,8 @@ public  class SpringFormSettingsAnnotation {
 		data.setMethod(method(annotation));
 		data.setModelAttribute(modelAttribute(annotation));
 		data.setReadOnly(readOnly(annotation));
-		data.setButtonMessage(data.getConfigFile().getProperty(buttonMessagePropertyKey(annotation)));
-		data.setButtonAlignment(data.getConfigFile().getProperty(buttonAlignmentPropertyKey(annotation)));
+		data.setSubmitButtonMessage(data.getConfigFile().getProperty(submitButtonMessagePropertyKey(annotation)));
+		data.setSubmitButtonAlignment(data.getConfigFile().getProperty(submitButtonAlignmentPropertyKey(annotation)));		
 		data.setLabelMessageSourceSuffix(data.getConfigFile().getProperty(labelMessageSourceSuffix(annotation)));
 		data.setJspFilePath(jspFilePath(annotation));
 		return data;

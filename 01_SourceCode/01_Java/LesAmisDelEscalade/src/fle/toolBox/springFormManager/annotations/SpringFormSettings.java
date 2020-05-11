@@ -12,6 +12,13 @@ import java.lang.annotation.Target;
  * @author Frederic Leroux <br>
  * @version 1.0
  * @apiNote Allow to set all needed variables to generate a Spring Formular
+ * @see {@link#action()} {@link #method()} {@link #modelAttribute()}
+ *      {@link #name()}<br>
+ *      {@link #propertiesFilePath()} {@link #jspFilePath()}
+ *      {@link #labelMessageSourceSuffix()} {@link #submitButtonMessagePropertyKey()}
+ *      {@link #submitButtonAlignmentPropertyKey()}<br>
+ *      {@link #topActionButtonKey()} {@link #endActionButtonKey()}
+ *      {@link #readOnly()}
  * 
  */
 
@@ -48,17 +55,17 @@ public @interface SpringFormSettings {
 	 * 
 	 * configuration file key to get the button message Internationalization managed
 	 * by Spring Tag Message i.e if property key set in properties file and if this
-	 * one is in a messageSource.properties value will be th eone in message Source
+	 * one is in a messageSource.properties value will be the one in message Source
 	 * however if key not find system will return key as display message
 	 */
-	public String buttonMessagePropertyKey();
+	public String submitButtonMessagePropertyKey();
 
 	/**
 	 * 
 	 * configuration file key to get the button alignment value set directly in
 	 * properties file
 	 */
-	public String buttonAlignmentPropertyKey();
+	public String submitButtonAlignmentPropertyKey();
 
 	/**
 	 * 
@@ -72,8 +79,7 @@ public @interface SpringFormSettings {
 	 * Spring Formular, <br>
 	 * as example : <br>
 	 * for a JSP named "form.jsp" in "/resource/template" path will be : <br>
-	 * "/resource/template/form.jsp".
-	 * Can be also setted via a property key 
+	 * "/resource/template/form.jsp". Can be also setted via a property key
 	 */
 	public String jspFilePath();
 
@@ -96,5 +102,8 @@ public @interface SpringFormSettings {
 	 * "config/config.xml"
 	 */
 	public String propertiesFilePath();
+	
+	
+
 
 }

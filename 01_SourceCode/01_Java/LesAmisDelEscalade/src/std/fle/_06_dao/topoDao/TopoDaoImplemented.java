@@ -1,8 +1,6 @@
 package std.fle._06_dao.topoDao;
 
-import java.time.LocalDate;
 import java.time.Year;
-import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,7 +10,7 @@ import fle.toolBox.CRUD.dao.DAOGenericInterface;
 import std.fle._01_entity.models.topo.ClimbingTopo;
 import std.fle._01_entity.models.users.UsersInfo;
 import std.fle._02_dto.modelsDTO.topoDTO.ClimbingTopoDTO;
-import std.fle._02_dto.modelsDTO.usersDTO._02_02_01_02_usersInfoDTO.UsersInfoDTO;
+import std.fle._02_dto.modelsDTO.usersDTO.usersInfoDTO.UsersInfoDTO;
 import std.fle._03_sfc.topoSFC.ClimbingTopoSFC;
 import std.fle._06_dao.statesDao.StatesDAO;
 

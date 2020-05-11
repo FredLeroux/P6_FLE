@@ -29,3 +29,9 @@ function href(codeKeyContainerId){
 	var hrefCodeKey = document.getElementById(codeKeyContainerId);
 	return hrefCodeKey.textContent;
 }
+
+function submitFormToIntermediateController(formName,formAction){
+	var form = document.getElementById(formName);
+	form.action = formAction;
+	form.submit();
+}

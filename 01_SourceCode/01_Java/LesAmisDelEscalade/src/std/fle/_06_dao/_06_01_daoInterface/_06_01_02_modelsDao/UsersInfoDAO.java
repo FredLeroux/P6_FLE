@@ -4,7 +4,7 @@ import java.util.List;
 
 import fle.toolBox.classType.SLO;
 import std.fle._01_entity.models.users.UsersInfo;
-import std.fle._02_dto.modelsDTO.usersDTO._02_02_01_02_usersInfoDTO.UsersInfoDTO;
+import std.fle._02_dto.modelsDTO.usersDTO.usersInfoDTO.UsersInfoDTO;
 import std.fle._03_sfc.usersInfoSFC.UsersInfoSFC;
 import std.fle._0x_CRUDInterface.ModelsCRUD;
 
