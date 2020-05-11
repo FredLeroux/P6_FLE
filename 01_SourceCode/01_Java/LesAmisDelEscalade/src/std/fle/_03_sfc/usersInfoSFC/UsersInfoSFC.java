@@ -24,6 +24,7 @@ import std.fle._02_dto.assetsClassesDTO.ClimbingLevelsDTO;
 import std.fle._02_dto.assetsClassesDTO.CountiesDTO;
 import std.fle._02_dto.assetsClassesDTO.StatesDTO;
 
+
 @Validated
 public class UsersInfoSFC extends SFC {
 
