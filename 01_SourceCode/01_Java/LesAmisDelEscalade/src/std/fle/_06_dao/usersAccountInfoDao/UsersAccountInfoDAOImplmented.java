@@ -5,11 +5,11 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import fle.toolBox.FredParser;
 import fle.toolBox.CRUD.dao.DAOGenericInterface;
 import fle.toolBox.Internationalization.LocalMessage;
 import fle.toolBox.fieldTranslator.FieldsTranslator;
 import fle.toolBox.localeKeyToBoolean.StringToBoolean;
-import std.fle._01_entity.assetsEnum.SecurityLevel;
 import std.fle._01_entity.models.users.UsersAccountInfo;
 import std.fle._01_entity.models.users.UsersInfo;
 import std.fle._02_dto.modelsDTO.usersDTO.usersAccountInfoDTO.UsersAccountInfoAccessDTO;
@@ -21,6 +21,7 @@ import std.fle._02_dto.modelsDTO.usersDTO.usersInfoDTO.UsersInfoUsersAccountInfo
 import std.fle._03_sfc.usersAccountInfoSFC.UsersAccountInfoMemberStatusSFC;
 import std.fle._03_sfc.usersAccountInfoSFC.UsersAccountInfoSFC;
 import std.fle._03_sfc.usersAccountInfoSFC.UsersAccountInfoUpdateSFC;
+import std.fle._0X_security.SecurityLevel;
 
 @Repository
 public class UsersAccountInfoDAOImplmented implements UsersAccountInfoDAO {
@@ -85,15 +86,25 @@ public class UsersAccountInfoDAOImplmented implements UsersAccountInfoDAO {
 	public UsersAccountInfoMemberStatusSFC getUserAccountInfoMemberStatusById(Integer id) {
 		UsersAccountinfoMemberStatusDTO dto = dao.getSpecificDTOById(usersAccountInfo, usersAccountinfoMemberStatusDTO,
 				id);
+		System.out.println(dto.getSecurity());
 		UsersAccountInfoMemberStatusSFC sfc = dao.converter().converDTOToSFC(dto, usersAccountInfoMemberStatusSFC);
+		fieldsTranslator.translateFieldValue(sfc);
 		return sfc;
 	}
 
 	@Override
-	public void updateMemberStatus(Integer id, String memberStatusSFC) {
+	public void updateMemberStatus(Integer id, UsersAccountInfoMemberStatusSFC memberStatusSFC) {
 		UsersAccountInfoDTO dto = getDTOByID(id);
-		dto.setMember(memberStatusFromSelectSFCToDTO(memberStatusSFC));
-		setSecurityLevelFunctionOfMemberStatus(dto);
+		//dto.setMember(memberStatusSFCToDTO(memberStatusSFC));
+		//setSecurityLevelFunctionOfMemberStatus(dto);
+		if(FredParser.toInteger(memberStatusSFC.getSecurity())>1) {
+			dto.setMember(false);
+		}else {
+			dto.setMember(true);
+		}
+		dto.setSecurityLevel(FredParser.toInteger(memberStatusSFC.getSecurity()));
+		
+		
 		dao.updateDTO(usersAccountInfo, dto);
 	}
 

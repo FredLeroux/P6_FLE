@@ -29,7 +29,7 @@ public class HomeController {
 	private NavBarOptionsList optionList = new NavBarOptionsList(
 			"configuration/securitySettings/NavBarOptionsInfo.xml");
 	private ConfigurationFileReader tentative = new ConfigurationFileReader(
-			"configuration/securitySettings/LogTentativeMax.xml");
+			"configuration/securitySettings/securitySettings.xml");
 	private Integer maxTentative = FredParser.toInteger(tentative.getProperty("maxTentatativesAllowed"));
 
 	@GetMapping(value = "/navbar")
@@ -199,7 +199,6 @@ public class HomeController {
 	
 	@GetMapping(value="/addMineTopo")
 	public ModelAndView addMineTopo(ModelAndView model) {
-		System.out.println("homecontroller");
 		model.addObject("iFrameSource", "'05_topo/createNewTopoForm'");
 		model.addObject("iFrameLoc","'pagesViewer'");
 		model.setViewName("forward:/navbar");		

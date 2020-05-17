@@ -40,7 +40,6 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 		LinkedHashMap<String, Object> map = new LinkedHashMap<>();
 		if (ismembersListType(listInitiate)) {
 			if (granting.toAdmin()) {
-				System.out.println("generate new list");
 				map= listGenerator.elementList();
 			} else {				
 				redirectToForbiddenMessage(request,response);

@@ -67,7 +67,6 @@ public class DisplayListController implements SetListManagementController {
 	
 	@GetMapping(value = "/04_listPage/reload")
 	public ModelAndView listReload(ModelAndView model) {
-		System.out.println("list¨Page");
 		list = (List<?>) model.getModelMap().get("list");
 		return controllerConfig().initiatePage(list, clazz, "frontViewAddObject", "label");
 	}

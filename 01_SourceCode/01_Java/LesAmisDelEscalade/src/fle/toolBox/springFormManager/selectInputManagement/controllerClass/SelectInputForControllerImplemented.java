@@ -83,7 +83,6 @@ public class SelectInputForControllerImplemented extends SelectInputListAndValue
 			}
 		} else {
 			for (Field field : getFieldManager().fieldsArrayListByAnnotation(selectInputAnnotation)) {
-				System.out.println(field.getName());
 				addValueFromObject(valueToAddToModel, field);
 			}
 		}

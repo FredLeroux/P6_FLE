@@ -25,7 +25,7 @@ public class AuthentificatorInterceptor extends HandlerInterceptorAdapter {
 
 	private PassWord passManager = new PassWord();
 	private ConfigurationFileReader config = new ConfigurationFileReader(
-			"configuration/securitySettings/LogTentativeMax.xml");
+			"configuration/securitySettings/securitySettings.xml");
 	private Integer maxTentative = FredParser.toInteger(config.getProperty("maxTentatativesAllowed"));
 
 	@Override

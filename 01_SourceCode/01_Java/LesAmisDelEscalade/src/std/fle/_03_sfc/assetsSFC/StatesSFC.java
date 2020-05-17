@@ -19,7 +19,8 @@ public class StatesSFC extends SFC {
 			optionValueFieldName = "id",
 			optionDisplayValueFieldName = "stateName",
 			dependentFieldName = "countyId",
-			dependentFieldNameFilteringAction = "filterCountiesList")
+			dependentFieldNameFilteringAction = "filterCountiesList",
+			defaultValue = "102")
 	private Integer stateId;
 
 	public Integer getId() {

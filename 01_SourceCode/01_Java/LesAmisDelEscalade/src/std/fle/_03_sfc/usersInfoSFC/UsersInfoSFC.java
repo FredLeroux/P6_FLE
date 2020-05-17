@@ -61,7 +61,8 @@ public class UsersInfoSFC extends SFC {
 			selectListName = "gendersList",
 			selectValueName = "genderValue",
 			enumClass = Gender.class,
-			messageSourceSuffix = ".name")
+			messageSourceSuffix = ".name",
+			defaultValue = "")
 	private String gender;
 
 	@SelectInputType(
@@ -72,7 +73,8 @@ public class UsersInfoSFC extends SFC {
 			optionValueFieldName = "id",
 			optionDisplayValueFieldName = "stateName",
 			dependentFieldName = "countyId",
-			dependentFieldNameFilteringAction = "filterCountiesList")
+			dependentFieldNameFilteringAction = "filterCountiesList",
+			defaultValue = "19")
 	private Integer stateId;
 
 	@SelectInputType(
@@ -84,7 +86,8 @@ public class UsersInfoSFC extends SFC {
 			optionDisplayValueFieldName = "countyName",
 			relationShipField = "state",
 			relationShipFieldFilter = "id",
-			masterFieldName = "stateId")
+			masterFieldName = "stateId",
+			defaultValue = "102")
 	private Integer countyId;
 
 	@SelectInputType(selectListName = "climbList",
@@ -92,7 +95,8 @@ public class UsersInfoSFC extends SFC {
 			entityClass = ClimbingLevels.class,
 			dtoClass = ClimbingLevelsDTO.class,
 			optionValueFieldName = "id",
-			optionDisplayValueFieldName = "cotationLevel")
+			optionDisplayValueFieldName = "cotationLevel",
+			defaultValue = "0")
 	private Integer climbingLevelId;
 
 	public Integer getId() {

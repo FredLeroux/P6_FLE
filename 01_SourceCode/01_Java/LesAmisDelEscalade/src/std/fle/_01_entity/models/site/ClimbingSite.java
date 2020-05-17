@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -21,6 +22,7 @@ import std.fle._01_entity.assetsClasses.Counties;
 import std.fle._01_entity.assetsClasses.States;
 
 @Entity
+@Table(name = "climbing_site", schema = "cliff")
 public class ClimbingSite extends ENT {
 
 	/**
@@ -63,8 +65,11 @@ public class ClimbingSite extends ENT {
 	@JoinColumn(name = "french_county_fk")
 	private Counties county;
 	
-	@OneToMany(mappedBy = "climbingSite",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "climbingSite",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private List<SiteRoutes> sitesRoutes;
+	
+	@Column(name="official")
+	private Boolean official;
 
 	public Integer getId() {
 		return id;
@@ -153,6 +158,16 @@ public class ClimbingSite extends ENT {
 	public void setSitesRoutes(List<SiteRoutes> sitesRoutes) {
 		this.sitesRoutes = sitesRoutes;
 	}
+
+	public Boolean getOfficial() {
+		return official;
+	}
+
+	public void setOfficial(Boolean official) {
+		this.official = official;
+	}
+	
+	
 	
 	
 	

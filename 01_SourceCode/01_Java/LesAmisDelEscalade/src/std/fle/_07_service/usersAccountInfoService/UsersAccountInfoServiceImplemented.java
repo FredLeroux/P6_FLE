@@ -143,7 +143,7 @@ public class UsersAccountInfoServiceImplemented implements UsersAccountInfoServi
 	}
 
 	@Override
-	public void updateMemberStatus(Integer id, String memberStatusSFC) {
+	public void updateMemberStatus(Integer id, UsersAccountInfoMemberStatusSFC memberStatusSFC) {
 		dao.updateMemberStatus(id, memberStatusSFC);
 		
 	}

@@ -1,16 +1,7 @@
 package std.fle._02_dto.modelsDTO.climbingSiteDTO;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import fle.toolBox.classType.DTO;
-import std.fle._01_entity.assetsClasses.ClimbingLevels;
-import std.fle._01_entity.models.site.SiteRoutes;
+import std.fle._02_dto.assetsClassesDTO.ClimbingLevelsDTO;
 
 public class RoutePitchDTO extends DTO {
 
@@ -18,9 +9,9 @@ public class RoutePitchDTO extends DTO {
 
 	private Integer pitchNumber;
 
-//	private SiteRoutes siteRoutes;
-	
-	// private ClimbingLevels climbingLevels;
+	private SiteRoutesDTO siteRoutesDTO;
+
+	private ClimbingLevelsDTO climbingLevelsDTO;
 
 	public Integer getId() {
 		return id;
@@ -38,40 +29,22 @@ public class RoutePitchDTO extends DTO {
 		this.pitchNumber = pitchNumber;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((pitchNumber == null) ? 0 : pitchNumber.hashCode());
-		return result;
+	public SiteRoutesDTO getSiteRoutesDTO() {
+		return siteRoutesDTO;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		RoutePitchDTO other = (RoutePitchDTO) obj;
-		if (pitchNumber == null) {
-			if (other.pitchNumber != null)
-				return false;
-		} else if (!pitchNumber.equals(other.pitchNumber))
-			return false;
-		return true;
+	public void setSiteRoutesDTO(SiteRoutesDTO siteRoutesDTO) {
+		this.siteRoutesDTO = siteRoutesDTO;
 	}
 
-/*	public SiteRoutes getSiteRoutes() {
-		return siteRoutes;
+	public ClimbingLevelsDTO getClimbingLevelsDTO() {
+		return climbingLevelsDTO;
 	}
 
-	public void setSiteRoutes(SiteRoutes siteRoutes) {
-		this.siteRoutes = siteRoutes;
-	}*/
+	public void setClimbingLevelsDTO(ClimbingLevelsDTO climbingLevelsDTO) {
+		this.climbingLevelsDTO = climbingLevelsDTO;
+	}
 
-	
 	
 
 }

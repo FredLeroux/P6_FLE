@@ -37,20 +37,8 @@ public class TopoDaoImplemented implements TopoDAO {
 		return dao.getDtoByID(climbingTopo, climbingTopoDTO, id);
 	}
 
-	public void saveNewTopo(ClimbingTopoSFC climbingTopoSFC, Integer loggedUserId) {
-		System.out.println(setClimbingTopoDTOToSave(climbingTopoSFC, loggedUserId).getTitle());
-		System.out.println(setClimbingTopoDTOToSave(climbingTopoSFC, loggedUserId).getTopoDescription());
-		System.out.println(setClimbingTopoDTOToSave(climbingTopoSFC, loggedUserId).getEditionYear());
-		System.out.println(setClimbingTopoDTOToSave(climbingTopoSFC, loggedUserId).getAvailable());
-		System.out.println(setClimbingTopoDTOToSave(climbingTopoSFC, loggedUserId).getState().getStateName());
-		System.out.println(setClimbingTopoDTOToSave(climbingTopoSFC, loggedUserId).getUserInfo().getEmail());
-		ClimbingTopoDTO dto = setClimbingTopoDTOToSave(climbingTopoSFC, loggedUserId);
-		System.out.println(dto.getTitle());
-		System.out.println(dto.getTopoDescription());
-		System.out.println(dto.getEditionYear());
-		System.out.println(dto.getAvailable());
-		System.out.println(dto.getState().getStateName());
-		System.out.println(dto.getUserInfo().getEmail());
+	public void saveNewTopo(ClimbingTopoSFC climbingTopoSFC, Integer loggedUserId) {	
+		ClimbingTopoDTO dto = setClimbingTopoDTOToSave(climbingTopoSFC, loggedUserId);	
 		ClimbingTopo entity = dao.converter().convertDTOToEntity(dto, climbingTopo);
 		dao.update(entity);
 	}

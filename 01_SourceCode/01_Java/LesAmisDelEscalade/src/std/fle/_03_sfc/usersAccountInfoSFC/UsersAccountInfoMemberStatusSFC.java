@@ -11,6 +11,7 @@ import fle.toolBox.springFormManager.annotations.HiddenPath;
 import fle.toolBox.springFormManager.annotations.ReadOnlyInput;
 import fle.toolBox.springFormManager.annotations.SelectInputType;
 import fle.toolBox.springFormManager.annotations.SpringFormSettings;
+import std.fle._01_entity.assetsEnum.AccountRank;
 import std.fle._01_entity.assetsEnum.BooleanValue;
 
 @SpringFormSettings(
@@ -37,11 +38,15 @@ public class UsersAccountInfoMemberStatusSFC extends SFC {
 	@ReadOnlyInput
 	private String pseudonyme;		
 	@ReadOnlyInput
-	@DateTimeFormat(pattern = "dd . MMMM . yyyy")
+	@DateTimeFormat(pattern = "dd  MMMM  yyyy")
 	private Date signUpDate;
-	@ToTranslate(suffix = "isMember")
-	@SelectInputType(enumClass = BooleanValue.class,messageSourceSuffix = ".isMember", selectListName = "statusList", selectValueName = "statusValue")
+	//@SelectInputType(enumClass = BooleanValue.class,messageSourceSuffix = ".isMember", selectListName = "statusList", selectValueName = "statusValue")
+	@ToTranslate(suffix = ".isMember")	
+	@ReadOnlyInput
 	private String member;
+	@SelectInputType(enumClass = AccountRank.class, selectListName = "securityList", selectValueName = "securityValue",
+			defaultValue = "")
+	private String security;
 	
 	
 	public Integer getId() {
@@ -80,6 +85,14 @@ public class UsersAccountInfoMemberStatusSFC extends SFC {
 	public void setMember(String member) {
 		this.member = member;
 	}
+	public String getSecurity() {
+		return security;
+	}
+	public void setSecurity(String security) {
+		this.security = security;
+	}
+	
+	
 	
 	}
 	

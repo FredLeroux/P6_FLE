@@ -11,7 +11,8 @@ public class ClimbingLevelSFC extends SFC {
 	@HiddenPath
 	private Integer id;
 
-	@SelectInputType(selectListName = "climbList", selectValueName = "climbValue", entityClass = ClimbingLevels.class, dtoClass = ClimbingLevelsDTO.class, optionValueFieldName = "id", optionDisplayValueFieldName = "cotationLevel")
+	@SelectInputType(selectListName = "climbList", selectValueName = "climbValue", entityClass = ClimbingLevels.class, dtoClass = ClimbingLevelsDTO.class, optionValueFieldName = "id", optionDisplayValueFieldName = "cotationLevel",
+			defaultValue = "0")
 	private Integer climbingLevelId;
 
 	public Integer getId() {

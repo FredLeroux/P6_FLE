@@ -7,7 +7,7 @@ import fle.toolBox.springFormManager.selectInputManagement.controllerClass.tools
 
 public enum Gender implements SelectOptionsInterface {
 
-	FEMALE("female","Female"), MALE("male","Male");
+	FEMALE("female","Female"), MALE("male","Male"),NONE("noGender","");
 
 	private SelectOptions selectOptions;
 

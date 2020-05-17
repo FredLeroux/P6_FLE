@@ -37,6 +37,12 @@ function addOnclicksubmitFormIntermediateController(elementId, formName,
 			+ formAction + "')");
 }
 
+function addOnclickPostRequest(elementID,postUrl){
+	var element = document.getElementById(elementID);
+	element.type ="submit";
+	element.value = postUrl;
+}
+
 function changeParentLocation(newURL) {
 	window.parent.location.href = newURL;
 }

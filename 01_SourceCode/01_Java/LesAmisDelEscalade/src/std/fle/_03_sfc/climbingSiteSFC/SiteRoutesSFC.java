@@ -19,6 +19,17 @@ import fle.toolBox.springFormManager.annotations.entityModelAssociation.EntityMo
 		jspFilePath = "createNewSiteRouteForm.path",
 		labelMessageSourceSuffix = "userForm.label",
 		readOnly = false)
+@SpringFormSettings(
+		action = "routeModification",
+		method = "post",
+		modelAttribute = "editRoute",
+		name = "editRouteFormular",
+		propertiesFilePath = "configuration/springFormSettings/formSettings.xml",
+		submitButtonAlignmentPropertyKey = "userFormBtn.align",
+		submitButtonMessagePropertyKey = "userFormBtn.message.editRoute",
+		jspFilePath = "editSiteRouteForm.path",
+		labelMessageSourceSuffix = "userForm.label",
+		readOnly = false)
 @Validated
 public class SiteRoutesSFC extends SFC {
 
@@ -41,6 +52,31 @@ public class SiteRoutesSFC extends SFC {
 
 	public void setRouteName(String routeName) {
 		this.routeName = routeName;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((routeName == null) ? 0 : routeName.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SiteRoutesSFC other = (SiteRoutesSFC) obj;
+		if (routeName == null) {
+			if (other.routeName != null)
+				return false;
+		} else if (!routeName.equals(other.routeName))
+			return false;
+		return true;
 	}
 	
 

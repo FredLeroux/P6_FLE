@@ -10,6 +10,7 @@ public class UsersAccountinfoMemberStatusDTO extends DTO {
 	private String pseudonyme;
 	private String signUpDate;
 	private String member;
+	private String security;
 
 	public Integer getId() {
 		return id;
@@ -58,5 +59,15 @@ public class UsersAccountinfoMemberStatusDTO extends DTO {
 	public void setMember(String member) {
 		this.member = member;
 	}
+
+	public String getSecurity() {
+		return security;
+	}
+
+	public void setSecurity(String security) {
+		this.security = security;
+	}
+	
+	
 
 }

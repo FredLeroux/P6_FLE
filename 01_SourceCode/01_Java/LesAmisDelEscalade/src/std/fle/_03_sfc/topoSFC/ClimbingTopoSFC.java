@@ -55,12 +55,14 @@ public class ClimbingTopoSFC extends SFC {
 			entityClass = States.class,
 			dtoClass = StatesDTO.class,
 			optionValueFieldName = "id",
-			optionDisplayValueFieldName = "stateName")
+			optionDisplayValueFieldName = "stateName",
+			defaultValue = "19")
 	private Integer state;
 
 	@NotEmpty
 	@ToTranslate(suffix = "isAvailable")
-	@SelectInputType(enumClass = BooleanValue.class,messageSourceSuffix = ".isAvailabe", selectListName = "availableList",selectValueName = "availableValue")
+	@SelectInputType(enumClass = BooleanValue.class,messageSourceSuffix = ".isAvailabe", selectListName = "availableList",selectValueName = "availableValue",
+			defaultValue = "102")
 	private String available;
 
 	@Length(max = 200)

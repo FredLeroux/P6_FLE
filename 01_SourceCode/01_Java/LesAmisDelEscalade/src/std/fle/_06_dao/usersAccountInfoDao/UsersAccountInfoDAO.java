@@ -45,7 +45,7 @@ public interface UsersAccountInfoDAO extends ModelsCRUD<UsersAccountInfo, UsersA
 	
 	public UsersAccountInfoMemberStatusSFC getUserAccountInfoMemberStatusById(Integer id);
 	
-	public void updateMemberStatus(Integer id, String memberStatusSFC);
+	public void updateMemberStatus(Integer id, UsersAccountInfoMemberStatusSFC memberStatusSFC);
 	
 	
 	

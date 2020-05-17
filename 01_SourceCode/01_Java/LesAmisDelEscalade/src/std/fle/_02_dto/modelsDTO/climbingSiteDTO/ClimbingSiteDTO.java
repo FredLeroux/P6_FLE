@@ -1,6 +1,10 @@
 package std.fle._02_dto.modelsDTO.climbingSiteDTO;
 
+import java.util.List;
+
 import fle.toolBox.classType.DTO;
+import std.fle._02_dto.assetsClassesDTO.CountiesDTO;
+import std.fle._02_dto.assetsClassesDTO.StatesDTO;
 
 public class ClimbingSiteDTO extends DTO {
 
@@ -20,11 +24,13 @@ public class ClimbingSiteDTO extends DTO {
 
 	private String accessToSite;
 
-/*	private States state;
+	private StatesDTO state;
 
-	private Counties county;*/
+	private CountiesDTO county;
+	
+	private Boolean official;
 
-	//private List<SiteRoutes> sitesRoutes;
+	private List<SiteRoutesDTO> sitesRoutes;
 
 	public Integer getId() {
 		return id;
@@ -90,28 +96,40 @@ public class ClimbingSiteDTO extends DTO {
 		this.accessToSite = accessToSite;
 	}
 
-/*	public States getState() {
+	public StatesDTO getState() {
 		return state;
 	}
 
-	public void setState(States state) {
+	public void setState(StatesDTO state) {
 		this.state = state;
 	}
 
-	public Counties getCounty() {
+	public CountiesDTO getCounty() {
 		return county;
 	}
 
-	public void setCounty(Counties county) {
+	public void setCounty(CountiesDTO county) {
 		this.county = county;
-	}*/
+	}
 
-/*	public List<SiteRoutes> getSitesRoutes() {
+	public List<SiteRoutesDTO> getSitesRoutes() {
 		return sitesRoutes;
 	}
 
-	public void setSitesRoutes(List<SiteRoutes> sitesRoutes) {
+	public void setSitesRoutes(List<SiteRoutesDTO> sitesRoutes) {
 		this.sitesRoutes = sitesRoutes;
-	}	*/
+	}
+
+	public Boolean getOfficial() {
+		return official;
+	}
+
+	public void setOfficial(Boolean official) {
+		this.official = official;
+	}
+	
+	
+
+	
 
 }

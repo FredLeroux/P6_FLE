@@ -8,11 +8,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import fle.toolBox.classType.ENT;
 import std.fle._01_entity.models.users.UsersAccountInfo;
 
 @Entity
+@Table(name = "climbing_site_comments", schema = "cliff")
 public class ClimbingSiteComments extends ENT {
 
 	/**

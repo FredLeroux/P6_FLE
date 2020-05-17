@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import fle.toolBox.fieldTranslator.FieldsTranslator;
 import fle.toolBox.springFormManager.selectInputManagement.controllerClass.SelectInputForController;
 import std.fle._00_general.SessionVariables;
+import std.fle._03_sfc.usersAccountInfoSFC.UsersAccountInfoMemberStatusSFC;
 import std.fle._04_associationModel._04_03_sfc.UserSFC;
 import std.fle._07_service._07_01_serviceInterface._07_01_02_modelServiceInterface.UsersInfoService;
 import std.fle._07_service._07_01_serviceInterface._07_01_03_associatedModelServiceInterface.UserService;
@@ -46,6 +48,9 @@ public class AccountModelManagementImplemented implements AccountModelManagement
 	
 	@Autowired
 	ListGenerator listGenerator;
+	
+	@Autowired
+	FieldsTranslator fieldsTranslator;
 
 	private SessionVariables sessVar = new SessionVariables();
 
@@ -82,7 +87,7 @@ public class AccountModelManagementImplemented implements AccountModelManagement
 		return model;
 	}
 	@Override
-	public ModelAndView doUpdateMemberStatus(ModelAndView model,Integer id, String memberStatusSFC) {
+	public ModelAndView doUpdateMemberStatus(ModelAndView model,Integer id, UsersAccountInfoMemberStatusSFC memberStatusSFC) {
 		usersAccountInfoService.updateMemberStatus(id, memberStatusSFC);
 		model.setViewName("redirect:/04_listPage/listPage");
 		return model;

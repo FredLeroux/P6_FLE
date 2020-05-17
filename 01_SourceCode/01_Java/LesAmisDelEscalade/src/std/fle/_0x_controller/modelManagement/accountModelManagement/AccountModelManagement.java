@@ -3,6 +3,7 @@ package std.fle._0x_controller.modelManagement.accountModelManagement;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import std.fle._03_sfc.usersAccountInfoSFC.UsersAccountInfoMemberStatusSFC;
 import std.fle._04_associationModel._04_03_sfc.UserSFC;
 
 public interface AccountModelManagement {
@@ -15,7 +16,7 @@ public interface AccountModelManagement {
 	
 	public ModelAndView displayMemeberStatus(ModelAndView model,String modelAttributeName,Integer id);
 	
-	public ModelAndView doUpdateMemberStatus(ModelAndView model,Integer id, String memberStatusSFC);
+	public ModelAndView doUpdateMemberStatus(ModelAndView model,Integer id, UsersAccountInfoMemberStatusSFC memberStatusSFC);
 		
 
 }

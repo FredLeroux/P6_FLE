@@ -21,12 +21,11 @@ public class UsersAccountInfoUpdateSFC extends SFC {
 	private String pseudonyme;
 
 	@ReadOnlyInput
-	@DateTimeFormat(pattern = "dd . MMMM . yyyy")
+	@DateTimeFormat(pattern = "dd MMMM yyyy")
 	private Date signUpDate;
 
 	
-	//Change member name betwenn dto and sfc allow to change type 
-		//TODO create annotation to manage convert local key to Dto
+	
 	@ReadOnlyInput
 	@ToTranslate(suffix = ".isMember")	
 	private String accountMemberStatus;

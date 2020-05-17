@@ -46,7 +46,7 @@ public class ModelManagementImplemented implements ModelManagement {
 
 	private final String forgotPassConfirmationMessage = "forgotPassMailsentConfirmationBody.message";
 	private ConfigurationFileReader config = new ConfigurationFileReader(
-			"configuration/securitySettings/LogTentativeMax.xml");
+			"configuration/securitySettings/securitySettings.xml");
 
 	
 	

@@ -1,6 +1,9 @@
 package std.fle._02_dto.modelsDTO.climbingSiteDTO;
 
+import java.util.List;
+
 import fle.toolBox.classType.DTO;
+import std.fle._01_entity.models.site.RoutePitch;
 
 public class SiteRoutesDTO extends DTO {
 
@@ -9,6 +12,8 @@ public class SiteRoutesDTO extends DTO {
 	private String routeName;
 
 	private ClimbingSiteDTO climbingSite;
+
+	private List<RoutePitchDTO> routePitchs;
 
 	public Integer getId() {
 		return id;
@@ -30,35 +35,18 @@ public class SiteRoutesDTO extends DTO {
 		return climbingSite;
 	}
 
-	public void setClimbingSiteDTO(ClimbingSiteDTO climbingSiteDTO) {
-		this.climbingSite = climbingSiteDTO;
+	public void setClimbingSite(ClimbingSiteDTO climbingSite) {
+		this.climbingSite = climbingSite;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((routeName == null) ? 0 : routeName.hashCode());
-		return result;
+	public List<RoutePitchDTO> getRoutePitchs() {
+		return routePitchs;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		SiteRoutesDTO other = (SiteRoutesDTO) obj;
-		if (routeName == null) {
-			if (other.routeName != null)
-				return false;
-		} else if (!routeName.equals(other.routeName))
-			return false;
-		return true;
+	public void setRoutePitchs(List<RoutePitchDTO> routePitchs) {
+		this.routePitchs = routePitchs;
 	}
-	
-	
+
+
 
 }

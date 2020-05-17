@@ -36,6 +36,8 @@ public class FieldsTransaltorImplemented implements FieldsTranslator {
 		
 		for (Field field : fields(entity)) {
 			ClassFieldsSetAndGet.setField(entity, field.getName(), localMessage.message(parseValue(field, entity)));
+			System.out.println(field.getName());
+			
 		}
 	}
 	
@@ -52,8 +54,7 @@ public class FieldsTransaltorImplemented implements FieldsTranslator {
 		return (String) ClassFieldsSetAndGet.getFieldValue(cOI, field.getName());
 	}
 
-	private String parseValue(Field field, Object cOI) {
-		
+	private String parseValue(Field field, Object cOI) {		
 		return fieldValue(field, cOI).concat(suffix(field));
 	}
 

@@ -42,12 +42,8 @@ public class JsFunctionSelectOptions extends JavaScriptTag {
 			+ "		form.submit();\r\n" 
 			+ "		}\r\n";
 
-	private String selectListJSFunction = "function selectListPopulate(list, entityName,fieldName,defaultValue,splitter) {\r\n"
+	private String selectListJSFunction = "function selectListPopulate(list, entityName,fieldName,splitter) {\r\n"
 			+ "	var select = document.getElementById(selectId(entityName, fieldName));\r\n"
-			+ "	var defaultOption = document.createElement(\"option\");\r\n"
-			+ "	defaultOption.value = defaultValue;\r\n" 
-			+ "	defaultOption.setAttribute(\"selected\", true);\r\n"
-			+ "	select.appendChild(defaultOption);	\r\n" 
 			+ "	for(let i=0;i<list.length;i++){\r\n"
 			+ "		var string = list[i];\r\n" 
 			+ "		var array = string.split(splitter);\r\n"
@@ -57,15 +53,23 @@ public class JsFunctionSelectOptions extends JavaScriptTag {
 			+ "		select.appendChild(option);\r\n" 
 			+ "	};\r\n"
 			+ "}\r\n";
+	
+	private String setSelectedDefault = "function setSelectedDefault (entityName,fieldName,defaultValue,valueToSet){\r\n"
+			+ "	var select = document.getElementById(selectId(entityName, fieldName));\r\n"
+			+ "if(valueToSet ==='"+emptyValue+"'){\r\n"
+			+"select.selectedIndex =  defaultValue;\r\n"			
+			+ "}}\r\n";
+			
+		
 
-	private String selectIdJSFunction = "function selectId(entityName,fieldName){\r\n"
+	private String selectIdJSFunction = "function selectId(entityName,fieldName,){\r\n"
 			+ "	if(entityName === \"none\"){\r\n" 
 			+ "	return fieldName.concat(\".select\");\r\n" 
 			+ "	}else{\r\n"
 			+ "	return entityName.concat(\".\",fieldName,\".select\");\r\n" 
 			+ "}}\r\n";
 
-
+	
 
 	private String selectValueJSFunction 
 				= "function setSelect(entityName,fieldName,valueToSet){\r\n" + "	if(valueToSet !== '"
@@ -79,15 +83,16 @@ public class JsFunctionSelectOptions extends JavaScriptTag {
 		functions.append(varFromModel("formError", "formError"));
 		functions.append(selectIdJSFunction);
 		functions.append(selectListJSFunction);
+		functions.append(setSelectedDefault);
 		functions.append(selectValueJSFunction);
 		functions.append(submitSelectListOptionsFilter);
 		functions.append(onChange);
 		return functions.toString();
 	}
 
-	private String selectListPopulate(String listVarName, String entityName, String fieldName, String defaultValue,
+	private String selectListPopulate(String listVarName, String entityName, String fieldName, 
 			String Splitter) {
-		String[] args = { listVarName, entityName, fieldName, defaultValue, Splitter };
+		String[] args = { listVarName, entityName, fieldName,  Splitter };
 		return jsFunction("selectListPopulate", args);
 	}
 
@@ -95,8 +100,13 @@ public class JsFunctionSelectOptions extends JavaScriptTag {
 		String[] args = { entityName, fieldName, valueToSetVarName };
 		return jsFunction("setSelect", args);
 	}
+	
+	private String setDefaultOption(String entityName, String fieldName, String defaultValue,String valueToSetVarName) {
+		String[] args = { entityName, fieldName, defaultValue,valueToSetVarName };
+		return jsFunction("setSelectedDefault", args);
+	}
 
-	public String selectOnchangeAttribute(String entityName, String fieldName, String formName, String formAction,
+	private String selectOnchangeAttribute(String entityName, String fieldName, String formName, String formAction,
 			String dependentListName) {
 		String[] args = { entityName, fieldName, formName, formAction, dependentListName };
 		return jsFunction("selectOnChange", args);
@@ -107,11 +117,13 @@ public class JsFunctionSelectOptions extends JavaScriptTag {
 			String valueToSetVarName) {
 
 		try {
-			stringBuilder.append(
-					selectListPopulate(listVarName, stringToJSString(selectEntityName), stringToJSString(fieldName),
-							stringToJSString(selectDefaultValue), stringToJSString(selectSplitter)));
+			stringBuilder.append(selectListPopulate(listVarName, stringToJSString(selectEntityName),
+					stringToJSString(fieldName), stringToJSString(selectSplitter)));
 			stringBuilder.append(
 					setSelect(stringToJSString(selectEntityName), stringToJSString(fieldName), valueToSetVarName));
+			stringBuilder.append(setDefaultOption(stringToJSString(selectEntityName), stringToJSString(fieldName),
+					stringToJSString(selectDefaultValue),valueToSetVarName));
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -126,5 +138,6 @@ public class JsFunctionSelectOptions extends JavaScriptTag {
 						stringToJSString(formName), stringToJSString(formAction), stringToJSString(dependentListName)));
 
 	}
-
+	
+	
 }

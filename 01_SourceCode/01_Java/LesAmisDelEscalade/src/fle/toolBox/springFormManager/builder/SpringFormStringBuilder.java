@@ -169,8 +169,6 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 			if (associatedModel) {
 				for (Field clazzField : fieldManager.fieldClassTypeExtractor(field)
 						.fieldsArrayListByAnnotation(texteAreaAnnotation)) {
-					System.out.println(fieldManager.fieldClassTypeExtractor(field)
-						.fieldsArrayListByAnnotation(texteAreaAnnotation));
 					annotatedFieldMap.put(field.getName() + "." + clazzField.getName(),
 							inputTextAreaAnnotation(clazzField));
 				}
@@ -203,7 +201,6 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 	}
 	
 	private InputTextAreaAnnotation inputTextAreaAnnotation(Field clazzField) {
-		System.out.println(clazzField.getName());
 		InputTextArea fieldInputTextArea = clazzField.getAnnotation(texteAreaAnnotation);
 		return new InputTextAreaAnnotation(fieldInputTextArea.rows(), fieldInputTextArea.charByRows());
 	}

@@ -21,7 +21,8 @@ public class StatesAndCountiesSFC extends SFC {
 			optionValueFieldName = "id",
 			optionDisplayValueFieldName = "stateName",
 			dependentFieldName = "countyId",
-			dependentFieldNameFilteringAction = "filterCountiesList")
+			dependentFieldNameFilteringAction = "filterCountiesList",
+			defaultValue = "19")
 	private Integer stateId;
 
 	@SelectInputType(
@@ -33,6 +34,7 @@ public class StatesAndCountiesSFC extends SFC {
 			optionDisplayValueFieldName = "countyName",
 			relationShipField = "state",
 			relationShipFieldFilter = "id",
-			masterFieldName = "stateId")
+			masterFieldName = "stateId",
+			defaultValue = "102")
 	private Integer countyId;
 }

@@ -12,7 +12,6 @@ import fle.toolBox.springFormManager.builder.configurationClass.SpringFormCssCon
 import std.fle._03_sfc.climbingSiteSFC.ClimbingSiteSFC;
 import std.fle._03_sfc.climbingSiteSFC.RoutePitchSFC;
 import std.fle._03_sfc.climbingSiteSFC.SiteRoutesSFC;
-import std.fle._03_sfc.climbingSiteSFC.associatedClimbingSiteSFC.RoutePitchClimbingLvlSFC;
 import std.fle._03_sfc.topoSFC.ClimbingTopoSFC;
 import std.fle._03_sfc.usersAccountInfoSFC.UsersAccountInfoMemberStatusSFC;
 import std.fle._03_sfc.usersAccountInfoSFC.UsersAccountInfoPassResetSFC;
@@ -36,7 +35,7 @@ public class SpringFormCreation implements ApplicationListener<ContextRefreshedE
 	private ClimbingSiteSFC climbingSiteSFC = new ClimbingSiteSFC();
 	private SiteRoutesSFC siteRoutesSFC = new SiteRoutesSFC();
 	private RoutePitchSFC routePitchSFC	= new RoutePitchSFC();
-	private RoutePitchClimbingLvlSFC routePitchClimbingLvlSFC = new RoutePitchClimbingLvlSFC();
+	
 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -49,7 +48,7 @@ public class SpringFormCreation implements ApplicationListener<ContextRefreshedE
 		build.generateForm(context, basisConfig(), climbingTopoSFC);
 		build.generateForm(context, basisConfig(), climbingSiteSFC);
 		build.generateForm(context, basisConfig(), siteRoutesSFC);
-		build.generateForm(context, basisConfig(), routePitchClimbingLvlSFC);
+		build.generateForm(context, basisConfig(), routePitchSFC);
 	}
 
 	private SpringFormCssConfig basisConfig() {

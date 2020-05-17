@@ -2,13 +2,26 @@ package std.fle._03_sfc.climbingSiteSFC;
 
 
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
 import org.springframework.validation.annotation.Validated;
 
 import fle.toolBox.classType.SFC;
 import fle.toolBox.springFormManager.annotations.HiddenPath;
+import fle.toolBox.springFormManager.annotations.InputTextArea;
+import fle.toolBox.springFormManager.annotations.ReadOnlyInput;
+import fle.toolBox.springFormManager.annotations.SelectInputType;
 import fle.toolBox.springFormManager.annotations.SpringFormSettings;
 import fle.toolBox.springFormManager.annotations.actionButtons.SpringFormActionButton;
 import fle.toolBox.springFormManager.annotations.actionButtons.SpringFormButton;
+import fle.toolBox.springFormManager.springMVCValidation.validationManagement.numeric.Numeric;
+import fle.toolBox.springFormManager.springMVCValidation.validationManagement.unique.Unique;
+import std.fle._01_entity.assetsClasses.Counties;
+import std.fle._01_entity.assetsClasses.States;
+import std.fle._02_dto.assetsClassesDTO.CountiesDTO;
+import std.fle._02_dto.assetsClassesDTO.StatesDTO;
 
 
 
@@ -29,27 +42,57 @@ public class ClimbingSiteSFC extends SFC {
 
 	@HiddenPath
 	private Integer id;
+	
+	@SelectInputType(
+			selectListName = "statesList",
+			selectValueName = "stateValue",
+			entityClass = States.class,
+			dtoClass = StatesDTO.class,
+			optionValueFieldName = "id",
+			optionDisplayValueFieldName = "stateName",
+			dependentFieldName = "climbingSiteCountyId",
+			dependentFieldNameFilteringAction = "filterClimbingSiteCountiesList",
+			defaultValue = "19")
+	private Integer climbingSiteStateId;
 
+	@SelectInputType(
+			selectListName = "countiesList",
+			selectValueName = "countyValue",
+			entityClass = Counties.class,
+			dtoClass = CountiesDTO.class,
+			optionValueFieldName = "id",
+			optionDisplayValueFieldName = "countyName",
+			relationShipField = "state",
+			relationShipFieldFilter = "id",
+			masterFieldName = "climbingSiteStateId",
+			defaultValue = "102")
+	private Integer climbingSiteCountyId;
+
+	@Unique(entityName = "ClimbingSite", fieldName = "climbingSiteName", modelAttributeValue = "siteFullInfo")
+	@NotEmpty
 	private String climbingSiteName;
 
+	@Length(max = 200)
+	@InputTextArea(charByRows = 50, rows = 4)
 	private String siteDescription;
 
-	private Integer altitude;
+	@Numeric(maxDigits = 4, modelAttributeValue = "siteFullInfo")
+	private String altitude;
 
-	private Integer heightMin;
+	@Numeric(maxDigits = 3, modelAttributeValue = "siteFullInfo")
+	private String heightMin;
 
-	private Integer heightMax;
+	@Numeric(maxDigits = 3, modelAttributeValue = "siteFullInfo")
+	private String heightMax;
 
+	@ReadOnlyInput
 	private Integer numberOfRoutes;
 
+	@Length(max = 500)
+	@InputTextArea(charByRows = 50, rows = 10)
 	private String accessToSite;
 
-//	private States state;
-
-//	private Counties county;
-	
-	
-	@SpringFormActionButton(displayMessagePropertyKey = "ajouter une voix")
+	@SpringFormActionButton(displayMessagePropertyKey = "addRoute.label")
 	private SpringFormButton siteRoutes;
 
 	public Integer getId() {
@@ -76,27 +119,27 @@ public class ClimbingSiteSFC extends SFC {
 		this.siteDescription = siteDescription;
 	}
 
-	public Integer getAltitude() {
+	public String getAltitude() {
 		return altitude;
 	}
 
-	public void setAltitude(Integer altitude) {
+	public void setAltitude(String altitude) {
 		this.altitude = altitude;
 	}
 
-	public Integer getHeightMin() {
+	public String getHeightMin() {
 		return heightMin;
 	}
 
-	public void setHeightMin(Integer heightMin) {
+	public void setHeightMin(String heightMin) {
 		this.heightMin = heightMin;
 	}
 
-	public Integer getHeightMax() {
+	public String getHeightMax() {
 		return heightMax;
 	}
 
-	public void setHeightMax(Integer heightMax) {
+	public void setHeightMax(String heightMax) {
 		this.heightMax = heightMax;
 	}
 
@@ -116,21 +159,21 @@ public class ClimbingSiteSFC extends SFC {
 		this.accessToSite = accessToSite;
 	}
 
-/*	public States getState() {
-		return state;
+	public Integer getClimbingSiteStateId() {
+		return climbingSiteStateId;
 	}
 
-	public void setState(States state) {
-		this.state = state;
+	public void setClimbingSiteStateId(Integer climbingSiteStateId) {
+		this.climbingSiteStateId = climbingSiteStateId;
 	}
 
-	public Counties getCounty() {
-		return county;
+	public Integer getClimbingSiteCountyId() {
+		return climbingSiteCountyId;
 	}
 
-	public void setCounty(Counties county) {
-		this.county = county;
-	}*/
+	public void setClimbingSiteCountyId(Integer climbingSiteCountyId) {
+		this.climbingSiteCountyId = climbingSiteCountyId;
+	}
 
 	public SpringFormButton getSiteRoutes() {
 		return siteRoutes;
@@ -140,10 +183,4 @@ public class ClimbingSiteSFC extends SFC {
 		this.siteRoutes = siteRoutes;
 	}
 
-	
-	
-	
-	
-	
-	
 }

@@ -109,7 +109,7 @@ public class AccountController {
 	@PostMapping(value = "/04_listPage/memberDetails/updateMemberStatus")
 	public ModelAndView updateMemberStatus(ModelAndView model,
 			@ModelAttribute(name = "memberStatus") UsersAccountInfoMemberStatusSFC clazz) {
-		return manager.doUpdateMemberStatus(model, clazz.getId(), clazz.getMember());
+		return manager.doUpdateMemberStatus(model, clazz.getId(), clazz);
 	}
 
 }
