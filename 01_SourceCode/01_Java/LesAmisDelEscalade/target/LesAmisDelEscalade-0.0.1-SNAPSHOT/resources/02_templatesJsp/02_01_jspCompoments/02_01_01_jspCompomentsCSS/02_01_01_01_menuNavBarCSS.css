@@ -1,13 +1,40 @@
 @import
 	url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_01_appSkin.css");
 
+<<<<<<< HEAD
 .icon {	
 	display: inline-block;	
 	font-size: 2vw;
 	float:left;
 	cursor: pointer;
+=======
+
+
+
+
+
+
+
+.firstLign{	
+	align-content:center;
+	width: 99%;
+	display: flex;
+	border:solid;	
+	border-color: var(--menu-border-color);
+	border-bottom-color :var(--menu-text-color);
+	border-bottom-style:solid;
+	border-bottom-width:thin;
+	margin-top:0.1%;
+	margin-left:auto;
+	margin-right:auto;
+	padding-bottom: 0.5%;
+	padding-top:0.5%;
+	background-color: var(--menu-bg-color);
+	border-radius: 20px 20px 7.5px 7.5px ;
+>>>>>>> refs/heads/AccountAndCreation
 }
 
+<<<<<<< HEAD
 
 .iconBasis{
 	color: var(--menu-icon-color);
@@ -28,20 +55,54 @@
 
 
 .containerConnexion {	
-	text-align: right;
+=======
+.greetings{
+	width: 90%;
+	text-align: justify;
+	margin-left: 2%;
+	
+	
+	
 }
 
+.containerConnexion {	
+	width: 10%;
+>>>>>>> refs/heads/AccountAndCreation
+	text-align: right;
+	margin-right: 2%;
+	
+}
+
+<<<<<<< HEAD
 .connexion {	
+=======
+
+.connexion,.identifiedAs,.pseudo {	
+>>>>>>> refs/heads/AccountAndCreation
 	text-decoration: none;
 	font-size: 1.5vw;
 	font-family: header-font;
+<<<<<<< HEAD
 	color: var(--menu-connexion-color);
+=======
+	
+}
+.connexion,.identifiedAs{
+color: var(--menu-text-color);	
+>>>>>>> refs/heads/AccountAndCreation
 }
 
+<<<<<<< HEAD
 .connexion:hover{
 	color: var(--menu-connexion-hover-color);
+=======
+.pseudo{
+	text-align: center;
+	color:var(--highlith-color);
+>>>>>>> refs/heads/AccountAndCreation
 }
 
+<<<<<<< HEAD
 .list {	
 	list-style-type: none;	
 	overflow: hidden;
@@ -51,20 +112,50 @@
 	padding:0;
 	background-color: var(--menu-bg-color);
 	width: 100%;
+=======
+.connexion:hover{
+	color: var(--menu-text-hover-color);
+}
+
+.list {	
+	display:block;
+	z-index: 1;
+	list-style-type: none;	
+	overflow: hidden;
+	border:solid;	
+	border-color: var(--menu-border-color);
+	margin:auto;
+	padding:0;
+	background-color: var(--menu-bg-color);
+	width: 99%;
+	border-top-color :var(--menu-text-color);
+	border-top-style:solid;
+	border-top-width:thin;
+	border-radius: 7.5px 7.5px 20px 20px ;
+>>>>>>> refs/heads/AccountAndCreation
 	
 }
 
 
 
 .list>li {
+<<<<<<< HEAD
 	float: left;	
 }
+=======
+	float: left;
+	}
+>>>>>>> refs/heads/AccountAndCreation
 
 .list>li a {
 	display: block;
 	padding-left: 2vw;
 	font-size: 1.5vw;
+<<<<<<< HEAD
 	font-family: header-font;
+=======
+	font-family: menu-font;
+>>>>>>> refs/heads/AccountAndCreation
 	font-weight: bold;
 	cursor: pointer;
 	color: var(--menu-text-color);

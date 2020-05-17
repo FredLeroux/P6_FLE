@@ -22,6 +22,7 @@
 	height: 15%;
 }
 
+<<<<<<< HEAD
 .log-grid {
 	
 	background-color: rgb(17, 36, 45);
@@ -140,6 +141,139 @@ input:focus {
 	grid-area: inputPassA;	
 	padding-bottom: 1px;
 }
+=======
+.log-grid {	
+	background-color: rgb(17, 36, 45);
+	display: grid;
+	width: 300px;
+	height: 15%;
+	margin: 15% auto 15% auto;	
+	color: var(--base-color-opposite);
+	text-align: center; 
+	--borderWidth: 3px;
+	background: #1D1F20;
+	position: relative;
+	border-radius: var(--borderWidth);
+	grid-template-columns: 25% 25% 25% 25%;
+	grid-template-areas: 'headerA headerA headerA closeA'
+		'errorA errorA errorA errorA'
+		'idA inputIdA inputIdA inputIdA'
+		'passA inputPassA inputPassA inputPassA'
+		'forgot forgot forgot forgot'
+		'createAccount createAccount cancelA cancelA'
+		'log log log log';
+}
+
+
+
+
+
+.header,.close,.id,.inputId,.pass,.inputPass,.forgot,.createAccount,.log,.cancel{	
+	padding-top: 5px;
+	padding-bottom: 5px;
+	
+}
+.header {
+	cursor: default;
+	grid-area: headerA;
+	font-family: header-font;
+	font-size:22.5px;
+	text-align: left;		
+	margin-left: 5%;
+	padding-bottom: 16px;
+}
+
+.error {
+	cursor: default;
+	grid-area: errorA;
+	font-family: header-font;
+	font-size:18px;
+	text-align: center;		
+	margin-left: 5%;
+	padding-bottom: 12px;
+	color: FireBrick;
+}
+
+a{
+	text-decoration: none;
+	cursor:pointer;
+}
+
+a>label{	
+	color: darkOrange;
+}
+
+.close {
+	font-size:15px;
+	text-align: right;
+	grid-area: closeA;
+	
+}
+
+.close>label {
+	margin-right: 15%;
+}
+
+.close>label:hover,.cancel>label:hover {
+	cursor: pointer;
+	color: red;
+}
+
+.id {
+	grid-area: idA;
+}
+
+.pass {
+	grid-area: passA;
+	padding-bottom: 1px;
+}
+
+.id, .pass {	
+	font-size: 22.5px;
+	cursor: default;	
+	margin-left: 25%;
+}
+
+.log-text :hover,.log>input:hover {
+	color: white;
+}
+
+.createAccount>a>label:hover{
+	color: green;
+	
+}
+
+.forgot>a>label:hover{
+	cursor:pointer;
+	color: OrangeRed;
+	text-decoration: underline;
+}
+
+input {	
+	border: solid;
+	border-color: rgb(17, 36, 45);
+	width: 90%;
+	font-size: 15px;
+	font-family: header-font;	
+}
+
+input:focus {
+	border-color: darkOrange;
+}
+
+.inputId {
+	text-align: left;
+	grid-area: inputIdA;	
+}
+
+.inputPass {
+	text-align: left;
+	grid-area: inputPassA;	
+	padding-bottom: 1px;
+}
+
+
+>>>>>>> refs/heads/AccountAndCreation
 
 
 

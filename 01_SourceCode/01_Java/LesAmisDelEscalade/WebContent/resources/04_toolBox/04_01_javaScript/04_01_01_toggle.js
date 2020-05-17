@@ -14,6 +14,7 @@ function toggleDisplay(elementId) {
 	} else {
 		element.style.display = "none";
 	}
+
 }
 
 /**
@@ -49,6 +50,47 @@ function addToggleDisplayOnClick(ownerId, elementToToggleId) {
 			+ "')");
 }
 
+function addToggleDisplayOnClickAndClearError(ownerId, elementToToggleId,
+		errorLoc) {
+	var element = document.getElementById(ownerId);
+	element.setAttribute("onclick", "toggleDisplay('" + elementToToggleId
+			+ "'),clearError('" + errorLoc + "')");
+}
+
+function clearError(errorLoc) {
+	var errro = document.getElementById(errorLoc);
+	error.innerHTML = "";
+}
+
+/**
+ * 
+ * @param statusId
+ *            is the status to check in order to switch the onclick command
+ * @param ownerId
+ *            is the owner div
+ * @param elementToToggleId
+ *            is the element to toggle display
+ * @param newHrefValue
+ *            is the new href value to swith on function of status
+ * @returns for example if status is false onclick will display modal , if status is true
+ *         onclick will follow newHrefValue
+ */
+function addSwitchAndToggleDisplayOnClick(statusId, ownerId, elementToToggleId,
+		newHrefValue) {
+	var element = document.getElementById(ownerId);
+	var status = document.getElementById(statusId);
+	if (status.textContent === "true") {
+		element.setAttribute("onclick", "href('" + newHrefValue + "')")
+	} else {
+		element.setAttribute("onclick", "toggleDisplay('" + elementToToggleId
+				+ "')");
+	}
+}
+
+function href(loc) {
+	return location.href = loc;
+}
+
 /**
  * 
  * @param onclickOwnerElementId
@@ -73,4 +115,19 @@ function addToggleDisplayAndColorOnclick(onclickOwnerElementId,
 			+ toggleDisplayElementId + "'),togglecolor('"
 			+ toggleColorElementId + "','" + basisColorSet + "','"
 			+ invertColorSet + "')");
+}
+/**
+ * 
+ * @param elementToCheckEmptyness
+ * @param elementToToggleDisplay
+ * @returns check if the elementToCheckEmptyness is empty if false the display
+ *          element to toggle display
+ */
+function displayOnError(elementToCheckEmptyness, elementToToggleDisplay) {
+	var error = document.getElementById(elementToCheckEmptyness);
+	bool = error.textContent.length === 0;
+	if (bool === false) {
+		var modal = document.getElementById(elementToToggleDisplay);
+		modal.style.display = "block";
+	}
 }

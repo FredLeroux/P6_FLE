@@ -1,0 +1,171 @@
+@import
+	url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_01_appSkin.css");
+
+/* ###############  START : set input and select box size identical ###################*/
+input, select {
+	-webkit-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+@
+supports (-ms-ime-align:auto ) { 
+.selector {
+	input,select{ box-sizing:border-box;
+	
+}
+.tableForm{
+	padding-bottom: 15px;
+}
+}}
+
+/* ###############  END : set input and select box size identical ###################*/
+.tableForm {	
+	width: 60%;
+	min-width: 360px;	
+	padding-bottom: 15px;
+	
+}
+
+.tableForm2{	
+	width: 100%;
+	margin: auto;
+}
+
+.trForm2{
+	display:table-row;	
+}
+
+.tdForm1 {
+	min-width: 20%;
+}
+
+
+.tdForm2 {
+	min-width: 33%;
+}
+
+.tdForm3 {
+	display:flex;
+	min-width: 50%%;
+}
+
+.labelStyle, .inputStyle  {	
+	font-family: menu-font;
+	font-size: 20px;
+}
+
+.labelStyleBad, .inputStyleBad,option{
+	font-family: menu-font;
+	font-size: 18px;
+}
+
+.labelStyle, .inputStyle, option{
+color: var(--base-color);
+}
+
+.labelStyleBad, .inputStyleBad{
+	color: var(--bad-color);
+	
+}
+
+.labelStyleHide{
+	display: none;
+	color: blue;
+}
+
+
+.inputStyle {
+	border: solid;
+	border-style: thin dashed;
+	border-color: var(--base-color);
+	width:90%;
+}
+
+.inputStyleBad {
+	border: solid;
+	border-style: thin dashed;
+	border-color: var(--bad-color);
+	width: 90%;	
+}
+
+input[readonly = "readonly"] {
+	cursor: not-allowed;
+}
+
+textarea{
+	resize: none;
+}
+
+.formButton{
+	text-decoration: none;
+	display: block;
+	font-family: menu-font;
+	background-color: var(--base-color);
+	color:var(--base-color-opposite);
+	border: none;
+	padding: 5px;
+	font-size: 20px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+
+
+
+.formButton:hover{	
+	background-color: var(--base-color-opposite) ;
+	color:var(--base-color);
+	
+}
+
+.formBecarefull{
+	text-decoration: none;
+	font-family: menu-font;
+	color: var(--mita-mita-color);
+	font-size: 18px;
+}
+
+.formBecarefull:hover{
+	color: var(--bad-color);
+	font-weight: bolder;
+	text-decoration:overline;	
+	cursor: pointer;
+}
+
+
+tr:hover .inputStyle {
+	border-color: var(--base-color-opposite);
+	
+}
+
+tr:hover .labelStyle {
+	color: var(--base-color-opposite);;
+}
+
+@media all and (max-width: 1000px) {
+	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,.formButton,.formBecarefull {
+		font-size: 12px;
+	}
+	option{
+	font-size: 12px}
+}
+
+@media all and (max-width: 790px) {
+	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option,.formButton,.formBecarefull  {
+		font-size: 10px;
+	}
+}
+
+@media all and (max-width: 400px) {
+	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option,.formButton,.formBecarefull  {
+		font-size: 8px;
+	}
+}
+
+@media all and (max-width: 360px) {
+	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option,.formButton,.formBecarefull {
+		font-size: 6px;
+	}
+}

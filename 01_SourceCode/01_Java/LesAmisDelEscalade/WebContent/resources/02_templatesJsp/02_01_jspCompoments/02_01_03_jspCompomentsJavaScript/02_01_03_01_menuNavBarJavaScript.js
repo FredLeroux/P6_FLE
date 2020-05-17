@@ -1,4 +1,8 @@
 
+function displayOption(){
+	return this;
+}
+
 /**
  * 
  * @param notDisplayCode
@@ -16,10 +20,15 @@ function conditionalOptionsDiplay(notDisplayCode) {
 	var i = 0;
 	for (i; i < tagA.length; i++) {
 		var str = tagA[i].toString();
-		bool = tagA[i].toString().includes(notDisplayCode)
+		//window.alert(str);
+		bool = str.includes(notDisplayCode)
 		if (bool) {
 			var element = document.getElementById(tagA[i].id);
 			element.style.display = "none";
 		}
 	}
+}
+
+function hey(mes){
+	//window.alert(mes);
 }

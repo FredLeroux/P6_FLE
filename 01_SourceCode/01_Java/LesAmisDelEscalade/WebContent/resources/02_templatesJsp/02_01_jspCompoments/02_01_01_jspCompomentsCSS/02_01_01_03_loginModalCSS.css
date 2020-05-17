@@ -22,26 +22,26 @@
 	height: 15%;
 }
 
-.log-grid {
-	
+.log-grid {	
 	background-color: rgb(17, 36, 45);
 	display: grid;
 	width: 300px;
 	height: 15%;
 	margin: 15% auto 15% auto;	
-	color: darkOrange;
+	color: var(--base-color-opposite);
 	text-align: center; 
-	--borderWidth: 3px;
+	borderWidth: 3px;
 	background: #1D1F20;
 	position: relative;
 	border-radius: var(--borderWidth);
 	grid-template-columns: 25% 25% 25% 25%;
 	grid-template-areas: 'headerA headerA headerA closeA'
+		'errorA errorA errorA errorA'
 		'idA inputIdA inputIdA inputIdA'
 		'passA inputPassA inputPassA inputPassA'
 		'forgot forgot forgot forgot'
-		'createAccount createAccount log log'
-		'cancelA cancelA cancelA cancelA';
+		'createAccount createAccount cancelA cancelA'
+		'log log log log';
 }
 
 
@@ -61,6 +61,17 @@
 	text-align: left;		
 	margin-left: 5%;
 	padding-bottom: 16px;
+}
+
+.error {
+	cursor: default;
+	grid-area: errorA;
+	font-family: header-font;
+	font-size:18px;
+	text-align: center;		
+	margin-left: 5%;
+	padding-bottom: 12px;
+	color: FireBrick;
 }
 
 a{
@@ -140,6 +151,8 @@ input:focus {
 	grid-area: inputPassA;	
 	padding-bottom: 1px;
 }
+
+
 
 
 

@@ -17,4 +17,7 @@ PostgreSQL user privilege use db, lock create database or table sucessfull, acco
 **Info**	Cleaning test connexion deleted
 **Info**	Branch test connexion merged
 **Info** 	Commit before modification project structure in order to be compliant with new approach
+****************************************************************************************************
+**Info**	New branch AccountAndCreation 
+**Info**	Update data base information account and db name
 

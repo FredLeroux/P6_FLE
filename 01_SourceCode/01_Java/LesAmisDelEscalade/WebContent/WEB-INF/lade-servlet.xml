@@ -52,7 +52,8 @@
 		</list> </property> <property name="ignoreResourceNotFound" value="true"></property> 
 		<property name="ignoreUnresolvablePlaceholders" value="true"></property> 
 		</bean> -->
-	<context:component-scan base-package="std.fle"></context:component-scan>
+	<context:component-scan
+		base-package="std.fle,fle.toolBox"></context:component-scan>
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -70,6 +71,7 @@
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
 				<prop key="hibernate.format_sql">${hibernate.formatSql}</prop>
 				<prop key="hibernate.show_sql">${hibernate.showSql}</prop>
+				<prop key="hibernate.default_schema>">cliff</prop>
 			</props>
 		</property>
 		<property name="packagesToScan"
@@ -102,6 +104,46 @@
 			<property name="paramName" value="lang" />
 		</bean>
 	</mvc:interceptors>
+	<!-- HandlerInterceptor -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/index.jsp" />
+			<mvc:mapping path="/index.html" />
+			<bean class="std.fle._08_interceptors.OpeningInterceptor"></bean>
+		</mvc:interceptor>
+		 <mvc:interceptor>
+			<mvc:mapping path="/error" />
+			<bean class="std.fle._08_interceptors.OnErrorInterceptor"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/authentification" />
+			<bean class="std.fle._08_interceptors.AuthentificatorInterceptor"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/disconnect" />
+			<bean class="std.fle._08_interceptors.DisconnectInterceptor"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/activation" />
+			<bean class="std.fle._08_interceptors.AccountActivationInterceptor"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/unlockMyAccount" />
+			<bean class="std.fle._08_interceptors.ResetPasswordInterceptor"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/02_AccountManagement/updatePasswordForm" />
+			<bean class="std.fle._08_interceptors.UpdatePasswordInterceptor"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/04_listPage/listPage" />
+			<bean class="std.fle._08_interceptors.ListDisplayerInterceptors"></bean>
+		</mvc:interceptor>		
+		<mvc:interceptor>
+			<mvc:mapping path="/errorNotException" />
+			<bean class="std.fle._08_interceptors.OnNoExceptionError"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 	<bean id="localeResolver"
 		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
 		<property name="defaultLocale" value="fr"></property>
@@ -111,13 +153,29 @@
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basenames">
 			<list>
-				<value>${messageSrc.path}${configuration.fileNamePattern}
+				<value>${jspCompomentsMessagesSrc.path}${configuration.fileNamePattern}
 				</value>
-				<value>${messageSrc.path}${menuNavBar.fileNamePattern}
+				<value>${jspCompomentsMessagesSrc.path}${menuNavBar.fileNamePattern}
 				</value>
-				<value>${messageSrc.path}${head.fileNamePattern}
+				<value>${jspCompomentsMessagesSrc.path}${head.fileNamePattern}
 				</value>
-				<value>${messageSrc.path}${logModal.fileNamePattern}
+				<value>${jspCompomentsMessagesSrc.path}${logModal.fileNamePattern}
+				</value>
+				<value>${pageTitlesMessagesSrc.path}${pageTitles.fileNamePattern}
+				</value>
+				<value>${logModalJspHref.path}05_01_logModalJspHref
+				</value>
+				<value>${placeHolderMessagesSrc.path}${placeHolder.filePattern}
+				</value>
+				<value>${labelDisplayNamesSrc.path}${labelDisplayNames.filePattern}
+				</value>
+				<value>${formMessagesSrc.path}${formMessages.filePattern}
+				</value>
+				<value>${pageMessagesSrc.path}${pageMessage.filePattern}
+				</value>
+				<value>${validationMessages.path}${validationMessages.filePattern}
+				</value>
+				<value>${mailContentMessages.path}${mailContentMessages.filePattern}
 				</value>
 			</list>
 
@@ -136,5 +194,7 @@
 		mapping="/jspCompomentsFiles/*" />
 	<mvc:resources location='${toolBox.javascript}'
 		mapping="/toolBoxJavaScript/*" />
+	<mvc:resources location="${cssFiles.path}"
+		mapping="/cssFiles/**"></mvc:resources>
 
 </beans>

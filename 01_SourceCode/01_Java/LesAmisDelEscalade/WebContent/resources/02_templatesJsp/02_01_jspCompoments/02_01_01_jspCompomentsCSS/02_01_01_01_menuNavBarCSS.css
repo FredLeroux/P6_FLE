@@ -1,70 +1,96 @@
 @import
 	url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_01_appSkin.css");
 
-.icon {	
-	display: inline-block;	
-	font-size: 2vw;
-	float:left;
-	cursor: pointer;
+
+
+
+
+
+
+
+.firstLign{	
+	align-content:center;
+	width: 99%;
+	display: flex;
+	border:solid;	
+	border-color: var(--menu-border-color);
+	border-bottom-color :var(--menu-text-color);
+	border-bottom-style:solid;
+	border-bottom-width:thin;
+	margin-top:0.1%;
+	margin-left:auto;
+	margin-right:auto;
+	padding-bottom: 0.5%;
+	padding-top:0.5%;
+	background-color: var(--menu-bg-color);
+	border-radius: 20px 20px 7.5px 7.5px ;
 }
 
-
-.iconBasis{
-	color: var(--menu-icon-color);
+.greetings{
+	width: 90%;
+	text-align: justify;
+	margin-left: 2%;
+	
+	
+	
 }
-
-.iconBasis:hover {
-	color: var(--menu-icon-hover-color);	
-}
-
-.iconInvert{
-	color: var(--menu-icon-hover-color);
-}
-
-.iconInvert:hover{
-	color: var(--menu-icon-color);
-}
-
-
 
 .containerConnexion {	
+	width: 10%;
 	text-align: right;
+	margin-right: 2%;
+	
 }
 
-.connexion {	
+
+.connexion,.identifiedAs,.pseudo {	
 	text-decoration: none;
 	font-size: 1.5vw;
 	font-family: header-font;
-	color: var(--menu-connexion-color);
+	
+}
+.connexion,.identifiedAs{
+color: var(--menu-text-color);	
+}
+
+.pseudo{
+	text-align: center;
+	color:var(--highlith-color);
 }
 
 .connexion:hover{
-	color: var(--menu-connexion-hover-color);
+	color: var(--menu-text-hover-color);
 }
 
 .list {	
+	display:block;
+	z-index: 1;
 	list-style-type: none;	
 	overflow: hidden;
 	border:solid;	
 	border-color: var(--menu-border-color);
-	margin:0;
+	margin:auto;
 	padding:0;
 	background-color: var(--menu-bg-color);
-	width: 100%;
+	width: 99%;
+	border-top-color :var(--menu-text-color);
+	border-top-style:solid;
+	border-top-width:thin;
+	border-radius: 7.5px 7.5px 20px 20px ;
 	
 }
 
 
 
 .list>li {
-	float: left;	
-}
+	float: left;
+	}
 
 .list>li a {
 	display: block;
 	padding-left: 2vw;
 	font-size: 1.5vw;
-	font-family: header-font;
+	font-family: menu-font;
 	font-weight: bold;
 	cursor: pointer;
 	color: var(--menu-text-color);

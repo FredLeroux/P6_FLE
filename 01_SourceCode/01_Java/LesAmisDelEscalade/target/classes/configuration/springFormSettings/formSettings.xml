@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="userFormBtn.align">center</entry>
+	<entry key="userForm.label">.label</entry>
+	<entry key="resetPassForm.label">.resetPassLabel</entry>
+	<entry key="userFormBtn.message.register">button.register.label</entry>
+	<entry key="userFormBtn.message.update">button.update.label</entry>
+	<entry key="userFormBtn.message.reSend">button.reSend.label</entry>
+	<entry key="userFormBtn.message.resetPass">button.resetPass.label</entry>
+	<entry key="userFormBtn.message.forgotPass">button.forgotPass.label</entry>
+	<entry key="userFormBtn.message.memberStatus">button.memeberStatus.label</entry>
+	<entry key="userFormBtn.message.createTopo">button.createTopo.label</entry>
+	<entry key="userFormBtn.message.createSite">button.createSite.label</entry>
+	<entry key="userFormBtn.message.createRoute">button.createRoute.label</entry>
+	<entry key="userFormBtn.message.editRoute">button.editRoute.label</entry>
+	<entry key="userFormBtn.message.editRoutePitch">button.editRoutePitch.label</entry>
+	<entry key="userFormBtn.message.createRoutePitch">button.createRoutePitch.label</entry>
+	<entry key="userRegisterForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/userForm.jsp</entry>
+	<entry key="userUpdateForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/userUpdateForm.jsp</entry>
+	<entry key="userMailForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/askMail.jsp</entry>	
+	<entry key="resetPassForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/resetPassFormTmplt.jsp</entry>
+	<entry key="updatePassForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/updatePassFormTmplt.jsp</entry>
+	<entry key="forgotPasswordForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/forgotPasswordFormTmplt.jsp</entry>
+	<entry key="updateMemberStatusForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/updateMemberStatusTmplt.jsp</entry>
+	<entry key="createNewTopoForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/createNewTopoTmplt.jsp</entry>
+	<entry key="createNewSiteForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/createNewSiteTmplt.jsp</entry>
+	<entry key="createNewSiteRouteForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/createNewSiteRouteTmplt.jsp</entry>
+	<entry key="editSiteRouteForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/editSiteRouteTmplt.jsp</entry>
+	<entry key="createNewSiteRoutePitchForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/createNewRoutePitchTmplt.jsp</entry>
+	<entry key="editSiteRoutePitchForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/editRoutePitchTmplt.jsp</entry>
+	</properties>
+	

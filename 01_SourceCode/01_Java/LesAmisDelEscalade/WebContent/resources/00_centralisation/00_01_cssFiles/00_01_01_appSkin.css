@@ -2,34 +2,28 @@
 @import url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_01_appSkin.css"); 
 */
 
+@import url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_00_colorAndFont.css");
 
-@import url("https://use.fontawesome.com/releases/v5.8.1/css/all.css");
 
-@font-face {
-  font-family: menu-font;
-  src: url("/LesAmisDelEscalade/resources/00_centralisation/00_03_fonts/00_03_01_Handlee-Regular.ttf");
-}
-@font-face {
-  font-family: header-font;
-  src: url("/LesAmisDelEscalade/resources/00_centralisation/00_03_fonts/00_03_02_Lobster-Regular.ttf") format("truetype");  
-}
 
-:root{
+:root{	
 	--header-bg-images : url("/LesAmisDelEscalade/resources/00_centralisation/00_02_ImagesSrc/00_02_01_headerBgImage.jpg");	
-	--header-text-color : rgb(17,36,45);
-	--header-text-shadow-lvl1 : orange; 
-	--header-text-shadow-lvl2 : darkOrange;
-	--menu-icon-color : rgb(17,36,45);
-	--menu-icon-hover-color: darkOrange;
-	--menu-connexion-color: rgb(17,36,45);
-	--menu-connexion-hover-color: darkOrange;
-	--menu-bg-color: rgb(17,36,45);
-	--menu-bg-hover-color: rgb(17,36,45);
-	--menu-text-color: darkOrange;;
-	--menu-text-shadow: rgb(17,36,45);
-	--menu-hover-text-shadow-lvl1: orange;
-	--menu-hover-text-shadow-lvl2: darkOrange;	
-	--menu-text-hover-color: white;
-	--menu-border-color: rgb(17,36,45);
-	--menu-border-hover-color: DarkOrange;
+	--header-text-color : var(--base-color);
+	--header-text-shadow-lvl1 : var(--text-shadow-lvl1); 
+	--header-text-shadow-lvl2 : var(--text-shadow-lvl2);
+	--menu-icon-color : var(--base-color);
+	--menu-icon-hover-color: var(--base-color-opposite);
+	--menu-icon-invert-hover-color: var(--hover-color1);
+	--menu-connexion-color: var(--base-color);
+	--menu-connexion-hover-color: var(--base-color-opposite);
+	--menu-bg-color: var(--base-color);
+	--menu-bg-hover-color: var(--base-color);
+	--menu-text-color: var(--base-color-opposite);
+	--menu-text-shadow:var(--base-color);
+	--menu-hover-text-shadow-lvl1: var(--text-shadow-lvl1);
+	--menu-hover-text-shadow-lvl2: var(--text-shadow-lvl2);	
+	--menu-text-hover-color: var(--hover-color1);
+	--menu-border-color: var(--base-color);
+	--menu-border-hover-color:var(--base-color-opposite);
+	
 }
