@@ -60,7 +60,7 @@ public class ClimbingTopoSFC extends SFC {
 	private Integer state;
 
 	@NotEmpty
-	@ToTranslate(suffix = "isAvailable")
+	@ToTranslate(suffix = ".isAvailable")
 	@SelectInputType(enumClass = BooleanValue.class,messageSourceSuffix = ".isAvailabe", selectListName = "availableList",selectValueName = "availableValue",
 			defaultValue = "102")
 	private String available;

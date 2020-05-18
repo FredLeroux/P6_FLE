@@ -27,6 +27,7 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 	
 
 	private final String membersListType = "members";
+	private final String climbingSiteListType = "climbingSites";
 	private final String forbiddenMessageURI = "/03_messagesPages/accesDenied";
 	private String listInitiate =null;
 
@@ -40,11 +41,14 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 		LinkedHashMap<String, Object> map = new LinkedHashMap<>();
 		if (ismembersListType(listInitiate)) {
 			if (granting.toAdmin()) {
-				map= listGenerator.elementList();
+				map= listGenerator.getMembersList();
 			} else {				
 				redirectToForbiddenMessage(request,response);
 				return false;
 			}
+		}
+		if(isClimbingSitesType(listInitiate)) {
+			map=listGenerator.getClimbingSiteList();
 		}
 		request.setAttribute("map", map);
 		return true;
@@ -52,6 +56,10 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 
 	private boolean ismembersListType(String listType) {
 		return membersListType.equals(listType);
+	}
+	
+	private boolean isClimbingSitesType(String listType) {
+		return climbingSiteListType.equals(listType);
 	}
 
 	private void redirectToForbiddenMessage(HttpServletRequest request,HttpServletResponse response) {

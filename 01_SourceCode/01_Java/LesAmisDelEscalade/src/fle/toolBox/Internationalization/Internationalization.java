@@ -44,6 +44,7 @@ public class Internationalization {
 		return message;
 	}
 
+	//TODO check if both key are usefull
 	/**
 	 * 
 	 * @param field
@@ -51,7 +52,7 @@ public class Internationalization {
 	 *         setter
 	 */
 	public String createKey(String str) {
-		return str + "." + getSuffix();
+		return str+getSuffix();
 	}
 	
 	public String keyFinal(String str) {

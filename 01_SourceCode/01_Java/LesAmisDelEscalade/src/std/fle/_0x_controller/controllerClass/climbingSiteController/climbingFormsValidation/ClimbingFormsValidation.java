@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.validation.BindingResult;
 
+import fle.toolBox.springFormManager.springMVCValidation.tools.SpringValidationError;
 import std.fle._03_sfc.climbingSiteSFC.ClimbingSiteSFC;
 import std.fle._03_sfc.climbingSiteSFC.RoutePitchSFC;
 import std.fle._03_sfc.climbingSiteSFC.SiteRoutesSFC;
@@ -14,6 +15,10 @@ public interface ClimbingFormsValidation {
 	public void checkNumberOfRoutes(ClimbingSiteSFC climbingSiteSFC, String modelAttributeName, BindingResult result);
 
 	public void checkHeightMinAndMax(ClimbingSiteSFC climbingSiteSFC, String modelAttributeName, BindingResult result);
+
+	public void checkStateNotEmpty(ClimbingSiteSFC climbingSiteSFC, String modelAttributeName, BindingResult result);
+
+	public void checkCountyNotEmpty(ClimbingSiteSFC climbingSiteSFC, String modelAttributeName, BindingResult result);
 
 	public void checkRouteListNotEmpty(Map<String, SiteRoutesSFC> siteRoutesMap, String modelAttributeName,
 			BindingResult result);

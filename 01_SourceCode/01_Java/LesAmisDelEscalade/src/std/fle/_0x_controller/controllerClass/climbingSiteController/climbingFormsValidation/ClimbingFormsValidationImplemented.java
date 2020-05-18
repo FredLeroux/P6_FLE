@@ -25,6 +25,10 @@ public class ClimbingFormsValidationImplemented implements ClimbingFormsValidati
 	private String noRouteDefaultMessage = "At least one route is required !! ";
 	private String heightError = "heightError";
 	private String HeightErrorDefaultMessage = "Minimum can't be superior than maximum !! ";
+	private String stateEmpty = "stateEmpty";
+	private String stateEmptyDefaultMessage = "State cannot be empty !!";
+	private String countyEmpty = "countyEmpty";
+	private String countyEmptyDefaultMessage = "county cannot be empty !!";
 	private String routeListEmptyError = "noRoute";
 	private String routeListEmptyDefaultMessage = "At least One route must be filled !! ";
 	private String routeErrorCode = "routeNotUnique";
@@ -58,24 +62,56 @@ public class ClimbingFormsValidationImplemented implements ClimbingFormsValidati
 	public void checkHeightMinAndMax(ClimbingSiteSFC climbingSiteSFC, String modelAttributeName, BindingResult result) {
 		String[] heightFieldsName = { "heightMin", "heightMax" };
 		if (!minAndMax(climbingSiteSFC.getHeightMin(), climbingSiteSFC.getHeightMax())) {
-			for (int i = 0; i <= heightFieldsName.length-1; i++) {
+			for (int i = 0; i <= heightFieldsName.length - 1; i++) {
 				SpringValidationError.addError(heightError, modelAttributeName, heightFieldsName[i],
 						HeightErrorDefaultMessage, result);
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * Error can be setted via message source using code =
-	 * "noRoute.modelAttributeName.fieldName" 
+	 * "stateEmpty.modelAttributeName.fieldName"
 	 *
 	 */
 	@Override
-	public void checkRouteListNotEmpty(Map<String, SiteRoutesSFC> siteRoutesMap,
-			String modelAttributeName, BindingResult result) {
-		if(siteRoutesMap.isEmpty()) {
-			SpringValidationError.addError(routeListEmptyError, modelAttributeName, "routeName", routeListEmptyDefaultMessage, result);
+	public void checkStateNotEmpty(ClimbingSiteSFC climbingSiteSFC, String modelAttributeName, BindingResult result) {
+		try {
+			if (climbingSiteSFC.getClimbingSiteStateId() == 19)
+				throw new NullPointerException();
+		} catch (Exception e) {
+			SpringValidationError.addError(stateEmpty, modelAttributeName, "climbingSiteStateId",
+					stateEmptyDefaultMessage, result);
+		}
+	}
+
+	/**
+	 * Error can be setted via message source using code =
+	 * "countyEmpty.modelAttributeName.fieldName"
+	 *
+	 */
+	@Override
+	public void checkCountyNotEmpty(ClimbingSiteSFC climbingSiteSFC, String modelAttributeName, BindingResult result) {
+		try {
+			if (climbingSiteSFC.getClimbingSiteCountyId() == 102)
+				throw new NullPointerException();
+		} catch (Exception e) {
+			SpringValidationError.addError(countyEmpty, modelAttributeName, "climbingSiteCountyId",
+					countyEmptyDefaultMessage, result);
+		}
+	}
+
+	/**
+	 * Error can be setted via message source using code =
+	 * "noRoute.modelAttributeName.fieldName"
+	 *
+	 */
+	@Override
+	public void checkRouteListNotEmpty(Map<String, SiteRoutesSFC> siteRoutesMap, String modelAttributeName,
+			BindingResult result) {
+		if (siteRoutesMap.isEmpty()) {
+			SpringValidationError.addError(routeListEmptyError, modelAttributeName, "routeName",
+					routeListEmptyDefaultMessage, result);
 		}
 	}
 
@@ -124,14 +160,14 @@ public class ClimbingFormsValidationImplemented implements ClimbingFormsValidati
 					result);
 		}
 	}
-	
+
 	private Boolean minAndMax(String min, String max) {
-		if(!min.isEmpty() && !max.isEmpty()) {
-		return FredParser.toInteger(min) <= FredParser.toInteger(max);
-	}else {
-		return true;
-	}
+		if (!min.isEmpty() && !max.isEmpty()) {
+			return FredParser.toInteger(min) <= FredParser.toInteger(max);
+		} else {
+			return true;
 		}
+	}
 
 	private Boolean routeExistenceError(Map<String, SiteRoutesSFC> siteRoutesMap, String routeNameSent) {
 		return siteRoutesMap.containsKey(routeNameSent);
@@ -150,7 +186,5 @@ public class ClimbingFormsValidationImplemented implements ClimbingFormsValidati
 	public Boolean routePitchSFCCheck(RoutePitchSFC elemt1, RoutePitchSFC elemt2) {
 		return elemt1.equals(elemt2);
 	}
-
-	
 
 }

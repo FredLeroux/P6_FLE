@@ -233,9 +233,8 @@ public class ClimbingSiteController {
 	@PostMapping("06_climbingSite/createSite")
 	public ModelAndView createSite(ModelAndView model,
 			@ModelAttribute(name = "siteFullInfo") @Validated ClimbingSiteSFC climbingSiteSFC, BindingResult result,HttpServletRequest request) {
-		springMVCValidation.SpringMVCValidationCheck(climbingSiteSFC, result);
-		climbingFormsValidation.checkNumberOfRoutes(climbingSiteSFC, "siteFullInfo", result);
-		climbingFormsValidation.checkHeightMinAndMax(climbingSiteSFC, "siteFullInfo", result);
+		
+		checkFormSiteCreation(climbingSiteSFC,"siteFullInfo", result);
 		if (result.hasErrors()) {
 			model.setViewName("06_climbingSite/createNewSiteForm");			
 			model.addObject("siteRoutesController", addRouteController);
@@ -255,6 +254,14 @@ public class ClimbingSiteController {
 		
 		dao.saveClimbingSite(climbingSiteSFC, siteRoutesMap, routePitchsMap);
 		return model;
+	}
+	
+	private void checkFormSiteCreation(ClimbingSiteSFC climbingSiteSFC,String modelAttributeName,BindingResult result) {
+		springMVCValidation.SpringMVCValidationCheck(climbingSiteSFC, result);
+		climbingFormsValidation.checkNumberOfRoutes(climbingSiteSFC, modelAttributeName, result);
+		climbingFormsValidation.checkHeightMinAndMax(climbingSiteSFC, modelAttributeName, result);
+		climbingFormsValidation.checkStateNotEmpty(climbingSiteSFC, modelAttributeName, result);
+		climbingFormsValidation.checkCountyNotEmpty(climbingSiteSFC, modelAttributeName, result);
 	}
 
 	@GetMapping("06_climbingSite/" + siteRouteEditController)

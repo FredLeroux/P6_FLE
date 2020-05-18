@@ -44,11 +44,6 @@ public class ClimbingSiteSFC extends SFC {
 	@HiddenPath
 	private Integer id;
 	
-	
-	
-
-	
-	
 	@NotEmpty
 	@Unique(entityName = "ClimbingSite", fieldName = "climbingSiteName", modelAttributeValue = "siteFullInfo")
 	private String climbingSiteName;
