@@ -15,6 +15,12 @@ public interface SelectInputForController {
 
 	public void upDateSelectListAndValue(Object cOI, ModelAndView model,HttpServletRequest request);
 
+	/**
+	 * 
+	 * @param formName the @SpringFormSettings name attribute
+	 * @param controllerRequest the controller wich will display the formular w/o error
+	 * @param errorControllerRequest the controller wich use a validated entity to manage error
+	 */
 	public void setFormularAndRequestMap(String formName, String controllerRequest,String errorControllerRequest);
 
 	public ModelAndView formSelectInputFieldUpdate(Object cOI, ModelAndView model,HttpServletRequest request);

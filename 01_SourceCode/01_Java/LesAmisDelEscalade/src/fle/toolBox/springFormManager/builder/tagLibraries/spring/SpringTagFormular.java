@@ -584,18 +584,18 @@ public abstract class SpringTagFormular {
 	}
 
 	protected String label(String path, String text) {
-		return openFormTag(labelTagName, path, endTagAttributes) + text + closeFormTag(labelTagName) + ln;
+		return openFormTag(labelTagName, path) +idAttribut+ argument(path+".formLabel")+endTagAttributes + text + closeFormTag(labelTagName) + ln;
 
 	}
 
 	protected String labelCssClass(String path, String text) throws NullPointerException {
 
-		return openFormTag(labelTagName, path) + getLabelCssClass() + endTagAttributes + text
+		return openFormTag(labelTagName, path)+idAttribut+ argument(path+".formLabel") + getLabelCssClass() + endTagAttributes + text
 				+ closeFormTag(labelTagName) + ln;
 	}
 
 	protected String labelCssClassCssErrorClass(String path, String text) throws NullPointerException {
-		return openFormTag(labelTagName, path) + getLabelCssClass() + getLabelCssErrorClass() + endTagAttributes + text
+		return openFormTag(labelTagName, path)+idAttribut+ argument(path+".formLabel") + getLabelCssClass() + getLabelCssErrorClass() + endTagAttributes + text
 				+ closeFormTag(labelTagName) + ln;
 	}
 

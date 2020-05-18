@@ -11,7 +11,9 @@ import java.util.TreeSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import fle.toolBox.FredParser;
 import fle.toolBox.CRUD.dao.DAOGenericInterface;
+import fle.toolBox.localeKeyToBoolean.StringToBoolean;
 import std.fle._01_entity.models.site.ClimbingSite;
 import std.fle._01_entity.models.site.RoutePitch;
 import std.fle._01_entity.models.site.SiteRoutes;
@@ -36,6 +38,9 @@ public class ClimbingSiteDAOImplemented implements ClimbingSiteDAO {
 	
 	@Autowired
 	DAOGenericInterface<SiteRoutes, SiteRoutesDTO> daoRoute;
+	
+	@Autowired
+	StringToBoolean stringToBoolean;
 
 	@Autowired
 	StatesDAO statesDao;
@@ -60,19 +65,10 @@ public class ClimbingSiteDAOImplemented implements ClimbingSiteDAO {
 	public void saveClimbingSite(ClimbingSiteSFC climbingSiteSFC, Map<String, SiteRoutesSFC> siteRoutesMap,
 			Map<String, List<RoutePitchSFC>> routePitchsMap) {
 		ClimbingSiteDTO dto = climbingSiteDTOSetted(climbingSiteSFC, siteRoutesMap, routePitchsMap);
-		dto.setOfficial(false);	
 		dao.saveDTO(climbingSite, dto);
 		
 	}
 	
-	//TODO Supress if not reuse until the end
-	/*@Override
-	public Map<String, List<RoutePitchDTO>> sortedRoutePitchsDTOMap(String key,
-			Map<String, List<RoutePitchSFC>> routePitchsMap){
-		Map<String, List<RoutePitchDTO>> map = convertToRoutePitchsDTOMap(key, routePitchsMap);
-		Collections.sort(map.get(key),(o1,o2)->o1.getPitchNumber().compareTo(o2.getPitchNumber()));		
-		return map;
-	}*/
 	
 	@Override
 	public List<RoutePitchDTO> sortedRoutePitchsDTOList(String key,
@@ -178,8 +174,8 @@ public class ClimbingSiteDAOImplemented implements ClimbingSiteDAO {
 		return countiesDao.getDTOByID(countyId);
 	}
 
-	private ClimbingLevelsDTO getClimbinglevelDTO(Integer climbingLevelId) {
-		return climbingLevelDao.getDTOByID(climbingLevelId);
+	private ClimbingLevelsDTO getClimbinglevelDTO(String climbingLevelId) {
+		return climbingLevelDao.getDTOByID(FredParser.toInteger(climbingLevelId));
 	}
 
 }

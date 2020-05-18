@@ -27,7 +27,8 @@
 		</jstl:forEach>
 	</table>
 	<br><br>
-	<button  onclick="window.location.href='displaySiteRoutesList'">terminer</button>
+	<button  onclick="window.location.href='${pitchEndController}'">terminer</button>
 	<br><br>
+
 </body>
 </html>

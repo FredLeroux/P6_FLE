@@ -19,14 +19,15 @@ MEssage si la voie n'est nommé renseigner anonyme si plusieur incrémenter anam
 				<tr>
 					<td><springTags:message code = "route.name"/> ${routeName}</td>
 					<td><a href="${siteRouteEditController}?route=${routeName}" ><springTags:message code = "routeModification.name"/></a></td>
-					<td><a href="displayRoutePitchForm" ><springTags:message code = "routePitchListModification.name"/></a></td>				
+					<td><a href="displayRoutePitchForm" ><springTags:message code = "routePitchListModification.name"/></a></td>
+					<td><a href="${siteRouteDeleteController}?route=${routeName}" ><springTags:message code = "deleteSiteRoute.name"/></a></td>				
 				</tr>
 		</jstl:forEach>
 		
 		
 </table>
 		<br><br>
-		<button  onclick="window.location.href='climbingSiteForm'">terminer</button>
+		<button  onclick="window.location.href='${routeEndController}'">terminer</button>
 		<br><br>
 </body>
 </html>

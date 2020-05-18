@@ -2,8 +2,8 @@ package std.fle._03_sfc.climbingSiteSFC;
 
 
 
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.validation.annotation.Validated;
@@ -20,6 +20,7 @@ import fle.toolBox.springFormManager.springMVCValidation.validationManagement.nu
 import fle.toolBox.springFormManager.springMVCValidation.validationManagement.unique.Unique;
 import std.fle._01_entity.assetsClasses.Counties;
 import std.fle._01_entity.assetsClasses.States;
+import std.fle._01_entity.assetsEnum.BooleanValue;
 import std.fle._02_dto.assetsClassesDTO.CountiesDTO;
 import std.fle._02_dto.assetsClassesDTO.StatesDTO;
 
@@ -43,6 +44,18 @@ public class ClimbingSiteSFC extends SFC {
 	@HiddenPath
 	private Integer id;
 	
+	
+	
+
+	
+	
+	@NotEmpty
+	@Unique(entityName = "ClimbingSite", fieldName = "climbingSiteName", modelAttributeValue = "siteFullInfo")
+	private String climbingSiteName;
+	
+	@SelectInputType(enumClass = BooleanValue.class, selectListName = "officialList", selectValueName = "officialValue",defaultValue = "false",messageSourceSuffix = ".official")
+	private String official;
+	
 	@SelectInputType(
 			selectListName = "statesList",
 			selectValueName = "stateValue",
@@ -55,6 +68,7 @@ public class ClimbingSiteSFC extends SFC {
 			defaultValue = "19")
 	private Integer climbingSiteStateId;
 
+	@NotNull
 	@SelectInputType(
 			selectListName = "countiesList",
 			selectValueName = "countyValue",
@@ -68,13 +82,11 @@ public class ClimbingSiteSFC extends SFC {
 			defaultValue = "102")
 	private Integer climbingSiteCountyId;
 
-	@Unique(entityName = "ClimbingSite", fieldName = "climbingSiteName", modelAttributeValue = "siteFullInfo")
-	@NotEmpty
-	private String climbingSiteName;
-
 	@Length(max = 200)
 	@InputTextArea(charByRows = 50, rows = 4)
 	private String siteDescription;
+	
+	
 
 	@Numeric(maxDigits = 4, modelAttributeValue = "siteFullInfo")
 	private String altitude;
@@ -86,7 +98,7 @@ public class ClimbingSiteSFC extends SFC {
 	private String heightMax;
 
 	@ReadOnlyInput
-	private Integer numberOfRoutes;
+	private String numberOfRoutes;
 
 	@Length(max = 500)
 	@InputTextArea(charByRows = 50, rows = 10)
@@ -109,6 +121,14 @@ public class ClimbingSiteSFC extends SFC {
 
 	public void setClimbingSiteName(String climbingSiteName) {
 		this.climbingSiteName = climbingSiteName;
+	}
+
+	public String getOfficial() {
+		return official;
+	}
+
+	public void setOfficial(String official) {
+		this.official = official;
 	}
 
 	public String getSiteDescription() {
@@ -143,11 +163,11 @@ public class ClimbingSiteSFC extends SFC {
 		this.heightMax = heightMax;
 	}
 
-	public Integer getNumberOfRoutes() {
+	public String getNumberOfRoutes() {
 		return numberOfRoutes;
 	}
 
-	public void setNumberOfRoutes(Integer numberOfRoutes) {
+	public void setNumberOfRoutes(String numberOfRoutes) {
 		this.numberOfRoutes = numberOfRoutes;
 	}
 

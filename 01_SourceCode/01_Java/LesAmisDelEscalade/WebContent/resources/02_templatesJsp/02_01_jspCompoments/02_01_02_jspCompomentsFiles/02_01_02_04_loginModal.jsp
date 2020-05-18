@@ -4,7 +4,7 @@
 
 <div id="loginModal" class="modal" style="display: none;">
 	<!-- display set none here allow immediate action  -->
-	<div>
+	<div id ="logForm">
 		<form class="log-grid" action=<springTag:message code="loginAction.form" /> method="post">
 			<div class="header">
 				<springTag:message code="logModal.name" />
@@ -21,11 +21,11 @@
 					placeholder='<springTag:message code ="login.placeHolder"/>'>
 			</div>
 			<div class="pass">
-				<label class="log-text" for="pass"><springTag:message code="pass.name" /></label>
+				<label id="passLabel" class="log-text" for="pass"><springTag:message code="pass.name" /></label>
 			</div>
 			<div class="inputPass">
 				<input type="password" name="pass" id="pass"  
-					placeholder='<springTag:message code ="pass.placeHolder"/>' onmouseenter="type='text'" onmouseleave="type='password'">
+					placeholder='<springTag:message code ="pass.placeHolder"/>' onmouseenter="type='text'"  >
 			</div>
 			<div class="forgot">
 				<a href="<springTag:message code ="forgot.href"/>">
@@ -55,6 +55,19 @@
 	logToggle.addToggleDisplayOnClickAndClearError("close", "loginModal", "error");
 	var iframe = newIframe("iFrameLoc");
 	logToggle.displayOnError("error","loginModal");
+
+	passImputHide();
+	function passElmt(){
+		return document.getElementById("pass"); }
+	function passImputHide(){		
+		var logForm = document.getElementById("logForm");
+		logForm.addEventListener("mouseenter", inputTypePass);
+		}
+	function inputTypePass(){		
+		passElmt().type="password";
+		}
+
+	
 
 	
 </script>

@@ -58,10 +58,10 @@ public class AccountController {
 
 	@PostMapping(value = "/02_AccountManagement/filterCountiesList")
 	public ModelAndView filterDispatcher(ModelAndView model, HttpServletRequest request) {
-		select.setFormularAndRequestMap("userRegisterFormular", "/02_AccountManagement/userFormRegisterUpdated",
-				"/02_AccountManagement/userCreation");
-		select.setFormularAndRequestMap("userUpdateFormular", "/02_AccountManagement/userFormUpdateUpdated",
-				"/02_AccountManagement/userUpdate");
+		select.setFormularAndRequestMap("userRegisterFormular", "userFormRegisterUpdated",
+				"userCreation");
+		select.setFormularAndRequestMap("userUpdateFormular", "userFormUpdateUpdated",
+				"userUpdate");
 		return select.dispatchSelectListAndValue(model, request);
 	}
 

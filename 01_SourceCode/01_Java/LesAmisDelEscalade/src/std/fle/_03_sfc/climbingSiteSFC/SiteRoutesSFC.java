@@ -1,5 +1,7 @@
 package std.fle._03_sfc.climbingSiteSFC;
 
+import javax.validation.constraints.NotEmpty;
+
 import org.springframework.validation.annotation.Validated;
 
 import fle.toolBox.classType.SFC;
@@ -36,6 +38,7 @@ public class SiteRoutesSFC extends SFC {
 	@HiddenPath
 	private Integer id;
 
+	@NotEmpty
 	private String routeName;
 
 	public Integer getId() {

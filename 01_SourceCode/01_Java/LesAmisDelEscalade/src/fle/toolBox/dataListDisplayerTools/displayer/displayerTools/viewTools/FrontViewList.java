@@ -10,7 +10,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.web.servlet.ModelAndView;
 
 import exceptions.RowsPerPagesException;
-import fle.toolBox.JSPString;
+import fle.toolBox.JspJavaScriptStringParser;
 import fle.toolBox.dataListDisplayerTools.displayer.displayerTools.dataExtractorTools.CollectionElementsExtrator;
 import fle.toolBox.dataListDisplayerTools.displayer.displayerTools.dataExtractorTools.ColumnsNamesAndOperators;
 import fle.toolBox.dataListDisplayerTools.displayer.displayerTools.listManagementTools.ListManagement;
@@ -284,14 +284,14 @@ public class FrontViewList<O extends Object> {
 	public ModelAndView addRequiredObject(ModelAndView frontView, String jspFolderName, String jspName,
 			String sortListHandlerName, String rowsDisplayedHandlerName, String selectPageHandlerName,
 			String orderListHandlerName, String editHandlerName) {
-		frontView.addObject("jspName", JSPString.parse(jspName));
-		frontView.addObject("sortListHandlerName", JSPString.parse(sortListHandlerName));
-		frontView.addObject("editHandlerName", JSPString.parse(editHandlerName));
-		frontView.addObject("formMethod", JSPString.parse("get"));
-		frontView.addObject("rowsDisplayed", JSPString.parse(rowsDisplayedHandlerName));
-		frontView.addObject("selectedPage", JSPString.parse(selectPageHandlerName));
-		frontView.addObject("orderLink", JSPString.parse(orderListHandlerName));
-		frontView.addObject("storedFilterArrayName", JSPString.parse(getFrontViewStoreFilterName()));
+		frontView.addObject("jspName", JspJavaScriptStringParser.parse(jspName));
+		frontView.addObject("sortListHandlerName", JspJavaScriptStringParser.parse(sortListHandlerName));
+		frontView.addObject("editHandlerName", JspJavaScriptStringParser.parse(editHandlerName));
+		frontView.addObject("formMethod", JspJavaScriptStringParser.parse("get"));
+		frontView.addObject("rowsDisplayed", JspJavaScriptStringParser.parse(rowsDisplayedHandlerName));
+		frontView.addObject("selectedPage", JspJavaScriptStringParser.parse(selectPageHandlerName));
+		frontView.addObject("orderLink", JspJavaScriptStringParser.parse(orderListHandlerName));
+		frontView.addObject("storedFilterArrayName", JspJavaScriptStringParser.parse(getFrontViewStoreFilterName()));
 		frontView.addObject("rowsPerPagesList", getRowsPerPagesListJSONArray());
 		frontView.addObject("tableElementsList", getTableElementsList());
 		frontView.addObject("filterHead", getFilterHead());

@@ -10,6 +10,8 @@ import fle.toolBox.springFormManager.annotations.HiddenPath;
 import fle.toolBox.springFormManager.annotations.ReadOnlyInput;
 import fle.toolBox.springFormManager.annotations.SelectInputType;
 import fle.toolBox.springFormManager.annotations.SpringFormSettings;
+import fle.toolBox.springFormManager.annotations.actionButtons.SpringFormActionButton;
+import fle.toolBox.springFormManager.annotations.actionButtons.SpringFormButton;
 import std.fle._01_entity.assetsClasses.ClimbingLevels;
 import std.fle._02_dto.assetsClassesDTO.ClimbingLevelsDTO;
 
@@ -42,9 +44,9 @@ public class RoutePitchSFC extends SFC {
 	@HiddenPath
 	private Integer id;
 
-	@NotNull
+	@NotEmpty
 	@ReadOnlyInput(applyToForm = "editRoutePitchFormular")
-	private Integer pitchNumber;
+	private String pitchNumber;
 	
 	@NotNull
 	@SelectInputType(selectListName = "climbList",
@@ -54,7 +56,9 @@ public class RoutePitchSFC extends SFC {
 			optionValueFieldName = "id",
 			optionDisplayValueFieldName = "cotationLevel",
 			defaultValue = "5")
-	private Integer pitchClimbingLevels;
+	private String pitchClimbingLevels;
+	
+	
 
 	public Integer getId() {
 		return id;
@@ -64,21 +68,24 @@ public class RoutePitchSFC extends SFC {
 		this.id = id;
 	}
 
-	public Integer getPitchNumber() {
+	public String getPitchNumber() {
 		return pitchNumber;
 	}
 
-	public void setPitchNumber(Integer pitchNumber) {
+	public void setPitchNumber(String pitchNumber) {
 		this.pitchNumber = pitchNumber;
 	}
 
-	public Integer getPitchClimbingLevels() {
+	public String getPitchClimbingLevels() {
 		return pitchClimbingLevels;
 	}
 
-	public void setPitchClimbingLevels(Integer pitchClimbingLevels) {
+	public void setPitchClimbingLevels(String pitchClimbingLevels) {
 		this.pitchClimbingLevels = pitchClimbingLevels;
 	}
+	
+	
+	
 
 	@Override
 	public int hashCode() {
