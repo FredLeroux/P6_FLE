@@ -1,13 +1,6 @@
 @import
 	url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_01_appSkin.css");
 
-<<<<<<< HEAD
-.icon {	
-	display: inline-block;	
-	font-size: 2vw;
-	float:left;
-	cursor: pointer;
-=======
 
 
 
@@ -31,31 +24,8 @@
 	padding-top:0.5%;
 	background-color: var(--menu-bg-color);
 	border-radius: 20px 20px 7.5px 7.5px ;
->>>>>>> refs/heads/AccountAndCreation
 }
 
-<<<<<<< HEAD
-
-.iconBasis{
-	color: var(--menu-icon-color);
-}
-
-.iconBasis:hover {
-	color: var(--menu-icon-hover-color);	
-}
-
-.iconInvert{
-	color: var(--menu-icon-hover-color);
-}
-
-.iconInvert:hover{
-	color: var(--menu-icon-color);
-}
-
-
-
-.containerConnexion {	
-=======
 .greetings{
 	width: 90%;
 	text-align: justify;
@@ -67,52 +37,27 @@
 
 .containerConnexion {	
 	width: 10%;
->>>>>>> refs/heads/AccountAndCreation
 	text-align: right;
 	margin-right: 2%;
 	
 }
 
-<<<<<<< HEAD
-.connexion {	
-=======
 
 .connexion,.identifiedAs,.pseudo {	
->>>>>>> refs/heads/AccountAndCreation
 	text-decoration: none;
 	font-size: 1.5vw;
 	font-family: header-font;
-<<<<<<< HEAD
-	color: var(--menu-connexion-color);
-=======
 	
 }
 .connexion,.identifiedAs{
 color: var(--menu-text-color);	
->>>>>>> refs/heads/AccountAndCreation
 }
 
-<<<<<<< HEAD
-.connexion:hover{
-	color: var(--menu-connexion-hover-color);
-=======
 .pseudo{
 	text-align: center;
 	color:var(--highlith-color);
->>>>>>> refs/heads/AccountAndCreation
 }
 
-<<<<<<< HEAD
-.list {	
-	list-style-type: none;	
-	overflow: hidden;
-	border:solid;	
-	border-color: var(--menu-border-color);
-	margin:0;
-	padding:0;
-	background-color: var(--menu-bg-color);
-	width: 100%;
-=======
 .connexion:hover{
 	color: var(--menu-text-hover-color);
 }
@@ -132,30 +77,20 @@ color: var(--menu-text-color);
 	border-top-style:solid;
 	border-top-width:thin;
 	border-radius: 7.5px 7.5px 20px 20px ;
->>>>>>> refs/heads/AccountAndCreation
 	
 }
 
 
 
 .list>li {
-<<<<<<< HEAD
-	float: left;	
-}
-=======
 	float: left;
 	}
->>>>>>> refs/heads/AccountAndCreation
 
 .list>li a {
 	display: block;
-	padding-left: 2vw;
-	font-size: 1.5vw;
-<<<<<<< HEAD
-	font-family: header-font;
-=======
+	padding-left: 1vw;
+	font-size: 1.4vw;
 	font-family: menu-font;
->>>>>>> refs/heads/AccountAndCreation
 	font-weight: bold;
 	cursor: pointer;
 	color: var(--menu-text-color);
@@ -166,7 +101,7 @@ color: var(--menu-text-color);
 
 .list>li a:hover {
 	color: var(--menu-text-hover-color);
-	font-size: 1.5vw;	
+	/*font-size: 1.5vw;	*/
 }
 
 
@@ -175,10 +110,10 @@ color: var(--menu-text-color);
 
 @media all and (max-width: 1400px) {
 	.list>li a, .connexion {
-		font-size: 1.5vw;
+		font-size: 1.4vw;
 	}
 	.list>li a:hover, .connexion {
-		font-size: 1.5vw;
+		font-size: 1.4vw;
 	}
 }
 
@@ -196,15 +131,16 @@ color: var(--menu-text-color);
 		border: solid;
 		border-color: var(--menu-border-color);
 	}
-	.connexion {
+	/*.connexion {
 		font-size: 2vw;
-	}
+	}*/
 	.list>li a:hover {
-		font-size: 2vw;
-		border: solid;
-		border-color: var(--menu-border-hover-color);
+		font-size: 1.4vw;
+		/*border: solid;*/
+		background-color: var(--menu-border-hover-color);
+	/*	border-color: var(--menu-border-hover-color);*/
 	}
 	.connexion:hover {
-		font-size: 2vw;
+		font-size: 1.4vw;
 	}
 }

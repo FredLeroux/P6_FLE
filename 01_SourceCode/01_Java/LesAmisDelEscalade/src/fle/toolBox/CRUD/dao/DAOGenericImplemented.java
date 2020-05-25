@@ -45,7 +45,9 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 
 	@Override
 	public D getDtoByID(E entity, D dtoClass, Integer id) {
-		return (D) converter.convertEntityToDTO(getEntityByID(entity, id), dtoClass);
+		entity = getEntityByID(entity, id);
+		D dto = converter.convertEntityToDTO(entity, dtoClass);
+		return dto; 
 	}
 
 	@Override
@@ -65,7 +67,17 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 
 	@Override
 	public void saveSFC(E entity, D dtoClass, SFC sfcClass) {
-		save((E) converter.convertDTOToEntity(converter.converSFCToDTO(sfcClass, dtoClass), entity));
+		save((E) converter.convertDTOToEntity(converter.convertSFCToDTO(sfcClass, dtoClass), entity));
+	}
+	
+	@Override
+	public void update(E entity) {
+		session().merge(entity);
+	}
+
+	@Override
+	public void updateDTO(E entity, D DTOClass) {
+		session().merge(converter.convertDTOToEntity(DTOClass, entity));
 	}
 
 	@SuppressWarnings("unchecked")
@@ -112,21 +124,11 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 	@Override
 	public <SD extends DTO> SD getSpecificDTOById(E entity, SD specificDTOClass, Integer id) {
 		return converter.convertEntityToDTO(getEntityByID(entity, id), specificDTOClass);
-	}
-
-	@Override
-	public void update(E entity) {
-		session().merge(entity);
-	}
-
-	@Override
-	public void updateDTO(E entity, D DTOClass) {
-		session().merge(converter.convertDTOToEntity(DTOClass, entity));
-	}
+	}	
 
 	@Override
 	public <S extends SFC> void updateSFC(E entity, D DTOCLass, S SFCCLass) {
-		session().merge(converter.convertDTOToEntity(converter.converSFCToDTO(SFCCLass, DTOCLass), entity));
+		session().merge(converter.convertDTOToEntity(converter.convertSFCToDTO(SFCCLass, DTOCLass), entity));
 	}
 
 	@Override
@@ -144,11 +146,28 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 		return (D) converter.convertEntityToDTO(newEntity, DTOClass);
 	}
 
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public<O extends Object> List<O> getEntityData(O entity){		
+		return session().createQuery("SELECT FROM "+ entity.getClass().getSimpleName()).getResultList();
+	}
+	
+	//TODO CHECK IF IT IS NEEDED
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Object> getList(SLO joinClass) {
 		ParseListObjectArrayToListObjectImplemented parser = new ParseListObjectArrayToListObjectImplemented();
 		return parser.namedQueryParsedList(joinClass);
+	}
+	@Override
+	public void deleteById(Object toDelete,Integer id) {
+		session().createQuery("DELETE FROM "+toDelete.getClass().getSimpleName()+ " T WHERE T.id = "+id ).executeUpdate();
+	}
+	
+	@Override
+	public void removeByID(E entity,Integer id) {
+		session().remove(getEntityByID(entity, id));
 	}
 
 }

@@ -4,14 +4,14 @@ import fle.toolBox.classType.DTO;
 import std.fle._02_dto.assetsClassesDTO.ClimbingLevelsDTO;
 
 public class RoutePitchDTO extends DTO {
-
+	
 	private Integer id;
-
+	
 	private Integer pitchNumber;
-
-	private SiteRoutesDTO siteRoutesDTO;
-
-	private ClimbingLevelsDTO climbingLevelsDTO;
+	
+	private ClimbingLevelsDTO climbingLevels;
+	
+	private SiteRoutesDTO siteRoutes;
 
 	public Integer getId() {
 		return id;
@@ -29,22 +29,25 @@ public class RoutePitchDTO extends DTO {
 		this.pitchNumber = pitchNumber;
 	}
 
-	public SiteRoutesDTO getSiteRoutesDTO() {
-		return siteRoutesDTO;
+	public ClimbingLevelsDTO getClimbingLevels() {
+		return climbingLevels;
 	}
 
-	public void setSiteRoutesDTO(SiteRoutesDTO siteRoutesDTO) {
-		this.siteRoutesDTO = siteRoutesDTO;
+	public void setClimbingLevels(ClimbingLevelsDTO climbingLevels) {
+		this.climbingLevels = climbingLevels;
 	}
 
-	public ClimbingLevelsDTO getClimbingLevelsDTO() {
-		return climbingLevelsDTO;
+	public SiteRoutesDTO getSiteRoutes() {
+		return siteRoutes;
 	}
 
-	public void setClimbingLevelsDTO(ClimbingLevelsDTO climbingLevelsDTO) {
-		this.climbingLevelsDTO = climbingLevelsDTO;
+	public void setSiteRoutes(SiteRoutesDTO siteRoutes) {
+		this.siteRoutes = siteRoutes;
 	}
 
+	
+	
+	
 	
 
 }

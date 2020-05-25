@@ -10,8 +10,8 @@ public interface UniqueValidation {
 
 	
 	
-	public void associatedModelNumericFieldValidation(Field fOI, Object clazz, String entityName,
+	public void associatedModelNumericFieldValidation(Field fOI, Object clazz, String entityName,String modelAttributeName,
 			BindingResult result);
 	
-	public void simpleModelNumericFieldAnnotation(Object cOI, Field fOI, BindingResult result);
+	public void simpleModelNumericFieldAnnotation(Object cOI, Field fOI,String modelAttributeName, BindingResult result);
 }

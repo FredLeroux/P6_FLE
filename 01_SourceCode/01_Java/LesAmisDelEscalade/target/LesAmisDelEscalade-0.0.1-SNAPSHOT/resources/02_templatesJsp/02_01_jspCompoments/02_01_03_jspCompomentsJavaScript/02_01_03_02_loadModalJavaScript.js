@@ -71,12 +71,10 @@ function disableLoadModalCustom(modalId) {
  * an add to each addToElementToggleDisplayOnClickAndHashChange() function.
  * @default modal id is "loading" in accordance to 02_01_02_04_loginModal.jsp.
  */
-function addButtonOnclickParentModalToggle(buttonElementContainerId) {
-	var element = document.getElementById(buttonElementContainerId);
-	var button = element.getElementsByTagName("button");
-	for (var i = 0; i < button.length; i++) {
-		addToElementToggleDisplayOnClickAndHashChange(button[i], "loading")
-	}
+function addButtonOnclickParentModalToggle(buttonId) {
+	var element = document.getElementById(buttonId);	
+		addToElementToggleDisplayOnClickAndHashChange(element, "loading")
+	
 }
 
 
@@ -88,10 +86,7 @@ function addButtonOnclickParentModalToggle(buttonElementContainerId) {
  * an add to each addToElementToggleDisplayOnClickAndHashChange() function to iframe parent modalId.
  * 
  */
-function  addButtonOnclickParentModalToggleCustom(buttonElementContainerId, modalId) {
-	var element = document.getElementById(buttonElementContainerId);
-	var button = element.getElementsByTagName("button");
-	for (var i = 0; i < button.length; i++) {
-		addToElementToggleDisplayOnClickAndHashChange(button[i], modalId)
-	}
+function  addButtonOnclickParentModalToggleCustomModalName(buttonId, modalId) {
+	var element = document.getElementById(buttonId);	
+	addToElementToggleDisplayOnClickAndHashChange(element, modalId)
 }

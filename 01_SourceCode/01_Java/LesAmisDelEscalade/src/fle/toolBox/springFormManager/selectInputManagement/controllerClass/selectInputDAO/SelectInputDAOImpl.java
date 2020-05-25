@@ -40,7 +40,7 @@ public class SelectInputDAOImpl implements SelectInputDAO {
 	}
 
 	private <D extends DTO, S extends SFC> List<S> dtoListToSFCListConverter(List<D> dtoList, S sfc) {	
-		List<S> sfcList = (List<S>) dtoList.stream().map(d -> converter.converDTOToSFC(d, sfc))
+		List<S> sfcList = (List<S>) dtoList.stream().map(d -> converter.convertDTOToSFC(d, sfc))
 				.collect(Collectors.toList());
 		return sfcList;
 	}

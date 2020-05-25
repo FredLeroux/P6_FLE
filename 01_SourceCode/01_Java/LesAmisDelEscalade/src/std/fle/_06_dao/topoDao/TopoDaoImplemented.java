@@ -56,7 +56,7 @@ public class TopoDaoImplemented implements TopoDAO {
 	}
 
 	private ClimbingTopoDTO setClimbingTopoDTOToSave(ClimbingTopoSFC climbingTopoSFC, Integer loggedUserId) {
-		ClimbingTopoDTO dto = dao.converter().converSFCToDTO(climbingTopoSFC, climbingTopoDTO);
+		ClimbingTopoDTO dto = dao.converter().convertSFCToDTO(climbingTopoSFC, climbingTopoDTO);
 		setClimbingTopoState(dto, climbingTopoSFC.getState());
 		setClimbingTopoUserInfo(dto, loggedUserId);	
 		dto.setEditionYear(parseYearToString(climbingTopoSFC.getEditionYear()));

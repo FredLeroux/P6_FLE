@@ -22,12 +22,14 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 	@Autowired
 	ListGenerator listGenerator;
 	
+	//TODO 0-00 Implement empty list error with jsp no noResultToDisplay to add to message controller and home 
 	
 	
 	
 
 	private final String membersListType = "members";
-	private final String climbingSiteListType = "climbingSites";
+	private final String climbingSiteShowListType = "climbingSitesShow";
+	private final String climbingSiteEditListType = "climbingSitesEdit";
 	private final String forbiddenMessageURI = "/03_messagesPages/accesDenied";
 	private String listInitiate =null;
 
@@ -47,8 +49,11 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 				return false;
 			}
 		}
-		if(isClimbingSitesType(listInitiate)) {
-			map=listGenerator.getClimbingSiteList();
+		if(isClimbingSiteShowType(listInitiate)) {
+			map=listGenerator.getClimbingSiteListShow();
+		}
+		if(isClimbingSiteEditType(listInitiate)) {
+			map=listGenerator.getClimbingSiteListEdit();
 		}
 		request.setAttribute("map", map);
 		return true;
@@ -58,8 +63,12 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 		return membersListType.equals(listType);
 	}
 	
-	private boolean isClimbingSitesType(String listType) {
-		return climbingSiteListType.equals(listType);
+	private boolean isClimbingSiteShowType(String listType) {
+		return climbingSiteShowListType.equals(listType);
+	}
+	
+	private boolean isClimbingSiteEditType(String listType) {
+		return climbingSiteEditListType.equals(listType);
 	}
 
 	private void redirectToForbiddenMessage(HttpServletRequest request,HttpServletResponse response) {

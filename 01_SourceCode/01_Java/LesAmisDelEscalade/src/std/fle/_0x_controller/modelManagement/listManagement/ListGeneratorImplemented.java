@@ -46,10 +46,16 @@ public class ListGeneratorImplemented implements ListGenerator {
 	}
 	
 	@Override
-	public LinkedHashMap<String,Object> getClimbingSiteList(){
-		List<ClimbingSiteSLO> list = new ArrayList<>(climbingSiteSLOs());		
-		return map(list, climbingSiteSLO, "climbingSiteDetails");
+	public LinkedHashMap<String,Object> getClimbingSiteListShow(){
+		return climbingSiteListGeneric("climbingSiteDetails");
 	}
+	
+	@Override
+	public LinkedHashMap<String,Object> getClimbingSiteListEdit(){
+		return climbingSiteListGeneric("climbingSiteEdit");
+	}
+	
+	
 	
 	private LinkedHashMap<String, Object> map(List<?> list, Object clazz,String editControllerURI) {
 		LinkedHashMap<String, Object> map = new LinkedHashMap<>();
@@ -57,6 +63,11 @@ public class ListGeneratorImplemented implements ListGenerator {
 		map.put("class", clazz);
 		map.put("editControllerURI",editControllerURI);	
 		return map;
+	}
+	
+	private LinkedHashMap<String,Object> climbingSiteListGeneric(String editControllerURI ){
+		List<ClimbingSiteSLO> list = new ArrayList<>(climbingSiteSLOs());
+		return map(list, climbingSiteSLO, editControllerURI);
 	}
 	
 	

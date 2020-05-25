@@ -7,11 +7,10 @@ import org.springframework.validation.annotation.Validated;
 import fle.toolBox.classType.SFC;
 import fle.toolBox.springFormManager.annotations.HiddenPath;
 import fle.toolBox.springFormManager.annotations.SpringFormSettings;
-import fle.toolBox.springFormManager.annotations.entityModelAssociation.EntityModelAssociation;
 
 
 @SpringFormSettings(
-		action = "createRoute",
+		action = "pitchs/createRoute",
 		method = "post",
 		modelAttribute = "route",
 		name = "routeFormular",

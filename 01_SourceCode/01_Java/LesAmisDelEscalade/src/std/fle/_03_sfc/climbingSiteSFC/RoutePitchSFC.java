@@ -10,8 +10,6 @@ import fle.toolBox.springFormManager.annotations.HiddenPath;
 import fle.toolBox.springFormManager.annotations.ReadOnlyInput;
 import fle.toolBox.springFormManager.annotations.SelectInputType;
 import fle.toolBox.springFormManager.annotations.SpringFormSettings;
-import fle.toolBox.springFormManager.annotations.actionButtons.SpringFormActionButton;
-import fle.toolBox.springFormManager.annotations.actionButtons.SpringFormButton;
 import std.fle._01_entity.assetsClasses.ClimbingLevels;
 import std.fle._02_dto.assetsClassesDTO.ClimbingLevelsDTO;
 
@@ -28,7 +26,7 @@ import std.fle._02_dto.assetsClassesDTO.ClimbingLevelsDTO;
 		readOnly = false)
 
 @SpringFormSettings(
-		action = "updateRoutePitch",
+		action = "routePitchModification",
 		method = "post",
 		modelAttribute = "editRoutePitch",
 		name = "editRoutePitchFormular",

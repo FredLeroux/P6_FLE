@@ -34,7 +34,7 @@ public @interface Unique {
 	public String fieldName();
 
 	/**
-	 * The form modelAttributeName vale concerned by the constrain
+	 * The form modelAttributeName value concerned by the constraint
 	 * 
 	 */
 	public String modelAttributeValue();

@@ -7,11 +7,7 @@
 	
 </div>
 <div class="containerConnexion">
-<<<<<<< HEAD
-	<label id="connexion" class="connexion"> ${connexionName} </label>
-=======
 	<label id="connexion" class="connexion">${sessionScope.connexion}  </label><!-- ${connexionName} -->
->>>>>>> refs/heads/AccountAndCreation
 </div>
 
 <div id="menuNavBar" style="display: none;">
@@ -26,32 +22,14 @@
 		<li><a id="option3" href=<springTags:message code="menuNavBarOption3.href"></springTags:message>>
 				<springTags:message code="menuNavBarOption3.name"></springTags:message>
 			</a>
-<<<<<<< HEAD
-		<li><a id="option4" href=<springTags:message code="${adminOptionHide}"></springTags:message>>
-				<springTags:message code="${adminOptionHide}"></springTags:message>
-=======
 		<li><a id="option4" href=<springTags:message code="${option4}"></springTags:message>>
 				<springTags:message code="${option4}"></springTags:message>
->>>>>>> refs/heads/AccountAndCreation
 			</a>
 	</ul>
 </div>
-<<<<<<< HEAD
-<script type="text/javascript" src="jspCompomentsJavaScript/02_01_03_01_menuNavBarJavaScript.js"></script>
-<script type="text/javascript" src="toolBoxJavaScript/04_01_01_toggle.js"></script>
-<script type="text/javascript">
-var adminCode = ${adminHide}
-var menuToggle = toggle();
-menuToggle.addToggleDisplayAndColorOnclick("iconSet", "menuNavBar","iconSet", "iconBasis", "iconInvert");
-menuToggle.addToggleDisplayOnClick("connexion", "loginModal");
-conditionalOptionsDiplay("adminOnly");
-=======
 <script type="text/javascript" src = "jspCompomentsJavaScript/02_01_03_01_menuNavBarJavaScript.js">
 
->>>>>>> refs/heads/AccountAndCreation
 </script>
-<<<<<<< HEAD
-=======
 <script type="text/javascript" src="toolBoxJavaScript/04_01_01_toggle.js"></script>
 <script type="text/javascript">
 //var option4 = ${option4};
@@ -66,5 +44,4 @@ function getOption(option){
 	return option;
 }
 </script>
->>>>>>> refs/heads/AccountAndCreation
 

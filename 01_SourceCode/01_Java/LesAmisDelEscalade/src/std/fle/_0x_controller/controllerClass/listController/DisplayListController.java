@@ -19,18 +19,9 @@ import std.fle._0X_security.AccesGranting;
 @Controller
 public class DisplayListController implements SetListManagementController {
 
-	private final String jspFolderName = "carsViews";
-	private final String getMappingFolderName = "/" + jspFolderName + "/";
-	private final String jspName = "carsList";
-	private final String frontViewAddObjectHandlerName = "getCarsList";
-	private final String setDataToDisplayHandlerName = "setCarsList";
-	private final String sortListHandlerName = "sortCarsList";
-	private final String editHandlerName = "carsEdit";
-	private final String rowsDisplayedHandlerName = "carsListRows";
-	private final String selectPageHandlerName = "carsListPage";
-	private final String orderListHandlerName = "carsListOrdered";
+	
 
-	//private String editControllerURI;
+	
 
 	@Autowired
 	DataListDisplay dataListDisplay;
@@ -46,7 +37,7 @@ public class DisplayListController implements SetListManagementController {
 		return dataListDisplay;
 	}
 
-	private MembersListSLO members = new MembersListSLO();
+	
 	private List<?> list;
 	private Object clazz = null;
 	private String editControllerURI = null;

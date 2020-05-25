@@ -12,7 +12,6 @@ import fle.toolBox.springFormManager.annotations.ReadOnlyInput;
 import fle.toolBox.springFormManager.annotations.SelectInputType;
 import fle.toolBox.springFormManager.annotations.SpringFormSettings;
 import std.fle._01_entity.assetsEnum.AccountRank;
-import std.fle._01_entity.assetsEnum.BooleanValue;
 
 @SpringFormSettings(
 		action = "updateMemberStatus",

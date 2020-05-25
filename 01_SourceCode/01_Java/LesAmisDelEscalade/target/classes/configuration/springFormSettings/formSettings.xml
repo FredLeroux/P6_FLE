@@ -12,6 +12,7 @@
 	<entry key="userFormBtn.message.memberStatus">button.memeberStatus.label</entry>
 	<entry key="userFormBtn.message.createTopo">button.createTopo.label</entry>
 	<entry key="userFormBtn.message.createSite">button.createSite.label</entry>
+	<entry key="userFormBtn.message.updateSite">button.updateSite.label</entry>
 	<entry key="userFormBtn.message.createRoute">button.createRoute.label</entry>
 	<entry key="userFormBtn.message.editRoute">button.editRoute.label</entry>
 	<entry key="userFormBtn.message.editRoutePitch">button.editRoutePitch.label</entry>
@@ -25,6 +26,7 @@
 	<entry key="updateMemberStatusForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/updateMemberStatusTmplt.jsp</entry>
 	<entry key="createNewTopoForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/createNewTopoTmplt.jsp</entry>
 	<entry key="createNewSiteForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/createNewSiteTmplt.jsp</entry>
+	<entry key="updateSiteForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/updateSiteTmplt.jsp</entry>
 	<entry key="createNewSiteRouteForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/createNewSiteRouteTmplt.jsp</entry>
 	<entry key="editSiteRouteForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/editSiteRouteTmplt.jsp</entry>
 	<entry key="createNewSiteRoutePitchForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/createNewRoutePitchTmplt.jsp</entry>

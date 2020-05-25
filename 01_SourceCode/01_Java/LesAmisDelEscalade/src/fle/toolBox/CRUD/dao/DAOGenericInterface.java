@@ -36,6 +36,8 @@ public interface DAOGenericInterface<E extends ENT, D extends DTO> {
 	public <S extends SFC> void updateSFC(E entity, D DTOCLass, S SFCCLass);
 
 	public <SD extends DTO> SD getSpecificDTOById(E entity, SD specificDTOClass, Integer id);
+	
+	public<O extends Object> List<O> getEntityData(O entity);
 
 	public D getDTOWhereCondition(String fieldName, String condition, E entity, D DTOClass);
 
@@ -113,4 +115,8 @@ public interface DAOGenericInterface<E extends ENT, D extends DTO> {
 			SD SpecificDTOClass);
 
 	public <L extends SLO> List<L> getList(SLO joinClass);
+	
+	public void deleteById(Object toDelete,Integer id);
+	
+	public void removeByID(E entity,Integer id);
 }

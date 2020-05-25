@@ -29,19 +29,19 @@ public class ModelConverter {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public<D extends DTO,S extends SFC>  D converSFCToDTO(S SFCClass,D DTOClass ) {
+	public<D extends DTO,S extends SFC>  D convertSFCToDTO(S SFCClass,D DTOClass ) {
 		return  (D) convertSourceToDestinationType(SFCClass, DTOClass);
 	}
 	
 	
 	@SuppressWarnings("unchecked")
-	public <D extends DTO,S extends SFC> S converDTOToSFC(D DTOClass, S SFCClass) {
+	public <D extends DTO,S extends SFC> S convertDTOToSFC(D DTOClass, S SFCClass) {
 		return  (S) convertSourceToDestinationType(DTOClass, SFCClass);
 		
 	}
 	
 	public<E extends ENT,D extends DTO,S extends SFC> E convertSFCToENT(E entityClass, D DTOClass, S SFCClass) {
-		return convertDTOToEntity(converSFCToDTO(SFCClass, DTOClass), entityClass);
+		return convertDTOToEntity(convertSFCToDTO(SFCClass, DTOClass), entityClass);
 	}
 	
 	@SuppressWarnings("unchecked")

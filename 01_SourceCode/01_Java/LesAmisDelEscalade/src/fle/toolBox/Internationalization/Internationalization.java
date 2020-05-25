@@ -43,18 +43,21 @@ public class Internationalization {
 		}
 		return message;
 	}
-
-	//TODO check if both key are usefull
+//TODO 00-00 MODIF ALL CLASS WHICH NEEDS THE SUFFIX TO IMPLEMENTS SUFFIX ONLY WITH NO "." BEFORE SUFFIX 	
 	/**
 	 * 
-	 * @param field
-	 * @return a string composed of the string str + suffix setted via setSuffix
-	 *         setter
+	 * 
+	 * @return a string composed of the string str +"." suffix setted via setSuffix
+	 *         setter not if this is used do not add mpoint to the suffix
 	 */
 	public String createKey(String str) {
-		return str+getSuffix();
+		return str.concat(".").concat(getSuffix());
 	}
-	
+	/**
+	 * 
+	 @return a string composed of the string str + suffix setted via setSuffix
+	 *         setter
+	 */
 	public String keyFinal(String str) {
 		return str.concat(getSuffix());
 	}

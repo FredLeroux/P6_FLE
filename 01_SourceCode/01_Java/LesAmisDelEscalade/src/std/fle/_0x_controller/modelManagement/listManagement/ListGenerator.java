@@ -1,6 +1,5 @@
 package std.fle._0x_controller.modelManagement.listManagement;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -15,6 +14,8 @@ public interface ListGenerator {
 
 	public List<ClimbingSiteSLO> climbingSiteSLOs();
 
-	public LinkedHashMap<String, Object> getClimbingSiteList();
+	public LinkedHashMap<String, Object> getClimbingSiteListShow();
+	
+	public LinkedHashMap<String,Object> getClimbingSiteListEdit();
 
 }

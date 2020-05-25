@@ -27,7 +27,7 @@ public class ClimbingSiteSLO extends SLO {
 	@Operator(signsArray = { "=" })
 	private String climbingSiteName;
 	@Operator(signsArray = { "=" })
-	@ToTranslate(suffix = ".official")
+	@ToTranslate(suffix = "official")
 	private String official;
 	@Operator(signsArray = { "=","<",">" })
 	private String numberOfRoutes;

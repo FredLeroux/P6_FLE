@@ -21,19 +21,6 @@ filter:blur(2px);
 background-position:center; 
 background-repeat: no-repeat;
 background-size: 100% 100%;
-<<<<<<< HEAD
-}
-
-.headBox{  
-  font-family: header-font,sans-serif;
-  font-size:5vw;
-  font-weight:900;  
-  position: absolute;
-  top: 5%;
-  left: 50%;
-  transform: translate(-50%, -50%);  
-  z-index: 3;
-=======
 z-index: 1;
 }
 
@@ -46,7 +33,6 @@ z-index: 1;
   left: 50%;
   transform: translate(-50%, -50%);  
   z-index: 2;
->>>>>>> refs/heads/AccountAndCreation
   width: 90%;
   height: 10%;
   text-align: center;  

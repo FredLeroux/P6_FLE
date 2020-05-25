@@ -37,6 +37,17 @@ import std.fle._02_dto.assetsClassesDTO.StatesDTO;
 		jspFilePath = "createNewSiteForm.path",
 		labelMessageSourceSuffix = "userForm.label",
 		readOnly = false)
+@SpringFormSettings(
+		action = "updateSite",
+		method = "post",
+		modelAttribute = "siteFullInfoUpdate",
+		name = "siteFullInfoUpdateFormular",
+		propertiesFilePath = "configuration/springFormSettings/formSettings.xml",
+		submitButtonAlignmentPropertyKey = "userFormBtn.align",
+		submitButtonMessagePropertyKey = "userFormBtn.message.updateSite",
+		jspFilePath = "updateSiteForm.path",
+		labelMessageSourceSuffix = "userForm.label",
+		readOnly = false)
 
 @Validated
 public class ClimbingSiteSFC extends SFC {

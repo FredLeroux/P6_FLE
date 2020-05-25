@@ -3,7 +3,6 @@ package std.fle._02_dto.modelsDTO.climbingSiteDTO;
 import java.util.List;
 
 import fle.toolBox.classType.DTO;
-import std.fle._01_entity.models.site.RoutePitch;
 
 public class SiteRoutesDTO extends DTO {
 

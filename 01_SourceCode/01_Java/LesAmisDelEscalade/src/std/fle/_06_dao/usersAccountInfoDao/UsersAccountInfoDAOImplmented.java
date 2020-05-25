@@ -62,7 +62,7 @@ public class UsersAccountInfoDAOImplmented implements UsersAccountInfoDAO {
 
 	@Override
 	public UsersAccountInfo postTransactionTreatment(UsersAccountInfoSFC SFCClass) {
-		UsersAccountInfoDTO dto = dao.converter().converSFCToDTO(SFCClass, usersAccountInfoDTO);
+		UsersAccountInfoDTO dto = dao.converter().convertSFCToDTO(SFCClass, usersAccountInfoDTO);
 		setAccountDefaultValue(dto);
 		return dao.converter().convertDTOToEntity(dto, usersAccountInfo);
 	}
@@ -76,7 +76,7 @@ public class UsersAccountInfoDAOImplmented implements UsersAccountInfoDAO {
 	@Override
 	public UsersAccountInfoUpdateSFC getUserAccountInfoUpdateById(Integer id) {
 		UsersAccountInfoUpdateDTO dto = dao.getSpecificDTOById(usersAccountInfo, updateDTO, id);
-		UsersAccountInfoUpdateSFC sfc = dao.converter().converDTOToSFC(dto, updateSFC);
+		UsersAccountInfoUpdateSFC sfc = dao.converter().convertDTOToSFC(dto, updateSFC);
 		sfc.setAccountMemberStatus(dto.getMember().toString());
 		fieldsTranslator.translateFieldValue(sfc);
 		return sfc;
@@ -87,7 +87,7 @@ public class UsersAccountInfoDAOImplmented implements UsersAccountInfoDAO {
 		UsersAccountinfoMemberStatusDTO dto = dao.getSpecificDTOById(usersAccountInfo, usersAccountinfoMemberStatusDTO,
 				id);
 		System.out.println(dto.getSecurity());
-		UsersAccountInfoMemberStatusSFC sfc = dao.converter().converDTOToSFC(dto, usersAccountInfoMemberStatusSFC);
+		UsersAccountInfoMemberStatusSFC sfc = dao.converter().convertDTOToSFC(dto, usersAccountInfoMemberStatusSFC);
 		fieldsTranslator.translateFieldValue(sfc);
 		return sfc;
 	}
@@ -121,7 +121,7 @@ public class UsersAccountInfoDAOImplmented implements UsersAccountInfoDAO {
 	@Override
 	public UsersAccountInfoSFC getSFCById(Integer id) {
 		UsersAccountInfoDTO dto = getDTOByID(id);
-		UsersAccountInfoSFC sfc = dao.converter().converDTOToSFC(dto, usersAccountInfoSFC);
+		UsersAccountInfoSFC sfc = dao.converter().convertDTOToSFC(dto, usersAccountInfoSFC);
 		return sfc;
 	}
 
@@ -148,7 +148,7 @@ public class UsersAccountInfoDAOImplmented implements UsersAccountInfoDAO {
 	@Override
 	public UsersAccountInfo converteUpdateSFCToEntity(UsersAccountInfoUpdateSFC updatedSFC) {
 		UsersAccountInfoUpdateDTO dto = dao.converter()
-				.converSFCToDTO(converteSFCMembersStatusValueToBooleanValue(updatedSFC), updateDTO);
+				.convertSFCToDTO(converteSFCMembersStatusValueToBooleanValue(updatedSFC), updateDTO);
 		return dao.converter().convertDTOToEntity(dto, usersAccountInfo);
 	}
 

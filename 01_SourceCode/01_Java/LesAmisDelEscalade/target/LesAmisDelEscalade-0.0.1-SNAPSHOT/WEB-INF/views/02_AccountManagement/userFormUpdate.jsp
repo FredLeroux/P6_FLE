@@ -23,7 +23,7 @@ window.onload = function displayWhenReady() {
 	  document.getElementById("budy").style.visibility= "visible";
 	}
 	var loadModal = newLoadModal();
-	loadModal.addButtonOnclickParentModalToggle("updateFormular");		
+	loadModal.addButtonOnclickParentModalToggle("userUpdateFormularButton");		
 	</script>
 </body>
 </html>

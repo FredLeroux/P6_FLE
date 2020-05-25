@@ -20,10 +20,8 @@ import std.fle._01_entity.assetsClasses.ClimbingLevels;
 @Table(name = "route_pitch", schema = "cliff")
 public class RoutePitch extends ENT {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	
+	private static final long serialVersionUID = -6989511966381442698L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,6 +35,7 @@ public class RoutePitch extends ENT {
 	@JoinColumn(name = "french_climbing_level_fk")
 	private ClimbingLevels climbingLevels;
 	
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "site_route_fk")
 	private SiteRoutes siteRoutes;

@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.springframework.validation.BindingResult;
 
-import fle.toolBox.springFormManager.springMVCValidation.tools.SpringValidationError;
 import std.fle._03_sfc.climbingSiteSFC.ClimbingSiteSFC;
 import std.fle._03_sfc.climbingSiteSFC.RoutePitchSFC;
 import std.fle._03_sfc.climbingSiteSFC.SiteRoutesSFC;

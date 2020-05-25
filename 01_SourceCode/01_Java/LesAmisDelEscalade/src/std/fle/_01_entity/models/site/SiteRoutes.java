@@ -14,6 +14,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import fle.toolBox.classType.ENT;
 
 @Entity
@@ -35,7 +38,8 @@ public class SiteRoutes extends ENT {
 	@OneToMany(mappedBy = "siteRoutes",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private List<RoutePitch> routePitchs;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@ManyToOne(cascade = CascadeType.ALL)	
 	@JoinColumn(name = "climbing_site_fk")
 	private ClimbingSite climbingSite;
 	

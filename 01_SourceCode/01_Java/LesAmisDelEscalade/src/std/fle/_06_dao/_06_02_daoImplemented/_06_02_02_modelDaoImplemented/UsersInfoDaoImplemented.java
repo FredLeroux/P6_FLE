@@ -67,7 +67,7 @@ public class UsersInfoDaoImplemented implements UsersInfoDAO {
 	@Override
 	public UsersInfoSFC getSFCById(Integer id) {
 		UsersInfoDTO dto = dao.getDTOByForeignerKey("userAccountInfo", id, usersInfo, usersInfoDTO);
-		UsersInfoSFC sfc = dao.converter().converDTOToSFC(dto, usersInfoSFC);
+		UsersInfoSFC sfc = dao.converter().convertDTOToSFC(dto, usersInfoSFC);
 		setForeignKeys(dto, sfc);
 		return sfc;
 	}
@@ -80,7 +80,7 @@ public class UsersInfoDaoImplemented implements UsersInfoDAO {
 
 	@Override
 	public UsersInfo postTransactionTreatment(UsersInfoSFC userInfoSFC) {
-		UsersInfoDTO dto = dao.converter().converSFCToDTO(userInfoSFC, usersInfoDTO);
+		UsersInfoDTO dto = dao.converter().convertSFCToDTO(userInfoSFC, usersInfoDTO);
 		conditionnalAssetsValues(userInfoSFC, dto);
 		fillAssets(dto);
 		return dao.converter().convertDTOToEntity(dto, usersInfo);

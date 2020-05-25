@@ -88,8 +88,8 @@ color: var(--menu-text-color);
 
 .list>li a {
 	display: block;
-	padding-left: 2vw;
-	font-size: 1.5vw;
+	padding-left: 1vw;
+	font-size: 1.4vw;
 	font-family: menu-font;
 	font-weight: bold;
 	cursor: pointer;
@@ -101,7 +101,7 @@ color: var(--menu-text-color);
 
 .list>li a:hover {
 	color: var(--menu-text-hover-color);
-	font-size: 1.5vw;	
+	/*font-size: 1.5vw;	*/
 }
 
 
@@ -110,10 +110,10 @@ color: var(--menu-text-color);
 
 @media all and (max-width: 1400px) {
 	.list>li a, .connexion {
-		font-size: 1.5vw;
+		font-size: 1.4vw;
 	}
 	.list>li a:hover, .connexion {
-		font-size: 1.5vw;
+		font-size: 1.4vw;
 	}
 }
 
@@ -131,15 +131,16 @@ color: var(--menu-text-color);
 		border: solid;
 		border-color: var(--menu-border-color);
 	}
-	.connexion {
+	/*.connexion {
 		font-size: 2vw;
-	}
+	}*/
 	.list>li a:hover {
-		font-size: 2vw;
-		border: solid;
-		border-color: var(--menu-border-hover-color);
+		font-size: 1.4vw;
+		/*border: solid;*/
+		background-color: var(--menu-border-hover-color);
+	/*	border-color: var(--menu-border-hover-color);*/
 	}
 	.connexion:hover {
-		font-size: 2vw;
+		font-size: 1.4vw;
 	}
 }

@@ -38,29 +38,29 @@ public class SpringMVCValidationImplemented implements SpringMVCValidation {
 	 * add error to Bindingresult if @unique annotated field is not unique
 	 */
 	@Override
-	public void SpringMVCValidationCheck(Object cOI, BindingResult result) {
+	public void SpringMVCValidationCheck(Object cOI, String modelAttributeName,BindingResult result) {
 		if (ModelAssociationClass.check(cOI)) {
-			associatedModelValidation(cOI, result);
+			associatedModelValidation(cOI,modelAttributeName, result);
 		} else {
-			simpleModelValidation(cOI, result);
+			simpleModelValidation(cOI,modelAttributeName, result);
 		}
 	}
 
-	private void associatedModelValidation(Object cOI, BindingResult result) {
+	private void associatedModelValidation(Object cOI,String modelAttributeName, BindingResult result) {
 		for (Field field : ClassFields.getAllFields(cOI)) {
 			String entityName = field.getName();
 			Object clazz = ClassFieldsSetAndGet.getFieldValue(cOI, entityName); // getFieldValue(field, cOI);
 			for (Field subField : ClassFields.getAllFields(clazz)) {
 				ClassFieldsSetAndGet.getFieldValue(clazz, subField.getName());
-				uniqueVal.associatedModelNumericFieldValidation(subField, clazz, entityName, result);
+				uniqueVal.associatedModelNumericFieldValidation(subField, clazz, entityName,modelAttributeName, result);
 				numVal.associatedModelNumericFieldValidation(subField, clazz, entityName, result);
 			}
 		}
 	}
 
-	private void simpleModelValidation(Object cOI, BindingResult result) {
+	private void simpleModelValidation(Object cOI,String modelAttributeName, BindingResult result) {
 		for (Field field : ClassFields.getAllFields(cOI)) {
-			uniqueVal.simpleModelNumericFieldAnnotation(cOI, field, result);
+			uniqueVal.simpleModelNumericFieldAnnotation(cOI, field,modelAttributeName, result);
 			numVal.simpleModelNumericFieldAnnotation(cOI, field, result);
 		}
 

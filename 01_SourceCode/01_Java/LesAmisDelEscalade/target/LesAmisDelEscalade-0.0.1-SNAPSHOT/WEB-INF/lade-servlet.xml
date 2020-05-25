@@ -52,12 +52,8 @@
 		</list> </property> <property name="ignoreResourceNotFound" value="true"></property> 
 		<property name="ignoreUnresolvablePlaceholders" value="true"></property> 
 		</bean> -->
-<<<<<<< HEAD
-	<context:component-scan base-package="std.fle"></context:component-scan>
-=======
 	<context:component-scan
 		base-package="std.fle,fle.toolBox"></context:component-scan>
->>>>>>> refs/heads/AccountAndCreation
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -75,10 +71,7 @@
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
 				<prop key="hibernate.format_sql">${hibernate.formatSql}</prop>
 				<prop key="hibernate.show_sql">${hibernate.showSql}</prop>
-<<<<<<< HEAD
-=======
 				<prop key="hibernate.default_schema>">cliff</prop>
->>>>>>> refs/heads/AccountAndCreation
 			</props>
 		</property>
 		<property name="packagesToScan"
@@ -160,23 +153,10 @@
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basenames">
 			<list>
-<<<<<<< HEAD
-				<value>${messageSrc.path}${configuration.fileNamePattern}
-=======
 				<value>${jspCompomentsMessagesSrc.path}${configuration.fileNamePattern}
->>>>>>> refs/heads/AccountAndCreation
 				</value>
-<<<<<<< HEAD
-				<value>${messageSrc.path}${menuNavBar.fileNamePattern}
-=======
 				<value>${jspCompomentsMessagesSrc.path}${menuNavBar.fileNamePattern}
->>>>>>> refs/heads/AccountAndCreation
 				</value>
-<<<<<<< HEAD
-				<value>${messageSrc.path}${head.fileNamePattern}
-				</value>
-				<value>${messageSrc.path}${logModal.fileNamePattern}
-=======
 				<value>${jspCompomentsMessagesSrc.path}${head.fileNamePattern}
 				</value>
 				<value>${jspCompomentsMessagesSrc.path}${logModal.fileNamePattern}
@@ -196,7 +176,6 @@
 				<value>${validationMessages.path}${validationMessages.filePattern}
 				</value>
 				<value>${mailContentMessages.path}${mailContentMessages.filePattern}
->>>>>>> refs/heads/AccountAndCreation
 				</value>
 			</list>
 
@@ -215,10 +194,7 @@
 		mapping="/jspCompomentsFiles/*" />
 	<mvc:resources location='${toolBox.javascript}'
 		mapping="/toolBoxJavaScript/*" />
-<<<<<<< HEAD
-=======
 	<mvc:resources location="${cssFiles.path}"
 		mapping="/cssFiles/**"></mvc:resources>
->>>>>>> refs/heads/AccountAndCreation
 
 </beans>
