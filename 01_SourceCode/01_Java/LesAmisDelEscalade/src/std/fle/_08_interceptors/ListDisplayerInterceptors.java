@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import fle.toolBox.FredParser;
 import std.fle._0X_security.AccesGranting;
 import std.fle._0x_controller.modelManagement.listManagement.ListGenerator;
 
@@ -30,8 +31,10 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 	private final String membersListType = "members";
 	private final String climbingSiteShowListType = "climbingSitesShow";
 	private final String climbingSiteEditListType = "climbingSitesEdit";
+	private final String climbingSiteCommentsType = "climbingSitesComments";	
 	private final String forbiddenMessageURI = "/03_messagesPages/accesDenied";
 	private String listInitiate =null;
+	private String siteIdForComment = null;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -55,6 +58,9 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 		if(isClimbingSiteEditType(listInitiate)) {
 			map=listGenerator.getClimbingSiteListEdit();
 		}
+		if(isClimbingSiteCommentsType(listInitiate)) {		
+			map=listGenerator.getclimbingSiteCommentsSLOList(getId(request));
+		}
 		request.setAttribute("map", map);
 		return true;
 	}
@@ -70,10 +76,16 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 	private boolean isClimbingSiteEditType(String listType) {
 		return climbingSiteEditListType.equals(listType);
 	}
+	
+	private boolean isClimbingSiteCommentsType(String listType) {
+		return climbingSiteCommentsType.equals(listType);
+	}
 
 	private void redirectToForbiddenMessage(HttpServletRequest request,HttpServletResponse response) {
 		dispatch(request,response, forbiddenMessageURI);	
 	}
+	
+	
 
 	private void dispatch(HttpServletRequest request,HttpServletResponse response, String redirectURL) {
 		RequestDispatcher dispatcher;
@@ -84,6 +96,18 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
+	}
+	
+	private Integer getId(HttpServletRequest request) {
+		Integer id = null;
+		System.out.println(request.getParameter("id"));
+		if(request.getParameter("id") == null) {
+			id =FredParser.toInteger(siteIdForComment);  ;
+		}else {
+			siteIdForComment = request.getParameter("id");
+			id= FredParser.toInteger(siteIdForComment);			
+		}	
+		return id;
 	}
 
 }

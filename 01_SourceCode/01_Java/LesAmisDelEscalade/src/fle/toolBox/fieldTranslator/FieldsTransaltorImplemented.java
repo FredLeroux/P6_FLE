@@ -11,18 +11,8 @@ import fle.toolBox.dataListDisplayerTools.annotations.ToTranslate;
 import fle.toolBox.fieldsReflectivity.extractSetAndGetComponents.ClassFields;
 import fle.toolBox.fieldsReflectivity.extractSetAndGetComponents.ClassFieldsSetAndGet;
 
-//TODO javaDOC
-/**
- * 
- * @author Frederic Leroux <br>
- * @version 1.0
- * @apiNote For all declared class field @ToTranslate annotated allow to
- *          translate a field value usng MessageSource property key and so
- *          Internationlizing it Note : in prperties file if the opposite is
- *          present we can do the rever i.e. if key is true.ismember -> oui then
- *          if we add the opposite oui.ismember -> true we can go in both
- *          direction fron trad to not trad vice versa
- */
+
+
 @Service
 public class FieldsTransaltorImplemented implements FieldsTranslator {
 
@@ -36,7 +26,7 @@ public class FieldsTransaltorImplemented implements FieldsTranslator {
 		
 		for (Field field : fields(entity)) {
 			ClassFieldsSetAndGet.setField(entity, field.getName(), localMessage.message(parseValue(field, entity)));
-			System.out.println(field.getName());
+			
 			
 		}
 	}

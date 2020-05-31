@@ -35,8 +35,8 @@ public class RoutePitch extends ENT {
 	@JoinColumn(name = "french_climbing_level_fk")
 	private ClimbingLevels climbingLevels;
 	
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@ManyToOne(cascade = CascadeType.ALL)
+	//@OnDelete(action = OnDeleteAction.CASCADE)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "site_route_fk")
 	private SiteRoutes siteRoutes;
 

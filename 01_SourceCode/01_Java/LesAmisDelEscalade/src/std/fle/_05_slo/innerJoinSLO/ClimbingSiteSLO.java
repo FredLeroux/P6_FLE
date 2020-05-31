@@ -5,10 +5,12 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
 import fle.toolBox.classType.SLO;
+import fle.toolBox.dataListDisplayerTools.annotations.NotAListFilter;
 import fle.toolBox.dataListDisplayerTools.annotations.Operator;
 import fle.toolBox.dataListDisplayerTools.annotations.ToTranslate;
 
-@NamedQuery(name = "ClimbingSiteSLO", query = "SELECT A.id,B.stateName,C.countyName,A.climbingSiteName,A.official,A.numberOfRoutes"
+@NamedQuery(name = "ClimbingSiteSLO", 
+query = "SELECT A.id,B.stateName,C.countyName,A.climbingSiteName,A.official,A.numberOfRoutes"
 		+ " FROM ClimbingSite A "
 		+ " INNER JOIN States B ON A.state =B.id"
 		+ " INNER JOIN Counties C ON A.county =C.id"
@@ -29,7 +31,7 @@ public class ClimbingSiteSLO extends SLO {
 	@Operator(signsArray = { "=" })
 	@ToTranslate(suffix = "official")
 	private String official;
-	@Operator(signsArray = { "=","<",">" })
+	@Operator(signsArray = { "=","<",">" })	
 	private String numberOfRoutes;
 	public Integer getId() {
 		return id;

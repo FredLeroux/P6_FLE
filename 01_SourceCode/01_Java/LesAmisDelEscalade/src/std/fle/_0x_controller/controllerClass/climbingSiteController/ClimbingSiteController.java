@@ -20,7 +20,7 @@ import std.fle._0x_controller.modelManagement.climbingSiteModelManagement.Climbi
 
 @Controller
 public class ClimbingSiteController extends ClimbingSiteModelMgntAndControllerVar {
-/*
+
 	
 	@Autowired
 	ClimbingSiteModelManagement manager;
@@ -30,12 +30,12 @@ public class ClimbingSiteController extends ClimbingSiteModelMgntAndControllerVa
 		return manager.createNewSiteFormVarInit();//
 	}
 
-/*	@GetMapping(value = "04_listPage/climbingSiteEdit/{id}")
+	@GetMapping(value = "04_listPage/climbingSiteEdit/{id}")
 	public ModelAndView climbingSiteEdit(@PathVariable Integer id) {
 		return manager.updateFormVarInit(id);
 	}
-*/
-/*	@GetMapping("06_climbingSite/climbingSiteForm")
+
+	@GetMapping("06_climbingSite/climbingSiteForm")
 	public ModelAndView backToCreateNewSiteForm(ModelAndView model,
 			@ModelAttribute(name = "siteFullInfo") ClimbingSiteSFC climbingSiteSFC) {
 		return manager.manageClimbingSiteForm(model, climbingSiteSFC);
@@ -125,7 +125,7 @@ public class ClimbingSiteController extends ClimbingSiteModelMgntAndControllerVa
 	@GetMapping("06_climbingSite/" + routePitchEditController)
 	public ModelAndView routePitchEditDisplay(ModelAndView model,
 			@ModelAttribute(name = "editRoutePitch") RoutePitchSFC routePitchSFC) {
-		return manager.manageRoutePitchsModification(model, routePitchSFC);
+		return manager.manageDisplayRoutePitchsEditForm(model, routePitchSFC, "editRoutePitch");
 	}
 
 	@PostMapping("06_climbingSite/routePitchModification")
@@ -152,5 +152,10 @@ public class ClimbingSiteController extends ClimbingSiteModelMgntAndControllerVa
 			BindingResult result, HttpServletRequest request) {
 		return manager.manageUpdateClimbingSite(model, climbingSiteSFC, "siteFullInfoUpdate", result);
 	}
-*/
+	
+	@GetMapping("06_climbingSite/deleteSite")
+	public ModelAndView deleteSite(ModelAndView model) {
+		return manager.manageClimbingSiteDelete(model);
+	}
+
 }

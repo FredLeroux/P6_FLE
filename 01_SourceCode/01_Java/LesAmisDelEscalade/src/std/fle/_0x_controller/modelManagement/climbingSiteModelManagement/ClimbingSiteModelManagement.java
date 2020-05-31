@@ -1,5 +1,6 @@
 package std.fle._0x_controller.modelManagement.climbingSiteModelManagement;
 
+import org.json.JSONArray;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,6 +14,8 @@ public interface ClimbingSiteModelManagement {
 	public ModelAndView createNewSiteFormVarInit();
 
 	public ModelAndView updateFormVarInit(Integer id);
+	
+	public ModelAndView displayFormVarInit(ModelAndView model,Integer id,String redirectURI);
 
 	public ModelAndView manageClimbingSiteForm(ModelAndView model, ClimbingSiteSFC climbingSiteSFC);
 
@@ -62,5 +65,11 @@ public interface ClimbingSiteModelManagement {
 	public ModelAndView manageRoutePitchsModification(ModelAndView model, RoutePitchSFC routePitchSFC);
 
 	public ModelAndView manageDeleteRoutePitch(ModelAndView model, RoutePitchSFC routePitchSFC);
+	
+	public ModelAndView manageDisplayClimBingSiteDetails(ModelAndView model);
+	
+	public JSONArray getPageAsJSONArray(Integer currentPage);
+	
+	public ModelAndView managePostComment(String requestCommentParameterName);
 
 }

@@ -66,10 +66,12 @@ public class DataListDisplayImplemented implements DataListDisplay {
 		frontViewList.initializingComponents(list, request, messageSource, frontViewList.getRowsPerPagesList(),
 				frontViewList.getDefaultRowsPerPages(),internationalizationSuffix);
 		frontView.setViewName(forwardTo(frontViewAddObjectHandlerName));
+		frontViewList.setFieldName(null);
 		return frontView;
 	}
 
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public ModelAndView setDataToDisplay(String frontViewAddObjectHandlerName) {
 		frontView.setViewName(redirectTo(frontViewAddObjectHandlerName));

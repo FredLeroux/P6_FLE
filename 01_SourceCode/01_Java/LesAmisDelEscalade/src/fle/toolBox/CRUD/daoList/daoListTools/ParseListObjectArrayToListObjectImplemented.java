@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.Query;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,11 +25,21 @@ public class ParseListObjectArrayToListObjectImplemented implements ParseListObj
 	HibernateSession hibernate;
 
 	
-	@Override
-	@SuppressWarnings("unchecked")
+	@Override	
 	public<O extends Object> List<O> namedQueryParsedList(O joinClass) {		
-		List<O> parsedList = (List<O>) queryList(joinClass).stream().map(o -> streamParser(o, joinClass)).collect(Collectors.toList());
-		return parsedList;
+		//List<O> parsedList = (List<O>) queryList(joinClass).stream().map(o -> streamParser(o, joinClass)).collect(Collectors.toList());
+		return listParser(queryList(joinClass), joinClass);
+	}
+	@Override
+	public<O extends Object> List<O> namedQueryWithIdParameterParsedList(O joinClass,String namedQueryParameter, Integer id){
+		//List<O> parsedList = queryListById(joinClass, namedQueryParameter, id);
+		return listParser(queryListById(joinClass, namedQueryParameter, id), joinClass);
+	}
+	
+	@SuppressWarnings("unchecked")
+	private<O extends Object> List<O> listParser(List<Object[]> list,O joinClass){
+		List<O> parsed = (List<O>) list.stream().map(o -> streamParser(o, joinClass)).collect(Collectors.toList());
+		return parsed;
 	}
 	
 	
@@ -35,6 +47,15 @@ public class ParseListObjectArrayToListObjectImplemented implements ParseListObj
 	private<O extends Object> List<Object[]> queryList(O joinClass){
 		return hibernate.session().createNamedQuery(joinClass.getClass().getSimpleName())
 				.getResultList();
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	private<O extends Object> List<Object[]> queryListById(O joinClass,String namedQueryParameter, Integer id){		
+		Query query = hibernate.session().createNamedQuery(joinClass.getClass().getSimpleName());
+		System.out.println(query.toString());
+		query.setParameter(namedQueryParameter, id);
+		return  query.getResultList();		
 	}
 
 	@SuppressWarnings("unchecked")

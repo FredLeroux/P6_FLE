@@ -16,6 +16,8 @@
 <jstl:set var="lvl" scope="page" value="${pitch.climbingLevels}"/>
 			<li><a href="${routePitchEditController}">${pitch.pitchNumber}->${lvl.cotationLevel}</a></li>
 		</jstl:forEach>
+
+<button  onclick="window.location.href='${cancel}'">CANCEL</button>
 <br>
 <br>
 </body>

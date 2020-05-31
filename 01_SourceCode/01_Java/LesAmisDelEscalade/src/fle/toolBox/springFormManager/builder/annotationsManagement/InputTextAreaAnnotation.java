@@ -4,11 +4,13 @@ public class InputTextAreaAnnotation {
 	
 	private Integer rows;
 	private Integer cols;
+	private boolean readOnly;
 	
 	
-	public InputTextAreaAnnotation(int rows,int cols) {
+	public InputTextAreaAnnotation(int rows,int cols,boolean readOnly) {
 		this.rows =rows;
 		this.cols=cols;
+		this.readOnly = readOnly;
 	}
 	
 	public int getRows() {
@@ -23,6 +25,17 @@ public class InputTextAreaAnnotation {
 	public void setCols(int cols) {
 		this.cols = cols;
 	}
+
+	public boolean isReadOnly() {
+		return readOnly;
+	}
+
+	public void setReadOnly(boolean readOnly) {
+		this.readOnly = readOnly;
+	}
+
+	
+	
 	
 	
 

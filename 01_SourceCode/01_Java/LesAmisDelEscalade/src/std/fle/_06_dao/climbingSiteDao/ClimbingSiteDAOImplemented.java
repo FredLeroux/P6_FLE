@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import fle.toolBox.FredParser;
 import fle.toolBox.CRUD.dao.DAOGenericInterface;
+import fle.toolBox.fieldTranslator.FieldsTranslator;
 import fle.toolBox.localeKeyToBoolean.StringToBoolean;
 import std.fle._01_entity.models.site.ClimbingSite;
 import std.fle._02_dto.assetsClassesDTO.ClimbingLevelsDTO;
@@ -20,6 +21,7 @@ import std.fle._02_dto.assetsClassesDTO.StatesDTO;
 import std.fle._02_dto.modelsDTO.climbingSiteDTO.ClimbingSiteDTO;
 import std.fle._02_dto.modelsDTO.climbingSiteDTO.RoutePitchDTO;
 import std.fle._02_dto.modelsDTO.climbingSiteDTO.SiteRoutesDTO;
+import std.fle._03_sfc.climbingSiteSFC.ClimbingSiteDisplaySFC;
 import std.fle._03_sfc.climbingSiteSFC.ClimbingSiteSFC;
 import std.fle._03_sfc.climbingSiteSFC.RoutePitchSFC;
 import std.fle._03_sfc.climbingSiteSFC.SiteRoutesSFC;
@@ -45,12 +47,16 @@ public class ClimbingSiteDAOImplemented implements ClimbingSiteDAO {
 	@Autowired
 	StringToBoolean stringToBoolean;
 
+	@Autowired
+	FieldsTranslator translator;
+
 	private ClimbingSite climbingSite = new ClimbingSite();
 	private ClimbingSiteDTO climbingSiteDTO = new ClimbingSiteDTO();
-	private SiteRoutesDTO siteRoutesDTO = new SiteRoutesDTO();
-	private RoutePitchDTO routePitchDTO = new RoutePitchDTO();
 	private ClimbingSiteSFC climbingSiteSFC = new ClimbingSiteSFC();
+	private ClimbingSiteDisplaySFC climbingSiteDisplaySFC = new ClimbingSiteDisplaySFC();
+	private SiteRoutesDTO siteRoutesDTO = new SiteRoutesDTO();
 	private SiteRoutesSFC siteRoutesSFC = new SiteRoutesSFC();
+	private RoutePitchDTO routePitchDTO = new RoutePitchDTO();
 	private RoutePitchSFC routePitchSFC = new RoutePitchSFC();
 
 	@Override
@@ -137,10 +143,44 @@ public class ClimbingSiteDAOImplemented implements ClimbingSiteDAO {
 	private CountiesDTO getCountiesDTO(Integer countyId) {
 		return countiesDao.getDTOByID(countyId);
 	}
-	
+
 	@Override
 	public void climbingSiteDelete(Integer id) {
 		dao.removeByID(climbingSite, id);
+	}
+
+	@Override
+	public ClimbingSiteDisplaySFC getClimbingSiteDisplaySFCById(Integer id) {
+		ClimbingSiteDTO dto = getClimbingSiteDTOById(id);
+		ClimbingSiteDisplaySFC sfc = dao.converter().convertDTOToSFC(dto, climbingSiteDisplaySFC);
+		sfc.setClimbingSiteStateId(getStatesDTO(dto.getState().getId()).getStateName());
+		sfc.setClimbingSiteCountyId(getCountiesDTO(dto.getCounty().getId()).getCountyName());
+		translator.translateFieldValue(sfc);
+		return sfc;
+	}
+
+	@Override
+	public List<RoutePitchSFC> sortedRoutePitchsSFCWithCotationLevelAsString(String key,
+			Map<String, List<RoutePitchSFC>> routePitchsMap) {
+		ArrayList<RoutePitchSFC> listToConvert = new ArrayList<>(); 
+		List<RoutePitchSFC> list = sortedRoutePitchsSFCList(key, routePitchsMap);
+		list.forEach(o -> listToConvert.add(convertedClimbingLevelSFCIdToCotation(o.getId(), o.getPitchNumber(), o.getPitchClimbingLevels())));
+		return listToConvert;
+	}
+	
+	@Override
+	public List<RoutePitchSFC> sortedRoutePitchsSFCWithCotationLevelAsString(List<RoutePitchSFC> list) {
+		ArrayList<RoutePitchSFC> listToConvert = new ArrayList<>(); 		
+		list.forEach(o -> listToConvert.add(convertedClimbingLevelSFCIdToCotation(o.getId(), o.getPitchNumber(), o.getPitchClimbingLevels())));
+		return listToConvert;
+	}
+	
+	private RoutePitchSFC convertedClimbingLevelSFCIdToCotation(Integer id, String pitchNumber, String pitchClimbingLevels) {
+		RoutePitchSFC pitch = new RoutePitchSFC();
+		pitch.setId(id);
+		pitch.setPitchNumber(pitchNumber);
+		pitch.setPitchClimbingLevels(getClimbinglevelDTO(pitchClimbingLevels).getCotationLevel());
+		return pitch;
 	}
 
 	@Override
@@ -172,8 +212,14 @@ public class ClimbingSiteDAOImplemented implements ClimbingSiteDAO {
 	@Override
 	public List<RoutePitchSFC> sortedRoutePitchsSFCList(String key, Map<String, List<RoutePitchSFC>> routePitchsMap) {
 		List<RoutePitchSFC> list = routePitchsMap.get(key);
-		Collections.sort(list, (o1, o2) -> o1.getPitchNumber().compareTo(o2.getPitchNumber()));
-		return list;
+		
+		return  sorteRoutePitchList(list);
+	}
+	
+	private List<RoutePitchSFC> sorteRoutePitchList(List<RoutePitchSFC> list) {
+		List<RoutePitchSFC> sortedList = new ArrayList<>(list);
+		Collections.sort(sortedList, (o1, o2) -> o1.getPitchNumber().compareTo(o2.getPitchNumber()));
+		return sortedList;
 	}
 
 	@Override
@@ -201,8 +247,9 @@ public class ClimbingSiteDAOImplemented implements ClimbingSiteDAO {
 	public Map<String, List<RoutePitchSFC>> getRoutePitchsMapByClimbingSiteId(Integer id) {
 		return routePitchSFCMapByClimbingSiteId(getClimbingSiteDTOById(id));
 	}
-
-	private ClimbingSiteDTO getClimbingSiteDTOById(Integer id) {
+	
+	@Override
+	public ClimbingSiteDTO getClimbingSiteDTOById(Integer id) {
 		ClimbingSiteDTO dto = dao.converter().convertEntityToDTO(getClimbingSiteById(id), climbingSiteDTO);
 		return dto;
 	}

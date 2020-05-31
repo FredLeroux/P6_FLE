@@ -1,4 +1,4 @@
-package std.fle._0x_controller.controllerClass.climbingSiteController;
+package std.fle._0x_controller.controllerClass.climbingSiteController.bugOnController;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,7 +18,7 @@ import std.fle._0x_controller.modelManagement.climbingSiteModelManagement.Climbi
 import std.fle._0x_controller.modelManagement.climbingSiteModelManagement.ClimbingSiteModelMgntAndControllerVar;
 
 @Controller
-@RequestMapping(value = {"/climbingSite","/04_listPage"})/* /04_listPage used for climbingSiteEdit called from listPage*/
+@RequestMapping(value = {"/climbingSite"})/* add /04_listPage allow use for climbingSiteEdit called from listPage*/
 public class ClimbingSiteCont extends ClimbingSiteModelMgntAndControllerVar {
 
 	@Autowired
@@ -31,6 +31,7 @@ public class ClimbingSiteCont extends ClimbingSiteModelMgntAndControllerVar {
 
 	@GetMapping(value = "/climbingSiteEdit/{id}")
 	public ModelAndView climbingSiteEdit(@PathVariable Integer id) {
+		System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++herer");
 		return manager.updateFormVarInit(id);
 	}
 
@@ -43,6 +44,7 @@ public class ClimbingSiteCont extends ClimbingSiteModelMgntAndControllerVar {
 	@GetMapping("/climbingSiteUpdateForm")
 	public ModelAndView climbingSiteUpadteForm(ModelAndView model,
 			@ModelAttribute(name = "siteFullInfoUpdate") ClimbingSiteSFC climbingSiteSFC) {
+		System.out.println("****************************************************************************herer");
 		return manager.manageClimbingSiteUpdateForm(model);
 
 	}

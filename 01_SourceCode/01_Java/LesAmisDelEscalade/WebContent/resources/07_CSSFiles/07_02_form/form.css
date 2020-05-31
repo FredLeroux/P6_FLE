@@ -2,7 +2,7 @@
 	url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_01_appSkin.css");
 
 /* ###############  START : set input and select box size identical ###################*/
-input, select {
+input, select,textarea {
 	-webkit-box-sizing: border-box;
 	-ms-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -12,7 +12,7 @@ input, select {
 @
 supports (-ms-ime-align:auto ) { 
 .selector {
-	input,select{ box-sizing:border-box;
+	input,select,textarea{ box-sizing:border-box;
 	
 }
 .tableForm{
@@ -32,6 +32,8 @@ supports (-ms-ime-align:auto ) {
 	width: 100%;
 	margin: auto;
 }
+
+
 
 .trForm2{
 	display:table-row;	
@@ -72,31 +74,44 @@ color: var(--base-color);
 
 .labelStyleHide{
 	display: none;
-	color: blue;
+	
 }
 
 
 .inputStyle {
 	border: solid;
-	border-style: thin dashed;
+	border-width: thin ;
+	border-radius: 15px;	
 	border-color: var(--base-color);
-	width:90%;
+	padding-left: 10px;
+	width:95%;
+	background-color: WhiteSmoke;
+	
 }
 
 .inputStyleBad {
 	border: solid;
-	border-style: thin dashed;
+	border-width: thin ;
 	border-color: var(--bad-color);
-	width: 90%;	
+	border-radius: 15px;
+	padding-left: 10px;
+	width:95%
 }
 
-input[readonly = "readonly"] {
+input[readonly = "readonly"],textarea[readonly = "readonly"]  {
 	cursor: not-allowed;
+	
 }
 
 textarea{
 	resize: none;
 }
+
+option{
+	width: 90%;
+}
+
+
 
 .formButton{
 	text-decoration: none;

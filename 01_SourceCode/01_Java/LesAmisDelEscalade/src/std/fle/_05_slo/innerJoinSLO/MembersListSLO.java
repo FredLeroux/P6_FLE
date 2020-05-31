@@ -30,7 +30,7 @@ public class MembersListSLO extends SLO {
 	@DateTimeRawFormat(dateFormatStyle = FormatStyle.LONG)
 	private String signUpDate;
 	@Operator(signsArray = { "=" })
-	@ToTranslate(suffix = ".isMember")
+	@ToTranslate(suffix = "isMember")
 	private String member;
 
 	public Integer getId() {

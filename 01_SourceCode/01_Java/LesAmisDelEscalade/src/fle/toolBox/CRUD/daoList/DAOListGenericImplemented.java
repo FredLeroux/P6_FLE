@@ -29,8 +29,22 @@ public class DAOListGenericImplemented implements DAOListGeneric {
 		List<L> toTrad = null;
 		toTrad = getInnerJoinList(SLOClass);
 		return translator.listI18N(toTrad);
-
 	}
+	
+	@Override
+	public<L extends SLO> List<L> getInnerJoinListById(L SLOClass,String namedQueryParameter, Integer id ){
+		return listParser.namedQueryWithIdParameterParsedList(SLOClass, namedQueryParameter, id);
+	}
+	
+	@Override
+	public<L extends SLO> List<L> getInnerJoinListByIdI18N(L SLOClass,String namedQueryParameter, Integer id){
+		List<L> toTrad = null;
+		toTrad = getInnerJoinListById(SLOClass, namedQueryParameter, id);
+		return translator.listI18N(toTrad);
+	}
+	
+	
+	
 
 	
 

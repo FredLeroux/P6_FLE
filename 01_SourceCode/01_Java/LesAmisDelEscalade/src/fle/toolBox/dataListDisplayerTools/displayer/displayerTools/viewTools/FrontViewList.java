@@ -39,7 +39,6 @@ public class FrontViewList<O extends Object> {
 	private JSONArray emptyArray = new JSONArray();
 	private JSONArray rowsPerPagesListJSONArray = new JSONArray();
 	private Integer rowsPerPagesSelected = 0;
-	// private Integer defaultRowsPerPages = 0;
 	private String empty = "empty";
 	private Integer totalPages = null;
 	private Integer page = 0;
@@ -47,8 +46,7 @@ public class FrontViewList<O extends Object> {
 	private JSONArray pageJump = new JSONArray();
 	private String orderWay = null;
 	private String fieldName = null;
-	// TODO 0-supress 3
-	private Integer[] rowsPerPagesList = { 3, 10, 20, 30 };
+	private Integer[] rowsPerPagesList = { 10, 20, 30 };
 	private Integer defaultRowsPerPages = rowsPerPagesList[1];
 	private String frontViewStoreFilterName = "storeFilter";
 
@@ -72,6 +70,7 @@ public class FrontViewList<O extends Object> {
 	}
 
 	public void setFrontViewStoreFilterName(String frontViewStoreFilterName) {
+		System.out.println(frontViewStoreFilterName);
 		this.frontViewStoreFilterName = frontViewStoreFilterName;
 	}
 	
@@ -284,6 +283,7 @@ public class FrontViewList<O extends Object> {
 	public ModelAndView addRequiredObject(ModelAndView frontView, String jspFolderName, String jspName,
 			String sortListHandlerName, String rowsDisplayedHandlerName, String selectPageHandlerName,
 			String orderListHandlerName, String editHandlerName) {
+		frontView.addObject("reload",false);
 		frontView.addObject("jspName", JspJavaScriptStringParser.parse(jspName));
 		frontView.addObject("sortListHandlerName", JspJavaScriptStringParser.parse(sortListHandlerName));
 		frontView.addObject("editHandlerName", JspJavaScriptStringParser.parse(editHandlerName));
@@ -333,6 +333,7 @@ public class FrontViewList<O extends Object> {
 
 	public void setComponentsToDisplay() {
 		boolean doSetData = true;
+		
 		setEmptyArray(empty);
 		if (getCriteria().isEmpty()) {
 			doSetData = false;

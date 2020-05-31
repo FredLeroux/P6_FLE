@@ -72,6 +72,8 @@ public @interface SpringFormSettings {
 	 * boolean wich set the form as Read Only(true) or Modifiable(false)
 	 */
 	public boolean readOnly();
+	
+	
 
 	/**
 	 * 

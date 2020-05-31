@@ -9,11 +9,11 @@ import org.json.JSONArray;
 import org.springframework.context.MessageSource;
 
 import fle.toolBox.Internationalization.Internationalization;
+import fle.toolBox.dataListDisplayerTools.annotations.NotAListFilter;
 import fle.toolBox.dataListDisplayerTools.annotations.Operator;
 import fle.toolBox.fieldsReflectivity.FieldsAndAnnotation;
+import fle.toolBox.fieldsReflectivity.extractSetAndGetComponents.ClassFields;
 import fle.toolBox.springFormManager.annotations.HiddenPath;
-
-
 
 /**
  * 
@@ -46,7 +46,6 @@ public class ColumnsNamesAndOperators<O extends Object> {
 		inter.setSuffix(suffix);
 	}
 
-
 	private Class<Column> column = Column.class;
 	private Class<Operator> operator = Operator.class;
 	private String splitter = "/";
@@ -72,7 +71,7 @@ public class ColumnsNamesAndOperators<O extends Object> {
 		return fieldManager.fieldAnnotationByFieldName(fieldName, operator).signsArray();
 	}
 
-	public JSONArray createColumnsNamesAndOperatorsListV2( MessageSource messageSource) {
+	public JSONArray createColumnsNamesAndOperatorsListV2(MessageSource messageSource) {
 		FieldsAndAnnotation<O> info = new FieldsAndAnnotation<O>(entityModel);
 		JSONArray columnsNamesAndOperatorsList = new JSONArray();
 		ArrayList<String> fieldsNameList = info.fieldsNameArrayListByAnnotation(column);
@@ -84,8 +83,8 @@ public class ColumnsNamesAndOperators<O extends Object> {
 			for (int j = 0; j < operatorTbl.length; j++) {
 				String operator = operatorTbl[j];
 				String operatorNameInLocalLang = inter.messI18n(inter.createKey(operator), messageSource);
-				columnsNamesAndOperatorsList
-						.put(fieldName + splitter + columnNameInLocalLang + splitter + operator + splitter + operatorNameInLocalLang);
+				columnsNamesAndOperatorsList.put(fieldName + splitter + columnNameInLocalLang + splitter + operator
+						+ splitter + operatorNameInLocalLang);
 			}
 		}
 
@@ -103,10 +102,12 @@ public class ColumnsNamesAndOperators<O extends Object> {
 						.put(fieldName + splitter + columnI18N + splitter + operator + splitter + operatorNameI18N);
 			}
 		}
+		addNotAFilterFields(columnsAndOperatorsListI18N, messageSource);
 		return columnsAndOperatorsListI18N;
 	}
 
 	
+
 	public JSONArray columnsAndOperatorsListI18NWithHiddenPath(HttpServletRequest request,
 			MessageSource messageSource) {
 		fieldManager.setEntityModel(entityModel);
@@ -122,7 +123,26 @@ public class ColumnsNamesAndOperators<O extends Object> {
 						.put(fieldName + splitter + columnI18N + splitter + operator + splitter + operatorNameI18N);
 			}
 		}
+		addNotAFilterFields(columnsAndOperatorsListI18N, messageSource);
 		return columnsAndOperatorsListI18N;
+	}
+	
+	
+	private void addNotAFilterFields(JSONArray columnsAndOperatorsListI18N,MessageSource messageSource) {
+		for (String fieldName : notAListFilterFieldsNameList()) {
+			String columnI18N = inter.messI18n(inter.createKey(fieldName), messageSource);			
+				columnsAndOperatorsListI18N
+						.put(fieldName.concat(".notAFilter") + splitter + columnI18N + splitter + "none" + splitter + "none" );
+			
+		}
+	}
+
+	private ArrayList<String> notAListFilterFieldsNameList() {
+		ArrayList<String> notAListFilterFieldsNameList = new ArrayList<>();
+		System.out.println(ClassFields.getFieldsListByAnnotation(entityModel, NotAListFilter.class));
+		ClassFields.getFieldsListByAnnotation(entityModel, NotAListFilter.class)
+			.forEach(f -> notAListFilterFieldsNameList.add(f.getName()));
+		return notAListFilterFieldsNameList;
 	}
 
 }

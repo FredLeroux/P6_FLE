@@ -207,11 +207,21 @@ public class HomeController {
 	
 	@GetMapping(value="/addSite")
 	public ModelAndView addSite(ModelAndView model) {		
-		model.addObject("iFrameSource", "'climbingSite/createNewSite'");//06_
+		model.addObject("iFrameSource", "'06_climbingSite/createNewSite'");//
 		model.addObject("iFrameLoc","'pagesViewer'");
 		model.setViewName("forward:/navbar");		
 		return model;
 	}
+	
+	@GetMapping(value="/siteHaveBeenCommented")
+	public ModelAndView siteDetails(ModelAndView model) {		
+		model.addObject("iFrameSource", "'06_climbingSite/climbingSiteDetailsDisplay'");//
+		model.addObject("iFrameLoc","'pagesViewer'");
+		model.setViewName("forward:/navbar");		
+		return model;
+	}
+	
+
 	
 	
 }

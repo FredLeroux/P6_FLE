@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fle.toolBox.ConfigurationFileReader;
+import std.fle._05_slo.innerJoinSLO.ClimbingSiteCommentsSLO;
 import std.fle._05_slo.innerJoinSLO.ClimbingSiteSLO;
 import std.fle._05_slo.innerJoinSLO.MembersListSLO;
+import std.fle._07_service.climbingSiteCommentsListService.ClimbingSiteCommentsListService;
 import std.fle._07_service.climbingSiteListService.ClimbingSiteListService;
 import std.fle._07_service.memberListService.MemberListService;
 
@@ -24,18 +26,28 @@ public class ListGeneratorImplemented implements ListGenerator {
 	@Autowired
 	ClimbingSiteListService climbingSiteListService;
 	
+	@Autowired
+	ClimbingSiteCommentsListService climbingSiteCommentsListService;
+	
 	private MembersListSLO members = new MembersListSLO();
 	private ClimbingSiteSLO climbingSiteSLO = new ClimbingSiteSLO();
+	private ClimbingSiteCommentsSLO climbingSiteCommentsSLO =new ClimbingSiteCommentsSLO();
 	private ConfigurationFileReader config = new ConfigurationFileReader("configuration/securitySettings/securitySettings.xml");
 	
 	@Override
 	public List<MembersListSLO> membersList(){		
-		return memberListService.getList();
+		List<MembersListSLO> list = memberListService.getList();
+		return list;
 	}
 	
 	@Override
 	public List<ClimbingSiteSLO> climbingSiteSLOs(){
 		return climbingSiteListService.getList();
+	}
+	
+	@Override 
+	public List<ClimbingSiteCommentsSLO> climbingSiteCommentsSLOs(Integer id){
+		return climbingSiteCommentsListService.getCommentsList(id);
 	}
 	
 	@Override
@@ -55,7 +67,16 @@ public class ListGeneratorImplemented implements ListGenerator {
 		return climbingSiteListGeneric("climbingSiteEdit");
 	}
 	
+		
+	private LinkedHashMap<String,Object> climbingSiteListGeneric(String editControllerURI ){
+		List<ClimbingSiteSLO> list = new ArrayList<>(climbingSiteSLOs());
+		return map(list, climbingSiteSLO, editControllerURI);
+	}
 	
+	@Override
+	public LinkedHashMap<String,Object> getclimbingSiteCommentsSLOList(Integer id){				
+		return map(climbingSiteCommentsSLOs(id), climbingSiteCommentsSLO, "commentEdit");
+	}
 	
 	private LinkedHashMap<String, Object> map(List<?> list, Object clazz,String editControllerURI) {
 		LinkedHashMap<String, Object> map = new LinkedHashMap<>();
@@ -64,12 +85,6 @@ public class ListGeneratorImplemented implements ListGenerator {
 		map.put("editControllerURI",editControllerURI);	
 		return map;
 	}
-	
-	private LinkedHashMap<String,Object> climbingSiteListGeneric(String editControllerURI ){
-		List<ClimbingSiteSLO> list = new ArrayList<>(climbingSiteSLOs());
-		return map(list, climbingSiteSLO, editControllerURI);
-	}
-	
 	
 	
 }

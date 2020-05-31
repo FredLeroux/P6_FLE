@@ -3,20 +3,25 @@ package std.fle._0x_controller.modelManagement.climbingSiteModelManagement;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
 
 import fle.toolBox.FredParser;
+import fle.toolBox.JspJavaScriptStringParser;
 import fle.toolBox.springFormManager.selectInputManagement.controllerClass.SelectInputForController;
 import fle.toolBox.springFormManager.springMVCValidation.SpringMVCValidation;
 import std.fle._03_sfc.climbingSiteSFC.ClimbingSiteSFC;
 import std.fle._03_sfc.climbingSiteSFC.RoutePitchSFC;
 import std.fle._03_sfc.climbingSiteSFC.SiteRoutesSFC;
+import std.fle._06_dao.climbingSiteCommentsDao.ClimbingSiteCommentsDAO;
 import std.fle._06_dao.climbingSiteDao.ClimbingSiteDAO;
 import std.fle._0X_security.SecurityLevel;
 import std.fle._0x_controller.controllerClass.climbingSiteController.climbingFormsValidation.ClimbingFormsValidation;
@@ -39,6 +44,9 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 
 	@Autowired
 	private ClimbingSiteDAO dao;
+	
+	@Autowired
+	private ClimbingSiteCommentsDAO commentDao;
 
 	@Override
 	public ModelAndView createNewSiteFormVarInit() {
@@ -51,12 +59,28 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 
 	@Override
 	public ModelAndView updateFormVarInit(Integer id) {
+		//setFormVarValue(id);
 		climbingSiteSFC = dao.getClimbingSiteSFCByID(id);
 		siteRoutesMap = dao.getSiteRouteMapByClimbingSiteId(id);
 		routePitchsMap = dao.getRoutePitchsMapByClimbingSiteId(id);
 		callFromCreateForm = false;
 		climbingSiteId = id;
-		return new ModelAndView("redirect:/climbingSite/climbingSiteUpdateForm");/*06_*/
+		return new ModelAndView("redirect:/06_climbingSite/climbingSiteUpdateForm");
+	}
+	
+	@Override 
+	public ModelAndView displayFormVarInit(ModelAndView model, Integer id,String redirectURI) {		
+			setFormVarValue(id);	
+			//model.setViewName();
+		return new ModelAndView("redirect:/".concat(redirectURI));
+	}
+	
+	private void setFormVarValue(Integer id) {
+		climbingSiteSFC = dao.getClimbingSiteSFCByID(id);
+		siteRoutesMap = dao.getSiteRouteMapByClimbingSiteId(id);
+		routePitchsMap = dao.getRoutePitchsMapByClimbingSiteId(id);
+		callFromCreateForm = false;
+		climbingSiteId = id;
 	}
 
 	@Override
@@ -90,7 +114,6 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 
 	private Boolean atLeastMember() {
 		sessVar.setRequest(request);
-		;
 		return sessVar.getSecurityLevel() < SecurityLevel.USER.rank();
 
 	}
@@ -180,7 +203,7 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 	}
 
 	@Override
-	public ModelAndView manageDisplaySiteRoutesForm(ModelAndView model) {
+	public ModelAndView manageDisplaySiteRoutesForm(ModelAndView model) {		
 		return setSiteRouteFormModelAttributes(model);
 	}
 
@@ -189,12 +212,12 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 			BindingResult result) {
 		climbingFormsValidation.checkRouteExistence(siteRoutesMap, siteRouteSFC.getRouteName(), modelAttributeName,
 				result);
-		if (result.hasErrors()) {
+		if (result.hasErrors()) {			
 			return setSiteRouteFormModelAttributes(model);
-		}
+		}else {
 		routeName = siteRouteSFC.getRouteName();
 		siteRoutesMap.put(routeName, siteRouteSFC);
-		return new ModelAndView("redirect:displayRoutePitchForm");
+		return new ModelAndView("redirect:displayRoutePitchForm");}
 	}
 
 	@Override
@@ -205,9 +228,9 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 			return setSiteRouteFormModelAttributes(model);
 		}
 		if (callFromCreateForm) {
-			model.setViewName("redirect:/climbingSite/climbingSiteForm");
+			model.setViewName("redirect:climbingSiteForm");
 		} else {
-			model.setViewName("redirect:/climbingSite/climbingSiteUpdateForm");
+			model.setViewName("redirect:climbingSiteUpdateForm");
 		}
 		this.climbingSiteSFC.setNumberOfRoutes(FredParser.asString(siteRoutesMap.size()));
 		return model;
@@ -219,7 +242,7 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 		model.addObject("siteRoutesList", siteRoutesMap);
 		model.addObject("siteRouteEditController", siteRouteEditController);
 		model.addObject("siteRouteDeleteController", deleteSiteRoute);
-		model.addObject("routeEndController", routeEndController);
+		model.addObject("routeEndController", routeEndController);	
 		model.addObject("editRoutePitchs",editRoutePitchsLinkFromRoutePage);
 		return model;
 	}
@@ -228,9 +251,10 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 	public ModelAndView manageDisplaySiteRouteEditForm(ModelAndView model, SiteRoutesSFC siteRouteSFC,
 			String modelAttributeName) {
 		routeToEdit = request.getParameter("route");
-		model.setViewName("06_climbingSite/editRouteSite");//06_
+		model.setViewName("06_climbingSite/editRouteSite");
 		model.addObject(routePitchEditController, routePitchEditController);
 		model.addObject(modelAttributeName, siteRoutesMap.get(routeToEdit));
+		model.addObject("cancel","displaySiteRoutesList");
 		if (routePitchSFCListIsNotNull(routeToEdit)) {
 			model.addObject("routePitchList", dao.sortedRoutePitchsDTOList(routeToEdit, routePitchsMap));
 		}
@@ -309,7 +333,7 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 		if (result.hasErrors()) {
 			return pitchFormBindingError(model, routePitchSFC);
 		}
-		model.setViewName("redirect:/climbingSite/routes/displaySiteRoutesList");
+		model.setViewName("redirect:displaySiteRoutesList");
 		return model;
 	}
 
@@ -339,6 +363,7 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 		model.setViewName("06_climbingSite/editRoutePitch");//06_
 		model.addObject("routeToEdit", route);//routeToEdit
 		model.addObject(modelAttributeName, routePitchEdit);
+		model.addObject("cancelEditPitch", "displayRoutePitchForm");
 		selectService.upDateSelectListAndValue(routePitchEdit, model, request);
 		return model;
 	}
@@ -356,5 +381,123 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 		routePitchsMap.get(route).removeIf(o -> o.equals(routePitchsMap.get(route).get(pitchIndex)));
 		return new ModelAndView("redirect:displayRoutePitchForm");
 	}
+	
+	@Override
+	public ModelAndView manageDisplayClimBingSiteDetails(ModelAndView model) {
+		model.setViewName("06_climbingSite/climbingSiteDetails");
+		setClimbingSiteDetailsRoutesAndPitchs(model);
+		model.addObject("siteInfoDisplay",dao.getClimbingSiteDisplaySFCById(climbingSiteId));
+		return model;
+	}
+	
+	private void setClimbingSiteDetailsRoutesAndPitchs(ModelAndView model) {
+		
+		routesAndPitchsPageList =setpages();
+		model.addObject("currentPage",1);
+		model.addObject("totalPages",routesAndPitchsPageList.size());//list.size()
+		model.addObject("changePageController",JspJavaScriptStringParser.parse("RoutesAndPitchsListPage"));
+		model.addObject("routesAndListPages",routeAndPitchListToJsonArray(routesAndPitchsPageList.get(0)));
+		model.addObject("commentModal", setCommentModalName());
+		model.addObject("listCommentSrc",listCommentSrc(climbingSiteId));
+	}
+	
+	private String listCommentSrc(Integer id) {
+		return "/04_listPage/listPage?listType=climbingSitesComments&id="+id;
+	}
+	
+	private String setCommentModalName() {
+		sessVar.setRequest(request);
+		if(sessVar.getSecurityLevel() > SecurityLevel.USER.rank()) {
+			return JspJavaScriptStringParser.parse(commentNotAllowedModal);
+		}else {
+			return JspJavaScriptStringParser.parse(commentModal);
+		}
+	}
+	
+	@Override
+	public JSONArray getPageAsJSONArray(Integer currentPage) {
+				
+		return  routeAndPitchListToJsonArray(routesAndPitchsPageList.get(currentPage-1));
+	}
+	
+	private JSONArray routeAndPitchListToJsonArray(List<RoutesAndPitchsPage> list) {
+		JSONArray jsonArray = new JSONArray();
+		list.forEach(o->jsonArray.put(routeAndPitchListJSONObject(o.getRouteName(), o.getPitchsList())));		
+		return jsonArray;
+	}
+	
+	
+	
+	private JSONObject routeAndPitchListJSONObject(String routeName,List<RoutePitchSFC> pitchsList) {
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("routeName", routeName);
+		jsonObject.put("pitchsList", new JSONArray(pitchsList));
+		return jsonObject;
+	}
+	
+	
+	
+	private ArrayList<String> routesList(){
+		ArrayList<String> list = new ArrayList<>();
+		siteRoutesMap.forEach((key,value)-> list.add(key));
+		return list;
+	}
+	
+	private Map<String,List<RoutePitchSFC>> routesPitchsList(){
+		Map<String,List<RoutePitchSFC>> map = new LinkedHashMap<>();
+		routesList().forEach(o-> map.put(o,dao.sortedRoutePitchsSFCWithCotationLevelAsString(o, routePitchsMap)));
+		return map;
+	}
+	
+	private Integer RouteAndPitchLineNumber() {
+		Integer i = 0;
+		ArrayList<Integer> sizeList = new ArrayList<>();
+		i=routePitchsMap.size();
+		routePitchsMap.forEach((key,value)->countPitchs(sizeList, value));
+		Integer p = sizeList.stream().mapToInt(o->o).sum();
+		return i+p;
+		
+	}
+	
+	
+	private ArrayList<List<RoutesAndPitchsPage>> setpages(){
+		ArrayList<List<RoutesAndPitchsPage>> pages = new ArrayList<>();
+		ArrayList<RoutesAndPitchsPage> page = new ArrayList<>();		
+		ArrayList<Integer> sizeList = new ArrayList<>();
+		routePitchsMap.forEach((key,value)->{	
+			System.out.println(key);
+			System.out.println(value.get(0).getPitchClimbingLevels());
+			countPitchs(sizeList, value);
+			Integer pitchsNumber = sizeList.stream().mapToInt(o->o).sum();
+			Integer routesNumber = sizeList.size();
+			Integer totalLine = pitchsNumber+routesNumber;
+			if(totalLine<=24) {	/*24 is 8*3, 3 is the accepted commons number of lines for a full routes info 1 route name 2 pitchs*/			
+				page.add(new RoutesAndPitchsPage(key, dao.sortedRoutePitchsSFCWithCotationLevelAsString(value)));
+			}else {
+				ArrayList<RoutesAndPitchsPage> pagetoAdd = new ArrayList<>(page);/*see 1*/
+				pages.add(pagetoAdd);
+				page.clear();/*1-becareful using clear will clear page instance need to set a new arraylist before clear*/
+				page.add(new RoutesAndPitchsPage(key, dao.sortedRoutePitchsSFCWithCotationLevelAsString(value)));
+				sizeList.clear();
+				countPitchs(sizeList, value);				
+			}			
+		});
+		pages.add(page);
+		return pages;
+		
+		
+		
+	}
+	
+	private void countPitchs(ArrayList<Integer> sizeList,List<RoutePitchSFC> list) {
+		sizeList.add(list.size());
+	}
 
+	@Override
+	public ModelAndView managePostComment(String requestCommentParameterName) {
+		sessVar.setRequest(request);
+		commentDao.postComment(climbingSiteId, sessVar.getAccountID(), request.getParameter(requestCommentParameterName));
+		return new ModelAndView("redirect:/siteHaveBeenCommented");
+	}
+	
 }

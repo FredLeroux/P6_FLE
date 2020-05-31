@@ -5,7 +5,12 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
-
+/**
+ * @author Frederic Leroux
+ * @version 1.0
+ * @apiNote Allow to set a form fiel as readOnly 
+ * @see #applyToForm()
+*/
 @Retention(RUNTIME)
 @Target(FIELD)
 public @interface ReadOnlyInput {

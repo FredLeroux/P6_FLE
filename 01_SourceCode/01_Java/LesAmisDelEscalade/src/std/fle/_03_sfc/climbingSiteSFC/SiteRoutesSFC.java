@@ -10,7 +10,7 @@ import fle.toolBox.springFormManager.annotations.SpringFormSettings;
 
 
 @SpringFormSettings(
-		action = "pitchs/createRoute",
+		action = "createRoute",
 		method = "post",
 		modelAttribute = "route",
 		name = "routeFormular",

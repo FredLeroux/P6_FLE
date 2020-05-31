@@ -131,3 +131,26 @@ function displayOnError(elementToCheckEmptyness, elementToToggleDisplay) {
 		modal.style.display = "block";
 	}
 }
+
+/**
+ * 
+ * @param elementId iframe parent element to toggle display
+ * @apiNote allow to toggle display an iframe parent element
+ */
+function parentElementToggleDisplay(elementId) {
+	var element = window.parent.document.getElementById(elementId);
+	if (element.style.display === "none") {
+		element.style.display = "block";
+	} else {
+		element.style.display = "none";
+	}
+
+}
+
+function addToElementToggleParentElementDisplayOnClick(elementToAddOnclick,
+		elementToToggleId) {
+	var element =document.getElementById(elementToAddOnclick);
+	element.setAttribute("onclick", "parentElementToggleDisplay('"
+			+ elementToToggleId + "')");
+
+}

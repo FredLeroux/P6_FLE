@@ -20,6 +20,8 @@ onclick.addOnclicksubmitFormIntermediateController("siteRoutes","siteFullInfoFor
 var displayOfficial = ${displayOfficial};
 var displayer = newFormFieldDisplayer();
 displayer.display(displayOfficial, "official.formLabel", "official.select");
+
+
 </script>
 </body>
 </html>

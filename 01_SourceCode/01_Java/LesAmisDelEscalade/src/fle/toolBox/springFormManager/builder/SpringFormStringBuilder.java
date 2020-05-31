@@ -99,24 +99,21 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 				input = inputCssClassCssErrorClass(fieldName);
 			}
 		} else {
-			input = inputCssClassCssErrorClassReadOnly(fieldName);
+			input = inputCssClassReadOnly(fieldName);
 		}
 		return input;
 	}
 
 	private String label(String fieldName, int i) {
-		
+
 		String path = fieldName;
 		String labelName = fieldsNamesListlabel.get(i);
-		if(actionButtonFieldMap().containsKey(fieldName)) {
+		if (actionButtonFieldMap().containsKey(fieldName)) {
 			return actionButtonLabelCssClass(message(labelName.concat(labelMessageSourceSuffix)));
 		}
 		String label = labelCssClassCssErrorClass(path, message(labelName.concat(labelMessageSourceSuffix)));
 		return label;
 	}
-	
-	
-	
 
 	private String error(String fieldName) {
 		return errors(fieldName);
@@ -162,7 +159,7 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 		}
 		return annotatedFieldMap;
 	}
-	
+
 	private LinkedHashMap<String, InputTextAreaAnnotation> InputTextAreaAnnotationFieldMap() {
 		LinkedHashMap<String, InputTextAreaAnnotation> annotatedFieldMap = new LinkedHashMap<>();
 		for (Field field : fieldManager.getAllFields()) {
@@ -173,15 +170,14 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 							inputTextAreaAnnotation(clazzField));
 				}
 			} else {
-				if (IsAnnotationPresent.onField(field,texteAreaAnnotation)) {
+				if (IsAnnotationPresent.onField(field, texteAreaAnnotation)) {
 					annotatedFieldMap.put(field.getName(), inputTextAreaAnnotation(field));
 				}
 			}
 		}
 		return annotatedFieldMap;
 	}
-	
-	
+
 	private LinkedHashMap<String, String> actionButtonFieldMap() {
 		LinkedHashMap<String, String> annotatedFieldMap = new LinkedHashMap<>();
 		for (Field field : fieldManager.getAllFields()) {
@@ -193,16 +189,18 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 				}
 			} else {
 				if (IsAnnotationPresent.onField(field, actionButtonAnnotation)) {
-					annotatedFieldMap.put(field.getName(), field.getAnnotation(actionButtonAnnotation).displayMessagePropertyKey());
+					annotatedFieldMap.put(field.getName(),
+							field.getAnnotation(actionButtonAnnotation).displayMessagePropertyKey());
 				}
 			}
 		}
 		return annotatedFieldMap;
 	}
-	
+
 	private InputTextAreaAnnotation inputTextAreaAnnotation(Field clazzField) {
 		InputTextArea fieldInputTextArea = clazzField.getAnnotation(texteAreaAnnotation);
-		return new InputTextAreaAnnotation(fieldInputTextArea.rows(), fieldInputTextArea.charByRows());
+		return new InputTextAreaAnnotation(fieldInputTextArea.rows(), fieldInputTextArea.charByRows(),
+				fieldInputTextArea.readOnly());
 	}
 
 	private <A extends Annotation> ArrayList<String> selectFieldList() {
@@ -217,9 +215,6 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 		ExceptionsThrower.ifEmpty(hiddenPathFieldList);
 		return hiddenPathFieldList;
 	}
-	
-	
-
 
 	private <A extends Annotation> ArrayList<String> readOnlyInputFieldList(String formName) {
 		ArrayList<String> readOnlyInputFieldList = new ArrayList<>();
@@ -324,8 +319,6 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 			fieldSetInFormIsTrue();
 		}
 	}
-	
-	
 
 	private void addReadOnlyInputField(String fieldName) {
 		if (readOnlyInputFieldList(formName).contains(fieldName)) {
@@ -353,16 +346,21 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 		if (textArea.containsKey(fieldName)) {
 			String rows = FredParser.asString(textArea.get(fieldName).getRows());
 			String cols = FredParser.asString(textArea.get(fieldName).getCols());
+			boolean readOnly = textArea.get(fieldName).isReadOnly();
 			if (placeHolder.containsKey(fieldName)) {
-				addCell(textAreaCssClassCssErrorClassTagMessagePlaceHolder(fieldName, placeHolder.get(fieldName), rows, cols));
+				addCell(textAreaCssClassCssErrorClassTagMessagePlaceHolder(fieldName, placeHolder.get(fieldName), rows,
+						cols));
 			} else {
-				addCell(textAreaCssClassCssErrorClass(fieldName, rows, cols));
+				if (!readOnly) {
+					addCell(textAreaCssClassCssErrorClass(fieldName, rows, cols));
+				} else {
+					addCell(textAreaCssClassReadOnly(fieldName, rows, cols));
+				}
 			}
 			fieldSetInFormIsTrue();
 		}
 	}
-	
-	
+
 	private void addSpringFormActionButton(String fieldName) {
 		if (actionButtonFieldMap().containsKey(fieldName)) {
 			addCell(actionButton(fieldName, actionButtonFieldMap().get(fieldName)));
@@ -384,7 +382,9 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 			if (!isFieldSetInForm) {
 				addCell(input(fieldName, readOnly));
 			}
-			addCell(error(fieldName));
+			if (!readOnly) {
+				addCell(error(fieldName));
+			}
 			stringBuilder.append(tableRowEnd());
 		}
 		fieldSetInFormIsFalse();
@@ -395,7 +395,7 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 		if (!readOnly) {
 			stringBuilder.append(tableRowStart());
 			stringBuilder.append(tableCellStartWithColSpan(3, formButtonAlignment));
-			stringBuilder.append(inputButton(formButtonMessage,name));
+			stringBuilder.append(inputButton(formButtonMessage, name));
 			stringBuilder.append(tableCellEnd());
 			stringBuilder.append(tableRowEnd());
 		}

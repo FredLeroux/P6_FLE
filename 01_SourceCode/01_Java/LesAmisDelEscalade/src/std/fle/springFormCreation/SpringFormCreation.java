@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 
 import fle.toolBox.springFormManager.SpringMVCFormGenerator;
 import fle.toolBox.springFormManager.builder.configurationClass.SpringFormCssConfig;
+import std.fle._03_sfc.climbingSiteSFC.ClimbingSiteCommentsSFC;
+import std.fle._03_sfc.climbingSiteSFC.ClimbingSiteDisplaySFC;
 import std.fle._03_sfc.climbingSiteSFC.ClimbingSiteSFC;
 import std.fle._03_sfc.climbingSiteSFC.RoutePitchSFC;
 import std.fle._03_sfc.climbingSiteSFC.SiteRoutesSFC;
@@ -33,8 +35,10 @@ public class SpringFormCreation implements ApplicationListener<ContextRefreshedE
 	private UsersAccountInfoMemberStatusSFC UsersAccountInfoMemberStatusSFC = new UsersAccountInfoMemberStatusSFC();
 	private ClimbingTopoSFC climbingTopoSFC = new ClimbingTopoSFC();
 	private ClimbingSiteSFC climbingSiteSFC = new ClimbingSiteSFC();
+	private ClimbingSiteDisplaySFC climbingSiteDisplaySFC = new ClimbingSiteDisplaySFC();
 	private SiteRoutesSFC siteRoutesSFC = new SiteRoutesSFC();
 	private RoutePitchSFC routePitchSFC	= new RoutePitchSFC();
+	private ClimbingSiteCommentsSFC climbingSiteCommentsSFC = new ClimbingSiteCommentsSFC();
 	
 
 	@Override
@@ -47,8 +51,11 @@ public class SpringFormCreation implements ApplicationListener<ContextRefreshedE
 		build.generateForm(context, basisConfig(), UsersAccountInfoMemberStatusSFC);
 		build.generateForm(context, basisConfig(), climbingTopoSFC);
 		build.generateForm(context, basisConfig(), climbingSiteSFC);
+		build.generateForm(context, formDisplay(), climbingSiteDisplaySFC);
 		build.generateForm(context, basisConfig(), siteRoutesSFC);
 		build.generateForm(context, basisConfig(), routePitchSFC);
+		build.generateForm(context, basisConfig(), climbingSiteCommentsSFC);
+		
 	}
 
 	private SpringFormCssConfig basisConfig() {
@@ -67,6 +74,10 @@ public class SpringFormCreation implements ApplicationListener<ContextRefreshedE
 
 	private SpringFormCssConfig updatepassConfig() {
 		return basisConfig().trStyle("trStyleClass.form2").tdStyle("tdStyleClass.form3");
+	}
+	
+	private SpringFormCssConfig formDisplay() {
+		return basisConfig().tableStyle("tableStyleClass.form2");
 	}
 
 }

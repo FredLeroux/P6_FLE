@@ -1,4 +1,4 @@
-package std.fle._0x_controller.controllerClass.climbingSiteController.climbingFormsValidation;
+package std.fle._0x_controller.controllerClass.climbingSiteController.bugOnController;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import std.fle._03_sfc.climbingSiteSFC.RoutePitchSFC;
 
 @Controller
-@RequestMapping(value="/climbingSite/routes/pitchs")
+@RequestMapping(value= "/climbingSite/routes/pitchs")
 public class RoutePitchsController extends SiteRoutesController {
 	
 	@GetMapping("/displayRoutePitchForm")

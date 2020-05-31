@@ -18,6 +18,8 @@ var splitter = null;
 var orderLink = null;
 var editHandler = null;
 
+
+
 function setEditHandlerName(editHandlerName){
 	editHandler = editHandlerName;
 }
@@ -173,9 +175,16 @@ function getFilterSettedFromBackEnd() {
 function extractInfo(infoArray, dataIndex1, dataIndex2, separator) {
 	var transientArray = [];
 	var infoExtractedArray = [];
+	var fieldName = null;
 	for (i = 0; i < infoArray.length; i++) {
 		filterSplit = infoArray[i].split(separator);
-		transientArray.push(filterSplit[dataIndex1] + separator
+		if(filterSplit[dataIndex1].includes("notAFilter")){
+			var fieldSplit = filterSplit[dataIndex1].split(".");
+			fieldName = fieldSplit[0];
+		}else{
+			fieldName = filterSplit[dataIndex1];
+		}
+		transientArray.push(fieldName + separator
 				+ filterSplit[dataIndex2]);
 	}
 	for (j = 0; j < transientArray.length; j++) {
@@ -340,14 +349,13 @@ function createTableHead(table) {
 		var tableHeadRowCell = document.createElement("th");// not in auto
 		// completion this
 		// html 5
-		var infoSplit = getColumnsFieldAndIname()[i].split(getSplitter());
-		var column = addInputColumnNames(infoSplit[0], i)
-		tableHeadRowCell.innerHTML = infoSplit[1];
-		tableHeadRowCell.appendChild(column);
-		tableHeadRowCell.appendChild(addSortButton("asc", i, column.value));
-		tableHeadRowCell.appendChild(addSortButton("desc", i, column.value));
-		tableHeadRow.appendChild(tableHeadRowCell);
-
+		var infoSplit = getColumnsFieldAndIname()[i].split(getSplitter());		
+			var column = addInputColumnNames(infoSplit[0], i)
+			tableHeadRowCell.innerHTML = infoSplit[1];
+			tableHeadRowCell.appendChild(column);
+			tableHeadRowCell.appendChild(addSortButton("asc", i, column.value));
+			tableHeadRowCell.appendChild(addSortButton("desc", i, column.value));
+			tableHeadRow.appendChild(tableHeadRowCell);
 	}
 }
 
@@ -356,7 +364,7 @@ function getRowObjectId(id) {
 
 }
 
-function sendRowIdToBacKEnd(id){
+function sendRowIdToBacKEnd(id){		
 	var form = document.createElement("form");
 	form.action = getEditHandlerName()+"/"+id;
 	form.method = getFormMethod();
@@ -366,20 +374,20 @@ function sendRowIdToBacKEnd(id){
 
 function createTableBody(table, data, idName) {
 	var dataUsed = null;
-	datUsed = data;
+	dataUsed = data;
 	var tableBody = table.createTBody();
 	var i = 0;
-	for (i = 0; i < datUsed.length; i++) {
+	for (i = 0; i < dataUsed.length; i++) {
 		var row = tableBody.insertRow();
-		row.id = "trSendId" + datUsed[i][idName];
-		row.setAttribute("onclick", "getRowObjectId(" + datUsed[i][idName] + ")");
+		row.id = "trSendId" + dataUsed[i][idName];
+		row.setAttribute("onclick", "getRowObjectId(" + dataUsed[i][idName] + ")");
 		for (j = 0; j < getColumnsFieldAndIname().length; j++) {
 			var infoSplit = getColumnsFieldAndIname()[j].split(getSplitter());
 			var arrayName = infoSplit[0];// arrayName is used to call the
 											// array contained in data JSONArray
 											// from backend
 			var cell = tableBody.rows[i].insertCell();
-			cell.innerHTML = datUsed[i][arrayName];
+			cell.innerHTML = dataUsed[i][arrayName];
 		}		
 	}
 	
@@ -537,6 +545,7 @@ function createFilterList(filterArray, setLocId, elmt) {
 	var listing = document.getElementById(setLocId);	
 	for (let i = 0; i < filterArray.length; i++) {
 		filterElement = filterArray[i].split(getSplitter());
+		if(!filterElement[0].includes("notAFilter")){
 		var divgeneral = document.createElement("div")
 		divgeneral.setAttribute("class", "dropdown");
 		var divId = filterElement[0] + "-Elmnt-" + i;
@@ -556,7 +565,7 @@ function createFilterList(filterArray, setLocId, elmt) {
 					+ array[l] + "')");
 			div.appendChild(a);
 		}
-		
+		}
 
 	}
 
@@ -564,6 +573,7 @@ function createFilterList(filterArray, setLocId, elmt) {
 
 function setListOfElement(elmt, fieldName) {
 	var list = [];
+	
 	for (let i = 0; i < elmt.length; i++) {
 		var d = elmt[i][fieldName];
 		if (d !== undefined) {
@@ -573,7 +583,7 @@ function setListOfElement(elmt, fieldName) {
 	for (let j = 0; j < elmt[index][fieldName].length; j++) {
 		list.push(elmt[index][fieldName][j]);
 	}
-
+	
 	return list;
 
 }
@@ -716,7 +726,7 @@ function deleteSessionFilter(jspName) {
 	window.location.href = jspName; //+".html"
 }
 
-function getAllData(action, method) {// check utility
+function getAllData(action, method) {	
 	submitFilter(null, action, method);
 }
 
@@ -804,7 +814,9 @@ function listfilter(divId,searchId){
 			  a[i].style.display = ""; }
 	  
 	  }}
-	  	
+
+
+
 
 function messagealert() {	
 	window.alert(" value");

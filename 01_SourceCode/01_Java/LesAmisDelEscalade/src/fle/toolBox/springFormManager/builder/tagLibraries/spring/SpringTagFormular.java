@@ -708,6 +708,11 @@ public abstract class SpringTagFormular {
 		textAreaFinal.append(input);
 		return textAreaFinal.toString();
 	}
+	
+	protected String textAreaCssClassReadOnly(String path, String rowsNb,String cols) {
+		return openFormTag(textAreaTagName, path) + textAreaRowsAttribut + argument(rowsNb)
+		+ textAreaColsAttribut + argument(cols) + getInputCssClass() + " readonly='true' " + closeTag + ln;
+	}
 
 	protected String select(String path, String targetForm) {
 		return openFormTag(selectTagName, path) + createId(path, selectTagName) + getFormAttribut()

@@ -1,4 +1,4 @@
-package std.fle._0x_controller.controllerClass.climbingSiteController.climbingFormsValidation;
+package std.fle._0x_controller.controllerClass.climbingSiteController.bugOnController;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,8 +13,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import std.fle._03_sfc.climbingSiteSFC.ClimbingSiteSFC;
 import std.fle._03_sfc.climbingSiteSFC.SiteRoutesSFC;
-import std.fle._0x_controller.controllerClass.climbingSiteController.ClimbingSiteCont;
 
+//TODO 00-00 debug issue on create route and link to pitch controller
+/* info when create a route pitchs 
+is add on url even on error and not allow after error to go further, 
+to usse the 3 climbing site controller go to homecontroller and change 
+06_climbinsite to climmbing site
+(@GetMapping(value="/addSite")ModelAndView addSite(ModelAndView model) 
+*/
 @Controller
 @RequestMapping(value = "/climbingSite/routes")
 public class SiteRoutesController extends ClimbingSiteCont {

@@ -29,11 +29,11 @@ public class ClimbingSiteComments extends ENT {
 	@Column(name = "comment")
 	private String comment;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "climbing_site_fk")
 	private ClimbingSite climbingSite;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "user_account_info_fk")
 	private UsersAccountInfo usersAccountInfo;
 
