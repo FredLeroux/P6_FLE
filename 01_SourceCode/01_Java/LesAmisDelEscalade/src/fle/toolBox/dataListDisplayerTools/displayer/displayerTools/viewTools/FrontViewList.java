@@ -70,7 +70,6 @@ public class FrontViewList<O extends Object> {
 	}
 
 	public void setFrontViewStoreFilterName(String frontViewStoreFilterName) {
-		System.out.println(frontViewStoreFilterName);
 		this.frontViewStoreFilterName = frontViewStoreFilterName;
 	}
 	

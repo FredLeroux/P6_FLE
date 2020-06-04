@@ -5,9 +5,9 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
 import fle.toolBox.classType.SLO;
-import fle.toolBox.dataListDisplayerTools.annotations.NotAListFilter;
-import fle.toolBox.dataListDisplayerTools.annotations.Operator;
 import fle.toolBox.dataListDisplayerTools.annotations.ToTranslate;
+import fle.toolBox.dataListDisplayerTools.annotations.operator.Operator;
+import fle.toolBox.dataListDisplayerTools.annotations.operator.OperatorArrays;
 
 @NamedQuery(name = "ClimbingSiteSLO", 
 query = "SELECT A.id,B.stateName,C.countyName,A.climbingSiteName,A.official,A.numberOfRoutes"
@@ -22,16 +22,16 @@ public class ClimbingSiteSLO extends SLO {
 	
 	@Id
 	private Integer id;
-	@Operator(signsArray = { "=" })
+	@Operator(signsArray = OperatorArrays.EQUAL)
 	private String state;
-	@Operator(signsArray = { "=" })
+	@Operator(signsArray = OperatorArrays.EQUAL)
 	private String county;
-	@Operator(signsArray = { "=" })
+	@Operator(signsArray = OperatorArrays.EQUAL)
 	private String climbingSiteName;
-	@Operator(signsArray = { "=" })
+	@Operator(signsArray = OperatorArrays.EQUAL)
 	@ToTranslate(suffix = "official")
 	private String official;
-	@Operator(signsArray = { "=","<",">" })	
+	@Operator(signsArray = OperatorArrays.INFERIOR_EQUAL_SUPERIOR)	
 	private String numberOfRoutes;
 	public Integer getId() {
 		return id;

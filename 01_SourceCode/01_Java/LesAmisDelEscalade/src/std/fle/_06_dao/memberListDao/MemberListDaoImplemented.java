@@ -17,6 +17,7 @@ public class MemberListDaoImplemented implements MemberListDAO {
 	
 	private MembersListSLO membersListSLO = new MembersListSLO();
 	
+	@Override
 	public List<MembersListSLO> getList() {
 		return dao.getInnerJoinListI18N(membersListSLO);
 	}

@@ -2,6 +2,8 @@ package fle.toolBox.CRUD.daoList;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -11,12 +13,15 @@ import fle.toolBox.classType.SLO;
 
 @Repository
 public class DAOListGenericImplemented implements DAOListGeneric {
+	
+	@Autowired
+	private SessionFactory sessionFactory;
 
 	@Autowired
-	ParseListObjectArrayToListObject listParser;
+	private ParseListObjectArrayToListObject listParser;
 
 	@Autowired
-	ListElementTransLator translator;
+	private ListElementTransLator translator;
 
 	
 	@Override
@@ -42,9 +47,29 @@ public class DAOListGenericImplemented implements DAOListGeneric {
 		toTrad = getInnerJoinListById(SLOClass, namedQueryParameter, id);
 		return translator.listI18N(toTrad);
 	}
+	/**
+	 * 
+	 * @param <O> 
+	 * @param entity the Hibernate entity representing db table
+	 * @param clause the entity field representing the db column
+	 * @param value the value to search on clause (db column)
+	 * @return a list of entity where clause = value
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public<O extends Object> List<O> getListOfObjectWhere(O entity,String clause,Object value){
+		return session().createQuery("FROM "+ entity.getClass().getName() +" T WHERE T."+clause +"=" + value).getResultList();
+	}
+	
+	@Override
+	public<O extends Object> List<O> getI18NListOfObjectWhere(O entity,String clause,Object value){
+		return translator.listI18N(getListOfObjectWhere(entity, clause, value));
+	}
 	
 	
-	
+	private Session session() {
+		return sessionFactory.getCurrentSession();
+	}
 
 	
 

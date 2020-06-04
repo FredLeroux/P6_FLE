@@ -52,7 +52,7 @@ public class NumericValidation extends NumericAnnotationRegex {
 	}
 
 	private boolean isNumericMatch(Field fOI, String toCheck) {
-		return PatternMatcher.patternMatcher(setRegex(fOI), toCheck);
+		return PatternMatcher.isMatch(setRegex(fOI), toCheck);
 
 	}
 

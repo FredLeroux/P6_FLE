@@ -141,6 +141,10 @@ public class MessagesPagesController {
 		return new ModelAndView("/03_messagesPages/accesDenied");
 	}
 
+	@GetMapping(value = "/03_messagesPages/noResultsToDisplay")
+	public ModelAndView noResultsToDisplay() {
+		return new ModelAndView("/03_messagesPages/noResultsToDisplay");
+	}
 	/*@GetMapping(value = "/internalError")
 	public ModelAndView internalError() {
 		return new ModelAndView("/03_messagesPages/errorsPage");

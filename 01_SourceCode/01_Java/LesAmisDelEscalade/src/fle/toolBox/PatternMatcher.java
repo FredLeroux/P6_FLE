@@ -14,7 +14,7 @@ public class PatternMatcher  {
 	 * @return true if and only if toCheck match regex 
 	 * @throws NullPointerException
 	 */
-	public static final boolean patternMatcher(String regex,String toCheck) {
+	public static final boolean isMatch(String regex,String toCheck) {
 		if(regex!=null || toCheck != null) {
 			Pattern pattern = Pattern.compile(regex);
 			Matcher match = pattern.matcher(toCheck);

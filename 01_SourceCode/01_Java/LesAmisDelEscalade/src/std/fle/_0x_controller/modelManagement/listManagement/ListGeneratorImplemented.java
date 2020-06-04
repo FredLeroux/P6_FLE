@@ -4,21 +4,25 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fle.toolBox.ConfigurationFileReader;
+import std.fle._00_general.SessionVariables;
 import std.fle._05_slo.innerJoinSLO.ClimbingSiteCommentsSLO;
 import std.fle._05_slo.innerJoinSLO.ClimbingSiteSLO;
 import std.fle._05_slo.innerJoinSLO.MembersListSLO;
 import std.fle._07_service.climbingSiteCommentsListService.ClimbingSiteCommentsListService;
 import std.fle._07_service.climbingSiteListService.ClimbingSiteListService;
 import std.fle._07_service.memberListService.MemberListService;
+import std.fle._0X_security.SecurityLevel;
 
 @Service
 public class ListGeneratorImplemented implements ListGenerator {
 	
-
+	
 	
 	@Autowired
 	MemberListService memberListService;
@@ -33,6 +37,8 @@ public class ListGeneratorImplemented implements ListGenerator {
 	private ClimbingSiteSLO climbingSiteSLO = new ClimbingSiteSLO();
 	private ClimbingSiteCommentsSLO climbingSiteCommentsSLO =new ClimbingSiteCommentsSLO();
 	private ConfigurationFileReader config = new ConfigurationFileReader("configuration/securitySettings/securitySettings.xml");
+	private SessionVariables sessVar = new SessionVariables();
+	
 	
 	@Override
 	public List<MembersListSLO> membersList(){		
@@ -74,8 +80,10 @@ public class ListGeneratorImplemented implements ListGenerator {
 	}
 	
 	@Override
-	public LinkedHashMap<String,Object> getclimbingSiteCommentsSLOList(Integer id){				
-		return map(climbingSiteCommentsSLOs(id), climbingSiteCommentsSLO, "commentEdit");
+	public LinkedHashMap<String,Object> getclimbingSiteCommentsSLOList(Integer id,HttpServletRequest request){	
+		sessVar.setRequest(request);
+		String editComment = sessVar.getSecurityLevel()<SecurityLevel.USER.rank()?"commentEdit":"none";		
+		return map(climbingSiteCommentsSLOs(id), climbingSiteCommentsSLO, editComment);
 	}
 	
 	private LinkedHashMap<String, Object> map(List<?> list, Object clazz,String editControllerURI) {

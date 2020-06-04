@@ -127,5 +127,9 @@ public class SessionVariables {
 	public void clearSession() {
 		session().invalidate();
 	}
+	
+	public void addSessionVariable(String varName, Object value) {
+		session().setAttribute(varName, value);
+	}
 
 }

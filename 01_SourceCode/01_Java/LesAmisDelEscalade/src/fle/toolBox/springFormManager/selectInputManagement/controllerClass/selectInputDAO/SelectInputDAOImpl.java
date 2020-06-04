@@ -34,13 +34,13 @@ public class SelectInputDAOImpl implements SelectInputDAO {
 
 	
 	private <T extends ENT, D extends DTO> List<D> entityListToDTOListConverter(List<T> entityList, D dto) {
-		List<D> dtoList = (List<D>) entityList.stream().map(e -> converter.convertEntityToDTO(e, dto))
+		List<D> dtoList = entityList.stream().map(e -> converter.convertEntityToDTO(e, dto))
 				.collect(Collectors.toList());
 		return dtoList;
 	}
 
 	private <D extends DTO, S extends SFC> List<S> dtoListToSFCListConverter(List<D> dtoList, S sfc) {	
-		List<S> sfcList = (List<S>) dtoList.stream().map(d -> converter.convertDTOToSFC(d, sfc))
+		List<S> sfcList = dtoList.stream().map(d -> converter.convertDTOToSFC(d, sfc))
 				.collect(Collectors.toList());
 		return sfcList;
 	}

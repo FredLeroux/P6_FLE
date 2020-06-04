@@ -1,8 +1,8 @@
 package std.fle._02_dto.modelsDTO.climbingSiteDTO;
 
+import java.time.LocalDateTime;
+
 import fle.toolBox.classType.DTO;
-import std.fle._01_entity.models.site.ClimbingSite;
-import std.fle._01_entity.models.users.UsersAccountInfo;
 import std.fle._02_dto.modelsDTO.usersDTO.usersAccountInfoDTO.UsersAccountInfoDTO;
 
 public class ClimbingSiteCommentsDTO extends DTO {
@@ -10,6 +10,8 @@ public class ClimbingSiteCommentsDTO extends DTO {
 	private Integer id;
 
 	private String comment;
+
+	private LocalDateTime postDate;
 
 	private ClimbingSiteDTO climbingSite;
 
@@ -21,6 +23,14 @@ public class ClimbingSiteCommentsDTO extends DTO {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public LocalDateTime getPostDate() {
+		return postDate;
+	}
+
+	public void setPostDate(LocalDateTime postDate) {
+		this.postDate = postDate;
 	}
 
 	public String getComment() {
@@ -46,7 +56,5 @@ public class ClimbingSiteCommentsDTO extends DTO {
 	public void setUsersAccountInfo(UsersAccountInfoDTO usersAccountInfo) {
 		this.usersAccountInfo = usersAccountInfo;
 	}
-	
-	
 
 }

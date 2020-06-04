@@ -22,6 +22,7 @@ public class ListElementTransLatorImplemented extends Internationalization imple
 
 	Class<ToTranslate> annotation = ToTranslate.class;
 
+	@Override
 	public <O extends Object> List<O> listI18N(List<O> list) {
 		List<O> listTrad = list.stream().map(o -> entityTrad(o)).collect(Collectors.toList());
 		return listTrad;

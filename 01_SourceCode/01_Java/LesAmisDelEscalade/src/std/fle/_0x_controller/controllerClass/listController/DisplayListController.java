@@ -10,11 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import fle.toolBox.CRUD.daoList.DAOListGeneric;
 import fle.toolBox.controllerTools.listManagement.SetListManagementController;
 import fle.toolBox.dataListDisplayerTools.displayer.DataListDisplay;
-import std.fle._05_slo.innerJoinSLO.MembersListSLO;
-import std.fle._0X_security.AccesGranting;
 
 @Controller
 public class DisplayListController implements SetListManagementController {
@@ -24,13 +21,15 @@ public class DisplayListController implements SetListManagementController {
 	
 
 	@Autowired
-	DataListDisplay dataListDisplay;
-
-	@Autowired
-	DAOListGeneric dao;
+	private DataListDisplay dataListDisplay;
 	
-	@Autowired
-	AccesGranting granting;
+	
+
+	//@Autowired
+	//DAOListGeneric dao;
+	
+//	@Autowired
+//	AccesGranting granting;
 
 	@Override
 	public DataListDisplay controllerConfig() {
@@ -44,25 +43,34 @@ public class DisplayListController implements SetListManagementController {
 	
 	
 
-	@GetMapping(value = "/04_listPage/listPage") //
+    @GetMapping(value = "/04_listPage/listPage")
 	@Override
 	public ModelAndView initiatePage(ModelAndView model,HttpServletRequest request) {
+		
 		//List<?>list = new ArrayList<>();
 		@SuppressWarnings("unchecked")
 		LinkedHashMap<String,Object> map = (LinkedHashMap<String, Object>) request.getAttribute("map");
+		ListComponents components = new ListComponents((List<?>) map.get("list"), map.get("class"), (String) map.get("editControllerURI"));
 		list = (List<?>) map.get("list");
 		clazz = map.get("class");
 		editControllerURI = (String) map.get("editControllerURI");		
-		return controllerConfig().initiatePage(list, clazz, "frontViewAddObject", "label"); //model; //
+		return controllerConfig().initiatePage((List<?>) map.get("list"),map.get("class"), "frontViewAddObject", "label"); //model; //list, clazz
 	}
 	
-	@GetMapping(value = "/04_listPage/reload")
+/*	@GetMapping(value = "/04_listPage/reload")
 	public ModelAndView listReload(ModelAndView model) {
 		list = (List<?>) model.getModelMap().get("list");
 		return controllerConfig().initiatePage(list, clazz, "frontViewAddObject", "label");
 	}
 	
+	
+	
+*/	
 
+   
+    
+    
+    
 	@GetMapping(value = "04_listPage/frontViewAddObject")
 	@Override
 	public ModelAndView frontViewAddObject() {

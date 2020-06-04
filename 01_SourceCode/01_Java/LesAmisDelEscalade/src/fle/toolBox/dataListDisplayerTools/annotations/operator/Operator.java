@@ -1,4 +1,4 @@
-package fle.toolBox.dataListDisplayerTools.annotations;
+package fle.toolBox.dataListDisplayerTools.annotations.operator;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 @Target({ FIELD, METHOD })
 public @interface Operator {
 
-	String [] signsArray();
+	OperatorArrays signsArray();
 	
 	
 

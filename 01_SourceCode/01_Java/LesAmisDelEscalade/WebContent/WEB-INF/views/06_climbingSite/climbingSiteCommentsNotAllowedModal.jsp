@@ -6,35 +6,5 @@
 NOT ALLOWED TO IMPLEMENT
 </div>
 </div>
-<script type="text/javascript">
 
-countOnkeyPress();
-
-
-function getCharNb(){
-	var comment = document.getElementById("comment");
-	var str = comment.value;
-	var size = str.length;
-	countDown(size);
-	
-}
-
-function countOnkeyPress(){
-	
-	var text = document.getElementById("comment");
-	text.setAttribute("oninput", 'getCharNb()');
-	
-}
-
-function countDown(value2){
-	var label =document.getElementById("count");
-	var value1 = 500;
-	label.innerHTML= value1-value2;
-}
-
-
-
-
-
-</script>
 

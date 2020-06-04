@@ -36,8 +36,13 @@ function killParentModal(parentModalId) {
  */
 function killParentModalOnHashChange() {
 	document.addEventListener("hashchange", killParentModal("loading"));
-
 }
+
+
+function killParentModalOnHashChange(modalName) {
+	document.addEventListener("hashchange", killParentModal(modalName));
+}
+
 
 function addToElementToggleDisplayOnClickAndHashChange(element,
 		elementToToggleId) {

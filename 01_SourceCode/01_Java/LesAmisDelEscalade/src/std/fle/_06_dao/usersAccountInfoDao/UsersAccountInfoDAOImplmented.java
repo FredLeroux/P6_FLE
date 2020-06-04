@@ -86,7 +86,6 @@ public class UsersAccountInfoDAOImplmented implements UsersAccountInfoDAO {
 	public UsersAccountInfoMemberStatusSFC getUserAccountInfoMemberStatusById(Integer id) {
 		UsersAccountinfoMemberStatusDTO dto = dao.getSpecificDTOById(usersAccountInfo, usersAccountinfoMemberStatusDTO,
 				id);
-		System.out.println(dto.getSecurity());
 		UsersAccountInfoMemberStatusSFC sfc = dao.converter().convertDTOToSFC(dto, usersAccountInfoMemberStatusSFC);
 		fieldsTranslator.translateFieldValue(sfc);
 		return sfc;

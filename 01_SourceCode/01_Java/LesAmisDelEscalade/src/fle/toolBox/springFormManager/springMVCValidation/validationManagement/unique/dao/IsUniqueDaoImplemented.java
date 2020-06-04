@@ -25,6 +25,7 @@ public class IsUniqueDaoImplemented implements IsUniqueDao {
 	}
 
 	
+	@Override
 	public List<Object> columnElementsList(String fieldName, String entityName) {
 		@SuppressWarnings("unchecked")
 		List<Object> columnElements = getSession().createQuery("SELECT T." + fieldName + " FROM " + entityName + " T")

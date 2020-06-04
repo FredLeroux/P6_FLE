@@ -62,12 +62,19 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 	
 	@Override
 	public void saveDTO(E entity, D dtoClass) {
-		save((E) converter.convertDTOToEntity(dtoClass, entity));
+		save(converter.convertDTOToEntity(dtoClass, entity));
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public<SE extends Object,SD extends Object> void saveSpecificDTO(SE entityClass, SD DTOClass) {
+		SD dto = (SD) converter().convertSourceToDestinationType(DTOClass, entityClass);
+		session().save(dto);
+		
 	}
 
 	@Override
 	public void saveSFC(E entity, D dtoClass, SFC sfcClass) {
-		save((E) converter.convertDTOToEntity(converter.convertSFCToDTO(sfcClass, dtoClass), entity));
+		save(converter.convertDTOToEntity(converter.convertSFCToDTO(sfcClass, dtoClass), entity));
 	}
 	
 	@Override
@@ -87,7 +94,7 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 		Query query = session().createQuery(
 				"FROM " + entity.getClass().getName() + " T WHERE T." + fieldName + "=" + hibernateQueryArg(condition));
 		E newEntity = (E) query.getSingleResult();
-		return (SD) converter.convertEntityToDTO(newEntity, specificDTOClass);
+		return converter.convertEntityToDTO(newEntity, specificDTOClass);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -97,7 +104,7 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 		Query query = session().createQuery(
 				"FROM " + entity.getClass().getName() + " T WHERE T." + fieldName + "=" + hibernateQueryArg(condition));
 		SE newEntity = (SE) query.getSingleResult();
-		return (SD) converter.convertEntityToDTO(newEntity, specificDTOClass);
+		return converter.convertEntityToDTO(newEntity, specificDTOClass);
 	}
 
 	@Override
@@ -117,7 +124,7 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 	@Override
 	public <SD extends DTO> SD getSpecificDTOByForeignerKey(String fieldName, Integer foreignerKey, E entity,
 			SD SpecificDTOClass) {
-		return (SD) converter.convertEntityToDTO(getEntityByForeignerKey(fieldName, foreignerKey, entity),
+		return converter.convertEntityToDTO(getEntityByForeignerKey(fieldName, foreignerKey, entity),
 				SpecificDTOClass);
 	}
 
@@ -143,7 +150,7 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 		Query query = session().createQuery(
 				"FROM " + entity.getClass().getName() + " A WHERE A." + fieldName + "=" + hibernateQueryArg(condition));
 		E newEntity = (E) query.getSingleResult();
-		return (D) converter.convertEntityToDTO(newEntity, DTOClass);
+		return converter.convertEntityToDTO(newEntity, DTOClass);
 	}
 
 	

@@ -7,8 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
 import fle.toolBox.classType.SLO;
-import fle.toolBox.dataListDisplayerTools.annotations.Operator;
 import fle.toolBox.dataListDisplayerTools.annotations.ToTranslate;
+import fle.toolBox.dataListDisplayerTools.annotations.operator.Operator;
+import fle.toolBox.dataListDisplayerTools.annotations.operator.OperatorArrays;
 import fle.toolBox.dateAndTime.annotation.DateTimeRawFormat;
 
 @NamedQuery(name = "MembersListSLO", query = "SELECT  B.id,A.firstName,A.lastName,B.pseudonyme,B.signUpDate,B.member"
@@ -20,16 +21,16 @@ public class MembersListSLO extends SLO {
 	@Id
 	private Integer Id;
 
-	@Operator(signsArray = { "=" })
+	@Operator(signsArray = OperatorArrays.EQUAL)
 	private String firstName;
-	@Operator(signsArray = { "=" })
+	@Operator(signsArray = OperatorArrays.EQUAL)
 	private String lastName;
-	@Operator(signsArray = { "=" })
+	@Operator(signsArray = OperatorArrays.EQUAL)
 	private String pseudonyme;
-	@Operator(signsArray = { "=" })
+	@Operator(signsArray = OperatorArrays.EQUAL)
 	@DateTimeRawFormat(dateFormatStyle = FormatStyle.LONG)
 	private String signUpDate;
-	@Operator(signsArray = { "=" })
+	@Operator(signsArray = OperatorArrays.EQUAL)
 	@ToTranslate(suffix = "isMember")
 	private String member;
 

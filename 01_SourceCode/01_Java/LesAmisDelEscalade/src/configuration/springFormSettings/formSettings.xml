@@ -33,6 +33,6 @@
 	<entry key="editSiteRouteForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/editSiteRouteTmplt.jsp</entry>
 	<entry key="createNewSiteRoutePitchForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/createNewRoutePitchTmplt.jsp</entry>
 	<entry key="editSiteRoutePitchForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/editRoutePitchTmplt.jsp</entry>
-	<entry key="postCommentFormular.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/postCommentTmplt.jsp</entry>
+	<entry key="editCommentFormular.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/editCommentTmplt.jsp</entry>
 	</properties>
 	

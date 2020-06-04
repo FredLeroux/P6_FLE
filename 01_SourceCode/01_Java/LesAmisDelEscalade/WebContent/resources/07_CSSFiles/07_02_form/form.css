@@ -103,6 +103,13 @@ input[readonly = "readonly"],textarea[readonly = "readonly"]  {
 	
 }
 
+input::-webkit-selection{
+	border-radius: 15px;
+	color: red;
+}
+
+::-moz-selection { background: yellow; }
+
 textarea{
 	resize: none;
 }

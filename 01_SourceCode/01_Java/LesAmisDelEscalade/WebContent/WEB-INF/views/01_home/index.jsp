@@ -45,6 +45,16 @@ var src= ${iFrameSource};
 var loc =${iFrameLoc};
 var iframe = newIframe(loc);
 iframe.loadIframe(src);
+/*killLoginModal();
+function killLoginModal() {
+	var element = window.parent.document.getElementById("loginModal");
+	if (element.style.display === "block") {
+		element.style.display = "none";
+	}
+}*/
+
+
+
 </script>
 
 </body>

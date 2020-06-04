@@ -22,6 +22,7 @@ public class FieldsTransaltorImplemented implements FieldsTranslator {
 	private Class<ToTranslate> transalteAnnotation = ToTranslate.class;
 
 //add suffix to field value
+	@Override
 	public void translateFieldValue(Object entity) {
 		
 		for (Field field : fields(entity)) {

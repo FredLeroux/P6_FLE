@@ -16,6 +16,7 @@ public class ClimbingSiteListDAOImplemented implements ClimbingSiteListDAO {
 	
 	private ClimbingSiteSLO climBingSiteSLO = new ClimbingSiteSLO();
 	
+	@Override
 	public List<ClimbingSiteSLO> getList(){
 		return dao.getInnerJoinListI18N(climBingSiteSLO);
 	}

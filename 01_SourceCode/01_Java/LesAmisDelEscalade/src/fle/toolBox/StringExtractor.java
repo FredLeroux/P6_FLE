@@ -1,10 +1,18 @@
 package fle.toolBox;
 
-import java.util.ArrayList;
+/**
+ * 
+ * @author Frederic Leroux <br>
+ * @version 1.0
+ * @apiNote contains some extrators to use on a string<br>
+ * {@link #extractorForward(String, String)}<br>
+ * {@link #extractorReverse(String, String)}<br>
+ * {@link #extractAllAfterLastIndexOf(String, String)}
+ *
+ */
 
 public class StringExtractor {
 
-	PatternMatcher matcher = new PatternMatcher();
 	String regex = "[a-zA-Z0-9\\p{javaLetter}_\\s]+";
 	String operatorRegex = "=|<|>|>=|<=";
 
@@ -31,14 +39,14 @@ public class StringExtractor {
 			StringBuffer buf = new StringBuffer();
 			buf.append(str.charAt(i));
 			if (start == -1) {
-				if (matcher.patternMatcher(regex, buf.toString())) {
+				if (PatternMatcher.isMatch(regex, buf.toString())) {
 					start = i;
 				} else {
 					start = -1;
 				}
 			} else {
 				if (end == 0) {
-					if (!matcher.patternMatcher(regex, buf.toString())) {
+					if (!PatternMatcher.isMatch(regex, buf.toString())) {
 						end = i;
 					} else {
 						end = 0;
@@ -79,14 +87,14 @@ public class StringExtractor {
 			StringBuffer buf = new StringBuffer();
 			buf.append(str.charAt(i));
 			if (end == 0) {
-				if (matcher.patternMatcher(regex, buf.toString())) {
+				if (PatternMatcher.isMatch(regex, buf.toString())) {
 					end = i + 1;
 				} else {
 					end = 0;
 				}
 			} else {
 				if (start == 0) {
-					if (!matcher.patternMatcher(regex, buf.toString())) {
+					if (!PatternMatcher.isMatch(regex, buf.toString())) {
 						start = i + 1;
 					} else {
 						start = 0;
@@ -103,23 +111,24 @@ public class StringExtractor {
 		return result;
 	}
 
-	// TODO 1-JAVADOC clarified javadoc
 	/**
 	 * 
-	 * @param str
-	 * @param regex
-	 * @return an ArrayList containing argument splitted from str and the operator
-	 *         used to split
+	 * @param sourceString the string wher to extract substring
+	 * @param toFind       the char or charsequence wich will define the begining of
+	 *                     the substring, this methos is exclusive and will not
+	 *                     enclose "toFind" in the substring.<br>
+	 *                     Example: <br>
+	 *                     for a string "alpha.beta.gamma"
+	 *                     this method will return  "gamma" with "toFind" = ".".
+	 *                     
+	 * @return a substring stating after the last index of toFind.
 	 */
-	public ArrayList<String> simpleExtractor(String str, String regex) {
-		ArrayList<String> arl = new ArrayList<String>();
-		String operator = matcher.patternMatcherString(str, regex);
-		String[] array = str.split(regex);
-		for (String s : array) {
-			arl.add(s);
-		}
-		arl.add(operator);
-		return arl;
+	public String extractAllAfterLastIndexOf(String sourceString, String toFind) {
+		return sourceString.substring(lastIndexOfCharInString(sourceString, toFind));
+	}
+
+	private Integer lastIndexOfCharInString(String sourceString, String toFind) {
+		return sourceString.lastIndexOf(toFind)+1;
 	}
 
 }

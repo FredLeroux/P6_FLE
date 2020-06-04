@@ -360,8 +360,10 @@ function createTableHead(table) {
 }
 
 function getRowObjectId(id) {
+	
+	if(getEditHandlerName()!="none"){
 	sendRowIdToBacKEnd(id);
-
+	}
 }
 
 function sendRowIdToBacKEnd(id){		

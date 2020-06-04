@@ -2,6 +2,7 @@ package fle.toolBox.dateAndTime;
 
 import java.lang.reflect.Field;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -13,7 +14,13 @@ public class FredDateTimeFormatter {
 	private static final Class<DateTimeRawFormat> DATE_TIME_RAW_FORMAT_PATTERN = DateTimeRawFormat.class;
 
 	public static String date(Field field, String rawDateAndTime) {
-		return dateFormatted(parseToDate(field, rawDateAndTime),formatStyle(field));
+		if(field.getType().getSimpleName().toLowerCase().equals("localdate")) {
+			return dateFormatted(parseToDate(field, rawDateAndTime),formatStyle(field));
+		}else {
+			return dateFormatted(parseToDateTime(field, rawDateAndTime),formatStyle(field));
+		}
+		
+		
 	}
 
 	public static String time(Field field, String rawDateAndTime) {
@@ -25,6 +32,13 @@ public class FredDateTimeFormatter {
 		LocalDate date = LocalDate.parse(rawDateAndTime.toString(), dtf);
 		return date;
 	}
+	
+	private static LocalDateTime parseToDateTime(Field field, Object rawDateAndTime) {
+		DateTimeFormatter dtf = dateTimeFormatter(field);
+		LocalDateTime date = LocalDateTime.parse(rawDateAndTime.toString(), dtf);
+		return date;
+	}
+
 
 	private static LocalTime parseToTime(Field field, Object rawDateAndTime) {
 		DateTimeFormatter dtf = dateTimeFormatter(field);
@@ -37,6 +51,11 @@ public class FredDateTimeFormatter {
 	}
 
 	private static String dateFormatted(LocalDate date, FormatStyle formatStyle) {
+		DateTimeFormatter dtf = DateTimeFormatter.ofLocalizedDate(formatStyle);
+		return date.format(dtf);
+	}
+	
+	private static String dateFormatted(LocalDateTime date, FormatStyle formatStyle) {
 		DateTimeFormatter dtf = DateTimeFormatter.ofLocalizedDate(formatStyle);
 		return date.format(dtf);
 	}

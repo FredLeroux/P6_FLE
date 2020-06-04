@@ -24,6 +24,8 @@ public interface DAOGenericInterface<E extends ENT, D extends DTO> {
 	public void saveEntity(ENT entity);
 
 	public void saveDTO(E entity, D dtoClass);
+	
+	public<SE extends Object,SD extends Object> void saveSpecificDTO(SE entityClass, SD DTOClass);
 
 	public void saveSFC(E entity, D dtoClass, SFC sfcClass);
 

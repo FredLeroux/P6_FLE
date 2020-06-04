@@ -1,4 +1,4 @@
-package fle.toolBox.springFormManager.annotations;
+package fle.toolBox.springFormManager.annotations.inputTextArea;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;

@@ -12,10 +12,12 @@ public class FieldsAndAnnotation<O extends Object> extends ExtractSetAndGetField
 		super(entityModel);
 	}
 
+	@Override
 	public O getEntityModel() {
 		return super.getEntityModel();
 	}
 
+	@Override
 	public void setEntityModel(O entityModel) {
 		super.setEntityModel(entityModel);
 	}

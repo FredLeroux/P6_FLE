@@ -11,13 +11,13 @@ import fle.toolBox.IsAnnotationPresent;
 import fle.toolBox.exceptionsThrower.ExceptionsThrower;
 import fle.toolBox.fieldsReflectivity.AssociatedModelManagement;
 import fle.toolBox.springFormManager.annotations.HiddenPath;
-import fle.toolBox.springFormManager.annotations.InputTextArea;
 import fle.toolBox.springFormManager.annotations.PassWordField;
 import fle.toolBox.springFormManager.annotations.PlaceHolderText;
 import fle.toolBox.springFormManager.annotations.ReadOnlyInput;
 import fle.toolBox.springFormManager.annotations.SelectInputType;
 import fle.toolBox.springFormManager.annotations.actionButtons.SpringFormActionButton;
 import fle.toolBox.springFormManager.annotations.entityModelAssociation.EntityModelAssociation;
+import fle.toolBox.springFormManager.annotations.inputTextArea.InputTextArea;
 import fle.toolBox.springFormManager.builder.annotationsManagement.InputTextAreaAnnotation;
 import fle.toolBox.springFormManager.builder.annotationsManagement.SpringFormSettingsAnnotation;
 import fle.toolBox.springFormManager.builder.annotationsManagement.SpringFormSettingsAnnotationData;
@@ -129,7 +129,7 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 	 */
 	private <A extends Annotation> ArrayList<String> annotatedFieldNameList(Class<A> annotationClass) {
 		boolean entityName = true;
-		Class<A> annotation = (Class<A>) annotationClass;
+		Class<A> annotation = annotationClass;
 		ArrayList<String> annotatedFieldList = new ArrayList<>();
 		if (associatedModel) {
 			annotatedFieldList = fieldManager.AssociatedModelFieldsName(annotation, entityName);

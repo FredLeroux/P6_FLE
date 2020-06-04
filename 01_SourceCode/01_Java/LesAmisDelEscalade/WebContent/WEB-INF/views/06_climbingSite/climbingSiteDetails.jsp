@@ -60,7 +60,7 @@ border: solid 2px green;}
 	</div>	
 	<div class="zone2" id="route" >ZONE 2			
 		<jsp:include page="/WEB-INF/views/06_climbingSite/ClimbingSiteIframe/RoutesAndPitchList3.jsp"/>
-			a<br>
+			<br>
 				
 	</div>	
 	<div class="zone3">ZONE 3
@@ -69,8 +69,10 @@ border: solid 2px green;}
 </div>
 <br>
 <br>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/02_01_03_02_loadModalJavaScript.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/04_01_01_toggle.js"></script>
 <script type="text/javascript">
+
 
 var comment = ${commentModal};
 //addOnClicksendIdtoController();
@@ -88,6 +90,16 @@ toggleComment.addToElementToggleParentElementDisplayOnClick("commentSite", comme
 
 /*window.alert(document.getElementById("site").scrollHeight)
 document.getElementById("route").style.height = document.getElementById("site").scrollHeight +"px";*/
+
+
+var modal = newLoadModal();
+modal.killParentModalOnHashChange("siteCommentModal");
+modal.killParentModalOnHashChange("siteCommentNotAllowedModal");
+modal.killParentModalOnHashChange("loginModal");
+
+
+
+
 </script>
 
 

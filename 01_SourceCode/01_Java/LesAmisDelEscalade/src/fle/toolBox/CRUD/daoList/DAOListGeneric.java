@@ -16,5 +16,9 @@ public interface DAOListGeneric {
 	public <L extends SLO> List<L> getInnerJoinListById(L SLOClass, String namedQueryParameter, Integer id);
 
 	public <L extends SLO> List<L> getInnerJoinListByIdI18N(L SLOClass, String namedQueryParameter, Integer id);
+	
+	public<O extends Object> List<O> getListOfObjectWhere(O entity,String clause,Object value);
+	
+	public<O extends Object> List<O> getI18NListOfObjectWhere(O entity,String clause,Object value);
 
 }

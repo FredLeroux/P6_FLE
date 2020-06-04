@@ -53,7 +53,6 @@ public class ParseListObjectArrayToListObjectImplemented implements ParseListObj
 	@SuppressWarnings("unchecked")
 	private<O extends Object> List<Object[]> queryListById(O joinClass,String namedQueryParameter, Integer id){		
 		Query query = hibernate.session().createNamedQuery(joinClass.getClass().getSimpleName());
-		System.out.println(query.toString());
 		query.setParameter(namedQueryParameter, id);
 		return  query.getResultList();		
 	}

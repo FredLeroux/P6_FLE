@@ -10,7 +10,7 @@ import org.springframework.context.MessageSource;
 
 import fle.toolBox.Internationalization.Internationalization;
 import fle.toolBox.dataListDisplayerTools.annotations.NotAListFilter;
-import fle.toolBox.dataListDisplayerTools.annotations.Operator;
+import fle.toolBox.dataListDisplayerTools.annotations.operator.Operator;
 import fle.toolBox.fieldsReflectivity.FieldsAndAnnotation;
 import fle.toolBox.fieldsReflectivity.extractSetAndGetComponents.ClassFields;
 import fle.toolBox.springFormManager.annotations.HiddenPath;
@@ -68,7 +68,7 @@ public class ColumnsNamesAndOperators<O extends Object> {
 	}
 
 	String[] OperatorArray(String fieldName) {
-		return fieldManager.fieldAnnotationByFieldName(fieldName, operator).signsArray();
+		return fieldManager.fieldAnnotationByFieldName(fieldName, operator).signsArray().getSignsArray();
 	}
 
 	public JSONArray createColumnsNamesAndOperatorsListV2(MessageSource messageSource) {
@@ -79,7 +79,7 @@ public class ColumnsNamesAndOperators<O extends Object> {
 		for (int i = 0; i < fieldsNameList.size(); i++) {
 			String fieldName = fieldsNameList.get(i);
 			String columnNameInLocalLang = inter.messI18n(inter.createKey(fieldName), messageSource);
-			String[] operatorTbl = info.fieldAnnotationByFieldName(fieldName, operator).signsArray();
+			String[] operatorTbl = info.fieldAnnotationByFieldName(fieldName, operator).signsArray().getSignsArray();
 			for (int j = 0; j < operatorTbl.length; j++) {
 				String operator = operatorTbl[j];
 				String operatorNameInLocalLang = inter.messI18n(inter.createKey(operator), messageSource);
@@ -139,7 +139,6 @@ public class ColumnsNamesAndOperators<O extends Object> {
 
 	private ArrayList<String> notAListFilterFieldsNameList() {
 		ArrayList<String> notAListFilterFieldsNameList = new ArrayList<>();
-		System.out.println(ClassFields.getFieldsListByAnnotation(entityModel, NotAListFilter.class));
 		ClassFields.getFieldsListByAnnotation(entityModel, NotAListFilter.class)
 			.forEach(f -> notAListFilterFieldsNameList.add(f.getName()));
 		return notAListFilterFieldsNameList;

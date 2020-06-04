@@ -23,7 +23,7 @@ public class DataListDisplayImplemented implements DataListDisplay {
 	@Autowired
 	MessageSource messageSource;
 
-	private FrontViewList<Object> frontViewList = new FrontViewList<>();
+	private FrontViewList<Object> frontViewList;
 	
 
 	private ModelAndView frontView = new ModelAndView();
@@ -61,6 +61,7 @@ public class DataListDisplayImplemented implements DataListDisplay {
 	// inital entyModel = O entityModel
 	public ModelAndView initiatePage(List<?> fullData, Object entityModel,
 			String frontViewAddObjectHandlerName,String internationalizationSuffix) {
+		frontViewList  = new FrontViewList<>();
 		List<Object> list = new ArrayList<>(fullData);
 		frontViewList.setTools(entityModel);//(List<Object>)fullData
 		frontViewList.initializingComponents(list, request, messageSource, frontViewList.getRowsPerPagesList(),

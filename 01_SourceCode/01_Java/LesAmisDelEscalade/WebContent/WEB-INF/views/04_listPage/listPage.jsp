@@ -7,10 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body >
-<%@ include file="/resources/02_templatesJsp/02_03_listDisplayerFiles/02_03_01_file/displayList.jsp" %>
+<jsp:include  page="/resources/02_templatesJsp/02_03_listDisplayerFiles/02_03_01_file/displayList.jsp" flush="true"/>
+
+
+
 
 </body>
 
 
 
 </html>
+
+

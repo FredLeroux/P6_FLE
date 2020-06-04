@@ -1,24 +1,25 @@
 package std.fle._03_sfc.climbingSiteSFC;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.validation.annotation.Validated;
 
 import fle.toolBox.classType.SFC;
 import fle.toolBox.springFormManager.annotations.HiddenPath;
-import fle.toolBox.springFormManager.annotations.InputTextArea;
 import fle.toolBox.springFormManager.annotations.SpringFormSettings;
+import fle.toolBox.springFormManager.annotations.inputTextArea.InputTextArea;
 
 @SpringFormSettings(
-		action = "postComment",
+		action = "updateComment",
 		method = "post",
 		modelAttribute = "climbingSiteComment",
 		name = "climbingSiteCommentFormular",
 		propertiesFilePath = "configuration/springFormSettings/formSettings.xml",
 		submitButtonMessagePropertyKey = "userFormBTN.message.postComment",
 		submitButtonAlignmentPropertyKey = "userFormBtn.align",
-		jspFilePath = "postCommentFormular.path",
+		jspFilePath = "editCommentFormular.path",
 		labelMessageSourceSuffix = "userForm.label",
 		readOnly = false
 		)
@@ -31,9 +32,11 @@ public class ClimbingSiteCommentsSFC extends SFC{
 	private Integer id;
 
 	@NotEmpty
+	@Pattern(regexp = "^[^*]*$")
 	@Length(max = 500)
-	@InputTextArea(rows = 5,charByRows = 100)
+	@InputTextArea(rows = 5,charByRows = 100)	
 	private String comment;
+	
 
 	public Integer getId() {
 		return id;
@@ -50,6 +53,8 @@ public class ClimbingSiteCommentsSFC extends SFC{
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+	
+	
 	
 	
 	

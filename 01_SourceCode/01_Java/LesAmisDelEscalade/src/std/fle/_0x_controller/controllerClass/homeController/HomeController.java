@@ -197,6 +197,15 @@ public class HomeController {
 		return model;
 	}
 	
+	@GetMapping(value = "/noResultsToDisplay")
+	public ModelAndView noResultsToDisplay(ModelAndView model) {		
+		model.addObject("iFrameSource", "'03_messagesPages/noResultsToDisplay'");
+		model.addObject("iFrameLoc","'pagesViewer'");
+		model.setViewName("forward:/navbar");		
+		return model;
+	}
+
+	
 	@GetMapping(value="/addMineTopo")
 	public ModelAndView addMineTopo(ModelAndView model) {
 		model.addObject("iFrameSource", "'05_topo/createNewTopoForm'");

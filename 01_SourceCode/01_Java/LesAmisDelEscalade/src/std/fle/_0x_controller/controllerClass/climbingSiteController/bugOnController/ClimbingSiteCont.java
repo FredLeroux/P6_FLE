@@ -31,7 +31,6 @@ public class ClimbingSiteCont extends ClimbingSiteModelMgntAndControllerVar {
 
 	@GetMapping(value = "/climbingSiteEdit/{id}")
 	public ModelAndView climbingSiteEdit(@PathVariable Integer id) {
-		System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++herer");
 		return manager.updateFormVarInit(id);
 	}
 
@@ -44,7 +43,6 @@ public class ClimbingSiteCont extends ClimbingSiteModelMgntAndControllerVar {
 	@GetMapping("/climbingSiteUpdateForm")
 	public ModelAndView climbingSiteUpadteForm(ModelAndView model,
 			@ModelAttribute(name = "siteFullInfoUpdate") ClimbingSiteSFC climbingSiteSFC) {
-		System.out.println("****************************************************************************herer");
 		return manager.manageClimbingSiteUpdateForm(model);
 
 	}

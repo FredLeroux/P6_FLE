@@ -2,6 +2,7 @@ package std.fle._08_interceptors;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,6 +34,7 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 	private final String climbingSiteEditListType = "climbingSitesEdit";
 	private final String climbingSiteCommentsType = "climbingSitesComments";	
 	private final String forbiddenMessageURI = "/03_messagesPages/accesDenied";
+	private final String emptyListMessageURI = "/03_messagesPages/noResultsToDisplay";
 	private String listInitiate =null;
 	private String siteIdForComment = null;
 
@@ -59,7 +61,11 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 			map=listGenerator.getClimbingSiteListEdit();
 		}
 		if(isClimbingSiteCommentsType(listInitiate)) {		
-			map=listGenerator.getclimbingSiteCommentsSLOList(getId(request));
+			map=listGenerator.getclimbingSiteCommentsSLOList(getId(request),request);
+		}
+		if(isListEmpty(map)) {
+			redirectToNoResultsMessage(request,response);
+			return false;
 		}
 		request.setAttribute("map", map);
 		return true;
@@ -80,16 +86,25 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 	private boolean isClimbingSiteCommentsType(String listType) {
 		return climbingSiteCommentsType.equals(listType);
 	}
+	
+	private boolean isListEmpty(LinkedHashMap<String, Object> map) {
+		List<?> list = (List<?>) map.get("list");		
+		return list.isEmpty(); 
+	}
 
 	private void redirectToForbiddenMessage(HttpServletRequest request,HttpServletResponse response) {
 		dispatch(request,response, forbiddenMessageURI);	
+	}
+	
+	private void redirectToNoResultsMessage(HttpServletRequest request,HttpServletResponse response) {
+		dispatch(request,response, emptyListMessageURI);	
 	}
 	
 	
 
 	private void dispatch(HttpServletRequest request,HttpServletResponse response, String redirectURL) {
 		RequestDispatcher dispatcher;
-		dispatcher = request.getRequestDispatcher(forbiddenMessageURI);
+		dispatcher = request.getRequestDispatcher(redirectURL);
 		try {
 			dispatcher.forward(request, response);
 		} catch (ServletException | IOException e) {
@@ -100,7 +115,6 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 	
 	private Integer getId(HttpServletRequest request) {
 		Integer id = null;
-		System.out.println(request.getParameter("id"));
 		if(request.getParameter("id") == null) {
 			id =FredParser.toInteger(siteIdForComment);  ;
 		}else {
