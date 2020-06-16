@@ -11,6 +11,8 @@
 	<entry key="userFormBtn.message.forgotPass">button.forgotPass.label</entry>
 	<entry key="userFormBtn.message.memberStatus">button.memeberStatus.label</entry>
 	<entry key="userFormBtn.message.createTopo">button.createTopo.label</entry>
+	<entry key="userFormBtn.message.updateTopo">button.updateTopo.label</entry>
+	<entry key="userFormBtn.message.borrowThisTopo">button.borrowThisTopo.label</entry>
 	<entry key="userFormBtn.message.createSite">button.createSite.label</entry>
 	<entry key="userFormBtn.message.updateSite">button.updateSite.label</entry>
 	<entry key="userFormBtn.message.createRoute">button.createRoute.label</entry>
@@ -26,6 +28,8 @@
 	<entry key="forgotPasswordForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/forgotPasswordFormTmplt.jsp</entry>
 	<entry key="updateMemberStatusForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/updateMemberStatusTmplt.jsp</entry>
 	<entry key="createNewTopoForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/createNewTopoTmplt.jsp</entry>
+	<entry key="updateTopoForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/updateTopoTmplt.jsp</entry>
+	<entry key="displayTopoForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/displayTopoTmplt.jsp</entry>
 	<entry key="createNewSiteForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/createNewSiteTmplt.jsp</entry>
 	<entry key="updateSiteForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/updateSiteTmplt.jsp</entry>
 	<entry key="displaySiteForm.path">/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/displaySiteTmplt.jsp</entry>

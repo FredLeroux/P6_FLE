@@ -25,7 +25,9 @@ import std.fle._03_sfc.climbingSiteSFC.SiteRoutesSFC;
 import std.fle._06_dao.climbingSiteCommentsDao.ClimbingSiteCommentsDAO;
 import std.fle._06_dao.climbingSiteDao.ClimbingSiteDAO;
 import std.fle._0X_security.SecurityLevel;
-import std.fle._0x_controller.controllerClass.climbingSiteController.climbingFormsValidation.ClimbingFormsValidation;
+import std.fle._0x_controller.modelManagement.deleteManager.DeleteConfirmationManager;
+import std.fle._0x_controller.modelManagement.deleteManager.DeleteConfirmationManagerImplemented;
+import std.fle._0x_controller.modelManagement.formsValidation.FormsValidation;
 
 @Service
 public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgntAndControllerVar
@@ -41,13 +43,16 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 	private SpringMVCValidation springMVCValidation;
 
 	@Autowired
-	private ClimbingFormsValidation climbingFormsValidation;
+	private FormsValidation climbingFormsValidation;
 
 	@Autowired
 	private ClimbingSiteDAO dao;
 
 	@Autowired
 	private ClimbingSiteCommentsDAO commentDao;
+	
+	@Autowired
+	private DeleteConfirmationManager deletion;
 
 	private ClimbingSiteCommentsSFC climbingSiteCommentsSFC = new ClimbingSiteCommentsSFC();
 
@@ -104,7 +109,8 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 	public ModelAndView manageClimbingSiteUpdateForm(ModelAndView model) {
 		model.setViewName("06_climbingSite/updateSiteForm");
 		model.addObject("siteFullInfoUpdate", climbingSiteSFC);
-		selectService.addSelectListsAndValues(climbingSiteSFC, model);
+		deletion.addURLAndMessage(model, "deleteSite", "deleteConfirmationAsk.message");		
+		selectService.addSelectListsAndValues(climbingSiteSFC, model);		
 		siteFormModelAttribute(model);
 		return model;
 	}

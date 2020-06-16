@@ -62,7 +62,7 @@ public class MessagesPagesController {
 
 	@PostMapping(value = "/03_messagesPages/newActivationCode")
 	public ModelAndView validatingMail(ModelAndView model,
-			@ModelAttribute(value = "userMail") @Validated UsersInfoMailSFC usersInfoMailSfc, BindingResult result) {
+			@ModelAttribute(value = "userMail") @Validated UsersInfoMailSFC usersInfoMailSfc, BindingResult result,HttpServletRequest request) {
 		if (result.hasErrors()) {
 			model.setViewName("/03_messagesPages/accountActivationError");
 			return model;
@@ -72,7 +72,7 @@ public class MessagesPagesController {
 			if (accountServices.isAccountActivated(eMail)) {
 				return new ModelAndView("03_messagesPages/accountAlreadyActivated");
 			} else {
-				mail.sendActivationLink(eMail);
+				mail.sendActivationLink(eMail,request);
 				model =new ModelAndView("03_messagesPages/confirmationNewCodeSent");
 				model.addObject("confirmationMessage",locale.message("newCodeSentBody.message"));
 				return model;
@@ -111,7 +111,7 @@ public class MessagesPagesController {
 		SessionVariables sessVar = new SessionVariables(request);
 		String login = sessVar.getLogin();
 		if(accountServices.accountAcces(login).getPasswordResetCode()==null) {
-		mail.sendLockedAccountMailMessage(usersInfoService.getAccountEmailByLogin(login));
+		mail.sendLockedAccountMailMessage(usersInfoService.getAccountEmailByLogin(login),request);
 		}
 		sessVar.setLogin("");
 		return new ModelAndView("/03_messagesPages/accountLocked");
@@ -166,5 +166,8 @@ public class MessagesPagesController {
 		
 	}
 	
-	
+	@GetMapping(value = "/03_messagesPages/topoLendingRefused")
+	public ModelAndView topoLendingRefused() {
+		return new ModelAndView("03_messagesPages/topoLendingRefused");
+	}
 }

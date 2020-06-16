@@ -1,6 +1,8 @@
 package std.fle._0x_controller.modelManagement.accountModelManagement;
 
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.servlet.ModelAndView;
 
 import std.fle._03_sfc.usersAccountInfoSFC.UsersAccountInfoMemberStatusSFC;
@@ -12,7 +14,7 @@ public interface AccountModelManagement {
 	
 	public ModelAndView manageUserFormUpdate(ModelAndView model);
 
-	public ModelAndView manageUserCreation(UserSFC userSFC);
+	public ModelAndView manageUserCreation(UserSFC userSFC,HttpServletRequest request);
 	
 	public ModelAndView displayMemeberStatus(ModelAndView model,String modelAttributeName,Integer id);
 	

@@ -52,7 +52,7 @@ public class UsersAccountInfoDAOImplmented implements UsersAccountInfoDAO {
 
 	@Override
 	public UsersAccountInfo getEntityById(Integer id) {
-		return dao.getEntityByID(usersAccountInfo, id);
+		return dao.getEntityById(usersAccountInfo, id);
 	}
 
 	@Override
@@ -285,15 +285,7 @@ public class UsersAccountInfoDAOImplmented implements UsersAccountInfoDAO {
 		dto.setLoginTentativeNumber(0);
 		dao.updateDTO(usersAccountInfo, dto);
 	}
-
-	private void setSecurityLevelFunctionOfMemberStatus(UsersAccountInfoDTO usersAccountInfoDTO) {
-		if (usersAccountInfoDTO.getMember()) {
-			usersAccountInfoDTO.setSecurityLevel(SecurityLevel.SUPER_USER.rank());
-		} else {
-			usersAccountInfoDTO.setSecurityLevel(SecurityLevel.USER.rank());
-		}
-	}
-
+	
 	/**
 	 * 
 	 * @return SFC memberStatus String to DTO Boolean memberStatus
@@ -302,7 +294,10 @@ public class UsersAccountInfoDAOImplmented implements UsersAccountInfoDAO {
 		return localKeyToBoolean.localKey(toConvert, "true.isMember", "false.isMember");
 	}
 	
-	private Boolean memberStatusFromSelectSFCToDTO(String toConvert) {
-		return Boolean.parseBoolean(toConvert);
+	@Override
+	public void deleteAccount(Integer id) {
+		dao.removeByID(usersAccountInfo, id);
 	}
+	
+	
 }

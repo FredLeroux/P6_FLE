@@ -12,8 +12,10 @@
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/04_01_02_link.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/formFieldDisplayer.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/02_01_03_02_loadModalJavaScript.js"></script>
 <script type="text/javascript">
-
+var loadModal = newLoadModal();
+loadModal.addButtonOnclickParentModalToggle("siteFullInfoFormularButton");
 var onclick = newLink();
 var siteRoutesController = ${siteRoutesController}
 onclick.addOnclicksubmitFormIntermediateController("siteRoutes","siteFullInfoFormular", siteRoutesController);

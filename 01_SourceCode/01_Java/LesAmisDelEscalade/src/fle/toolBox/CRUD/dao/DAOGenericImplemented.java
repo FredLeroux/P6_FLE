@@ -39,13 +39,21 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public E getEntityByID(E entity, Integer id) {
+	public E getEntityById(E entity, Integer id) {
 		return (E) session().get(entity.getClass(), id);
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public<SE extends Object> SE getSpecificEntityById(SE entity, Integer id) {
+		return (SE) session().get(entity.getClass(), id);
+	}
+	
+	
 
 	@Override
 	public D getDtoByID(E entity, D dtoClass, Integer id) {
-		entity = getEntityByID(entity, id);
+		entity = getEntityById(entity, id);
 		D dto = converter.convertEntityToDTO(entity, dtoClass);
 		return dto; 
 	}
@@ -76,6 +84,8 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 	public void saveSFC(E entity, D dtoClass, SFC sfcClass) {
 		save(converter.convertDTOToEntity(converter.convertSFCToDTO(sfcClass, dtoClass), entity));
 	}
+	
+	
 	
 	@Override
 	public void update(E entity) {
@@ -130,7 +140,13 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 
 	@Override
 	public <SD extends DTO> SD getSpecificDTOById(E entity, SD specificDTOClass, Integer id) {
-		return converter.convertEntityToDTO(getEntityByID(entity, id), specificDTOClass);
+		return converter.convertEntityToDTO(getEntityById(entity, id), specificDTOClass);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public <SE extends ENT,SD extends DTO> SD getSpecificEntitySpecificDTOById(SE entity, SD specificDTOClass, Integer id) {		
+		return (SD) converter.convertSourceToDestinationType(getSpecificEntityById(entity, id), specificDTOClass);
 	}	
 
 	@Override
@@ -174,7 +190,7 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 	
 	@Override
 	public void removeByID(E entity,Integer id) {
-		session().remove(getEntityByID(entity, id));
+		session().remove(getEntityById(entity, id));
 	}
 
 }

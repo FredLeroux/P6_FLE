@@ -17,7 +17,7 @@ import std.fle._07_service._07_01_serviceInterface._07_01_03_associatedModelServ
 import std.fle._07_service.usersAccountInfoService.UsersAccountInfoService;
 import std.fle._09_mailCreation.MailCreator;
 import std.fle._0X_security.PassEncoder;
-import std.fle._0x_controller.modelManagement.listManagement.ListGenerator;
+import std.fle._0x_controller.listManagement.ListGenerator;
 
 @Service
 public class AccountModelManagementImplemented implements AccountModelManagement {
@@ -71,11 +71,11 @@ public class AccountModelManagementImplemented implements AccountModelManagement
 	}
 
 	@Override
-	public ModelAndView manageUserCreation(UserSFC userSFC) {
+	public ModelAndView manageUserCreation(UserSFC userSFC,HttpServletRequest request) {
 		String toHash = userSFC.getUsersAccountInfoSFC().getPassword();
 		userSFC.getUsersAccountInfoSFC().setPassword(encoder.hashedPassWord(toHash));
 		userService.save(userSFC);
-		mail.sendActivationLink(userSFC.getUsersInfoSFC().getEmail());
+		mail.sendActivationLink(userSFC.getUsersInfoSFC().getEmail(),request);
 		return new ModelAndView("redirect:/accountCreated");
 	}
 	

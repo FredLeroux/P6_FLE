@@ -26,6 +26,7 @@ public class UsersInfoDTO extends DTO {
 	private CountiesDTO county;
 
 	private ClimbingLevelsDTO climbingLevel;
+	
 
 	public Integer getId() {
 		return id;

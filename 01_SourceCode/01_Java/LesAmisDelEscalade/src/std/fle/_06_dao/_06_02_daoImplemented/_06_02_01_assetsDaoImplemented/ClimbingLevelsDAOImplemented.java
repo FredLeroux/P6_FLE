@@ -19,7 +19,7 @@ class ClimbingLevelsDAOImplemented implements ClimbingLevelsDAO {
 	
 	@Override
 	public ClimbingLevels getEntityById(Integer id) {
-		return dao.getEntityByID(climbingLevels, id);
+		return dao.getEntityById(climbingLevels, id);
 	}
 
 	@Override

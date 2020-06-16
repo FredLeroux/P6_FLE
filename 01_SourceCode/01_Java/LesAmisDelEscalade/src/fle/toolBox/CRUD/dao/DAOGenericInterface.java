@@ -15,7 +15,9 @@ public interface DAOGenericInterface<E extends ENT, D extends DTO> {
 
 	public ModelConverter converter();
 
-	public E getEntityByID(E entity, Integer id);
+	public E getEntityById(E entity, Integer id);
+	
+	public<SE extends Object> SE getSpecificEntityById(SE entity, Integer id);
 
 	public D getDtoByID(E entity, D dtoClass, Integer id);
 
@@ -38,6 +40,8 @@ public interface DAOGenericInterface<E extends ENT, D extends DTO> {
 	public <S extends SFC> void updateSFC(E entity, D DTOCLass, S SFCCLass);
 
 	public <SD extends DTO> SD getSpecificDTOById(E entity, SD specificDTOClass, Integer id);
+	
+	public <SE extends ENT,SD extends DTO> SD getSpecificEntitySpecificDTOById(SE entity, SD specificDTOClass, Integer id);
 	
 	public<O extends Object> List<O> getEntityData(O entity);
 

@@ -62,6 +62,7 @@ public class ClimbingSiteSFC extends SFC {
 	@SelectInputType(enumClass = BooleanValue.class, selectListName = "officialList", selectValueName = "officialValue",defaultValue = "false",messageSourceSuffix = ".official")
 	private String official;
 	
+	
 	@SelectInputType(
 			selectListName = "statesList",
 			selectValueName = "stateValue",
@@ -72,7 +73,7 @@ public class ClimbingSiteSFC extends SFC {
 			dependentFieldName = "climbingSiteCountyId",
 			dependentFieldNameFilteringAction = "filterClimbingSiteCountiesList",
 			defaultValue = "19")
-	private Integer climbingSiteStateId;
+	private String climbingSiteStateId;
 
 	@NotNull
 	@SelectInputType(
@@ -86,7 +87,7 @@ public class ClimbingSiteSFC extends SFC {
 			relationShipFieldFilter = "id",
 			masterFieldName = "climbingSiteStateId",
 			defaultValue = "102")
-	private Integer climbingSiteCountyId;
+	private String climbingSiteCountyId;
 
 	@Length(max = 200)
 	@InputTextArea(charByRows = 50, rows = 4)
@@ -186,19 +187,19 @@ public class ClimbingSiteSFC extends SFC {
 		this.accessToSite = accessToSite;
 	}
 
-	public Integer getClimbingSiteStateId() {
+	public String getClimbingSiteStateId() {
 		return climbingSiteStateId;
 	}
 
-	public void setClimbingSiteStateId(Integer climbingSiteStateId) {
+	public void setClimbingSiteStateId(String climbingSiteStateId) {
 		this.climbingSiteStateId = climbingSiteStateId;
 	}
 
-	public Integer getClimbingSiteCountyId() {
+	public String getClimbingSiteCountyId() {
 		return climbingSiteCountyId;
 	}
 
-	public void setClimbingSiteCountyId(Integer climbingSiteCountyId) {
+	public void setClimbingSiteCountyId(String climbingSiteCountyId) {
 		this.climbingSiteCountyId = climbingSiteCountyId;
 	}
 

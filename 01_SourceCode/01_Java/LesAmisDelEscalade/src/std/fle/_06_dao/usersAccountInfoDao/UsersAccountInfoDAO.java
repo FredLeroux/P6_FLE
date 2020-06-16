@@ -47,6 +47,8 @@ public interface UsersAccountInfoDAO extends ModelsCRUD<UsersAccountInfo, UsersA
 	
 	public void updateMemberStatus(Integer id, UsersAccountInfoMemberStatusSFC memberStatusSFC);
 	
+	public void deleteAccount(Integer id);
+	
 	
 	
 	

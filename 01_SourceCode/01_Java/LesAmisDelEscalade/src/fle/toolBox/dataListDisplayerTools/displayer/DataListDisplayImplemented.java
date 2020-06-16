@@ -72,7 +72,7 @@ public class DataListDisplayImplemented implements DataListDisplay {
 	}
 
 	
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public ModelAndView setDataToDisplay(String frontViewAddObjectHandlerName) {
 		frontView.setViewName(redirectTo(frontViewAddObjectHandlerName));

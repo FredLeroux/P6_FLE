@@ -7,7 +7,8 @@
 <div class="firstLign">
 	<div class="greetings">
 		<label id="identifiedAs" class="identifiedAs"><springTags:message code="identifiedAs.name" /></label>
-		<label id="pseudo" class="pseudo">${sessionScope.pseudo}</label><br>
+		<label id="pseudo" class="pseudo">${sessionScope.pseudo}</label>
+		<a href="borrowDemands"><springTags:message code="borrowDemands.name" /></a>
 		</div>
 		<div class="containerConnexion">
 			<label id="connexion" class="connexion">${sessionScope.connexion} </label>

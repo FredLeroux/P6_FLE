@@ -15,7 +15,7 @@ public abstract class SpringValidationError {
 	/**
 	 * 
 	 * @param modelAttributeValue the @ModelAttribute value
-	 * @param fieldValueName      is the fieldname where to apply Unique constraint.
+	 * @param fieldValueName      is the fieldname where to apply constraint.
 	 *                            <b><u>Note</u></b> in case of associated model
 	 *                            field is composed of entityName.fieldname if a
 	 *                            single model fieldName will be enought. *

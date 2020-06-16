@@ -214,6 +214,16 @@ public class HomeController {
 		return model;
 	}
 	
+	
+	
+	@GetMapping(value="/borrowDemands")
+	public ModelAndView borrowDemands(ModelAndView model) {
+		model.addObject("iFrameSource", "'05_topo/borrowDemandsList'");
+		model.addObject("iFrameLoc","'pagesViewer'");
+		model.setViewName("forward:/navbar");		
+		return model;
+	}
+	
 	@GetMapping(value="/addSite")
 	public ModelAndView addSite(ModelAndView model) {		
 		model.addObject("iFrameSource", "'06_climbingSite/createNewSite'");//

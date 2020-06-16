@@ -22,12 +22,12 @@ public class TopoListSLO extends SLO {
 	@Id
 	private Integer id;
 
+	@Operator(signsArray = OperatorArrays.EQUAL)	
+	private String state;
 	@Operator(signsArray = OperatorArrays.EQUAL)
 	private String title;	
 	@Operator(signsArray = OperatorArrays.INFERIOR_EQUAL_SUPERIOR)
-	private String editionYear;
-	@Operator(signsArray = OperatorArrays.EQUAL)	
-	private String state;
+	private String editionYear;	
 	@Operator(signsArray = OperatorArrays.EQUAL)
 	private String ownerPseudo;
 	public Integer getId() {

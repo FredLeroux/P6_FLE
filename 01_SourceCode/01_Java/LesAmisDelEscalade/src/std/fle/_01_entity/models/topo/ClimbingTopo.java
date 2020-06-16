@@ -1,5 +1,7 @@
 package std.fle._01_entity.models.topo;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.OnDelete;
@@ -42,6 +45,7 @@ public class ClimbingTopo extends ENT {
 	@Column(name = "topo_description")
 	private String topoDescription;
 	
+	
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "french_state_fk")
@@ -51,6 +55,9 @@ public class ClimbingTopo extends ENT {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "users_info_fk")
 	private UsersInfo userInfo;
+	
+	@OneToMany(mappedBy = "climbingTopo",orphanRemoval = true)
+	private List<TopoLending> topoLendings;
 
 	public Integer getId() {
 		return id;
@@ -107,5 +114,15 @@ public class ClimbingTopo extends ENT {
 	public void setUserInfo(UsersInfo userInfo) {
 		this.userInfo = userInfo;
 	}
+
+	public List<TopoLending> getTopoLendings() {
+		return topoLendings;
+	}
+
+	public void setTopoLendings(List<TopoLending> topoLendings) {
+		this.topoLendings = topoLendings;
+	}
+	
+	
 
 }

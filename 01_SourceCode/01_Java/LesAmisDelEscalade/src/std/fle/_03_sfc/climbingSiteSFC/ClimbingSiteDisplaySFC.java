@@ -3,7 +3,6 @@ package std.fle._03_sfc.climbingSiteSFC;
 import fle.toolBox.classType.SFC;
 import fle.toolBox.dataListDisplayerTools.annotations.ToTranslate;
 import fle.toolBox.springFormManager.annotations.HiddenPath;
-import fle.toolBox.springFormManager.annotations.ReadOnlyInput;
 import fle.toolBox.springFormManager.annotations.SpringFormSettings;
 import fle.toolBox.springFormManager.annotations.actionButtons.SpringFormActionButton;
 import fle.toolBox.springFormManager.annotations.actionButtons.SpringFormButton;
@@ -25,40 +24,30 @@ public class ClimbingSiteDisplaySFC extends SFC {
 
 	@HiddenPath
 	private Integer id;
-	
-	@ReadOnlyInput
+
 	private String climbingSiteName;
-	
+
 	@ToTranslate(suffix = ".official")
-	@ReadOnlyInput
 	private String official;
-	
-	@ReadOnlyInput
+
 	private String climbingSiteStateId;
 
-	@ReadOnlyInput
 	private String climbingSiteCountyId;
 
-	
-	@InputTextArea(charByRows = 50, rows = 5,readOnly = true)
+	@InputTextArea(charByRows = 50, rows = 5, readOnly = true)
 	private String siteDescription;
-	
-	@ReadOnlyInput
+
 	private String altitude;
-	
-	@ReadOnlyInput
+
 	private String heightMin;
-	
-	@ReadOnlyInput
+
 	private String heightMax;
-	
-	@ReadOnlyInput
+
 	private String numberOfRoutes;
-	
-	
-	@InputTextArea(charByRows = 50, rows = 5,readOnly = true)
+
+	@InputTextArea(charByRows = 50, rows = 5, readOnly = true)
 	private String accessToSite;
-	
+
 	@SpringFormActionButton(displayMessagePropertyKey = "doAComment.label")
 	private SpringFormButton commentSite;
 
@@ -157,7 +146,6 @@ public class ClimbingSiteDisplaySFC extends SFC {
 	public void setCommentSite(SpringFormButton commentSite) {
 		this.commentSite = commentSite;
 	}
-	
 	
 }
 	

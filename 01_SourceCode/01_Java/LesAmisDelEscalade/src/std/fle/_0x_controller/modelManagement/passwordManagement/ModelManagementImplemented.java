@@ -62,10 +62,10 @@ public class ModelManagementImplemented implements ModelManagement {
 			if ((!sendLogin || sendLogin) && sendPass) {
 				usersAccountInfoService.lockAccount(FredParser.toInteger(config.getProperty("maxTentatativesAllowed")),
 						login);
-				mail.sendforgotPassMessage(eMail, login);
+				mail.sendforgotPassMessage(eMail, login,request);
 				model = confirmationModel(forgotPassConfirmationMessage);
 			} else if (sendLogin && !sendPass) {
-				mail.sendforgotPassMessageLoginOnly(eMail, login);
+				mail.sendforgotPassMessageLoginOnly(eMail, login,request);
 				model = confirmationModel(forgotPassConfirmationMessage);
 			} else {
 				model.setViewName("/03_messagesPages/forgotPassword");

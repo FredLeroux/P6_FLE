@@ -19,7 +19,8 @@ public class OnErrorInterceptor extends HandlerInterceptorAdapter {
 		
 		SessionVariables sessVar = new SessionVariables(request);
 		if(sessVar.getIsAppInitiated()) {
-			response.sendRedirect("/LesAmisDelEscalade/internalError");			
+			System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++here");
+			response.sendRedirect("internalError");			
 			return false;
 			
 		}else {

@@ -2,15 +2,18 @@ package std.fle._01_entity.models.users;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -21,6 +24,8 @@ import fle.toolBox.classType.ENT;
 import std.fle._01_entity.assetsClasses.ClimbingLevels;
 import std.fle._01_entity.assetsClasses.Counties;
 import std.fle._01_entity.assetsClasses.States;
+import std.fle._01_entity.models.topo.ClimbingTopo;
+import std.fle._01_entity.models.topo.TopoLending;
 
 @Entity
 @Table(name = "users_info", schema = "cliff")
@@ -68,6 +73,17 @@ public class UsersInfo extends ENT implements Serializable {
 	@OneToOne
 	@JoinColumn(name = "account_info_fk")
 	private UsersAccountInfo userAccountInfo;
+	
+	@OneToMany(mappedBy = "userInfo", orphanRemoval = true)
+	private List<ClimbingTopo> climbingTopos;
+	
+	@OneToMany(mappedBy = "lenderUserInfo", orphanRemoval = true)
+	private List<TopoLending> topoLendingLender;
+	
+	@OneToMany(mappedBy = "borrowerUserInfo", orphanRemoval = true)
+	private List<TopoLending> topoLendingBorrower;
+	
+	
 
 	public Integer getId() {
 		return id;
@@ -147,6 +163,32 @@ public class UsersInfo extends ENT implements Serializable {
 
 	public void setUserAccountInfo(UsersAccountInfo userAccountInfo) {
 		this.userAccountInfo = userAccountInfo;
+	}
+	
+	
+
+	public List<ClimbingTopo> getClimbingTopos() {
+		return climbingTopos;
+	}
+
+	public void setClimbingTopos(List<ClimbingTopo> climbingTopos) {
+		this.climbingTopos = climbingTopos;
+	}
+
+	public List<TopoLending> getTopoLendingLender() {
+		return topoLendingLender;
+	}
+
+	public void setTopoLendingLender(List<TopoLending> topoLendingLender) {
+		this.topoLendingLender = topoLendingLender;
+	}
+
+	public List<TopoLending> getTopoLendingBorrower() {
+		return topoLendingBorrower;
+	}
+
+	public void setTopoLendingBorrower(List<TopoLending> topoLendingBorrower) {
+		this.topoLendingBorrower = topoLendingBorrower;
 	}
 
 	@Override

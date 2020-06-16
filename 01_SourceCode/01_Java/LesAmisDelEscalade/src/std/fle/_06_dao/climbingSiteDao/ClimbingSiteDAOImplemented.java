@@ -78,8 +78,8 @@ public class ClimbingSiteDAOImplemented implements ClimbingSiteDAO {
 			Map<String, SiteRoutesSFC> siteRoutesMap, Map<String, List<RoutePitchSFC>> routePitchsMap) {
 		ClimbingSiteDTO dto = convertClimbingSiteSFCToDTO(climbingSiteSFC);
 		dto.setSitesRoutes(siteRouteDtoList(dto, siteRoutesMap, routePitchsMap));
-		dto.setState(getStatesDTO(climbingSiteSFC.getClimbingSiteStateId()));
-		dto.setCounty(getCountiesDTO(climbingSiteSFC.getClimbingSiteCountyId()));
+		dto.setState(getStatesDTO(FredParser.toInteger(climbingSiteSFC.getClimbingSiteStateId())));
+		dto.setCounty(getCountiesDTO(FredParser.toInteger(climbingSiteSFC.getClimbingSiteCountyId())));
 		return dto;
 	}
 
@@ -255,7 +255,7 @@ public class ClimbingSiteDAOImplemented implements ClimbingSiteDAO {
 	}
 
 	private ClimbingSite getClimbingSiteById(Integer id) {
-		return dao.getEntityByID(climbingSite, id);
+		return dao.getEntityById(climbingSite, id);
 	}
 
 	private Map<String, List<RoutePitchSFC>> routePitchSFCMapByClimbingSiteId(ClimbingSiteDTO climbingSiteDTO) {

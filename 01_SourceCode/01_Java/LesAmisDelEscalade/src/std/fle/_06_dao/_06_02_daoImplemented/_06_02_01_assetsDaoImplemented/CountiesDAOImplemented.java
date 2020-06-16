@@ -18,7 +18,7 @@ import std.fle._06_dao._06_01_daoInterface._06_01_01_assetsDao.CountiesDao;
 	
 	@Override
 	public Counties getEntityById(Integer id) {		
-		return dao.getEntityByID(counties, id);
+		return dao.getEntityById(counties, id);
 	}
 
 	@Override

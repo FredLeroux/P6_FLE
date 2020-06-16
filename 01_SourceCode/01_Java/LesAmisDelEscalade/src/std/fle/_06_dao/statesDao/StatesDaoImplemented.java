@@ -17,7 +17,7 @@ import std.fle._02_dto.assetsClassesDTO.StatesDTO;
 
 	@Override
 	public States getEntityById(Integer id) {
-		return dao.getEntityByID(states, id);
+		return dao.getEntityById(states, id);
 	}
 
 	@Override

@@ -133,8 +133,14 @@ public class UsersAccountInfoServiceImplemented implements UsersAccountInfoServi
 	}
 
 	@Override
-	public String getLoginByEmail(String eMail) {		
-		return dao.getLoginByEmail(eMail);
+	public String getLoginByEmail(String eMail) {
+		String theEmail = null;
+		try {
+			theEmail = dao.getLoginByEmail(eMail);
+		} catch (Exception e) {
+			theEmail = null;
+		}
+		return theEmail ;
 	}
 
 	@Override
@@ -145,6 +151,12 @@ public class UsersAccountInfoServiceImplemented implements UsersAccountInfoServi
 	@Override
 	public void updateMemberStatus(Integer id, UsersAccountInfoMemberStatusSFC memberStatusSFC) {
 		dao.updateMemberStatus(id, memberStatusSFC);
+		
+	}
+
+	@Override
+	public void deleteAccount(Integer id) {
+		dao.deleteAccount(id);
 		
 	}
 

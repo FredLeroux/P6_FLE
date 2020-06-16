@@ -14,7 +14,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import fle.toolBox.FredParser;
 import std.fle._0X_security.AccesGranting;
-import std.fle._0x_controller.modelManagement.listManagement.ListGenerator;
+import std.fle._0x_controller.listManagement.ListGenerator;
 
 public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 
@@ -32,7 +32,9 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 	private final String membersListType = "members";
 	private final String climbingSiteShowListType = "climbingSitesShow";
 	private final String climbingSiteEditListType = "climbingSitesEdit";
-	private final String climbingSiteCommentsType = "climbingSitesComments";	
+	private final String climbingSiteCommentsListType = "climbingSitesComments";
+	private final String toposListType = "topos";
+	private final String toposMineListType = "toposMine";
 	private final String forbiddenMessageURI = "/03_messagesPages/accesDenied";
 	private final String emptyListMessageURI = "/03_messagesPages/noResultsToDisplay";
 	private String listInitiate =null;
@@ -42,10 +44,11 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		String listType = request.getParameter("listType");
+		LinkedHashMap<String, Object> map = new LinkedHashMap<>();
 		if (listType != null) {
 			listInitiate = listType;
 		}
-		LinkedHashMap<String, Object> map = new LinkedHashMap<>();
+		
 		if (ismembersListType(listInitiate)) {
 			if (granting.toAdmin()) {
 				map= listGenerator.getMembersList();
@@ -54,15 +57,22 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 				return false;
 			}
 		}
-		if(isClimbingSiteShowType(listInitiate)) {
+		else if(isClimbingSiteShowType(listInitiate)) {
 			map=listGenerator.getClimbingSiteListShow();
 		}
-		if(isClimbingSiteEditType(listInitiate)) {
+		else if(isClimbingSiteEditType(listInitiate)) {
 			map=listGenerator.getClimbingSiteListEdit();
 		}
-		if(isClimbingSiteCommentsType(listInitiate)) {		
+		else if(isClimbingSiteCommentsType(listInitiate)) {		
 			map=listGenerator.getclimbingSiteCommentsSLOList(getId(request),request);
+		}		
+		else if(isToposListType(listInitiate)) {
+			map = listGenerator.getTopoSLOsLoggedOwnerExcludedList(request);
 		}
+		else if(isToposMineListType(listInitiate)) {
+			map = listGenerator.getTopoMineSLOList(request);
+		}
+		
 		if(isListEmpty(map)) {
 			redirectToNoResultsMessage(request,response);
 			return false;
@@ -84,7 +94,15 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 	}
 	
 	private boolean isClimbingSiteCommentsType(String listType) {
-		return climbingSiteCommentsType.equals(listType);
+		return climbingSiteCommentsListType.equals(listType);
+	}
+	
+	private boolean isToposListType(String listType) {
+		return toposListType.equals(listType);
+	}
+	
+	private boolean isToposMineListType(String listType) {
+		return toposMineListType.equals(listType);
 	}
 	
 	private boolean isListEmpty(LinkedHashMap<String, Object> map) {

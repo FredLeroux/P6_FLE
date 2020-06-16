@@ -153,5 +153,9 @@ public class FredParser {
 	private static DateTimeFormatter dateTimeFormatter(FormatStyle formatStyle) {
 		return DateTimeFormatter.ofLocalizedDate(formatStyle);
 	}
+	
+	public static final Year toYear(String year) {
+		return Year.parse(year);
+	}
 
 }

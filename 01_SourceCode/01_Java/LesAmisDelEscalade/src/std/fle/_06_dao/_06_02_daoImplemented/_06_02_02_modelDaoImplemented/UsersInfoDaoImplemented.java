@@ -31,7 +31,7 @@ public class UsersInfoDaoImplemented implements UsersInfoDAO {
 
 	@Autowired
 	DAOGenericInterface<UsersInfo, UsersInfoDTO> dao;
-	
+
 	@Autowired
 	DAOListGeneric daoList;
 
@@ -158,7 +158,6 @@ public class UsersInfoDaoImplemented implements UsersInfoDAO {
 	@SuppressWarnings("unused")
 	public boolean isEmailExist(String eMail) {
 		try {
-
 			UsersInfoMailDTO dto = dao.getSpecificDTOWhereCondition("email", eMail, usersInfo, usersInfoMailDTO);
 		} catch (Exception e) {
 			return false;
@@ -177,7 +176,7 @@ public class UsersInfoDaoImplemented implements UsersInfoDAO {
 	}
 
 	@Override
-	public<L extends SLO> List<L> getList(L joinClass, String suffix) {	
+	public <L extends SLO> List<L> getList(L joinClass, String suffix) {
 		return daoList.getInnerJoinListI18N(joinClass);
 	}
 

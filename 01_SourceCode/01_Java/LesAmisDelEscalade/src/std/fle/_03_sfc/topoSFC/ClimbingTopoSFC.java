@@ -4,7 +4,7 @@ import java.time.Year;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
+import javax.validation.constraints.PastOrPresent;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -33,6 +33,19 @@ import std.fle._02_dto.assetsClassesDTO.StatesDTO;
 		submitButtonAlignmentPropertyKey = "center",
 		submitButtonMessagePropertyKey = "userFormBtn.message.createTopo",
 		readOnly = false )
+
+@SpringFormSettings(
+		action = "updateTopo",
+		method = "post",
+		name = "updateTopoFormular",
+		modelAttribute = "updateTopo",
+		propertiesFilePath = "configuration/springFormSettings/formSettings.xml",
+		jspFilePath = "updateTopoForm.path",
+		labelMessageSourceSuffix = "userForm.label",
+		submitButtonAlignmentPropertyKey = "center",
+		submitButtonMessagePropertyKey = "userFormBtn.message.updateTopo",
+		readOnly = false )
+
 public class ClimbingTopoSFC extends SFC {
 	
 	@HiddenPath
@@ -43,12 +56,13 @@ public class ClimbingTopoSFC extends SFC {
 	@PlaceHolderText(message = "topoTitle.pht")
 	private String title;
 
-	@Past
+	
+	@PastOrPresent
 	@NotNull
 	@DateTimeFormat(pattern = "yyyy")
 	private Year editionYear;
 	
-	@NotNull
+	
 	@SelectInputType(
 			selectListName = "topoStatesList",
 			selectValueName = "topoStateValue",
@@ -57,12 +71,16 @@ public class ClimbingTopoSFC extends SFC {
 			optionValueFieldName = "id",
 			optionDisplayValueFieldName = "stateName",
 			defaultValue = "19")
-	private Integer state;
+	private String state;
 
-	@NotEmpty
-	@ToTranslate(suffix = ".isAvailable")
-	@SelectInputType(enumClass = BooleanValue.class,messageSourceSuffix = ".isAvailabe", selectListName = "availableList",selectValueName = "availableValue",
-			defaultValue = "102")
+	@NotEmpty	
+	@SelectInputType(
+			enumClass = BooleanValue.class,
+			messageSourceSuffix = ".isAvailable",
+			selectListName = "availableList",
+			selectValueName = "availableValue",
+			defaultValue = "")
+	@ToTranslate(suffix = "isAvailable")
 	private String available;
 
 	@Length(max = 200)
@@ -112,11 +130,11 @@ public class ClimbingTopoSFC extends SFC {
 		this.topoDescription = topoDescription;
 	}
 
-	public Integer getState() {
+	public String getState() {
 		return state;
 	}
 
-	public void setState(Integer state) {
+	public void setState(String state) {
 		this.state = state;
 	}
 

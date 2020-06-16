@@ -59,5 +59,7 @@ public interface UsersAccountInfoService
 	public UsersAccountInfoMemberStatusSFC getUserAccountInfoMemberStatusById(Integer id);
 
 	public void updateMemberStatus(Integer id, UsersAccountInfoMemberStatusSFC memberStatusSFC);
+	
+	public void deleteAccount(Integer id);
 
 }
