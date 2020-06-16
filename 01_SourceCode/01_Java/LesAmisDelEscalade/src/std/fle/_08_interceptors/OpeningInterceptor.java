@@ -14,10 +14,7 @@ public class OpeningInterceptor extends HandlerInterceptorAdapter {
 	@Autowired
 	LocalMessage local;
 	
-	@Autowired
-	UsersInfoService service;
-
-
+	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {

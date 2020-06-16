@@ -113,6 +113,10 @@
 			<mvc:mapping path="/index.html" />
 			<bean class="std.fle._08_interceptors.OpeningInterceptor"></bean>
 		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="reload" />
+			<bean class="std.fle._08_interceptors.Reload"></bean>
+		</mvc:interceptor>
 	 	 <mvc:interceptor>
 			<mvc:mapping path="/error" />
 			<bean class="std.fle._08_interceptors.OnErrorInterceptor"></bean>

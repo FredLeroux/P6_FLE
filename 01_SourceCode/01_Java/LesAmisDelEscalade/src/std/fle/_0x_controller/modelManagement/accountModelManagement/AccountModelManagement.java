@@ -19,6 +19,8 @@ public interface AccountModelManagement {
 	public ModelAndView displayMemeberStatus(ModelAndView model,String modelAttributeName,Integer id);
 	
 	public ModelAndView doUpdateMemberStatus(ModelAndView model,Integer id, UsersAccountInfoMemberStatusSFC memberStatusSFC);
+	
+	public ModelAndView manageAccountDeletion();
 		
 
 }

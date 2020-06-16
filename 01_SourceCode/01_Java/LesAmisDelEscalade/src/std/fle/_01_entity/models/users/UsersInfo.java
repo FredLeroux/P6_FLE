@@ -74,13 +74,13 @@ public class UsersInfo extends ENT implements Serializable {
 	@JoinColumn(name = "account_info_fk")
 	private UsersAccountInfo userAccountInfo;
 	
-	@OneToMany(mappedBy = "userInfo", orphanRemoval = true)
+	@OneToMany(mappedBy = "userInfo",cascade = CascadeType.ALL)
 	private List<ClimbingTopo> climbingTopos;
 	
-	@OneToMany(mappedBy = "lenderUserInfo", orphanRemoval = true)
+	@OneToMany(mappedBy = "lenderUserInfo",cascade = CascadeType.ALL)
 	private List<TopoLending> topoLendingLender;
 	
-	@OneToMany(mappedBy = "borrowerUserInfo", orphanRemoval = true)
+	@OneToMany(mappedBy = "borrowerUserInfo",cascade = CascadeType.ALL)
 	private List<TopoLending> topoLendingBorrower;
 	
 	

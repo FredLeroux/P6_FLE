@@ -12,7 +12,7 @@ visibility: hidden;
 </style>
 </head>
 <body id="budy">
-<button id="deletion" onclick="deletionConfirm('${deleteURL}','${confirmMessage}')"><springTags:message code ="deleteAccount.name"/></button>
+<button id="deletion" onclick="deletionConfirmApplyURLToParent('${deleteURL}','${confirmMessage}')"><springTags:message code ="deleteAccount.name"/></button>
 <a class="formBecarefull"  href = "passwordModification"><springTags:message code="passwordModification.name"></springTags:message></a>
 <div id = "updateFormular">
 <%@ include file = "/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/userUpdateForm.jsp" %>

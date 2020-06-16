@@ -1,6 +1,7 @@
 package std.fle._09_mailCreation;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -13,16 +14,19 @@ import fle.toolBox.mail.EmailSender;
 import std.fle._07_service.usersAccountInfoService.UsersAccountInfoService;
 
 @Service
+
 public class MailCreatorImplemented implements MailCreator {
 
 	/*Important: no autowired on HttpServletRequest in order to use @Async*/ 
 
-	@Autowired
+	
+	@Autowired	
 	LocalMessage local;
 
 	@Autowired
 	UsersAccountInfoService accountService;
 
+	AppURI uri = new AppURI();
 	private EmailSender mail = new EmailSender("configuration/mailConfig/mailConfig.xml");
 	private String senderMail = null;
 	private String senderName = null;
@@ -38,12 +42,14 @@ public class MailCreatorImplemented implements MailCreator {
 		accountService.updateActivationCode(contact, activationCode.toString());
 	}
 
-	private void setActivationMailMessage(String code,HttpServletRequest request) {
-		sender0();
+	
+	private void setActivationMailMessage(String code,HttpServletRequest request) {		
+		sender0();		
+		String link = uri.fullContextPathURINotStatic(request);
+		System.out.println(link);
 		subject = local.message("accountCreation.subject");
-		body = local.message("accountCreation.message") + "\n" + AppURI.fullContextPathURI(request) + "activation?code="
+		body = local.message("accountCreation.message") + "\n" + link + "activation?code="
 				+ code + "\n" + local.message("endMail.message");
-
 	}
 
 	@Async

@@ -36,20 +36,15 @@ public class AccountController {
 	@Autowired
 	private SpringMVCValidation validation;
 
-	@Autowired
-	private UserService userService;
 
 	@Autowired
 	private UserUpdateService userUpdate;
 	
-	@Autowired
-	private UsersAccountInfoService account;
+	
 
 	@Autowired
 	private AccountModelManagement manager;
 	
-	@Autowired
-	private DeleteConfirmationManager deletion;
 	
 	private SessionVariables sessVar = new SessionVariables();
 
@@ -82,8 +77,7 @@ public class AccountController {
 	@PostMapping(value = "/02_AccountManagement/userFormRegisterUpdated")
 	public ModelAndView userFormUpdated(ModelAndView model, @ModelAttribute(value = "userManagement") UserSFC userSFC,
 			HttpServletRequest request) {
-		model.setViewName("02_AccountManagement/userFormRegister");
-		deletion.addURLAndMessage(model, "deleteAccount", "deleteConfirmationAsk.message");
+		model.setViewName("02_AccountManagement/userFormRegister");		
 		return select.formSelectInputFieldUpdate(userSFC, model, request);
 	}
 
@@ -91,7 +85,6 @@ public class AccountController {
 	public ModelAndView userUpdateFormUpdated(ModelAndView model,
 			@ModelAttribute(value = "userManagement") UserUpdateSFC userUpdateSFC, HttpServletRequest request) {
 		model.setViewName("02_AccountManagement/userFormUpdate");
-
 		return select.formSelectInputFieldUpdate(userUpdateSFC, model, request);
 	}
 
@@ -111,7 +104,7 @@ public class AccountController {
 	public ModelAndView updateUser(ModelAndView model,
 			@ModelAttribute(value = "userManagement") @Validated UserUpdateSFC userUpdateSFC, BindingResult result) {
 		if (result.hasErrors()) {
-			model.setViewName("02_AccountManagement/userFormUpdate");
+			model.setViewName("02_AccountManagement/userFormUpdate");			
 			select.selectListAndValueOnBindingError(userUpdateSFC, model);
 			return model;
 		}
@@ -128,9 +121,8 @@ public class AccountController {
 	}
 	
 	@GetMapping(value = "/02_AccountManagement/deleteAccount")
-	public void deleteAccount() {
-		sessVar.setRequest(request);
-		account.deleteAccount(sessVar.getAccountID());
+	public ModelAndView deleteAccount() {
+		return manager.manageAccountDeletion();
 	}
 
 }

@@ -18,39 +18,39 @@ import std.fle._07_service.usersAccountInfoService.UsersAccountInfoService;
 import std.fle._09_mailCreation.MailCreator;
 import std.fle._0X_security.PassEncoder;
 import std.fle._0x_controller.listManagement.ListGenerator;
+import std.fle._0x_controller.modelManagement.deleteManager.DeleteConfirmationManager;
 
 @Service
 public class AccountModelManagementImplemented implements AccountModelManagement {
 
 	@Autowired
-	HttpServletRequest request;
+	private HttpServletRequest request;
 
 	@Autowired
-	SelectInputForController select;
+	private SelectInputForController select;
 
 	@Autowired
-	MailCreator mail;
+	private MailCreator mail;
 
 	@Autowired
-	PassEncoder encoder;
+	private PassEncoder encoder;
 
 	@Autowired
-	UsersInfoService usersInfoService;
+	private UsersAccountInfoService usersAccountInfoService;
 
 	@Autowired
-	UsersAccountInfoService usersAccountInfoService;
+	private UserService userService;
 
 	@Autowired
-	UserService userService;
+	private UserUpdateService userUpdate;
 
-	@Autowired
-	UserUpdateService userUpdate;
 	
 	@Autowired
-	ListGenerator listGenerator;
+	private UsersAccountInfoService account;
 	
 	@Autowired
-	FieldsTranslator fieldsTranslator;
+	private DeleteConfirmationManager deletion;
+	
 
 	private SessionVariables sessVar = new SessionVariables();
 
@@ -59,6 +59,7 @@ public class AccountModelManagementImplemented implements AccountModelManagement
 		sessVar.setRequest(request);
 		model.setViewName("02_AccountManagement/userFormUpdate");
 		model.addObject("userManagement", userUpdate.getById(sessVar.getAccountID()));
+		deletion.addURLAndMessage(model, "deleteAccount", "deleteConfirmationAsk.message");
 		select.addSelectListsAndValues(userUpdate.getById(sessVar.getAccountID()), model);
 		return model;
 	}
@@ -91,6 +92,13 @@ public class AccountModelManagementImplemented implements AccountModelManagement
 		usersAccountInfoService.updateMemberStatus(id, memberStatusSFC);
 		model.setViewName("redirect:/04_listPage/listPage");
 		return model;
+	}
+	@Override
+	public ModelAndView manageAccountDeletion() {
+		sessVar.setRequest(request);
+		account.deleteAccount(sessVar.getAccountID());
+		sessVar.clearSession();
+		return new ModelAndView("redirect:/reInit");
 	}
 
 }

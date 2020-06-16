@@ -14,6 +14,16 @@ import javax.servlet.http.HttpServletRequest;
  * 
  */
 public class AppURI {
+	
+	private HttpServletRequest request;
+	
+	public AppURI() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public AppURI(HttpServletRequest request) {
+		this.request = request;
+	}
 
 	private final static String scheme(HttpServletRequest request) {
 		return request.getScheme() + "://";
@@ -41,12 +51,22 @@ public class AppURI {
 	 * @return String URI as follow :<br>
 	 *         Scheme :// Domain : Port / contextPath /
 	 */
-	public static final String fullContextPathURI(HttpServletRequest request) {
+	public static String fullContextPathURI(HttpServletRequest request) {
 		StringBuilder uri = new StringBuilder();
 		uri.append(scheme(request));
 		uri.append(domain(request));
 		uri.append(port(request));
 		uri.append(context(request));
+		return uri.toString();
+
+	}
+	
+	public String fullContextPathURINotStatic(HttpServletRequest request) {
+		StringBuilder uri = new StringBuilder();
+		uri.append(request.getScheme() + "://");
+		uri.append(request.getServerName() + ":");
+		uri.append(request.getServerPort());
+		uri.append(request.getContextPath() + "/");
 		return uri.toString();
 
 	}

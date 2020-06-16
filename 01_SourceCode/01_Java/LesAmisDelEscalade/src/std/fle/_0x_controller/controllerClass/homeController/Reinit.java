@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class Reinit {
 	
 	
-	@GetMapping(value="reInit")
+	@GetMapping(value="/reInit")
 	public ModelAndView reInit() {
 		return new ModelAndView("redirect:/index.html");
 	}
