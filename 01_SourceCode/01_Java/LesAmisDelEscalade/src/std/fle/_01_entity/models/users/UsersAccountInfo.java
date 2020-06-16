@@ -50,7 +50,7 @@ public class UsersAccountInfo extends ENT implements Serializable {
 	@Column (name = "password_reset_code")
 	private String passwordResetCode;
 	
-	@OneToOne//(mappedBy =  "userAccountInfo",cascade = CascadeType.ALL,orphanRemoval = true)
+	@OneToOne(mappedBy =  "userAccountInfo",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private UsersInfo userInfo;
 
 	public Integer getId() {
