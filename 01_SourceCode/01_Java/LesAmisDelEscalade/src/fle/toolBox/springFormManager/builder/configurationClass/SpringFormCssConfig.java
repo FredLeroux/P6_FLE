@@ -21,8 +21,9 @@ public class SpringFormCssConfig {
 	private String errorStyle= null;
 	private String buttonStyle = null;
 	private String tableStyle = null;
-	private String trStyle = null;
+	private String trStyle = null;	
 	private String tdStyle = null;
+	private String limitCharSpanStyle = null;
 	private ConfigurationFileReader cssConfig;
 
 	public String getStyleSheetPath() {
@@ -74,6 +75,12 @@ public class SpringFormCssConfig {
 	public String getTrStyle() {
 		return trStyle;
 	}
+	
+	
+
+	public String getLimitCharSpanStyle() {
+		return limitCharSpanStyle;
+	}
 
 	public String getTdStyle() {
 		return tdStyle;
@@ -82,7 +89,7 @@ public class SpringFormCssConfig {
 	/**
 	 * 
 	 * @param path the configuration file path
-	 * @return this class with a ConfigurationFileReader instanciated.
+	 * @return this class with a ConfigurationFileReader instantiated.
 	 * and so allow settings via configuration file.
 	 * @see {@link ConfigurationFileReader }
 	 */
@@ -161,8 +168,15 @@ public class SpringFormCssConfig {
 		return this;
 	}
 	
+	
+	
 	public SpringFormCssConfig tdStyle(String propertyKey) {
 		tdStyle = cssConfig.getProperty(propertyKey);
+		return this;
+	}
+	
+	public SpringFormCssConfig limitCharSpanStyle(String propertyKey) {
+		limitCharSpanStyle = cssConfig.getProperty(propertyKey);
 		return this;
 	}
 	
