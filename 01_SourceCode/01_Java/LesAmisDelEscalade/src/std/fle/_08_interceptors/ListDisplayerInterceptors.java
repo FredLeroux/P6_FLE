@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import fle.toolBox.FredParser;
+import fle.toolBox.springFormManager.annotations.inputTextArea.InputTextAreaGetLimit;
 import std.fle._0X_security.AccesGranting;
 import std.fle._0x_controller.listManagement.ListGenerator;
 
@@ -28,7 +29,7 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 	
 	
 	
-
+	
 	private final String membersListType = "members";
 	private final String climbingSiteShowListType = "climbingSitesShow";
 	private final String climbingSiteEditListType = "climbingSitesEdit";
@@ -39,6 +40,7 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 	private final String emptyListMessageURI = "/03_messagesPages/noResultsToDisplay";
 	private String listInitiate =null;
 	private String siteIdForComment = null;
+	
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -64,7 +66,7 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 			map=listGenerator.getClimbingSiteListEdit();
 		}
 		else if(isClimbingSiteCommentsType(listInitiate)) {		
-			map=listGenerator.getclimbingSiteCommentsSLOList(getId(request),request);
+			map=listGenerator.getclimbingSiteCommentsSLOList(getId(request),request);			
 		}		
 		else if(isToposListType(listInitiate)) {
 			map = listGenerator.getTopoSLOsLoggedOwnerExcludedList(request);

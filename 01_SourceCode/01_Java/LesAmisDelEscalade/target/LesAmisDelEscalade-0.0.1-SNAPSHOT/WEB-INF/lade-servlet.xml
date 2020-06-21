@@ -10,10 +10,12 @@
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:task="http://www.springframework.org/schema/task"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd		
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 
 
@@ -107,14 +109,18 @@
 	<!-- HandlerInterceptor -->
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/index.jsp" />
+			<mvc:mapping path="index.jsp" />
 			<mvc:mapping path="/index.html" />
 			<bean class="std.fle._08_interceptors.OpeningInterceptor"></bean>
 		</mvc:interceptor>
-		 <mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="reload" />
+			<bean class="std.fle._08_interceptors.Reload"></bean>
+		</mvc:interceptor>
+	 	 <mvc:interceptor>
 			<mvc:mapping path="/error" />
 			<bean class="std.fle._08_interceptors.OnErrorInterceptor"></bean>
-		</mvc:interceptor>
+		</mvc:interceptor>  
 		<mvc:interceptor>
 			<mvc:mapping path="/authentification" />
 			<bean class="std.fle._08_interceptors.AuthentificatorInterceptor"></bean>
@@ -139,10 +145,10 @@
 			<mvc:mapping path="/04_listPage/listPage" />
 			<bean class="std.fle._08_interceptors.ListDisplayerInterceptors"></bean>
 		</mvc:interceptor>		
-		<mvc:interceptor>
+	  	<mvc:interceptor>
 			<mvc:mapping path="/errorNotException" />
 			<bean class="std.fle._08_interceptors.OnNoExceptionError"></bean>
-		</mvc:interceptor>
+		</mvc:interceptor> 
 	</mvc:interceptors>
 	<bean id="localeResolver"
 		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
@@ -197,4 +203,6 @@
 	<mvc:resources location="${cssFiles.path}"
 		mapping="/cssFiles/**"></mvc:resources>
 
+	<task:annotation-driven executor="ladeExecutor"  />
+	<task:executor id="ladeExecutor" pool-size="5" />	
 </beans>

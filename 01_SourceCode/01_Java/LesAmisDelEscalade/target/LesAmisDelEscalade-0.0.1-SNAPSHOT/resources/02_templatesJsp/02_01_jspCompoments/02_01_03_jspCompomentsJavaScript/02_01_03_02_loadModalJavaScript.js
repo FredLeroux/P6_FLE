@@ -9,7 +9,7 @@ function newLoadModal() {
  */
 function parentElementToggleDisplay(elementId) {
 	var element = window.parent.document.getElementById(elementId);
-	if (element.style.display === "none") {
+	if (element.style.display == "none") {
 		element.style.display = "block";
 	} else {
 		element.style.display = "none";
@@ -24,7 +24,7 @@ function parentElementToggleDisplay(elementId) {
  */
 function killParentModal(parentModalId) {
 	var element = window.parent.document.getElementById(parentModalId);
-	if (element.style.display === "block") {
+	if (element.style.display == "block") {
 		element.style.display = "none";
 	}
 }
@@ -36,14 +36,19 @@ function killParentModal(parentModalId) {
  */
 function killParentModalOnHashChange() {
 	document.addEventListener("hashchange", killParentModal("loading"));
-
 }
+
+
+function killParentModalOnHashChange(modalName) {
+	document.addEventListener("hashchange", killParentModal(modalName));
+}
+
 
 function addToElementToggleDisplayOnClickAndHashChange(element,
 		elementToToggleId) {
 	element.setAttribute("onclick", "parentElementToggleDisplay('"
 			+ elementToToggleId + "')");
-	killParentModalOnHashChange(element);
+	killParentModalOnHashChange(elementToToggleId);
 
 }
 /**

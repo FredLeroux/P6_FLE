@@ -106,13 +106,23 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 
 	private String label(String fieldName, int i) {
 
-		String path = fieldName;
-		String labelName = fieldsNamesListlabel.get(i);
+		String path = fieldName;		
 		if (actionButtonFieldMap().containsKey(fieldName)) {
-			return actionButtonLabelCssClass(message(labelName.concat(labelMessageSourceSuffix)));
-		}
-		String label = labelCssClassCssErrorClass(path, message(labelName.concat(labelMessageSourceSuffix)));
-		return label;
+			//return actionButtonLabelCssClass(message(labelName));
+		}				
+		return null;
+	}
+	
+	private String inputFormLabel(String fieldName, Integer i) {
+		return labelCssClassCssErrorClass(fieldName, message(formLabelName(i)));
+	}
+	
+	private String textAreaFormlabel(String fieldName, Integer i, Integer limitChar, String limitCharName) {
+		return labelWithLimitCharCssClassCssErrorClass(fieldName, message(formLabelName(i)), limitChar, limitCharName);
+	}
+	
+	private String formLabelName(Integer i) {
+		return fieldsNamesListlabel.get(i).concat(labelMessageSourceSuffix);
 	}
 
 	private String error(String fieldName) {
@@ -123,9 +133,9 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 	 * 
 	 * @param <A>
 	 * @param annotationClass
-	 * @return a string array list containing all fields annotated whith
+	 * @return a string array list containing all fields annotated with
 	 *         annotationClass<br>
-	 *         this method will manager simple classe as well as associated classes
+	 *         this method will manager simple class as well as associated classes
 	 */
 	private <A extends Annotation> ArrayList<String> annotatedFieldNameList(Class<A> annotationClass) {
 		boolean entityName = true;
@@ -199,8 +209,8 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 
 	private InputTextAreaAnnotation inputTextAreaAnnotation(Field clazzField) {
 		InputTextArea fieldInputTextArea = clazzField.getAnnotation(texteAreaAnnotation);
-		return new InputTextAreaAnnotation(fieldInputTextArea.rows(), fieldInputTextArea.charByRows(),
-				fieldInputTextArea.readOnly());
+		return new InputTextAreaAnnotation(fieldInputTextArea.rows(), fieldInputTextArea.charByRows(),fieldInputTextArea.maxLenght(),
+				fieldInputTextArea.readOnly(),fieldInputTextArea.limitCharName());
 	}
 
 	private <A extends Annotation> ArrayList<String> selectFieldList() {
@@ -216,33 +226,7 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 		return hiddenPathFieldList;
 	}
 
-	private <A extends Annotation> ArrayList<String> readOnlyInputFieldList(String formName) {
-		ArrayList<String> readOnlyInputFieldList = new ArrayList<>();
-		if (associatedModel) {
-			fieldManager.associatedModelFields(readOnlyInputAnnotation).forEach((key, value) -> {
-				for (Field field : value) {
-					if (readOnlyFormList(field).isEmpty()) {
-						readOnlyInputFieldList.add(key.getName().concat(".").concat(field.getName()));
-					} else {
-						if (readOnlyFormList(field).contains(formName)) {
-							readOnlyInputFieldList.add(key.getName().concat(".").concat(field.getName()));
-						}
-					}
-				}
-			});
-		}
-		for (Field field : fieldManager.fieldsArrayListByAnnotation(readOnlyInputAnnotation)) {
-			if (readOnlyFormList(field).isEmpty()) {
-				readOnlyInputFieldList.add(field.getName());
-			} else {
-				if (readOnlyFormList(field).contains(formName)) {
-					readOnlyInputFieldList.add(field.getName());
-				}
-			}
-		}
-		return readOnlyInputFieldList;
-	}
-
+	
 	private ArrayList<String> readOnlyFormList(Field field) {
 		ArrayList<String> list = new ArrayList<>(
 				Arrays.asList(field.getAnnotation(readOnlyInputAnnotation).applyToForm()));
@@ -269,6 +253,7 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 		setButtonCssClass(springFormCssConfig.getButtonStyle());
 		setTableCssClass(springFormCssConfig.getTableStyle());
 		setTrCssClass(springFormCssConfig.getTrStyle());
+		setLimiCharSpanCssClass(springFormCssConfig.getLimitCharSpanStyle());
 		setTdCssClass(springFormCssConfig.getTdStyle());
 
 	}
@@ -313,83 +298,181 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 		}
 	}
 
-	private void addSelectField(String fieldName) {
+	
+
+	
+
+	
+
+	
+	
+	
+	
+	
+
+	private void addField(int i, String fieldName, boolean readOnly) {	
+		stringBuilder.append(tableRowStart());
+		addHiddenPath(fieldName);
+		if (!isFieldSetInForm) {
+			addSelectFieldWithLabel(fieldName, i);
+			addTextAreaWithLableAndLimitChar(fieldName, i);
+			addReadOnlyInputFieldWithLabel(fieldName, i);
+			addPasswordFieldWithLabel(fieldName, i);			
+			addSpringFormActionButtonWithLabel(fieldName, i);			
+			if (!isFieldSetInForm) {
+				addCell(inputFormLabel(fieldName, i));
+				addCell(input(fieldName, readOnly));
+			}
+			if (!readOnly) {
+				addCell(error(fieldName));
+			}			
+		}
+		stringBuilder.append(tableRowEnd());
+		fieldSetInFormIsFalse();
+	}
+	
+	private void addSelectFieldWithLabel(String fieldName,Integer i) {
 		if (selectFieldList().contains(fieldName)) {
-			addCell(selectCssClassCssErrorClass(fieldName, formName));
+		addCell(inputFormLabel(fieldName, i));
+		addSelectField(fieldName);
+		fieldSetInFormIsTrue();	}
+	}
+	
+	private void addSelectField(String fieldName) {					
+		addCell(selectCssClassCssErrorClass(fieldName, formName));
+			
+}
+	
+	private void addTextAreaWithLableAndLimitChar(String fieldName,Integer i) {
+		LinkedHashMap<String, String> placeHolder = placeHolderAnnotatedFieldMap();
+		LinkedHashMap<String, InputTextAreaAnnotation> textArea = InputTextAreaAnnotationFieldMap();
+		if (textArea.containsKey(fieldName)) {
+			InputTextAreaAnnotation textAreaInfo = textArea.get(fieldName);
+			addTextAreaLabel(fieldName, i, textAreaInfo);
+			addTextArea(fieldName, placeHolder, textAreaInfo);
 			fieldSetInFormIsTrue();
+		}		
+	}
+	
+	private void addTextAreaLabel(String fieldName,Integer i,InputTextAreaAnnotation textAreaInfo) {
+		if(textAreaInfo.getMaxLenght()>0) {
+			addCell(textAreaFormlabel(fieldName, i, textAreaInfo.getMaxLenght(), textAreaInfo.getLimitCharName()));
+		}else {
+			addCell(inputFormLabel(fieldName, i));
 		}
 	}
-
-	private void addReadOnlyInputField(String fieldName) {
+	
+	private void addTextArea(String fieldName, LinkedHashMap<String, String> placeHolder,
+			InputTextAreaAnnotation textAreaInfo) {
+		String rows = FredParser.asString(textAreaInfo.getRows());
+		String cols = FredParser.asString(textAreaInfo.getCols());
+		String maxLength = FredParser.asString(textAreaInfo.getMaxLenght());
+		boolean readOnly = textAreaInfo.isReadOnly();
+		if (placeHolder.containsKey(fieldName)) {
+			addCell(textAreaCssClassCssErrorClassTagMessagePlaceHolder(fieldName, placeHolder.get(fieldName), rows,
+					cols, maxLength));
+		} else {
+			if (!readOnly) {
+				addCell(textAreaCssClassCssErrorClass(fieldName, rows, cols, maxLength));
+			} else {
+				addCell(textAreaCssClassReadOnly(fieldName, rows, cols));
+			}
+		}
+	}
+	
+	private void addReadOnlyInputFieldWithLabel(String fieldName, Integer i) {
 		if (readOnlyInputFieldList(formName).contains(fieldName)) {
+			addCell(inputFormLabel(fieldName, i));
+			addReadOnlyInputField(fieldName);
+			fieldSetInFormIsTrue();			
+		}
+	}
+	
+	private void addReadOnlyInputField(String fieldName) {		
 			addCell(input(fieldName, true));
+	}
+	
+	
+	private <A extends Annotation> ArrayList<String> readOnlyInputFieldList(String formName) {
+		ArrayList<String> readOnlyInputFieldList = new ArrayList<>();
+		if (associatedModel) {
+			fieldManager.associatedModelFields(readOnlyInputAnnotation).forEach((key, value) -> {
+				for (Field field : value) {
+					if (readOnlyFormList(field).isEmpty()) {
+						readOnlyInputFieldList.add(key.getName().concat(".").concat(field.getName()));
+					} else {
+						if (readOnlyFormList(field).contains(formName)) {
+							readOnlyInputFieldList.add(key.getName().concat(".").concat(field.getName()));
+						}
+					}
+				}
+			});
+		}
+		for (Field field : fieldManager.fieldsArrayListByAnnotation(readOnlyInputAnnotation)) {
+			if (readOnlyFormList(field).isEmpty()) {
+				readOnlyInputFieldList.add(field.getName());
+			} else {
+				if (readOnlyFormList(field).contains(formName)) {
+					readOnlyInputFieldList.add(field.getName());
+				}
+			}
+		}
+		return readOnlyInputFieldList;
+	}
+	
+	
+	private void addPasswordFieldWithLabel(String fieldName, Integer i) {
+		LinkedHashMap<String, String> placeHolder = placeHolderAnnotatedFieldMap();
+		if (passWordInputFieldList().contains(fieldName)) {
+			addCell(inputFormLabel(fieldName, i));
+			addPassWordInputField(fieldName, placeHolder);
 			fieldSetInFormIsTrue();
 		}
 	}
-
-	private void addPassWordInputField(String fieldName) {
-		if (passWordInputFieldList().contains(fieldName)) {
-			LinkedHashMap<String, String> placeHolder = placeHolderAnnotatedFieldMap();
+	
+	private void addPassWordInputField(String fieldName,LinkedHashMap<String, String> placeHolder) {				
 			if (placeHolder.containsKey(fieldName)) {
 				addCell(passWordCssClassCssErrorClassTagMessagePlaceHolderToggleDisplay(fieldName,
 						placeHolder.get(fieldName)));
 			} else {
 				addCell(passWordCssClassCssErrorClass(fieldName));
-			}
-			fieldSetInFormIsTrue();
-		}
+			}		
 	}
-
-	private void addTextArea(String fieldName) {
-		LinkedHashMap<String, String> placeHolder = placeHolderAnnotatedFieldMap();
-		LinkedHashMap<String, InputTextAreaAnnotation> textArea = InputTextAreaAnnotationFieldMap();
-		if (textArea.containsKey(fieldName)) {
-			String rows = FredParser.asString(textArea.get(fieldName).getRows());
-			String cols = FredParser.asString(textArea.get(fieldName).getCols());
-			boolean readOnly = textArea.get(fieldName).isReadOnly();
-			if (placeHolder.containsKey(fieldName)) {
-				addCell(textAreaCssClassCssErrorClassTagMessagePlaceHolder(fieldName, placeHolder.get(fieldName), rows,
-						cols));
-			} else {
-				if (!readOnly) {
-					addCell(textAreaCssClassCssErrorClass(fieldName, rows, cols));
-				} else {
-					addCell(textAreaCssClassReadOnly(fieldName, rows, cols));
-				}
-			}
-			fieldSetInFormIsTrue();
-		}
-	}
-
-	private void addSpringFormActionButton(String fieldName) {
+	
+	
+	private void addSpringFormActionButtonWithLabel(String fieldName,Integer i) {
 		if (actionButtonFieldMap().containsKey(fieldName)) {
-			addCell(actionButton(fieldName, actionButtonFieldMap().get(fieldName)));
+			addCell(inputFormLabel(fieldName, i));
+			addSpringFormActionButton(fieldName);
 			fieldSetInFormIsTrue();
 		}
 	}
-
-	private void addField(int i, String fieldName, boolean readOnly) {
-
-		stringBuilder.append(tableRowStart());
-		addHiddenPath(fieldName);
-		if (!isFieldSetInForm) {
-			addCell(label(fieldName, i));
-			addSelectField(fieldName);
-			addReadOnlyInputField(fieldName);
-			addPassWordInputField(fieldName);
-			addTextArea(fieldName);
-			addSpringFormActionButton(fieldName);
-			if (!isFieldSetInForm) {
-				addCell(input(fieldName, readOnly));
-			}
-			if (!readOnly) {
-				addCell(error(fieldName));
-			}
-			stringBuilder.append(tableRowEnd());
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	private void addSpringFormActionButton(String fieldName) {		
+			addCell(actionButton(fieldName, actionButtonFieldMap().get(fieldName)));			
 		}
-		fieldSetInFormIsFalse();
+	
 
+	
+	private void fieldSetInFormIsTrue() {
+		isFieldSetInForm = true;
 	}
+
+	private void fieldSetInFormIsFalse() {
+		isFieldSetInForm = false;
+	}
+	
+	
+	
 
 	private void addButton(String name) {
 		if (!readOnly) {
@@ -417,12 +500,6 @@ public class SpringFormStringBuilder<O extends Object> extends SpringTagFormular
 		this.springFormCssConfig = springFormCssConfig;
 	}
 
-	private void fieldSetInFormIsTrue() {
-		isFieldSetInForm = true;
-	}
-
-	private void fieldSetInFormIsFalse() {
-		isFieldSetInForm = false;
-	}
+	
 
 }

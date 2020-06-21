@@ -1,11 +1,24 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="springTags" %>
+<head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/07_CSSFiles/07_01_pages/modalPage.css" />
+<style type="text/css">
+.normalCSS{
+
+}
+.badCSS{
+color:darkOrange;
+font-style: italic;
+}
+
+</style>
+</head>
+
 <div id="siteCommentModal" class ="formModal" style="display: none;">
 <div id="commentFormContainer" class = "formModal-content" >
 <form action="06_climbingSite/postComment" method = "Post">
 <span id="count">${commentMaxChar}</span><br>
-<textarea id="comment" name="comment" rows="5" cols="100"></textarea>
+<textarea id="comment" name="comment" rows="10" cols="50" maxlength="${commentMaxChar}"></textarea>
 <input id="postCommentBtn" type="submit" value="<springTags:message code="sendComment.message"/>"/>
 </form>
 <input id="charLimit" type="hidden" value="${sessionScope.commentMaxChar}">
@@ -14,11 +27,11 @@
 <input id="errorLimitMessage" type ="hidden" value="<springTags:message code="charLimitReached.message"/>">
 </div>
 </div>
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/modalTools.js"></script>
 <script type="text/javascript">
-
-
-var commentLimitChar = document.getElementById("charLimit").value;
+countAndCheckLimitCharOnKeyPress("comment", "postCommentBtn", "count", "charLimit", "*", "sendMessage", "errorMessage","normalCSS","badCSS");
+/*
+//var commentLimitChar = document.getElementById("charLimit").value;
 displayInitCharLimit(commentLimitChar);
 countOnkeyPress(commentLimitChar);
 
@@ -94,5 +107,5 @@ function countDown(maxChar,currentInputSize){
 		var label =document.getElementById("count");
 		
 		label.innerHTML= limit ;
-		}
+		}*/
 </script>

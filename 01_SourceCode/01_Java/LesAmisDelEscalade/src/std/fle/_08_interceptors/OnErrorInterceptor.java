@@ -8,10 +8,13 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import fle.toolBox.Internationalization.LocalMessage;
 import std.fle._00_general.SessionVariables;
+import std.fle._08_interceptors.appInitiators.InitiateAppInterceptor;
 
 public class OnErrorInterceptor extends HandlerInterceptorAdapter {
 	@Autowired
 	LocalMessage local;
+	
+	private InitiateAppInterceptor initiateAppInterceptor = new InitiateAppInterceptor();
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -24,7 +27,7 @@ public class OnErrorInterceptor extends HandlerInterceptorAdapter {
 			return false;
 			
 		}else {
-			InitiateAppInterceptor.initiateApp(request, local);			
+			initiateAppInterceptor.initiateApp(request, local);			
 			return true;}	
 		
 	}

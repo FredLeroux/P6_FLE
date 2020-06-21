@@ -1,9 +1,6 @@
 package fle.toolBox;
 
-
 import javax.servlet.http.HttpServletRequest;
-
-
 
 /**
  * 
@@ -14,15 +11,8 @@ import javax.servlet.http.HttpServletRequest;
  * 
  */
 public class AppURI {
-	
-	private HttpServletRequest request;
-	
+
 	public AppURI() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	public AppURI(HttpServletRequest request) {
-		this.request = request;
 	}
 
 	private final static String scheme(HttpServletRequest request) {
@@ -60,7 +50,7 @@ public class AppURI {
 		return uri.toString();
 
 	}
-	
+
 	public String fullContextPathURINotStatic(HttpServletRequest request) {
 		StringBuilder uri = new StringBuilder();
 		uri.append(request.getScheme() + "://");

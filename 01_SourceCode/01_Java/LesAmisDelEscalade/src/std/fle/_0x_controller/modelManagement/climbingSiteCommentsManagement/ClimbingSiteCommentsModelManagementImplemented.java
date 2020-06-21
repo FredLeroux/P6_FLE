@@ -4,8 +4,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
 
+import fle.toolBox.springFormManager.annotations.inputTextArea.InputTextAreaGetLimit;
 import std.fle._00_general.SessionVariables;
 import std.fle._03_sfc.climbingSiteSFC.ClimbingSiteCommentsSFC;
 import std.fle._06_dao.climbingSiteCommentsDao.ClimbingSiteCommentsDAO;
@@ -22,6 +24,7 @@ public class ClimbingSiteCommentsModelManagementImplemented implements ClimbingS
 	private SessionVariables sessVar = new SessionVariables();
 	private Integer commentId = null;
 	
+	
 	@Override
 	public ModelAndView manageInitVar(ModelAndView model,Integer id,String redirectTo) {
 		commentId = id;
@@ -33,12 +36,18 @@ public class ClimbingSiteCommentsModelManagementImplemented implements ClimbingS
 	public ModelAndView manageDisplayCommentEditor(ModelAndView model,  String modelAttributName) {
 		model.setViewName("06_climbingSite/editCommentForm");
 		model.addObject(modelAttributName, dao.getClimbingSiteCommentsSFCForEdit(commentId));
-		model.addObject("log",dao.modificationLogI18N(commentId));
+		model.addObject("log",dao.modificationLogI18N(commentId));		
 		return model;
 	}
 
 	@Override
-	public ModelAndView manageUpdateComment(ModelAndView model, ClimbingSiteCommentsSFC climbingSiteCommentsSFC) {		
+	public ModelAndView manageUpdateComment(ModelAndView model, ClimbingSiteCommentsSFC climbingSiteCommentsSFC,String modelAttributeName,BindingResult result) {		
+		if(result.hasErrors()) {
+			model.setViewName("06_climbingSite/editCommentForm");
+			model.addObject(modelAttributeName,climbingSiteCommentsSFC);
+			model.addObject("log",dao.modificationLogI18N(commentId));
+			return model;
+		}
 		dao.updateComment(climbingSiteCommentsSFC,commentId,getAuthorPseudo());
 		setBackToList(model);
 		return model;

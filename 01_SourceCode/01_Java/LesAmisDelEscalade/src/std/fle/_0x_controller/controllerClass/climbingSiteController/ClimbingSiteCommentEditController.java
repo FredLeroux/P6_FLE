@@ -3,6 +3,8 @@ package std.fle._0x_controller.controllerClass.climbingSiteController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,9 +31,9 @@ public class ClimbingSiteCommentEditController {
 		return manager.manageDisplayCommentEditor(model, "climbingSiteComment" );
 	}
 			
-	@PostMapping(value="/06_climbingSite/updateComment")///commentEdit/
-	public ModelAndView updateComments(ModelAndView model,ClimbingSiteCommentsSFC climbingSiteCommentsSFC) {
-		return manager.manageUpdateComment(model, climbingSiteCommentsSFC);
+	@PostMapping(value="/06_climbingSite/updateComment")
+	public ModelAndView updateComments(ModelAndView model,@ModelAttribute(value = "climbingSiteComment") @Validated ClimbingSiteCommentsSFC climbingSiteCommentsSFC,BindingResult result) {
+		return manager.manageUpdateComment(model, climbingSiteCommentsSFC,"climbingSiteComment",result);
 	}
 	
 	@GetMapping(value ="/06_climbingSite/deleteComment")

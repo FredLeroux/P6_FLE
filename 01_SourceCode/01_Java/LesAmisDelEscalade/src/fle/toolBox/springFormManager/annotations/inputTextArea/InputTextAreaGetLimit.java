@@ -16,7 +16,7 @@ import fle.toolBox.fieldsReflectivity.extractSetAndGetComponents.ClassFields;
  *          of @InputTextArea {@link #getLimitNumberChar(Field)} <br>
  *          Allow to add to model attribute containing the char limit number
  *          {@link #addTextAreaLimitToModel(ModelAndView, Object)}<br>
- *          Allow to get a linkedHashMap containing @InputTextArea infoemation
+ *          Allow to get a linkedHashMap containing @InputTextArea information
  *          {@link #textAreaAttributeNameAndLimit(Object)}
  * 
  */
@@ -27,7 +27,7 @@ public class InputTextAreaGetLimit {
 	 * @param model  the where to add the textarea char limit
 	 * @param entity the entity containing @InputTextArea annotated Field(s)
 	 * @apiNote will add to model for each annotated fields, as attribute name:"
-	 *          field name" concatened with "MaxChar", and as object the char limit
+	 *          field name" concatenated with "MaxChar", and as object the char limit
 	 *          Integer as follow textArea
 	 *          "InputTextArea.rows()*InputTextArea.charByrow".
 	 */
@@ -38,8 +38,9 @@ public class InputTextAreaGetLimit {
 	/**
 	 * 
 	 * @param entity the entity containing @InputTextArea annotated Field(s)
-	 * @return a LinkedHashMap conatining as Key "fieldName.concact(MaxChar)" Value
-	 *         = "InputTextArea.rows()*InputTextArea.charByrow"
+	 * @return a LinkedHashMap containing for each entity fields @InputTextArea
+	 *         annotated, as Key "fieldName.concact("MaxChar")" Value =
+	 *         "InputTextArea.rows()*InputTextArea.charByrow"
 	 */
 	public static LinkedHashMap<String, Integer> textAreaAttributeNameAndLimitMap(Object entity) {
 		LinkedHashMap<String, Integer> textAreaAttributeNameAndLimit = new LinkedHashMap<>();
@@ -51,7 +52,7 @@ public class InputTextAreaGetLimit {
 	/**
 	 * 
 	 * @param field a @InputTextArea annotated Field
-	 * @return field name concatened with "MaxChar" -> fieldNameMaxChar
+	 * @return field name concatenated with "MaxChar" -> fieldNameMaxChar
 	 */
 	private static String createModelAttributeName(Field field) {
 		return field.getName().concat("MaxChar");
@@ -65,7 +66,7 @@ public class InputTextAreaGetLimit {
 	 */
 	public static Integer getLimitNumberChar(Field field) {
 		InputTextArea annotation = field.getAnnotation(InputTextArea.class);
-		return annotation.rows() * annotation.charByRows();
+		return annotation.maxLenght();
 
 	}
 

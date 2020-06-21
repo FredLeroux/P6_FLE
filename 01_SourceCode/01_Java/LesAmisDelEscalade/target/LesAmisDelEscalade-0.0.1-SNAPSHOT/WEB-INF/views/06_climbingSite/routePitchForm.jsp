@@ -16,7 +16,7 @@
 	<jstl:set var="routePithContainer" scope="page" value="${routePitchList}"/>
 	<table>
 		<jstl:forEach items="${routePitchList}" var="pitch" varStatus="indexGetter">
-			<jstl:set var="lvl" scope="page" value="${pitch.climbingLevelsDTO}"/>
+			<jstl:set var="lvl" scope="page" value="${pitch.climbingLevels}"/>
 			<jstl:set var="hrefParamaters" value="?route=${routeName}&index=${indexGetter.index}"></jstl:set>
 				<tr>
 					<td><springTags:message code = "pitch.name"/> ${pitch.pitchNumber}</td>

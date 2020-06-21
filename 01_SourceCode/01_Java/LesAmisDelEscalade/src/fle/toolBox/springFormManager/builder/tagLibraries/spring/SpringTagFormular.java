@@ -1,5 +1,6 @@
 package fle.toolBox.springFormManager.builder.tagLibraries.spring;
 
+import fle.toolBox.FredParser;
 import fle.toolBox.exceptionsThrower.ExceptionsThrower;
 
 /**
@@ -41,6 +42,7 @@ public abstract class SpringTagFormular {
 	private String selectCssErrorClass = null;
 	private String errorsCssClass = null;
 	private String buttonCssClass = null;
+	private String limiCharSpanCssClass = null;
 	private String idAttribut = " id =";
 	private String pathAttribut = " path=";
 	private String codeAttribut = " code=";
@@ -52,6 +54,7 @@ public abstract class SpringTagFormular {
 	private String colSpanAttribut = " colspan =";
 	private String textAreaRowsAttribut = " rows = ";
 	private String textAreaColsAttribut = " cols = ";
+	private String textAreaMaxLengthAttribut = " maxlength = ";
 	private String formtagName = "form";
 	private String hiddenTagName = "hidden";
 	private String labelTagName = "label";
@@ -279,6 +282,10 @@ public abstract class SpringTagFormular {
 		return "'${" + var + "}'";
 	}
 
+	private String htmlVarWithOutQuote(String var) {
+		return "${" + var + "}";
+	}
+
 	protected String openFormTag(String tagName) {
 		return openTagFormPrefixed + tagName;
 	}
@@ -454,7 +461,7 @@ public abstract class SpringTagFormular {
 
 	/**
 	 * This set will make getStatusError return custom true message if true, false
-	 * message if fasle
+	 * message if false
 	 * 
 	 * @param customTrueMessage
 	 * @param customFasleMessage
@@ -492,6 +499,14 @@ public abstract class SpringTagFormular {
 
 	protected void setTrCssClass(String trCssClass) {
 		this.trCssClass = classHTML(trCssClass);
+	}
+
+	protected String getLimiCharSpanCssClass() {
+		return limiCharSpanCssClass;
+	}
+
+	protected void setLimiCharSpanCssClass(String limiCharSpanCssClass) {
+		this.limiCharSpanCssClass = classHTML(limiCharSpanCssClass);
 	}
 
 	protected String getTdCssClass() {
@@ -584,19 +599,55 @@ public abstract class SpringTagFormular {
 	}
 
 	protected String label(String path, String text) {
-		return openFormTag(labelTagName, path) +idAttribut+ argument(path+".formLabel")+endTagAttributes + text + closeFormTag(labelTagName) + ln;
+		return openFormTag(labelTagName, path) + idAttribut + argument(path + ".formLabel") + endTagAttributes + text
+				+ closeFormTag(labelTagName) + ln;
 
 	}
 
 	protected String labelCssClass(String path, String text) throws NullPointerException {
 
-		return openFormTag(labelTagName, path)+idAttribut+ argument(path+".formLabel") + getLabelCssClass() + endTagAttributes + text
-				+ closeFormTag(labelTagName) + ln;
+		return openFormTag(labelTagName, path) + idAttribut + argument(path + ".formLabel") + getLabelCssClass()
+				+ endTagAttributes + text + closeFormTag(labelTagName) + ln;
 	}
 
 	protected String labelCssClassCssErrorClass(String path, String text) throws NullPointerException {
-		return openFormTag(labelTagName, path)+idAttribut+ argument(path+".formLabel") + getLabelCssClass() + getLabelCssErrorClass() + endTagAttributes + text
+		return openFormTag(labelTagName, path) + idAttribut + argument(path + ".formLabel") + getLabelCssClass()
+				+ getLabelCssErrorClass() + endTagAttributes + text + closeFormTag(labelTagName) + ln;
+	}
+
+	protected String labelWithLimitCharCssClassCssErrorClass(String path, String text, Integer limitChar,
+			String limitCharName) throws NullPointerException {
+		return openFormTag(labelTagName, path) + idAttribut + argument(path + ".formLabel") + getLabelCssClass()
+				+ getLabelCssErrorClass() + endTagAttributes + text + LimitCharSpan(path, limitChar, limitCharName)
 				+ closeFormTag(labelTagName) + ln;
+	}
+
+	private String LimitCharSpan(String path, Integer limitChar, String limitCharName) {
+		if (setMessage(limitCharName) != null) {
+			return setMessage(limitCharName).concat("<br><label>"+ htmlVarWithOutQuote(setVarName(limitCharName))+"</lable>")
+					.concat("<span id=" + argument(path.concat("limitChar")) + getLimiCharSpanCssClass() + ">"
+							 + limitChar + "</span>");
+		} else {
+			return "<br><span id=" + argument(path.concat("limitChar")) + getLimiCharSpanCssClass() + ">" + limitChar
+					+ "</span>";
+		}
+
+	}
+
+	private String setMessage(String str) {
+		if (setVarName(str) == null) {
+			return null;
+		} else {
+			return messageWithVar(str, setVarName(str)) + ln;
+		}
+	}
+
+	private String setVarName(String str) {
+		if (str.equals("")) {
+			return null;
+		} else {
+			return htmlVarName(str);
+		}
 	}
 
 	protected String message(String code) {
@@ -697,21 +748,32 @@ public abstract class SpringTagFormular {
 
 	// TODO implement css textarea
 	protected String textAreaCssClassCssErrorClassTagMessagePlaceHolder(String path, String code, String rowsNb,
-			String cols) {
+			String cols, String maxLength) {
 		StringBuilder textAreaFinal = new StringBuilder();
-		String varName = code.replace(" ", ".").replace(".", "");
+		String varName = htmlVarName(code);
 		String message = messageWithVar(code, varName) + ln;
 		String input = openFormTag(textAreaTagName, path) + textAreaRowsAttribut + argument(rowsNb)
 				+ textAreaColsAttribut + argument(cols) + getInputCssClass() + getInputCssErrorClass()
-				+ placeHolderAttribut + htmlVar(varName) + closeTag + ln;
+				+ placeHolderAttribut + htmlVar(varName) + addMaxLength(maxLength) + closeTag + ln;
 		textAreaFinal.append(message);
 		textAreaFinal.append(input);
 		return textAreaFinal.toString();
 	}
-	
-	protected String textAreaCssClassReadOnly(String path, String rowsNb,String cols) {
-		return openFormTag(textAreaTagName, path) + textAreaRowsAttribut + argument(rowsNb)
-		+ textAreaColsAttribut + argument(cols) + getInputCssClass() + " readonly='true' " + closeTag + ln;
+
+	private String htmlVarName(String toParse) {
+		return toParse.replace(" ", ".").replace(".", "");
+	}
+
+	private String addMaxLength(String maxLength) {
+		if (FredParser.toInteger(maxLength) > 0) {
+			return textAreaMaxLengthAttribut + argument(maxLength);
+		}
+		return "";
+	}
+
+	protected String textAreaCssClassReadOnly(String path, String rowsNb, String cols) {
+		return openFormTag(textAreaTagName, path) + textAreaRowsAttribut + argument(rowsNb) + textAreaColsAttribut
+				+ argument(cols) + getInputCssClass() + " readonly='true' " + closeTag + ln;
 	}
 
 	protected String select(String path, String targetForm) {
@@ -729,10 +791,11 @@ public abstract class SpringTagFormular {
 				+ argument(targetForm) + getSelectCssClass() + getSelectCssErrorClass() + closeTag + ln;
 	}
 
-	// TODO complete implementation
-	protected String textAreaCssClassCssErrorClass(String path, String rowsNb, String cols) {
+	// TODO complete implementation (with and w/o css class )
+	protected String textAreaCssClassCssErrorClass(String path, String rowsNb, String cols, String maxLength) {
 		return openFormTag(textAreaTagName, path) + textAreaRowsAttribut + argument(rowsNb) + textAreaColsAttribut
-				+ argument(cols) + getInputCssClass() + getInputCssErrorClass() + closeTag + ln;
+				+ argument(cols) + getInputCssClass() + getInputCssErrorClass() + addMaxLength(maxLength) + closeTag
+				+ ln;
 	}
 
 	protected String passWord(String path) {

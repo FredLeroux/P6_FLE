@@ -10,6 +10,7 @@ import org.springframework.validation.annotation.Validated;
 
 import fle.toolBox.classType.SFC;
 import fle.toolBox.springFormManager.annotations.HiddenPath;
+import fle.toolBox.springFormManager.annotations.PlaceHolderText;
 import fle.toolBox.springFormManager.annotations.ReadOnlyInput;
 import fle.toolBox.springFormManager.annotations.SelectInputType;
 import fle.toolBox.springFormManager.annotations.SpringFormSettings;
@@ -90,7 +91,8 @@ public class ClimbingSiteSFC extends SFC {
 	private String climbingSiteCountyId;
 
 	@Length(max = 200)
-	@InputTextArea(charByRows = 50, rows = 4)
+	@InputTextArea(charByRows = 50, rows = 4,maxLenght = 200,limitCharName = "siteDescriptionCharLeft.name")
+	@PlaceHolderText(message = "description")
 	private String siteDescription;
 	
 	
@@ -109,7 +111,7 @@ public class ClimbingSiteSFC extends SFC {
 
 	
 	@Length(max = 500)
-	@InputTextArea(charByRows = 50, rows = 10)
+	@InputTextArea(charByRows = 50, rows = 10,maxLenght = 500,limitCharName = "siteAccesToSiteCharLeft.name")
 	private String accessToSite;
 
 	@SpringFormActionButton(displayMessagePropertyKey = "addRoute.label")

@@ -5,6 +5,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 
 import fle.toolBox.AppURI;
@@ -46,7 +47,6 @@ public class MailCreatorImplemented implements MailCreator {
 	private void setActivationMailMessage(String code,HttpServletRequest request) {		
 		sender0();		
 		String link = uri.fullContextPathURINotStatic(request);
-		System.out.println(link);
 		subject = local.message("accountCreation.subject");
 		body = local.message("accountCreation.message") + "\n" + link + "activation?code="
 				+ code + "\n" + local.message("endMail.message");
@@ -68,7 +68,7 @@ public class MailCreatorImplemented implements MailCreator {
 				+ "unlockMyAccount?reset=" + code + "\n" + local.message("endMail1.message");
 	}
 
-@Async
+	@Async
 	@Override
 	public void sendforgotPassMessage(String contact, String login,HttpServletRequest request) {
 		String forgotResetCode = new FredCodeGenerator(26, false).toString();

@@ -97,7 +97,6 @@ public class TopoModelManagementImplemented implements TopoModelManagement {
 			BindingResult results) {
 		formsValidation.checkStateNotEmpty(climbingTopoSFC, modelAttributeName, results);
 		if (results.hasErrors()) {
-			System.out.println("herrreeeeeeee");
 			model.setViewName("05_topo/updateTopoForm");
 			selectFieldManager.selectListAndValueOnBindingError(climbingTopoSFC, model);
 			return model;

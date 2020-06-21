@@ -53,17 +53,19 @@ supports (-ms-ime-align:auto ) {
 	min-width: 50%%;
 }
 
-.labelStyle, .inputStyle  {	
+.labelStyle, .inputStyle, .limitCharSpanForm1  {	
 	font-family: menu-font;
 	font-size: 20px;
 }
+
+
 
 .labelStyleBad, .inputStyleBad,option{
 	font-family: menu-font;
 	font-size: 18px;
 }
 
-.labelStyle, .inputStyle, option{
+.labelStyle, .inputStyle,.limitCharSpanForm1, option{
 color: var(--base-color);
 }
 
@@ -104,7 +106,7 @@ input[readonly = "readonly"],textarea[readonly = "readonly"]  {
 }
 
 input::-webkit-selection{
-	border-radius: 15px;
+	border-radius: 50px;
 	color: red;
 }
 
@@ -156,6 +158,12 @@ option{
 	cursor: pointer;
 }
 
+.limitCharSpanForm1{	
+	
+	
+	
+}
+
 
 tr:hover .inputStyle {
 	border-color: var(--base-color-opposite);
@@ -167,7 +175,7 @@ tr:hover .labelStyle {
 }
 
 @media all and (max-width: 1000px) {
-	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,.formButton,.formBecarefull {
+	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,.formButton,.formBecarefull, .limitCharSpanForm1 {
 		font-size: 12px;
 	}
 	option{
@@ -175,19 +183,19 @@ tr:hover .labelStyle {
 }
 
 @media all and (max-width: 790px) {
-	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option,.formButton,.formBecarefull  {
+	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option,.formButton,.formBecarefull, .limitCharSpanForm1  {
 		font-size: 10px;
 	}
 }
 
 @media all and (max-width: 400px) {
-	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option,.formButton,.formBecarefull  {
+	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option,.formButton,.formBecarefull, .limitCharSpanForm1  {
 		font-size: 8px;
 	}
 }
 
 @media all and (max-width: 360px) {
-	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option,.formButton,.formBecarefull {
+	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option,.formButton,.formBecarefull, .limitCharSpanForm1 {
 		font-size: 6px;
 	}
 }

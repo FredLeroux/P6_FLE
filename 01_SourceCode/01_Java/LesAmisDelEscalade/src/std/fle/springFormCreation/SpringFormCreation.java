@@ -68,6 +68,7 @@ public class SpringFormCreation implements ApplicationListener<ContextRefreshedE
 				.cssFileName("cssFileName")
 				.tableStyle("tableStyleClass.form1")
 				.trStyle("trStyleClass.form1")
+				.limitCharSpanStyle("limitCharSpanStyleClass.form1")
 				.tdStyle("tdStyleClass.form1")
 				.labelStyle("labelStyleClass.normal")
 				.inputStyle("fieldStyleClass.normal")
