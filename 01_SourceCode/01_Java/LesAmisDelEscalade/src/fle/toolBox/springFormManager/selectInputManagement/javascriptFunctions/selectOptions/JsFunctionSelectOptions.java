@@ -8,8 +8,7 @@ public class JsFunctionSelectOptions extends JavaScriptTag {
 
 	private String emptyValue = "empty";
 
-	private String onChange 
-			= "\n function selectOnChange(entityName, fieldName,formName,formAction,dependentListName,dependentValueName){\r\n"
+	private String onChange = "\n function selectOnChange(entityName, fieldName,formName,formAction,dependentListName,dependentValueName){\r\n"
 			+ " var selectListId = selectId(entityName, fieldName); \r\n"
 			+ "	var select = document.getElementById(selectId(entityName, fieldName));	\r\n"
 			+ "	select.setAttribute(\"onchange\", \"sendObjet('\"+formName+\"','\"+selectListId+\"','\"+formAction+\"','\"+dependentListName+\"',formError)\");\r\n"

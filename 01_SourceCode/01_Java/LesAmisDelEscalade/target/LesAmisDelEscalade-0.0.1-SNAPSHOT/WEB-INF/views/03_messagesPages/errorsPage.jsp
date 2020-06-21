@@ -17,7 +17,10 @@
 <springTags:message code ="errorPageBody.message"></springTags:message><br>
 </div><br><br>
 <div class = "linkContainer">
-<label class = "link"   onclick="changeParentLocation('${pageContext.request.contextPath}/index.html')" ><springTags:message code ="erroPageBack.message"></springTags:message></label><br><br>
+<!--  <label class = "link"   onclick="changeParentLocation('${pageContext.request.contextPath}/index.html')" ><springTags:message code ="erroPageBack.message"></springTags:message></label><br><br>
+-->
+
+<a class = "link"  href="${pageContext.request.contextPath}/reInit" target="_top"><springTags:message code ="erroPageBack.message"></springTags:message></a><br><br>
 </div>
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/04_01_02_link.js"></script>

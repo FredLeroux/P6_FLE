@@ -8,6 +8,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import fle.toolBox.Internationalization.LocalMessage;
 import std.fle._07_service.usersAccountInfoService.UsersAccountInfoService;
+import std.fle._08_interceptors.appInitiators.InitiateAppInterceptor;
 
 public class AccountActivationInterceptor extends HandlerInterceptorAdapter {
 	
@@ -16,10 +17,12 @@ public class AccountActivationInterceptor extends HandlerInterceptorAdapter {
 	@Autowired
 	LocalMessage local;
 	
+	private InitiateAppInterceptor initiateAppInterceptor = new InitiateAppInterceptor();
+	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		InitiateAppInterceptor.initiateApp(request, local);
+		initiateAppInterceptor.initiateApp(request, local);
 		if(accountService.activateAccount(request.getParameter("code"))) {			
 			response.sendRedirect("accountActivated");
 			return false;

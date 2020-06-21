@@ -10,6 +10,7 @@
 	<entry key="tableStyleClass.form2">tableForm2</entry>
 	<entry key="trStyleClass.form1">trForm1</entry>
 	<entry key="trStyleClass.form2">trForm2</entry>
+	<entry key="limitCharSpanStyleClass.form1">limitCharSpanForm1</entry>
 	<entry key="tdStyleClass.form1">tdForm1</entry>
 	<entry key="tdStyleClass.form2">tdForm2</entry>
 	<entry key="tdStyleClass.form3">tdForm3</entry>
