@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 import fle.toolBox.StringExtractor;
 import fle.toolBox.CRUD.dao.DAOGenericInterface;
 import fle.toolBox.CRUD.daoList.DAOListGeneric;
-import fle.toolBox.Internationalization.Internationalization;
 import fle.toolBox.Internationalization.LocalMessage;
 import std.fle._01_entity.models.site.ClimbingSiteComments;
 import std.fle._01_entity.models.site.CommentsModificationLog;
@@ -45,14 +44,12 @@ public class ClimbingSiteCommentsDAOImplemented implements ClimbingSiteCommentsD
 	private UsersAccountInfoDAO userDao;
 
 	private StringExtractor extractor = new StringExtractor();
-	private Internationalization inter = new Internationalization();
 	private ClimbingSiteComments climbingSiteComments = new ClimbingSiteComments();
 	private CommentsModificationLog commentsModificationLog = new CommentsModificationLog();
 	private ClimbingSiteCommentsDTO climbingSiteCommentsDTO = new ClimbingSiteCommentsDTO();
 	private ClimbingSiteCommentsEditDTO climbingSiteCommentsEditDTO = new ClimbingSiteCommentsEditDTO();
 	private CommentsModificationLogDTO commentsModificationLogDTO = new CommentsModificationLogDTO();
-	private ClimbingSiteCommentsSFC climbingSiteCommentsSFC = new ClimbingSiteCommentsSFC();
-	
+	private ClimbingSiteCommentsSFC climbingSiteCommentsSFC = new ClimbingSiteCommentsSFC();	
 	private String originalComment = null;
 	private String charLimiter = "*";
 	private String modifyBy = "modifyBy.label";

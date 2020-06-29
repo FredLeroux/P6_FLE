@@ -1,15 +1,25 @@
 package fle.toolBox.filesManagement;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.servlet.ServletContext;
+
+import fle.toolBox.logger.Log4J2;
 //TODO 1-JAVADOC
 public class FilesManagement {
-	String path = null;
-
+	
+	private String path = null;
+	private Log4J2<FilesManagement> logger = new Log4J2<FilesManagement>(this);
 	public String getPath() {
 		return path;
 	}
@@ -34,32 +44,24 @@ public class FilesManagement {
 		this.path = appPath;
 	}
 
-	public void createFile() throws IOException {
-
+	public void createFile()  {
 		File file = new File(getPath());
-		if (file.exists()) {
-			file.delete();
-		}
-		file.createNewFile();
+		deleteIfExist(file);
+		createNewFile(file);
 
 	}
 
-	public void createFile(String path) throws IOException {
+	public void createFile(String path)  {
 		File file = new File(path);
-		if (file.exists()) {
-			file.delete();
-		}
-		file.createNewFile();
+		deleteIfExist(file);
+		createNewFile(file);
 
 	}
 
-	public void createFile(String fileName, String extension, String path) throws IOException {
-
+	public void createFile(String fileName, String extension, String path)  {
 		File file = new File(path + "/" + fileName + "." + extension);
-		if (file.exists()) {
-			file.delete();
-		}
-		file.createNewFile();
+		deleteIfExist(file);
+		createNewFile(file);
 
 	}
 
@@ -76,14 +78,122 @@ public class FilesManagement {
 		printwriter.print(str);
 		printwriter.close();
 	}
+	
+	public void copyFile(String srcPath,String destPath) {
+		Path src = Paths.get(srcPath);
+		Path dest = Paths.get(destPath);
+		try {
+			Files.copy(src, dest);
+		} catch (IOException e) {
+			logger.log().fatal(e);
+		}
+	}
+	/**
+	 * 
+	 * @param context servlet context
+	 * @param srcPath the full path containing file name(note: in case of package file change "src/" to "WEB-INF/classes")
+	 * @param destPath the destination path ending by "/" w/o the file name
+	 * @param fileName the full filename i.e.e with extension
+	 * @apiNote allow to copy file from package(change "src/" to "WEB-INF/classes") or resources to destPath 
+	 */
+	public void copyFileAndCreateDir(ServletContext context,String srcPath,String destPath,String fileName) {
+		Path path = Paths.get(servletPath(context, destPath));
+		Path src = Paths.get(servletPath(context,srcPath));
+		Path dest = Paths.get(servletPath(context, destPath).concat(fileName));
+		if(!Files.exists(path)) {
+			try {
+				Files.createDirectory(path);
+			} catch (IOException e) {
+				logger.log().fatal(e);
+				e.printStackTrace();
+			}
+		}			
+		if(!Files.exists(dest)) {
+			try {
+				Files.copy(src, dest);
+			} catch (IOException e1) {				
+				logger.log().fatal(e1);
+				e1.printStackTrace();
+			}
+		}
+		
+	}
+	
+	private String servletPath(ServletContext context,String filePath) {
+		return context.getRealPath(filePath);
+	}
+	
+	public void copyFileInputStream(String srcPath,String destPath,String fileName) {
+		Path path = Paths.get(destPath);
+		InputStream inputStream = null;
+		File file = new File(srcPath);
+		try {
+			 inputStream = new FileInputStream(file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(!Files.exists(path)) {
+			try {
+				Files.createDirectory(path);
+			} catch (IOException e) {
+				logger.log().fatal(e);
+				e.printStackTrace();
+			}
+		}			
+		Path dest = Paths.get(destPath.concat(fileName));
+		try {
+			Files.copy(inputStream, dest);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	private void createNewFile(File file) {
+		try {
+			file.createNewFile();
+		} catch (IOException e) {
+			logger.log().fatal(e);
+		}
+	}
+	
+	private void deleteIfExist(File file) {
+		if (file.exists()) {
+			file.delete();
+		}
+	}
+	
+	public String fileToString(String filePath) {
+		StringBuilder stringBuilder = new StringBuilder();
+		BufferedReader bufferedReader = bufferedReader(filePath);
+		String line = null;
+		try {
+			while((line=bufferedReader.readLine()) != null) {
+				stringBuilder.append(line+"\n");
+			}
+		} catch (IOException e) {
+			logger.log().fatal(e);
+			e.printStackTrace();
+		}
+		return stringBuilder.toString();
+	}
+	
+	private BufferedReader bufferedReader(String filePath) {
+		BufferedReader reader = null;
+		try {
+			reader =  Files.newBufferedReader(path(filePath));
+		} catch (IOException e) {
+			logger.log().fatal(e);
+			e.printStackTrace();
+		}
+		return reader;
+	}
+	
+	private Path path(String filePath) {
+		return Paths.get(filePath);
+	}
 
-	// TODO to finish see
-	// https://www.mkyong.com/java/how-to-read-file-from-java-bufferedreader-example/
-/*	public String ReadFile(String str) throws IOException {
-		String filePath = this.path + "/" + this.fileName + "." + fileExtension;
-		FileReader fileReader = new FileReader(filePath);
-		fileReader.read();
-		return null;
-	}*/
-
+	
 }

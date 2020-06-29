@@ -1,6 +1,6 @@
 <%@ taglib prefix="springTag" uri="http://www.springframework.org/tags"%>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jspCompomentsCss/02_01_01_03_loginModalCSS.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jspCompomentsCss/loginModalCSS.css" />
 
 <div id="loginModal" class="modal" style="display: none;">
 	<!-- display set none here allow immediate action  -->
@@ -9,7 +9,7 @@
 			<div class="header">
 				<springTag:message code="logModal.name" />
 			</div>
-			<div class="close">
+			<div class="close" >
 				<label id="close"><springTag:message code="close.name" /></label>
 			</div>
 			<div id= "error" class="error">${error}</div>
@@ -25,22 +25,25 @@
 			</div>
 			<div class="inputPass">
 				<input type="password" name="pass" id="pass"  
-					placeholder='<springTag:message code ="pass.placeHolder"/>' onmouseenter="type='text'"  >
+					placeholder='<springTag:message code ="pass.placeHolder"/>'>
 			</div>
 			<div class="forgot">
 				<a href="<springTag:message code ="forgot.href"/>">
 					<label><springTag:message code="forgot.name" /></label>
 				</a>
 			</div>
-			<div class="createAccount">
-			<!-- id = "creation" onclick="loadIframePageAndToggleDiplay('02_AccountManagement/userFormRegister')"  -->
+			<div class="empty"></div>
+			<div class="showPass" >
+			<i id="visibility" onclick="togglePassVisibility()" class="fas fa-eye"></i>
+			</div>
+			<div class="log">
+				<button type="submit"><springTag:message code ="log.name"/></button>
+			</div>
+			<div class="createAccount">			
 				<a href="<springTag:message code ="createAccount.href"/>">
 					<label><springTag:message code="createAccount.name" /></label>
 				</a>
-			</div>
-			<div class="log">
-				<input type="submit" value="<springTag:message code ="log.name"/>" />
-			</div>
+			</div>			
 			<div id="cancel" class="cancel">
 				<label><springTag:message code="cancel.name" /></label>
 			</div>			
@@ -53,22 +56,24 @@
 	var logToggle = toggle();		
 	logToggle.addToggleDisplayOnClickAndClearError("cancel", "loginModal", "error");
 	logToggle.addToggleDisplayOnClickAndClearError("close", "loginModal", "error");
-	var iframe = newIframe("iFrameLoc");
 	logToggle.displayOnError("error","loginModal");
-
-	passImputHide();
-	function passElmt(){
-		return document.getElementById("pass"); }
-	function passImputHide(){		
-		var logForm = document.getElementById("logForm");
-		logForm.addEventListener("mouseenter", inputTypePass);
-		}
-	function inputTypePass(){		
-		passElmt().type="password";
-		}
-
 	
-
 	
+	function passElmt() {
+		return document.getElementById("pass");
+	}
+	function visibilityElmt() {
+		return document.getElementById("visibility");
+	}
+	function togglePassVisibility() {
+		if (passElmt().type == "password") {
+			passElmt().type = "text";
+			visibilityElmt().className = "fas fa-eye-slash";
+		} else {
+			passElmt().type = "password";
+			visibilityElmt().className = "fas fa-eye";
+		}
+
+	}
 </script>
 

@@ -1,0 +1,56 @@
+textarea {
+	resize: none;
+	width: 98%;
+	height: 100%;
+}
+
+
+
+.commentModal-content {
+	background-color: #fefefe;
+	margin: 20% auto;
+	border: 1px solid #888;
+	width: 25%;
+	height: 30%
+	
+}
+
+.normalCSS {
+	
+}
+
+.badCSS {
+	color: darkOrange;
+	font-style: italic;
+}
+
+.commentModalGrid {
+	display: grid;
+	grid-gap: 2px;
+	grid-template-columns: 50% 50%;
+	grid-template-areas: 
+	'charCounter closeComment' 
+	'textAreaZone textAreaZone'
+	'submitBtn submitBtn';
+}
+
+.charCounter {
+	grid-area: charCounter;
+	border: solid;
+}
+
+.closeComment {
+	grid-area: closeComment;
+	border: solid;
+}
+
+.textAreaZone {
+	grid-area: textAreaZone;	
+	text-align: center;
+	border: solid;
+}
+
+.submitBtn {
+	grid-area: submitBtn;
+	border: solid;
+}

@@ -8,7 +8,7 @@ import std.fle._02_dto.modelsDTO.usersDTO.usersAccountInfoDTO.UsersAccountInfoDT
 import std.fle._03_sfc.usersAccountInfoSFC.UsersAccountInfoMemberStatusSFC;
 import std.fle._03_sfc.usersAccountInfoSFC.UsersAccountInfoSFC;
 import std.fle._03_sfc.usersAccountInfoSFC.UsersAccountInfoUpdateSFC;
-import std.fle._0x_CRUDInterface.ModelsCRUD;
+import std.fle._06_dao.CRUDInterface.ModelsCRUD;
 
 public interface UsersAccountInfoDAO extends ModelsCRUD<UsersAccountInfo, UsersAccountInfoDTO, UsersAccountInfoSFC> {
 

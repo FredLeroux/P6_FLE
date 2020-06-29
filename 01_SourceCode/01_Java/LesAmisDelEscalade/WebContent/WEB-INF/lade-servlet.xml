@@ -204,5 +204,5 @@
 		mapping="/cssFiles/**"></mvc:resources>
 
 	<task:annotation-driven executor="ladeExecutor"  />
-	<task:executor id="ladeExecutor" pool-size="5" />	
+	<task:executor id="ladeExecutor" pool-size="10" queue-capacity="5" />
 </beans>

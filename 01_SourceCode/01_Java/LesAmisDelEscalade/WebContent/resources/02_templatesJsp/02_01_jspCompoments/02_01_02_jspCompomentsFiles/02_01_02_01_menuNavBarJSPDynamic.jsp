@@ -8,7 +8,9 @@
 	<div class="greetings">
 		<label id="identifiedAs" class="identifiedAs"><springTags:message code="identifiedAs.name" /></label>
 		<label id="pseudo" class="pseudo">${sessionScope.pseudo}</label>
-		<a href="borrowDemands"><springTags:message code="borrowDemands.name" /></a>
+		<div id = "borrowInfoZone" style="float: right;">
+		<label id="borrowDemandsNb">0</label><a href="borrowDemands"><springTags:message code="borrowDemands.name" /></a>
+		</div>
 		</div>
 		<div class="containerConnexion">
 			<label id="connexion" class="connexion">${sessionScope.connexion} </label>
@@ -38,8 +40,56 @@
 <script type="text/javascript">
 	var menuToggle = toggle();
 	menuToggle.addSwitchAndToggleDisplayOnClick("connexionStatus", "connexion",
-			"loginModal", "disconnect")
+			"loginModal", "disconnect");
 
 	
+	updateBorrowDemand();
+	//toggleDisplayFunctionNumberOfDemand()
+	launchUpdateInterval();
+	
+			
+	
+	function launchUpdateInterval() {
+		setInterval("updateBorrowDemand()", 30000)
+	}
+
+	function count(num) {
+		document.getElementById("borrowDemandsNb").innerHTML = parseInt(document
+				.getElementById("borrowDemandsNb").textContent) + 1;
+	}
+
+	function updateBorrowDemand() {
+
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				var obj = JSON.parse(this.responseText);
+				getBorrowDemandElmt().innerHTML=obj.numberOfWaitingDemand;
+				//toggleDisplayFunctionNumberOfDemand()
+				
+			}
+		};
+		xhttp.open("GET", "05_topo/updateBorrow", true);
+		xhttp.send();
+	}
+
+	function toggleDisplayFunctionNumberOfDemand() {
+		var div = document.getElementById("borrowInfoZone");
+		if (getBorrowDemandNumber() == 0) {
+			div.style.display = "none";
+		} else {
+			div.style.display = "block";
+
+		}
+
+	}
+
+	function getBorrowDemandNumber() {
+		return parseInt(getBorrowDemandElmt().textContent);
+	}
+
+	function getBorrowDemandElmt() {
+		return document.getElementById("borrowDemandsNb");
+	}
 </script>
 

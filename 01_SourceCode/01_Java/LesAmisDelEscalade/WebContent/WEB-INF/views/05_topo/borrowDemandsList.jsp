@@ -23,11 +23,28 @@
 <td>${list.climbingTopo}</td>
 <td>${list.borrowerUserInfo}</td>
 <td>${list.lendingStatus}</td>
-<td><a href="borrowDemand?demand=accepted&id=${list.id}"><springTags:message code="borrowDemand.accepted"/></a></td>
-<td><a href="borrowDemand?demand=rejected&id=${list.id}"><springTags:message code="borrowDemand.rejected"/></a></td>
+<td><a href="borrowDemand?demand=accepted&id=${list.id}" onclick="parentElementToggleDisplay('loading')"><springTags:message code="borrowDemand.accepted"/></a></td>
+<td><a href="borrowDemand?demand=rejected&id=${list.id}" onclick="parentElementToggleDisplay('loading')"><springTags:message code="borrowDemand.rejected"/></a></td>
 </tr>
 </jstl:forEach>
 </tbody>
 </table>
 </body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/02_01_03_02_loadModalJavaScript.js"></script>
+
+<script type="text/javascript">
+
+var demmandLeft = ${borrowDemand}
+updateBorrowNumber();
+function updateBorrowNumber() {
+	window.parent.document.getElementById("borrowDemandsNb").innerHTML = demmandLeft;
+	
+}
+
+var loadModal = newLoadModal();
+loadModal.disableLoadModalCustom('loading');
+
+
+
+</script>
 </html>

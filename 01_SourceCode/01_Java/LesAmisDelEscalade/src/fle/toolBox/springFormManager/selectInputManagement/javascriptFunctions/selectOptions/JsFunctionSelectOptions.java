@@ -70,11 +70,13 @@ public class JsFunctionSelectOptions extends JavaScriptTag {
 
 	
 
-	private String selectValueJSFunction 
-				= "function setSelect(entityName,fieldName,valueToSet){\r\n" + "	if(valueToSet !== '"
-				+ emptyValue + "'){\r\n"
+	private String selectValueJSFunction = "function setSelect(entityName,fieldName,valueToSet){\r\n" 
+				+ "	if(valueToSet !== '"
+				+ emptyValue 
+				+ "'){\r\n"
 				+ "	var select = document.getElementById(selectId(entityName, fieldName));\r\n"
-				+ "	select.value = valueToSet;}	\r\n" + "}\r\n";
+				+ "	select.value = valueToSet;}	\r\n" 
+				+ "}\r\n";
 		
 
 	public String selectJSFunctions() {		

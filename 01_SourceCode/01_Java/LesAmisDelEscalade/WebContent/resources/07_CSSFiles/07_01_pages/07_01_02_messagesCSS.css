@@ -17,9 +17,7 @@
 .messageTitleGood,.messageTitleBad,.messageTitleMitaMita {	
 	text-align: center;
 	font-size: 2.5vw;
-	font-weight: bold;
-	
-	
+	font-weight: bold;	
 }
 
 .messageTitleBad {
@@ -89,9 +87,14 @@ li {
 }
 
 
-
 .link:hover, a:hover {
 	cursor: pointer;
 	color: var(--base-color-opposite);
+}
+
+.iconExclamation{
+	text-align: center;
+	font-size:8vw;
+	color: MidnightBlue;
 }
 

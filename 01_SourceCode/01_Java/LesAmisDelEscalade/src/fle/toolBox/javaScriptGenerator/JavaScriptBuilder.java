@@ -5,12 +5,8 @@ import java.util.LinkedHashSet;
 
 import fle.toolBox.exceptionsThrower.ExceptionsThrower;
 
-
 //TODO 1-JAVADOC
 public class JavaScriptBuilder extends JavaScriptTag {
-
-	
-	
 
 	public StringBuilder openScript(StringBuilder stringBuilder) {
 		return stringBuilder.append(getScriptSourceOpenTag() + getCloseTag());
@@ -32,6 +28,18 @@ public class JavaScriptBuilder extends JavaScriptTag {
 		return stringBuilder;
 	}
 
+	/**
+	 * 
+	 * @param stringBuilder
+	 * @param filePath      the full file path with file name
+	 * @return Stringbuilder appended with script link to JavaScript file source
+	 */
+	public StringBuilder openScriptWithSRC(StringBuilder stringBuilder, String filePath) {
+		stringBuilder.append(getScriptSourceOpenTag());
+		stringBuilder.append(" src=${pageContext.request.contextPath}/" + filePath);
+		stringBuilder.append(getCloseTag());
+		return stringBuilder;
 
+	}
 
 }

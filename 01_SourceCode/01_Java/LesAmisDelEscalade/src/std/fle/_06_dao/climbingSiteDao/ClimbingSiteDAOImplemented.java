@@ -25,8 +25,8 @@ import std.fle._03_sfc.climbingSiteSFC.ClimbingSiteDisplaySFC;
 import std.fle._03_sfc.climbingSiteSFC.ClimbingSiteSFC;
 import std.fle._03_sfc.climbingSiteSFC.RoutePitchSFC;
 import std.fle._03_sfc.climbingSiteSFC.SiteRoutesSFC;
-import std.fle._06_dao._06_01_daoInterface._06_01_01_assetsDao.ClimbingLevelsDAO;
-import std.fle._06_dao._06_01_daoInterface._06_01_01_assetsDao.CountiesDao;
+import std.fle._06_dao.climbingLevelsDao.ClimbingLevelsDAO;
+import std.fle._06_dao.countiesDao.CountiesDao;
 import std.fle._06_dao.statesDao.StatesDAO;
 
 @Repository

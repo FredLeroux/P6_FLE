@@ -32,7 +32,7 @@ public class PropertyFile {
 	private String propertiesFilePath = null;
 	private InputStream input = null;
 	private OutputStream output = null;
-	private FileCreation file = new FileCreation();
+	private FilesManagement file = new FilesManagement();
 	private Log4J2<PropertyFile> logger = new Log4J2<PropertyFile>(this);
 
 	public PropertyFile() {

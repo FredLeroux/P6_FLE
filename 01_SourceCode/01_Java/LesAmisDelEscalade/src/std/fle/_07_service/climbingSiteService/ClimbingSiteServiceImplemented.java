@@ -30,69 +30,60 @@ public class ClimbingSiteServiceImplemented implements ClinbingSiteService {
 	@Override
 	public void updateClimbingSite(ClimbingSiteSFC climbingSiteSFC, Map<String, SiteRoutesSFC> siteRoutesMap,
 			Map<String, List<RoutePitchSFC>> routePitchsMap) {
-		// TODO Auto-generated method stub
+		dao.updateClimbingSite(climbingSiteSFC, siteRoutesMap, routePitchsMap);
 		
 	}
 
 	@Override
-	public ClimbingSiteDisplaySFC getClimbingSiteDisplaySFCById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public ClimbingSiteDisplaySFC getClimbingSiteDisplaySFCById(Integer id) {		
+		return dao.getClimbingSiteDisplaySFCById(id);
 	}
 
 	@Override
 	public void climbingSiteDelete(Integer id) {
-		// TODO Auto-generated method stub
+		dao.climbingSiteDelete(id);
 		
 	}
 
 	@Override
-	public List<RoutePitchDTO> sortedRoutePitchsDTOList(String key, Map<String, List<RoutePitchSFC>> routePitchsMap) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<RoutePitchDTO> sortedRoutePitchsDTOList(String key, Map<String, List<RoutePitchSFC>> routePitchsMap) {		
+		return dao.sortedRoutePitchsDTOList(key, routePitchsMap);
 	}
 
 	@Override
 	public List<RoutePitchSFC> sortedRoutePitchsSFCWithCotationLevelAsString(String key,
-			Map<String, List<RoutePitchSFC>> routePitchsMap) {
-		// TODO Auto-generated method stub
-		return null;
+			Map<String, List<RoutePitchSFC>> routePitchsMap) {		
+		return dao.sortedRoutePitchsSFCWithCotationLevelAsString(key, routePitchsMap);
 	}
 
 	@Override
-	public List<RoutePitchSFC> sortedRoutePitchsSFCWithCotationLevelAsString(List<RoutePitchSFC> list) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<RoutePitchSFC> sortedRoutePitchsSFCWithCotationLevelAsString(List<RoutePitchSFC> list) {		
+		return dao.sortedRoutePitchsSFCWithCotationLevelAsString(list);
 	}
 
 	@Override
-	public List<RoutePitchSFC> sortedRoutePitchsSFCList(String key, Map<String, List<RoutePitchSFC>> routePitchsMap) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<RoutePitchSFC> sortedRoutePitchsSFCList(String key, Map<String, List<RoutePitchSFC>> routePitchsMap) {		
+		return dao.sortedRoutePitchsSFCList(key, routePitchsMap);
 	}
 
 	@Override
-	public ClimbingSiteDTO getClimbingSiteDTOById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public ClimbingSiteDTO getClimbingSiteDTOById(Integer id) {		
+		return dao.getClimbingSiteDTOById(id);
 	}
 
 	@Override
-	public ClimbingSiteSFC getClimbingSiteSFCByID(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public ClimbingSiteSFC getClimbingSiteSFCByID(Integer id) {		
+		return dao.getClimbingSiteSFCByID(id);
 	}
 
 	@Override
-	public Map<String, SiteRoutesSFC> getSiteRouteMapByClimbingSiteId(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Map<String, SiteRoutesSFC> getSiteRouteMapByClimbingSiteId(Integer id) {		
+		return dao.getSiteRouteMapByClimbingSiteId(id);
 	}
 
 	@Override
 	public Map<String, List<RoutePitchSFC>> getRoutePitchsMapByClimbingSiteId(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.getRoutePitchsMapByClimbingSiteId(id);
 	}
 
 }
