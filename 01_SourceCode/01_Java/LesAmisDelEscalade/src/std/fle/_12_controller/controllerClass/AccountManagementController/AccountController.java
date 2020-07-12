@@ -22,10 +22,7 @@ import std.fle._07_service.userUpdateService.UserUpdateService;
 import std.fle._12_controller.modelManagement.accountModelManagement.AccountModelManagement;
 
 @Controller
-public class AccountController {
-	
-	@Autowired
-	private HttpServletRequest request;
+public class AccountController {	
 
 	@Autowired
 	private SelectInputForController select;
@@ -33,17 +30,11 @@ public class AccountController {
 	@Autowired
 	private SpringMVCValidation validation;
 
-
 	@Autowired
 	private UserUpdateService userUpdate;
-	
-	
 
 	@Autowired
 	private AccountModelManagement manager;
-	
-	
-	private SessionVariables sessVar = new SessionVariables();
 
 	@GetMapping(value = "/02_AccountManagement/userFormRegister")
 	public ModelAndView initUserForm(ModelAndView model, @ModelAttribute(value = "userManagement") UserSFC userSFC) {
@@ -64,17 +55,15 @@ public class AccountController {
 
 	@PostMapping(value = "/02_AccountManagement/filterCountiesList")
 	public ModelAndView filterDispatcher(ModelAndView model, HttpServletRequest request) {
-		select.setFormularAndRequestMap("userRegisterFormular", "userFormRegisterUpdated",
-				"userCreation");
-		select.setFormularAndRequestMap("userUpdateFormular", "userFormUpdateUpdated",
-				"userUpdate");
+		select.setFormularAndRequestMap("userRegisterFormular", "userFormRegisterUpdated", "userCreation");
+		select.setFormularAndRequestMap("userUpdateFormular", "userFormUpdateUpdated", "userUpdate");
 		return select.dispatchSelectListAndValue(model, request);
 	}
 
 	@PostMapping(value = "/02_AccountManagement/userFormRegisterUpdated")
 	public ModelAndView userFormUpdated(ModelAndView model, @ModelAttribute(value = "userManagement") UserSFC userSFC,
 			HttpServletRequest request) {
-		model.setViewName("02_AccountManagement/userFormRegister");		
+		model.setViewName("02_AccountManagement/userFormRegister");
 		return select.formSelectInputFieldUpdate(userSFC, model, request);
 	}
 
@@ -87,21 +76,22 @@ public class AccountController {
 
 	@PostMapping(value = "/02_AccountManagement/userCreation")
 	public ModelAndView createUser(ModelAndView model,
-			@ModelAttribute(value = "userManagement") @Validated UserSFC userSFC, BindingResult result,HttpServletRequest request) {
-		validation.SpringMVCValidationCheck(userSFC,"userManagement", result);
+			@ModelAttribute(value = "userManagement") @Validated UserSFC userSFC, BindingResult result,
+			HttpServletRequest request) {
+		validation.SpringMVCValidationCheck(userSFC, "userManagement", result);
 		if (result.hasErrors()) {
 			model.setViewName("02_AccountManagement/userFormRegister");
 			select.selectListAndValueOnBindingError(userSFC, model);
 			return model;
 		}
-		return manager.manageUserCreation(userSFC,request);
+		return manager.manageUserCreation(userSFC, request);
 	}
 
 	@PostMapping(value = "/02_AccountManagement/userUpdate")
 	public ModelAndView updateUser(ModelAndView model,
 			@ModelAttribute(value = "userManagement") @Validated UserUpdateSFC userUpdateSFC, BindingResult result) {
 		if (result.hasErrors()) {
-			model.setViewName("02_AccountManagement/userFormUpdate");			
+			model.setViewName("02_AccountManagement/userFormUpdate");
 			select.selectListAndValueOnBindingError(userUpdateSFC, model);
 			return model;
 		}
@@ -116,7 +106,7 @@ public class AccountController {
 			@ModelAttribute(name = "memberStatus") UsersAccountInfoMemberStatusSFC clazz) {
 		return manager.doUpdateMemberStatus(model, clazz.getId(), clazz);
 	}
-	
+
 	@GetMapping(value = "/02_AccountManagement/deleteAccount")
 	public ModelAndView deleteAccount() {
 		return manager.manageAccountDeletion();

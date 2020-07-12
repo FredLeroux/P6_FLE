@@ -1,9 +1,4 @@
-var cssRouteDesignation = null;
-var cssRouteName = null;
-var cssPitchDesignation = null;
-var cssPitchNumber = null;
-var cssCotationDesignation = null;
-var cssCotationName = null;
+
 var changePageLink = null;
 var routeDesignation = null;
 var pitchDesignation = null;
@@ -21,45 +16,6 @@ function setCssRouteDesignation(cssClassName) {
 	cssRouteDesignation = cssClassName;
 }
 
-function getCssRouteName() {
-	return cssRouteName;
-}
-
-function setCssRouteName(cssClassName) {
-	cssRouteName = cssClassName;
-}
-
-function getCssPitchDesignation() {
-	return cssPitchDesignation;
-}
-
-function setCssPitchDesignation(cssClassName) {
-	cssPitchDesignation = cssClassName;
-}
-
-function getCssPitchNumber() {
-	return cssPitchNumber;
-}
-
-function setCssPitchNumber(cssClassName) {
-	cssPitchNumber = cssClassName;
-}
-
-function getCssCotationDesignation() {
-	return cssCotationDesignation;
-}
-
-function setCssCotationDesignation(cssClassName) {
-	cssCotationDesignation = cssClassName;
-}
-
-function getCssCotationName() {
-	return cssCotationName;
-}
-
-function setCssCotationName(cssClassName) {
-	cssCotationName = cssClassName;
-}
 
 function getChangePageLink() {
 	return changePageLink
@@ -188,7 +144,7 @@ function displayNextButton(nextButtonId, currentPageId, totalPages) {
  * @param nextOrPrev
  * @needs setChangePageLink(controllerURL) implemented in jsp
  */
-function changePage(tableId, routeDesignation, pitchDesignation,
+function changePage(locId, routeDesignation, pitchDesignation,
 		cotationDesignation, currentPageId, prevButtonId, nextButtonId,
 		totalPages, nextOrPrev) {
 	
@@ -197,12 +153,19 @@ function changePage(tableId, routeDesignation, pitchDesignation,
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			var obj = JSON.parse(this.responseText);
-			removeBody(tableId);
+			removeThumbnail(locId);
 			setCurrentPage(currentPageId, obj.page);
 			displayNextButton(nextButtonId, currentPageId, totalPages);
 			displayPrevButton(prevButtonId, currentPageId);
-			setTable(obj.list, tableId, routeDesignation, pitchDesignation,
+			setTable(obj.list, locId, routeDesignation, pitchDesignation,
 					cotationDesignation)
+			var div = document.getElementById(locId);
+			var tables = div.getElementsByTagName("table");
+			let i = 0;
+			for(i;i<tables.length;i++){
+				let obj = tables[i];
+				obj.setAttribute("class", "thumbnail");
+			}
 			
 		}
 	};
@@ -221,120 +184,115 @@ function setControllerLink(currentPageId, nextOrPrev) {
 
 }
 
-function removeBody(tableId) {
-	var table = getTable(tableId);
-	var body = getElementById("tableBody");
-	table.removeChild(body);
+
+function removeThumbnail(locId){
+	var loc = getElementById(locId)
+	
+	while(loc.firstChild){
+		loc.removeChild(loc.firstChild);
+	}
 }
 
-function setTable(jsonArray, tableId, routeDesignation, pitchDesignation,
-		cotationDesignation) {
-	let table = getTable(tableId);
-	var tBody = createTBody()
+function setTable(jsonArray, locId, routeDesignation, pitchDesignation,
+		cotationDesignation,cssClass) {	
+		addThumbnail(locId, jsonArray, routeDesignation, pitchDesignation, cotationDesignation,cssClass);	
+}
+
+function addThumbnail(locId,jsonArray,routeDesignation, pitchDesignation,
+		cotationDesignation,cssClass){
+	var thumbnailLoc = getElementById("test");
 	let i = 0;
 	for (i; i < jsonArray.length; i++) {
 		var obj = jsonArray[i];
-		appendRouteName(obj, tBody, routeDesignation, pitchDesignation,
-				cotationDesignation);
-		table.appendChild(tBody);
+		var table = createTable(cssClass);
+		createThumbnail(table,obj,routeDesignation,pitchDesignation,cotationDesignation);
+		thumbnailLoc.appendChild(table);		
+		thumbnailLoc.appendChild(document.createElement("br"));
 	}
+	
 }
+
+function createThumbnail(table,routesAndPitchsListArray,routeDesignation,pitchDesignation,cotationDesignation){
+	createRouteNameTable(table, routeDesignation, routesAndPitchsListArray);
+	createPitchsAndCotationList(table, pitchDesignation, cotationDesignation,routesAndPitchsListArray);
+}
+
+function createRouteNameTable(table,routeDesignation,routesAndPitchsListArray){	
+	let thead = createTHead();
+	let tbody = createTBody();	
+	let trHead = createTr();
+	let trBody = createTr();
+	let tdHead = createTh(routeDesignation);
+	let tdBody = createTd(routesAndPitchsListArray.routeName);
+	tdHead.id="routeTdHead";
+	tdBody.id="routeTdBody";
+	trHead.appendChild(tdHead);
+	thead.appendChild(trHead);
+	table.appendChild(thead);
+	trBody.appendChild(tdBody);
+	tbody.appendChild(trBody);
+	table.appendChild(tbody);
+}
+
+function createPitchsAndCotationList(table,pitchDesignation, cotationDesignation,routesAndPitchsListArray){
+	createPitchsAndCotationListHead(table,pitchDesignation, cotationDesignation);
+	createPitchsAndCotationListBody(table, routesAndPitchsListArray);
+}
+
+function createPitchsAndCotationListHead(table,pitchDesignation, cotationDesignation){
+	let thead = createTHead();	
+	let trHead = createTr();
+	trHead.appendChild(createTh(pitchDesignation))
+	trHead.appendChild(createTh(cotationDesignation))
+	thead.appendChild(trHead);
+	table.appendChild(thead);
+}
+
+function createPitchsAndCotationListBody(table,routesAndPitchsListArray){
+	let array = routesAndPitchsListArray.pitchsList;
+	let tbody = createTBody();	
+	let i = 0;
+	for (i; i < array.length; i++) {
+		let trBody = createTr();
+		trBody.appendChild(createTd(array[i].pitchNumber));
+		trBody.appendChild(createTd(array[i].pitchClimbingLevels));
+		tbody.appendChild(trBody);
+	}
+	table.appendChild(tbody);	
+}
+
+function createTable(cssClass){
+	var table = document.createElement("table");
+	table.setAttribute("class", cssClass);
+	return table;
+}
+
+function createTHead(){
+	var tHead = document.createElement("thead");
+	return tHead;
+}
+
 
 function createTBody() {
 	var tBody = document.createElement("tbody");
-	tBody.id = "tableBody";
 	return tBody;
 }
 
-function getTable(tableId) {
-	return getElementById(tableId);
+function createTr(){
+	var row = document.createElement("tr");
+	return row;
 }
 
-function appendRouteName(routeAndPitchsList, tBody, routeDesignation,
-		pitchDesignation, cotationDesignation) {
-	var tr = createTr();
-	routeDesignationTd(tr, routeDesignation);
-	routeNameTd(tr, routeAndPitchsList);
-	tBody.appendChild(tr);
-	appendPitchsListToRoute(routeAndPitchsList, tBody, pitchDesignation,
-			cotationDesignation);
-
+function createTh(cellValue){
+	var th = document.createElement("th");
+	th.innerHTML= cellValue;
+	return th;
 }
 
-function routeDesignationTd(tr, routeDesignation) {
-	var tdRD = createTd();
-	addCss(getCssRouteDesignation(), tdRD);
-	tdRD.innerHTML = routeDesignation;
-	tr.appendChild(tdRD);
+function createTd(tdcellValue){
+	var td = document.createElement("td");
+	td.innerHTML= tdcellValue;
+	return td;
 }
 
-function routeNameTd(tr, routeAndPitchsList) {
-	var tdRN = createTd();
-	addCss(getCssRouteName(), tdRN)
-	tdRN.innerHTML = routeAndPitchsList.routeName;
-	tr.appendChild(tdRN);
-}
 
-function appendPitchsListToRoute(routeAndPitchsList, tBody, pitchDesignation,
-		cotationDesignation) {
-	var array = routeAndPitchsList.pitchsList;
-	let i = 0;
-	for (i; i < array.length; i++) {
-		var trP = createTr();
-		tdEmpty(trP);
-		tdEmpty(trP);
-		pitchDesignationTd(trP, pitchDesignation);
-		pitchNumberTd(trP, array, i);
-		cotationDesignationTd(trP, cotationDesignation);
-		cotationTd(trP, array, i);
-		tBody.appendChild(trP);
-	}
-}
-
-function tdEmpty(tr) {
-	var tdEmpty = createTd();
-	tr.appendChild(tdEmpty)
-}
-
-function pitchDesignationTd(tr, pitchDesignation) {
-	var tdPD = createTd();
-	addCss(getCssPitchDesignation(), tdPD);
-	tdPD.innerHTML = pitchDesignation;
-	tr.appendChild(tdPD);
-}
-
-function pitchNumberTd(tr, array, i) {
-	var tdPNb = createTd();
-	addCss(getCssPitchNumber(), tdPNb);
-	tdPNb.innerHTML = array[i].pitchNumber;
-	tr.appendChild(tdPNb);
-
-}
-
-function cotationDesignationTd(tr, cotationDesignation) {
-	var tdCD = createTd();
-	addCss(getCssCotationDesignation(), tdCD);
-	tdCD.innerHTML = cotationDesignation;
-	tr.appendChild(tdCD);
-}
-
-function cotationTd(tr, array, i) {
-	var tdPCo = createTd();
-	addCss(getCssCotationName(), tdPCo);
-	tdPCo.innerHTML = array[i].pitchClimbingLevels;
-	tr.appendChild(tdPCo);
-}
-
-function createTr() {
-	return document.createElement("tr");
-}
-
-function createTd() {
-	return document.createElement("td");
-}
-
-function addCss(cssClass, td) {
-	if (cssClass !== null) {
-		td.setAttribute("class", cssClass);
-	}
-}

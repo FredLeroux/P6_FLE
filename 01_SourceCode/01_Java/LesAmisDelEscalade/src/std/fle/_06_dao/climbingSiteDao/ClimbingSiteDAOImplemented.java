@@ -170,6 +170,12 @@ public class ClimbingSiteDAOImplemented implements ClimbingSiteDAO {
 	
 	@Override
 	public List<RoutePitchSFC> sortedRoutePitchsSFCWithCotationLevelAsString(List<RoutePitchSFC> list) {
+		ArrayList<RoutePitchSFC> listToConvert = new ArrayList<>(routePitchsSFCWithCotationLevelAsString(list)); 		
+		
+		return sorteRoutePitchList(listToConvert);
+	}
+	
+	private List<RoutePitchSFC> routePitchsSFCWithCotationLevelAsString(List<RoutePitchSFC> list){
 		ArrayList<RoutePitchSFC> listToConvert = new ArrayList<>(); 		
 		list.forEach(o -> listToConvert.add(convertedClimbingLevelSFCIdToCotation(o.getId(), o.getPitchNumber(), o.getPitchClimbingLevels())));
 		return listToConvert;

@@ -7,8 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body >
-<jsp:include  page="/resources/02_templatesJsp/02_03_listDisplayerFiles/02_03_01_file/displayList.jsp" flush="true"/>
-
+<jsp:include  page="/resources/02_templatesJsp/02_03_listDisplayerFiles/02_03_01_file/displayList.jsp" />
+<br>
+<br>
+<br>
 
 
 

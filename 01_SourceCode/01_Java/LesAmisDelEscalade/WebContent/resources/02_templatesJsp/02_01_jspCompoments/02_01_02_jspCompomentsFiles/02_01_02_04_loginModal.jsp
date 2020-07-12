@@ -10,7 +10,7 @@
 				<springTag:message code="logModal.name" />
 			</div>
 			<div class="close" >
-				<label id="close"><springTag:message code="close.name" /></label>
+				<label id="close"><i class="fas fa-window-close"></i></label>
 			</div>
 			<div id= "error" class="error">${error}</div>
 			<div class="id">

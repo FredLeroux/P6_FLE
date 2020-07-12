@@ -43,7 +43,7 @@ public class UsersAccountInfoSFC extends SFC {
 			entityName = "UsersAccountInfo",
 			fieldName = "pseudonyme",
 			modelAttributeValue = "userManagement")
-	@Length(min = 6, max= 254)
+	@Length(min = 6, max= 16)
 	@PlaceHolderText(message = "pseudonyme.pht")
 	private String pseudonyme;
 

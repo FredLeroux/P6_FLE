@@ -111,7 +111,7 @@ public class ClimbingSiteSFC extends SFC {
 
 	
 	@Length(max = 500)
-	@InputTextArea(charByRows = 50, rows = 10,maxLenght = 500,limitCharName = "siteAccesToSiteCharLeft.name")
+	@InputTextArea(charByRows = 50, rows = 10,maxLenght = 500,limitCharName = "accesToSiteCharLeft.name")
 	private String accessToSite;
 
 	@SpringFormActionButton(displayMessagePropertyKey = "addRoute.label")

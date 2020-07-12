@@ -17,7 +17,9 @@ function getStringSize(stringLocId){
 }
 
 function innerCharLeft(displayLocId,charLeft){
+	if(getElement(displayLocId) != null){
 	getElement(displayLocId).innerHTML = charLeft;
+	}
 }
 
 function getcharLeft(maxChar,currentChar){

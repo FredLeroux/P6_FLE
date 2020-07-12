@@ -223,7 +223,8 @@ public class TopoModelManagementImplemented implements TopoModelManagement {
 		} else {
 			model.setViewName("03_messagesPages/accesDenied");
 		}
-		waitAsyncReady(2);/*
+		waitAsyncReady(2);
+							/*
 							 * No choice than wait causse some issues on Async mail sometime send to wrong
 							 * person some time not send at all, this 2 sec wait allow to solve this issue
 							 */

@@ -1,201 +1,224 @@
 @import
-	url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_01_appSkin.css");
+	url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_01_appSkin.css")
+	;
 
 /* ###############  START : set input and select box size identical ###################*/
-input, select,textarea {
+input, select, textarea {
 	-webkit-box-sizing: border-box;
 	-ms-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
+	
+}
+
+ select{
+	cursor:pointer;
 }
 
 @
-supports (-ms-ime-align:auto ) { 
-.selector {
-	input,select,textarea{ box-sizing:border-box;
+supports (-ms-ime-align:auto ) { .selector {input ,select,textarea{
+	box-sizing:border-box;
 	
 }
-.tableForm{
-	padding-bottom: 15px;
+
+
+
 }
-}}
+}
 
 /* ###############  END : set input and select box size identical ###################*/
-.tableForm {	
+
+.tableForm,.tableForm2 {
+background: linear-gradient(to bottom right, var(--base-color),
+		rgba(32, 95, 126, 1), var(--base-color));
+	border-radius: 20px;
+	border:solid;
+	border-color: var(--base-color);
+	text-shadow: 2px 1px 2px var(--shadow-color);
+	box-shadow: 5px 5px 5px var(--shadow-color);
+	padding: 2%;
+	}
+
+
+.tableForm {
 	width: 60%;
 	min-width: 360px;	
-	padding-bottom: 15px;
+	margin: auto;
 	
 }
 
-.tableForm2{	
-	width: 100%;
+.tableForm2 {	
+	width: 98%;
 	margin: auto;
-}
+	}
 
-
-
-.trForm2{
-	display:table-row;	
+.trForm2 {
+	display: table-row;
 }
 
 .tdForm1 {
-	min-width: 20%;
-}
-
-
-.tdForm2 {
 	min-width: 33%;
 }
 
+.tdForm2 {
+	min-width: 50%;
+}
+
 .tdForm3 {
-	display:flex;
+	display: flex;
 	min-width: 50%%;
 }
 
-.labelStyle, .inputStyle, .limitCharSpanForm1  {	
+.labelStyle, .inputStyle, .limitCharSpanForm1 {
 	font-family: menu-font;
 	font-size: 20px;
 }
 
-
-
-.labelStyleBad, .inputStyleBad,option{
+.labelStyleBad, .inputStyleBad, option {
 	font-family: menu-font;
 	font-size: 18px;
 }
 
-.labelStyle, .inputStyle,.limitCharSpanForm1, option{
-color: var(--base-color);
+.labelStyle, .limitCharSpanForm1 {
+	color: var(--base-color-opposite);
 }
 
-.labelStyleBad, .inputStyleBad{
+.inputStyle, option {
+	color: var(--base-color);
+}
+
+.labelStyleBad, .inputStyleBad {
 	color: var(--bad-color);
-	
 }
 
-.labelStyleHide{
+.labelStyleHide {
 	display: none;
-	
 }
-
 
 .inputStyle {
 	border: solid;
-	border-width: thin ;
-	border-radius: 15px;	
+	border-width: thin;
+	border-radius: 15px;
 	border-color: var(--base-color);
 	padding-left: 10px;
-	width:95%;
+	width: 95%;
 	background-color: WhiteSmoke;
-	
+	box-shadow: 1px 2px 8px black;
 }
 
 .inputStyleBad {
 	border: solid;
-	border-width: thin ;
+	border-width: thin;
 	border-color: var(--bad-color);
 	border-radius: 15px;
 	padding-left: 10px;
-	width:95%
+	width: 95%
 }
 
-input[readonly = "readonly"],textarea[readonly = "readonly"]  {
+input[readonly="readonly"], textarea[readonly="readonly"] {
 	cursor: not-allowed;
-	
 }
 
-input::-webkit-selection{
+input::-webkit-selection {
 	border-radius: 50px;
 	color: red;
 }
 
-::-moz-selection { background: yellow; }
+::-moz-selection {
+	background: yellow;
+}
 
-textarea{
+textarea {
 	resize: none;
 }
 
-option{
+option {
 	width: 90%;
 }
 
-
-
-.formButton{
-	text-decoration: none;
-	display: block;
+.formButton {
 	font-family: menu-font;
-	background-color: var(--base-color);
+	font-size:1.2vw;
 	color:var(--base-color-opposite);
-	border: none;
-	padding: 5px;
-	font-size: 20px;
-	font-weight: bold;
-	cursor: pointer;
+	background: linear-gradient(to bottom right, var(--base-color),rgba(32, 95, 126, 1),var(--base-color));
+	border: solid 2px var(--base-color) ;
+	border-radius: 20px;
+	padding-left:0.25%;
+	padding-right:0.25%;
+	text-shadow: 2px 1px 2px black;
+	box-shadow: 5px 5px 5px var(--shadow-color);
+	margin: 2%;
 }
 
-
-
-
-.formButton:hover{	
-	background-color: var(--base-color-opposite) ;
-	color:var(--base-color);
-	
+.formButton:hover {	
+	color: var(--hover-color1);
+	cursor:pointer;
 }
 
-.formBecarefull{
+.formBecarefull {
 	text-decoration: none;
 	font-family: menu-font;
 	color: var(--mita-mita-color);
 	font-size: 18px;
 }
 
-.formBecarefull:hover{
+.formBecarefull:hover {
 	color: var(--bad-color);
 	font-weight: bolder;
-	text-decoration:overline;	
+	text-decoration: overline;
 	cursor: pointer;
 }
 
-.limitCharSpanForm1{	
-	
-	
+.limitCharSpanForm1 {
 	
 }
 
-
 tr:hover .inputStyle {
-	border-color: var(--base-color-opposite);
-	
+	border-color: var(--hover-color1);
 }
 
 tr:hover .labelStyle {
-	color: var(--base-color-opposite);;
+	color: var(--hover-color1);
+}
+
+tr:hover span{
+	color: var(--hover-color1);
 }
 
 @media all and (max-width: 1000px) {
-	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,.formButton,.formBecarefull, .limitCharSpanForm1 {
+	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad, .formButton,
+		.formBecarefull, .limitCharSpanForm1 {
 		font-size: 12px;
 	}
-	option{
-	font-size: 12px}
+	option {
+		font-size: 12px
+	}
 }
 
 @media all and (max-width: 790px) {
-	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option,.formButton,.formBecarefull, .limitCharSpanForm1  {
+	
+	.tableForm2{		
+		border-radius: 10px;
+	}
+	.tdForm2 {
+		width: 50%;
+	}
+	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad, option,
+		.formButton, .formBecarefull, .limitCharSpanForm1 {
 		font-size: 10px;
 	}
 }
 
 @media all and (max-width: 400px) {
-	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option,.formButton,.formBecarefull, .limitCharSpanForm1  {
+	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad, option,
+		.formButton, .formBecarefull, .limitCharSpanForm1 {
 		font-size: 8px;
 	}
 }
 
 @media all and (max-width: 360px) {
-	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad,option,.formButton,.formBecarefull, .limitCharSpanForm1 {
+	.labelStyle, .inputStyle, .labelStyleBad, .inputStyleBad, option,
+		.formButton, .formBecarefull, .limitCharSpanForm1 {
 		font-size: 6px;
 	}
 }

@@ -107,14 +107,15 @@ public class FilesManagement {
 				logger.log().fatal(e);
 				e.printStackTrace();
 			}
-		}			
-		if(!Files.exists(dest)) {
+		}
+		File file = new File(dest.toString());
+		deleteIfExist(file);
+		
 			try {
 				Files.copy(src, dest);
 			} catch (IOException e1) {				
 				logger.log().fatal(e1);
-				e1.printStackTrace();
-			}
+				e1.printStackTrace();			
 		}
 		
 	}

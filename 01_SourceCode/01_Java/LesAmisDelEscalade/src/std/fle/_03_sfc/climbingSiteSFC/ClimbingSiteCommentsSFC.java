@@ -34,7 +34,7 @@ public class ClimbingSiteCommentsSFC extends SFC{
 	@NotEmpty
 	@Pattern(regexp = "^[^*]*$")
 	@Length(max = 500)
-	@InputTextArea(rows = 5,charByRows = 100,maxLenght = 500)	
+	@InputTextArea(rows = 5,charByRows = 100,maxLenght = 500,limitCharName = "siteCommentCharLeft.name")	
 	private String comment;
 	
 

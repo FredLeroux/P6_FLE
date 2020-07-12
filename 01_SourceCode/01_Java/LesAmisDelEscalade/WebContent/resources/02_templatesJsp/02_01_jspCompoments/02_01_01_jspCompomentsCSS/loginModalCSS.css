@@ -3,7 +3,7 @@
 
 .modal {
 	position: fixed;
-	z-index: 4;
+	z-index: 8;
 	left: 0;
 	top: 0;
 	width: 100%;
@@ -13,8 +13,7 @@
 	background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal-content {
-	background-color: #fefefe;
+.modal-content {	
 	margin: 20% auto;
 	width: 300px;
 	height: 15%;
@@ -23,14 +22,13 @@
 .log-grid {
 	--borderWidth: 3px;
 	border-radius: 3px;
-	background-color: rgb(17, 36, 45);
 	display: grid;
 	width: 300px;
 	height: 15%;
 	margin: 15% auto 15% auto;
 	color: var(--base-color-opposite);
 	text-align: center;
-	background: #1D1F20;
+	background:linear-gradient(to bottom right, var(--base-color),var(--base-color-light),var(--base-color));
 	position: relative;
 	grid-template-columns: 25% 25% 25% 25%;
 	grid-template-areas:'header header header close'
@@ -41,6 +39,7 @@
 		'log log log log'
 		'createAccount createAccount cancel cancel'
 		'forgot forgot forgot forgot';
+	text-shadow: 2px 1px 2px black;
 }
 
 
@@ -93,12 +92,15 @@ a>label {
 
 .close>label {
 	margin-right: 15%;
-	
-	
-	
 }
 
-.close>label:hover, .cancel>label:hover {
+
+.close>label>i:hover{	
+	color:var(--bad-color);
+	border: none;
+}
+
+.cancel>label:hover {
 	cursor: pointer;
 	color: var(--bad-color);
 	
@@ -201,6 +203,7 @@ input:focus {
 	font-size: 22.5px;
 	cursor: pointer;
 	background: none;	
+	text-shadow: 2px 1px 2px black;
 }
 
 .cancel {

@@ -57,7 +57,7 @@ public class SpringFormCreation implements ApplicationListener<ContextRefreshedE
 		build.generateForm(context, formDisplay(), climbingSiteDisplaySFC);
 		build.generateForm(context, basisConfig(), siteRoutesSFC);
 		build.generateForm(context, basisConfig(), routePitchSFC);
-		build.generateForm(context, basisConfig(), climbingSiteCommentsSFC);
+		build.generateForm(context, tableStyle2(), climbingSiteCommentsSFC);
 		
 	}
 
@@ -94,9 +94,16 @@ public class SpringFormCreation implements ApplicationListener<ContextRefreshedE
 				.tdStyle("tdStyleClass.form3");
 	}
 	
-	private SpringFormCssConfig formDisplay() {
+	private SpringFormCssConfig tableStyle2() {
 		return basisConfig()
 				.tableStyle("tableStyleClass.form2");
+	}
+	
+	private SpringFormCssConfig formDisplay() {
+		return basisConfig()
+				.tableStyle("tableStyleClass.form2")
+				.tdStyle("tdStyleClass.form2");
+		
 	}
 
 }

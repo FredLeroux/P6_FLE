@@ -450,8 +450,8 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 			Integer pitchsNumber = sizeList.stream().mapToInt(o -> o).sum();
 			Integer routesNumber = sizeList.size();
 			Integer totalLine = pitchsNumber + routesNumber;
-			if (totalLine <= 24) { /*
-									 * 24 is 8*3, 3 is the accepted commons number of lines for a full routes info 1
+			if (totalLine <= 12) { /*
+									 * 12 is 4*3, 3 is the accepted commons number of lines for a full routes info 1
 									 * route name 2 pitchs
 									 */
 				page.add(new RoutesAndPitchsPage(key,
@@ -471,7 +471,6 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 		});
 		pages.add(page);
 		return pages;
-
 	}
 
 	private void countPitchs(ArrayList<Integer> sizeList, List<RoutePitchSFC> list) {
@@ -481,8 +480,10 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 	@Override
 	public ModelAndView managePostComment(String requestCommentParameterName) {
 		sessVar.setRequest(request);
-		commentService.postComment(climbingSiteId, sessVar.getAccountID(),
-				request.getParameter(requestCommentParameterName));
+		String comment = request.getParameter(requestCommentParameterName);
+		if (!comment.isEmpty()) {			
+			commentService.postComment(climbingSiteId, sessVar.getAccountID(), comment);
+		}
 		return new ModelAndView("redirect:/siteHaveBeenCommented");
 	}
 
