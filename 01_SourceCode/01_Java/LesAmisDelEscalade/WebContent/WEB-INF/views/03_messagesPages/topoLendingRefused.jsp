@@ -13,7 +13,7 @@
 <body>
 <br>
 <div class = "messageContainer">
-<div class = "iconExclamationBasisBlue">
+<div class = "iconBasisSize">
 <springTags:message code ="topoLendingRefused.title"></springTags:message><br>
 </div>
 <div class = "messageBodyCenterAlign">

@@ -54,26 +54,9 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/02_01_03_02_iFrameJavaScript.js"></script>
 <script type="text/javascript">
 	var logToggle = toggle();		
-	logToggle.addToggleDisplayOnClickAndClearError("cancel", "loginModal", "error");
-	logToggle.addToggleDisplayOnClickAndClearError("close", "loginModal", "error");
+	logToggle.addToggleDisplayOnClickAndClearError("cancel", "loginModal", "error","pass","visibility");
+	logToggle.addToggleDisplayOnClickAndClearError("close", "loginModal", "error","pass","visibility");
+	logToggle.addOnclickTogglePassVisibility("pass","visibility");
 	logToggle.displayOnError("error","loginModal");
-	
-	
-	function passElmt() {
-		return document.getElementById("pass");
-	}
-	function visibilityElmt() {
-		return document.getElementById("visibility");
-	}
-	function togglePassVisibility() {
-		if (passElmt().type == "password") {
-			passElmt().type = "text";
-			visibilityElmt().className = "fas fa-eye-slash";
-		} else {
-			passElmt().type = "password";
-			visibilityElmt().className = "fas fa-eye";
-		}
-
-	}
 </script>
 

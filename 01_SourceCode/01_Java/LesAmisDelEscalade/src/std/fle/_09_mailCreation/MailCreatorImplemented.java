@@ -42,10 +42,9 @@ public class MailCreatorImplemented implements MailCreator {
 	}
 
 	private void setActivationMailMessage(String contact,String code, HttpServletRequest request) {
-		sender0();
-		String link = uri.fullContextPathURINotStatic(request);
+		sender0();		
 		subject = local.message("accountCreation.subject");
-		body = local.message("accountCreation.message") + "\n" + link + "activation?code=" + code + "\n"
+		body = local.message("accountCreation.message") + "\n" +urlBuilder(request) + "activation?code=" + code + "\n"
 				+ local.message("endMail.message");
 		sendMessage(contact);
 	}
@@ -61,7 +60,7 @@ public class MailCreatorImplemented implements MailCreator {
 	private void setLockedAccountMailMessage(String contact,String code, HttpServletRequest request) {
 		sender1();
 		subject = local.message("accountLocked.subject");
-		body = local.message("accountLocked.message") + "\n" + uri.fullContextPathURINotStatic(request)
+		body = local.message("accountLocked.message") + "\n" + urlBuilder(request)
 				+ "unlockMyAccount?reset=" + code + "\n" + local.message("endMail1.message");
 		sendMessage(contact);
 	}
@@ -78,7 +77,7 @@ public class MailCreatorImplemented implements MailCreator {
 		sender0();
 		subject = local.message("forgotPass.subject");
 		body = local.message("forgotPass.login") + login + "\n" + local.message("forgotPass.message") + "\n"
-				+ uri.fullContextPathURINotStatic(request) + "unlockMyAccount?reset=" + code + "\n"
+				+ urlBuilder(request) + "unlockMyAccount?reset=" + code + "\n"
 				+ local.message("endMail2.message");
 		sendMessage(contact);
 	}
@@ -94,7 +93,7 @@ public class MailCreatorImplemented implements MailCreator {
 		sender0();
 		subject = local.message("forgotPass.subject");
 		body = local.message("forgotPass.login") + login + "\n" + local.message("forgotPassOnlyLogin.message") + "\n"
-				+ uri.fullContextPathURINotStatic(request) + "\n" + local.message("endMail2.message");
+				+ urlBuilder(request) + "\n" + local.message("endMail2.message");
 		sendMessage(contact);
 	}
 
@@ -118,7 +117,7 @@ public class MailCreatorImplemented implements MailCreator {
 	private void setBorrowingDemandNotification(String contact, String login, HttpServletRequest request) {
 		sender2();
 		subject = local.message("borrowingDemand.subject");
-		body = login + local.message("borrowingDemand.message") + "\n" + uri.fullContextPathURINotStatic(request) + "\n"
+		body = login + local.message("borrowingDemand.message") + "\n" + urlBuilder(request) + "\n"
 				+ local.message("endMail.message");
 		sendMessage(contact);
 	}
@@ -228,15 +227,16 @@ public class MailCreatorImplemented implements MailCreator {
 		to = contact;
 		mail.sendMessageToOneContact(to, senderMail, senderName, subject, body);
 
-	}
+	}	
 	
-	private void waitBeforeSendMail(Integer seconds) {
-		try {
-			TimeUnit.SECONDS.sleep(seconds);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	
+	private String urlBuilder(HttpServletRequest request) {
+		String url = uri.fullContextPathURINotStatic(request);
+		while (url.contains("null") || url.contains("-1")) {
+			url = uri.fullContextPathURINotStatic(request);
+			System.out.println("loop while on urlBuilder ");
 		}
+		return url;
 	}
 
 }

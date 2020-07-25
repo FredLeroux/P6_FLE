@@ -225,7 +225,7 @@ input:focus {
   left: calc(-1 * var(--borderWidth));
   height: calc(100% + var(--borderWidth) * 2);
   width: calc(100% + var(--borderWidth) * 2);
- background: linear-gradient(60deg, orange, darkOrange, orangered, firebrick, rgb(17,36, 45));
+ background: linear-gradient(45deg,  var(--base-color), var(--base-color-light-light), var(--base-color));
   border-radius: calc(2 * var(--borderWidth));
   z-index: -1;
   animation: animatedgradient 3s ease alternate infinite;

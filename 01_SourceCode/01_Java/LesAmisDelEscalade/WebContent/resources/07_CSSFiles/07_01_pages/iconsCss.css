@@ -1,4 +1,6 @@
-
+.iconBasisSize{
+	font-size: 3vw;
+}
 
 .iconExclamationBackground,.iconExclamationBasis,.iconExclamationSmaller,.iconExclamationBasisBlue,.iconExclamationSmallerBlue{	
 	text-align:center;

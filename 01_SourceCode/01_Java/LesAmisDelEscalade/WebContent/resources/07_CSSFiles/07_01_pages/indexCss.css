@@ -31,7 +31,7 @@ body,html{
 }
 
 .indexIframe iframe{ 
- 	background: transparent;
+ 	background: transparent; 	
 }
 
 .indexIframe::-webkit-scrollbar{

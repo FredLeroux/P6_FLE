@@ -3,7 +3,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/07_CSSFiles/07_01_pages/modalPage.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/07_CSSFiles/07_01_pages/siteCommentModalCss.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/07_01_pages/iconsCss.css" />
 </head>
 <body>
 	<div id="siteCommentNotAllowedModal" class ="formModal" style="display: none;">
@@ -12,10 +11,8 @@
 				<div class = "commentNotAllowed1">
 					<i id="closeNotAllowedModal" class="fas fa-window-close"></i>
 				</div>
-				<div class = "commentNotAllowed2">
-				<div class="iconExclamationSmallerBlue">
-					<springTags:message code ="commentNotAllowed.title"></springTags:message><br>
-				</div>
+				<div class = "commentNotAllowed2">				
+					<springTags:message code ="commentNotAllowed.title"></springTags:message><br>				
 				</div>
 				<div class = "commentNotAllowed3">
 					<div><springTags:message code= "commentNotAllowed.message"/></div>

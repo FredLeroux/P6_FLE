@@ -51,10 +51,10 @@ function addToggleDisplayOnClick(ownerId, elementToToggleId) {
 }
 
 function addToggleDisplayOnClickAndClearError(ownerId, elementToToggleId,
-		errorLoc) {
+		errorLoc,passElmtId,visibilityElemtId) {
 	var element = document.getElementById(ownerId);
 	element.setAttribute("onclick", "toggleDisplay('" + elementToToggleId
-			+ "'),clearError('" + errorLoc + "')");
+			+ "'),clearError('" + errorLoc + "'),hidePass('"+passElmtId+"','"+visibilityElemtId+"')");
 }
 
 function clearError(errorLoc) {
@@ -153,6 +153,33 @@ function addToElementToggleParentElementDisplayOnClick(elementToAddOnclick,
 	element.setAttribute("onclick", "parentElementToggleDisplay('"
 			+ elementToToggleId + "')");
 
+}
+
+function addOnclickTogglePassVisibility(passElmtId,visibilityElemtId){
+	visibilityElmt(visibilityElemtId).setAttribute("onclick","togglePassVisibility('"+passElmtId+"','"+visibilityElemtId+"')");
+}
+
+function passElmt(passElmtId) {
+	return document.getElementById(passElmtId);
+}
+function visibilityElmt(visibilityElemtId) {
+	return document.getElementById(visibilityElemtId);
+}
+function togglePassVisibility(passElmtId,visibilityElemtId) {
+	if (passElmt(passElmtId).type == "password") {
+		passElmt(passElmtId).type = "text";
+		visibilityElmt(visibilityElemtId).className = "fas fa-eye-slash";
+	} else {
+		passElmt(passElmtId).type = "password";
+		visibilityElmt(visibilityElemtId).className = "fas fa-eye";
+	}
+}
+
+function hidePass(passElmtId,visibilityElemtId){
+	if (passElmt(passElmtId).type == "text") {
+		passElmt(passElmtId).type = "password";
+		visibilityElmt(visibilityElemtId).className = "fas fa-eye";
+	}
 }
 
 

@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import fle.toolBox.FredParser;
 import fle.toolBox.JspJavaScriptStringParser;
+import fle.toolBox.Internationalization.LocalMessage;
 import fle.toolBox.springFormManager.selectInputManagement.controllerClass.SelectInputForController;
 import fle.toolBox.springFormManager.springMVCValidation.SpringMVCValidation;
 import std.fle._03_sfc.climbingSiteSFC.ClimbingSiteSFC;
@@ -50,6 +51,9 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 
 	@Autowired
 	private DeleteConfirmationManager deletion;
+	
+	@Autowired
+	private LocalMessage localMesage;
 
 	@Override
 	public ModelAndView createNewSiteFormVarInit() {
@@ -203,6 +207,9 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 	public ModelAndView storeClimbingSiteInfo(ModelAndView model, ClimbingSiteSFC climbingSiteSFC) {
 		this.climbingSiteSFC = climbingSiteSFC;
 		siteName = climbingSiteSFC.getClimbingSiteName();
+		if(siteName.isEmpty()) {
+			siteName = localMesage.message("noSiteName.info");
+		}	
 		model.setViewName("redirect:displaySiteRoutesList");
 		return model;
 	}
