@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+
+<entry key="fieldStyle.normal">basicInput</entry>	
+	<entry key="cssFilePath">${pageContext.request.contextPath}/resources/07_CSSFiles/07_02_form/</entry>
+	<entry key="cssFileName">form.css</entry>
+	<entry key="tableStyleClass.form1">tableForm</entry>
+	<entry key="tableStyleClass.form2">tableForm2</entry>
+	<entry key="trStyleClass.form1">trForm1</entry>
+	<entry key="trStyleClass.form2">trForm2</entry>
+	<entry key="limitCharSpanStyleClass.form1">limitCharSpanForm1</entry>
+	<entry key="tdStyleClass.form1">tdForm1</entry>
+	<entry key="tdStyleClass.form2">tdForm2</entry>
+	<entry key="tdStyleClass.form3">tdForm3</entry>
+	<entry key="labelStyleClass.normal">labelStyle</entry>
+	<entry key="labelStyleClass.error">labelStyleBad</entry>
+	<entry key="fieldStyleClass.normal">inputStyle</entry>
+	<entry key="fieldStyleClass.error">inputStyleBad</entry>
+	<entry key="buttonStyleClass">formButton</entry>
+	<entry key="labelStyleClass.hide">labelStyleHide</entry>
+	
+	
+	
+	
+	
+
+</properties>

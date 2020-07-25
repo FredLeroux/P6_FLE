@@ -25,34 +25,31 @@ function getElmt(locationId) {
 	return document.getElementById(locationId);
 }
 
-function toggleClass(normalCSS, badCSS,pattern) {	
-	if (parseInt(getDisplayCharElmt().textContent) == 0|| getToCheck().value.includes(pattern) ) {
-		getToCheck().className= badCSS;
-		getDisplayCharElmt().className= badCSS;
+function toggleClass(commentNormalCSS, charLimitNormalCss, commentBadCSS,
+		charLimitBadCSS, pattern) {
+	if (parseInt(getDisplayCharElmt().textContent) == 0
+			|| getToCheck().value.includes(pattern)) {
+		getToCheck().className = commentBadCSS;
+		getDisplayCharElmt().className = charLimitBadCSS;
 	} else {
-		getToCheck().className= normalCSS;
-		getDisplayCharElmt().className= normalCSS;
+		getToCheck().className = commentNormalCSS;
+		getDisplayCharElmt().className = charLimitNormalCss;
 	}
 }
 
-
-
 function countAndCheckLimitCharOnKeyPress(valueTocheckLockId, submitButtonId,
 		displayCharLocId, limitCharValuelocationId, pattern,
-		submitMessageLocId, erroMessageLocId, normalCSS, badCSS) {
+		submitMessageLocId, erroMessageLocId, commentNormalCSS,
+		charLimitNormalCss, commentBadCSS, charLimitBadCSS) {
 	setToCheck(valueTocheckLockId);
 	setDisplayCharElmt(displayCharLocId)
 	getToCheck().setAttribute(
 			"oninput",
-			"decrementLockAndToggleCSS('" 
-			+ submitButtonId + "','"  
-			+ limitCharValuelocationId + "','" 
-			+ pattern + "','" 
-			+ submitMessageLocId + "','" 
-			+ erroMessageLocId + "','"
-			+ normalCSS + "','"
-			+ badCSS
-			+"')");
+			"decrementLockAndToggleCSS('" + submitButtonId + "','"
+					+ limitCharValuelocationId + "','" + pattern + "','"
+					+ submitMessageLocId + "','" + erroMessageLocId + "','"
+					+ commentNormalCSS+ "','" +
+					charLimitNormalCss+ "','" + commentBadCSS+ "','" + charLimitBadCSS+ "')");
 
 }
 
@@ -64,28 +61,30 @@ function getElmtSize(input) {
 	return input.length;
 }
 
-function decrementLockAndToggleCSS(submitButtonId, 
-		limitCharValuelocationId, pattern, submitMessageLocId, erroMessageLocId, normalCSS, badCSS) {
+function decrementLockAndToggleCSS(submitButtonId, limitCharValuelocationId,
+		pattern, submitMessageLocId, erroMessageLocId, commentNormalCSS,
+		charLimitNormalCss, commentBadCSS, charLimitBadCSS) {
 	var btn = submitButton(submitButtonId);
-	displayCharLeftValue(
-			getCharLimitValue(limitCharValuelocationId),
+	displayCharLeftValue(getCharLimitValue(limitCharValuelocationId),
 			getElmtSize(getElmtValue(getToCheck())));
 	disableButtonOnPattern(getElmtValue(getToCheck()), pattern, btn);
 	buttonMessage(getElmtValue(getToCheck()), pattern, btn, submitMessageLocId,
 			erroMessageLocId);
 	disableButtonOnPattern(getElmtValue(getToCheck()), pattern, btn);
-	toggleClass(normalCSS, badCSS,pattern);
-	
+	toggleClass(commentNormalCSS, charLimitNormalCss, commentBadCSS,
+			charLimitBadCSS, pattern);
 
 }
 
 function buttonMessage(inputValue, pattern, button, sendMessage,
 		patternPresentErrorMessage) {
 	if (isPatternPresent(inputValue, pattern)) {
-		button.value = message(patternPresentErrorMessage).value;
+		button.innerHTML = message(patternPresentErrorMessage).value;
+		button.style.opacity=0.5;
 	} else {
-		button.value = message(sendMessage).value;
-	}
+		button.innerHTML = message(sendMessage).value;
+		button.style.opacity=1;
+	}	
 }
 
 function message(messageInputId) {
@@ -127,6 +126,15 @@ function decrementChar(maxChar, stringCurentSize) {
 
 function getCharLimitValue(limitCharValuelocationId) {
 	return document.getElementById(limitCharValuelocationId).value;
+}
+
+
+function hideOnclick(elementToImplement,elementToHide){
+	getElmt(elementToImplement).setAttribute("onclick", "hide('"+elementToHide+"')");
+}
+
+function hide(elementToHide){
+	getElmt(elementToHide).style.display ="none";
 }
 
 function modelTools() {

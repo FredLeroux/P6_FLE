@@ -625,10 +625,10 @@ public abstract class SpringTagFormular {
 	private String LimitCharSpan(String path, Integer limitChar, String limitCharName) {
 		if (setMessage(limitCharName) != null) {
 			return setMessage(limitCharName).concat("<br><label>"+ htmlVarWithOutQuote(setVarName(limitCharName))+"</lable>")
-					.concat("<span id=" + argument(path.concat("limitChar")) + getLimiCharSpanCssClass() + ">"
+					.concat("<span id=" + argument(path.concat("MaxChar")) + getLimiCharSpanCssClass() + ">"
 							 + limitChar + "</span>");
 		} else {
-			return "<br><span id=" + argument(path.concat("limitChar")) + getLimiCharSpanCssClass() + ">" + limitChar
+			return "<br><span id=" + argument(path.concat("MaxChar")) + getLimiCharSpanCssClass() + ">" + limitChar
 					+ "</span>";
 		}
 

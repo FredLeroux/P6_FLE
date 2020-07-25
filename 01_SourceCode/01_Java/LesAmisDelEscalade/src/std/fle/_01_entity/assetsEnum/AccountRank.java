@@ -5,7 +5,7 @@ import org.springframework.context.MessageSource;
 import fle.toolBox.FredParser;
 import fle.toolBox.springFormManager.selectInputManagement.controllerClass.tools.SelectOptions;
 import fle.toolBox.springFormManager.selectInputManagement.controllerClass.tools.SelectOptionsInterface;
-import std.fle._0X_security.SecurityLevel;
+import std.fle._10_security.SecurityLevel;
 
 public enum AccountRank implements SelectOptionsInterface {
 	ADMINISTRATOR(SecurityLevel.ADMIN.rank(),"administrator"),

@@ -3,11 +3,13 @@ package fle.toolBox.navBarManagement;
 public class NavBarOptions {
 
 	private String name;
+	private String icon;
 	private String href;
 	private Integer position;
 
-	public NavBarOptions(String name, String href, Integer position) {
+	public NavBarOptions(String name, String icon, String href, Integer position) {
 		this.name = name;
+		this.icon = icon;
 		this.href = href;
 		this.position = position;
 	}
@@ -18,6 +20,14 @@ public class NavBarOptions {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 
 	public String getHref() {

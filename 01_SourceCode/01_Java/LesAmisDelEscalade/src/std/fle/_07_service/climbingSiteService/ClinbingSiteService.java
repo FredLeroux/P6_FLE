@@ -12,6 +12,7 @@ import std.fle._03_sfc.climbingSiteSFC.SiteRoutesSFC;
 
 public interface ClinbingSiteService {
 
+
 	public void saveClimbingSite(ClimbingSiteSFC climbingSiteSFC, Map<String, SiteRoutesSFC> siteRoutesMap,
 			Map<String, List<RoutePitchSFC>> routePitchsMap);
 

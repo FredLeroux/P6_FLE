@@ -25,5 +25,6 @@
 	--menu-text-hover-color: var(--hover-color1);
 	--menu-border-color: var(--base-color);
 	--menu-border-hover-color:var(--base-color-opposite);
+	--backgroundDiag3Colors:linear-gradient(to bottom right, var(--base-color),var(--base-color-light),var(--base-color));
 	
 }

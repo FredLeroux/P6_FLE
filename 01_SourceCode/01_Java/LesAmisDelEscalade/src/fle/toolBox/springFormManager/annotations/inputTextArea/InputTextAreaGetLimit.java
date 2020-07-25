@@ -6,7 +6,9 @@ import java.util.LinkedHashMap;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import fle.toolBox.classType.SFC;
 import fle.toolBox.fieldsReflectivity.extractSetAndGetComponents.ClassFields;
+import std.fle._00_general.SessionVariables;
 
 /**
  * 
@@ -27,11 +29,11 @@ public class InputTextAreaGetLimit {
 	 * @param model  the where to add the textarea char limit
 	 * @param entity the entity containing @InputTextArea annotated Field(s)
 	 * @apiNote will add to model for each annotated fields, as attribute name:"
-	 *          field name" concatenated with "MaxChar", and as object the char limit
-	 *          Integer as follow textArea
+	 *          field name" concatenated with "MaxChar", and as object the char
+	 *          limit Integer as follow textArea
 	 *          "InputTextArea.rows()*InputTextArea.charByrow".
 	 */
-	public static void addTextAreaLimitToModel(ModelAndView model, Object entity) {
+	public void addTextAreaLimitToModel(ModelAndView model, Object entity) {
 		fields(entity).forEach(f -> model.addObject(createModelAttributeName(f), getLimitNumberChar(f)));
 	}
 
@@ -40,13 +42,23 @@ public class InputTextAreaGetLimit {
 	 * @param entity the entity containing @InputTextArea annotated Field(s)
 	 * @return a LinkedHashMap containing for each entity fields @InputTextArea
 	 *         annotated, as Key "fieldName.concact("MaxChar")" Value =
-	 *         "InputTextArea.rows()*InputTextArea.charByrow"
+	 *         "InputTextArea.maxLenght"
 	 */
-	public static LinkedHashMap<String, Integer> textAreaAttributeNameAndLimitMap(Object entity) {
+	public LinkedHashMap<String, Integer> textAreaAttributeNameAndLimitMap(Object entity) {
 		LinkedHashMap<String, Integer> textAreaAttributeNameAndLimit = new LinkedHashMap<>();
-		fields(entity)
-				.forEach(f -> textAreaAttributeNameAndLimit.put(createModelAttributeName(f), getLimitNumberChar(f)));
+		fields(entity).forEach(f -> addLimit(f, textAreaAttributeNameAndLimit));
 		return textAreaAttributeNameAndLimit;
+	}
+	
+	public void addTextAreaAttributeNameAndLimitMapToSession(SFC sfc,SessionVariables sessVar) {
+		textAreaAttributeNameAndLimitMap(sfc)		
+		.forEach((key, value) -> sessVar.addSessionVariable(key, value));
+	}
+
+	private void addLimit(Field field, LinkedHashMap<String, Integer> textAreaAttributeNameAndLimit) {
+		if (field.getAnnotation(InputTextArea.class).maxLenght() != 0) {
+			textAreaAttributeNameAndLimit.put(createModelAttributeName(field), getLimitNumberChar(field));
+		}
 	}
 
 	/**
@@ -54,7 +66,7 @@ public class InputTextAreaGetLimit {
 	 * @param field a @InputTextArea annotated Field
 	 * @return field name concatenated with "MaxChar" -> fieldNameMaxChar
 	 */
-	private static String createModelAttributeName(Field field) {
+	private String createModelAttributeName(Field field) {
 		return field.getName().concat("MaxChar");
 	}
 
@@ -64,13 +76,13 @@ public class InputTextAreaGetLimit {
 	 * @return the char limit Integer as follow textArea
 	 *         "InputTextArea.rows()*InputTextArea.charByrow".
 	 */
-	public static Integer getLimitNumberChar(Field field) {
+	public Integer getLimitNumberChar(Field field) {
 		InputTextArea annotation = field.getAnnotation(InputTextArea.class);
 		return annotation.maxLenght();
 
 	}
 
-	private static ArrayList<Field> fields(Object entity) {
+	private ArrayList<Field> fields(Object entity) {
 		return ClassFields.getFieldsListByAnnotation(entity, InputTextArea.class);
 	}
 

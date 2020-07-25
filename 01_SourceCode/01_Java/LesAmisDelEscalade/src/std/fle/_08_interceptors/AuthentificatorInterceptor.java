@@ -54,7 +54,7 @@ public class AuthentificatorInterceptor extends HandlerInterceptorAdapter {
 				return false;
 			}
 			if (passManager.isPassMatch(pass, authen.getPassword())) {
-				setSessionVar(authen, sessVar);
+				setSessionVar(authen, sessVar,login);				
 				response.sendRedirect("index.html");
 			} else {
 				setTentative(sessVar);
@@ -68,11 +68,12 @@ public class AuthentificatorInterceptor extends HandlerInterceptorAdapter {
 		return false;
 	}
 
-	private void setSessionVar(UsersAccountInfoAuthentificatorDTO authen, SessionVariables sessVar) {
+	private void setSessionVar(UsersAccountInfoAuthentificatorDTO authen, SessionVariables sessVar,String login) {
 		sessVar.setConnexion(local.message("logOut.name"));
 		sessVar.setLogged(true);
 		sessVar.setSecurityLevel(authen.getSecurityLevel());
 		sessVar.setPseudo(authen.getPseudonyme());
+		sessVar.setLogin(login);
 		sessVar.setAccountID(authen.getId());
 	}
 

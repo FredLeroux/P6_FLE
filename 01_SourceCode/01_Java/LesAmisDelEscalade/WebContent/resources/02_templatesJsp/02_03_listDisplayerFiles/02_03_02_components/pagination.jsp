@@ -6,27 +6,23 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/02_templatesJsp/02_03_listDisplayerFiles/02_03_04_javaScriptFiles/pageAndResultsMax.js"
 	charset="UTF-8"></script>
+<br>
+<div class="pageNavContainer" >
 <div class="resultsMax">
 	<springTag:message code="resultsMax.info" />
 	<span id="resultsPerPages"></span>
 </div>
-
-<div id="pageNav" class="grid-area pagesList">
-
-	
-		
+<div id="pageNav" class="grid-area pagesList">		
 		<a href="" id="highJumpMinus" class = "previousPlusPlusZone"><i class="fas fa-chevron-left"></i></a>
 		<a href="" id="mediumJumpMinus" class = "previousPlusZone"><i class="fas fa-chevron-left"></i></a>
 		<a href="" id="lowJumpMinus" class="previousZone"><i class="fas fa-chevron-left"></i></a>
 		<a href="" id="highJumpPlus" class = "nextPlusPlusZone"><i class="fas fa-chevron-right"></i></a>
 		<a href="" id="mediumJumpPlus" class = "nextPlusZone"><i class="fas fa-chevron-right"></i></a>
-		<a href="" id="lowJumpPlus" class="nextZone"><i class="fas fa-chevron-right"></i></a>
-		
-		<div id="pageNumbers" class="pageZone"></div>
-		
+		<a href="" id="lowJumpPlus" class="nextZone"><i class="fas fa-chevron-right"></i></a>		
+		<div id="pageNumbers" class="pageZone"></div>		
 	</div>
-
-
+</div>
+<br>
 	<script type="text/javascript">	
 	var pageAndResults = setpageAndResultsMax()
 	var navigation = ${navigation};

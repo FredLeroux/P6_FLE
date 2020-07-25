@@ -1,83 +1,100 @@
+@import
+	url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_01_appSkin.css");
+
 body{
 	overflow: scroll;
 }
 
-.style1{
-	
+.style1{	
 	border: 2px solid;
-	border-color: chocolate;
-	border-collapse: collapse;
-	width:60%;
-	table-layout:fixed;
-	margin: auto;
+	border-color:var(--base-color);	
+	width:70%;
+	border-radius: 20px;
+	margin: auto;	
+	background: linear-gradient(to bottom right, var(--base-color),var(--base-color-light),var(--base-color));
+	box-shadow: 5px 5px 5px var(--shadow-color); 
+	padding:1%;
 	
 	
 }
 
-.style1 > thead>tr>th{
-	font-size-adjust:inherit;
-	font-family:sans-serif ;
-	/*font-size:large;*/
-	padding:0.5%;
-	color: green;
-	border: 2px solid;
-	border-color: chocolate;
-	background-color: BurlyWood ;
-	table-layout:fixed;
+
+.style1>thead>tr:first-child th:first-child {
+    border-top-left-radius: 20px;
+    
+}
+
+.style1>thead>tr:first-child th:last-child {
+    border-top-right-radius: 20px;
+   
+}
+
+
+.style1 tr:last-child td:first-child {
+    border-bottom-left-radius: 20px;
+}
+
+
+.style1 tr:last-child td:last-child {
+    border-bottom-right-radius: 20px;
+}
+
+.style1>thead>tr>th{
+	font-size:1.2vw;
+	font-family:menu-font;
+	padding-right:0.5%;
+	color: var(--base-color-opposite);
+	text-align:right;
+	font-weight: bold;
+	text-shadow: 1px 2px 1px var(--shadow-color);
+	
 	
 }
 
-.style1 > tbody>tr>td{
-	font-size-adjust:inherit;
-	font-family:cursive ;
-	/*font-size:large;*/
-	padding:0.5%;
-	color: green  ;
-	border: 2px solid;
-	border-color: chocolate;
-	text-align: center;
-	table-layout:fixed;
-	
+.style1>thead>tr>th>a{
+	text-decoration: none;
+	color: var(--base-color-opposite);
+	text-shadow: 1px 2px 1px var(--shadow-color);
 }
 
+.style1>tbody>tr>td{
+	font-size:1vw;
+	font-family:menu-font;	
+	padding-right:1%;
+	width:10%;
+	color: var(--hover-color1);	
+	text-align:right;
+	text-shadow: 1px 2px 1px var(--shadow-color);
+	
+}
 .style1>tbody>tr:hover{
-	background-color: NavajoWhite;
+	transform:rotate(1deg);
+	}
+
+.style1>tbody>tr:hover>td{	
+	color: var(--highlith-color);
 	cursor:pointer;
-}
-
-.style2{
-	color: blue;
-	border: 2px solid;
-	border-color: grey;
-	border-collapse: collapse;
-	width:60%;
-	margin: auto;
+	text-shadow: 1px 2px 1px var(--shadow-color); 
+	
 	
 }
 
-.style2 > thead>tr>th{
-	font-size-adjust:inherit;
-	font-family:sans-serif ;
-	/*font-size:large;*/
-	padding:0.5%;
-	color: red;
-	border: 2px solid;
-	border-color: blue;
-	background-color: grey ;
-	
-}
-
-.style2 > tbody>tr>td{
-	font-size-adjust:inherit;
-	font-family:cursive ;
-	/*font-size:large;*/
-	padding:0.5%;
-	color: red  ;
-	border: 2px solid;
-	border-color:blue;
+.selectFilterMessage{
+	font-size: 1.2vw;
+	font-family:menu-font;
 	text-align: center;
-	
+	color: var(--base-color-opposite);
+	text-shadow: 1px 2px 1px var(--shadow-color);
 }
 
+@media screen and (max-width:900px) {
+	
+	
+	.style1>tbody>tr>td,.selectFilterMessage,.style1>thead>tr>th{
+	font-size: 2vw;
+	}
+	
+	
+}
 
 

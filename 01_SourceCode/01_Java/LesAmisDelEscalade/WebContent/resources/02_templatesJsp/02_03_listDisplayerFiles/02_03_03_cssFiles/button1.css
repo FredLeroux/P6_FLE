@@ -1,32 +1,30 @@
+@import
+	url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_01_appSkin.css");
+
+
 .hidden{
 	display: none;
 }
 
-
-
-/* Style buttons */
-
 .button1 {
-  background-color: Tan; /* Blue background */ 
+  background-color: Tan; 
   border: solid;
   border-color: sienna;
-  color: sienna; /* color of text */
-  padding: 0.5% 1%; /* Some padding */
+  color:red ; /*sienna*/
   font-style:italic;
   text-align:center;  
   font-weight:900;
-  font-size: 110%; /* Set a font size */
-  cursor: pointer; /* Mouse pointer on hover */
+  font-size:1vw;
+  cursor: pointer; 
  
 }
 
-/* Darker background on mouse-over */
+
 .button1:hover {
-  background-color: sienna; /* Blue background */ 
+  background-color: sienna; 
   border: solid;
-  border-color: tan;
-  color: tan; /* color of text */
- /* box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);/* to study*/
+  border-color: var(--base-color);
+  color: var(--base-color);
 }
 
 .filterButton p{
@@ -36,25 +34,10 @@
 }
 
 
-.filterButton button{		
-	color:LightSlateGray ;
-	border: none;
-  
-  
-  text-align: center;
-  text-decoration: none;
-  display: inline;
-  font-size: 100%;
- 
-  cursor:pointer;
-  padding-right: 0.5%;
-  padding-left: 0.5%;
-  
-	border-radius: 5%;
-}
+
 
 .filterButton button:hover{
-	color:FireBrick  ;
+	color:var(--bad-color)  ;
 }
 
 
@@ -69,73 +52,103 @@
 	text-align:left;
 	padding-left: 1% ;
 	padding-right: 0.5%;
-	color: burlywood;
+	color: var(--base-color);
 	font-weight: bolder;
 	text-align: justify;
-	font-family: cursive;
+	font-family: menu-font;
+	font-size: 1vw;
 	
 	
 }
 
 .aDisplay:Hover{
-	color:fireBrick;
+	color:var(--bad-color);
 }
 
-.aDisplay button::before{
-	
-	color:LightSlateGray ;
-	border: none;    
-  
-  text-decoration: none;  
-  font-size:90%;
-  min-width:2.5%;
-  cursor:pointer; 
+.aDisplay button::before{	
+	color: LightSlateGray;
+	border: none;
+	text-decoration: none;
+	font-size: 1vw;
+	min-width: 2.5%;
+	cursor: pointer;
 	border-radius: 10%;
 	content: '';
-  position:absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 1px;
- background-color: firebrick;
- transform-origin: center right;
-  transform: scaleX(0) translateY(-50%);
-  transition: transform 0.3s ease;
-}
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+	height: 1px;
+	background-color: var(--bad-color);
+	transform-origin: center right;
+	transform: scaleX(0) translateY(-50%);
+	transition: transform 0.3s ease;}
 
 .aDisplay button{
-	display:list-item;
-	
+	display:list-item;	
 	color:LightSlateGray ;
 	border: none;  
 	position:relative;
 	transform-origin: center right;
-	background-color: white;
+	background-color: transparent;
 	text-align:center;
+	font-family: menu-font;
+	font-size: 1vw;
 	
 	
 }
 
 .aDisplay button:hover{
-	color:FireBrick; 
+	color:var(--bad-color); 
 }
 
 
-.aDisplay button:hover::before{
-	
-	 transform-origin: center left;
-  transform: scaleX(1) translateY(-50%);
-	
-}
+.aDisplay button:hover::before {
+	transform-origin: center left;
+	transform: scaleX(1) translateY(-50%);}
 
 .aDisplay i{
-	font-size:60%;
+	font-size:1vw;
 	float:right;
 	color: red;
 }
 
 
 
+
+.allDataBtn,.filterButton button{
+	font-family: menu-font;
+	font-size:1.2vw;
+	color:var(--base-color-opposite);
+	background: linear-gradient(to bottom right, var(--base-color),rgba(32, 95, 126, 1),var(--base-color));
+	border: solid 2px var(--base-color) ;
+	border-radius: 20px;
+	padding-left:0.25%;
+	padding-right:0.25%;
+	text-shadow: 2px 1px 2px black;
+	box-shadow: 5px 5px 5px var(--shadow-color);
+	
+		
+}
+
+.allDataBtn:hover{
+	cursor: pointer;
+	color:var(--hover-color1);
+}
+
+
+@media screen and (max-width:900px) {
+	
+	
+	.aDisplay,.aDisplay button,.allDataBtn,.filterButton button{
+	font-size:2vw;
+	}
+	
+	
+	
+	
+	
+}
 
 
 
