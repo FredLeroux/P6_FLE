@@ -1,0 +1,23 @@
+Test 4: 
+test connexion with db after adding transaction manager
+Test 4: 
+Failed org.hibernate.exception.SQLGrammarException: could not execute statement + 
+org.postgresql.util.PSQLException: ERREUR: la relation « testconnexiondb » n'existe pas
+Test 4 :
+ add serialVersionUID to TestConnexiondb class 
+Test 4 : 
+Sucessfull issue on database name in db properties url wrong jdbc:postgresql://localhost:5432/mvc instead ofjdbc:postgresql://localhost:5432/lade_db
+issue solve 
+Note: do not forget transaction manager, serialization, check db url 
+Test 5: 
+test on user and privileges
+Test 5:
+PostgreSQL user privilege use db, lock create database or table sucessfull, account lade_Users securized
+**Info**	All fine connexion Securized and Functionnal
+**Info**	Cleaning test connexion deleted
+**Info**	Branch test connexion merged
+**Info** 	Commit before modification project structure in order to be compliant with new approach
+****************************************************************************************************
+**Info**	New branch AccountAndCreation 
+**Info**	Update data base information account and db name
+
