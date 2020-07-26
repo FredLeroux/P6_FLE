@@ -140,7 +140,7 @@ public class FileCreation {
 	}
 
 //TODO 0-URGENT create a specific class when at this point 
-	public void writeInFile(String str) throws IOException {
+	public void writeInFile1(String str) throws IOException {
 		String filePath = this.path + "/" + this.fileName + "." + fileExtension;
 		FileWriter fileWriter = new FileWriter(filePath);
 		PrintWriter printwriter = new PrintWriter(fileWriter);

@@ -26,14 +26,14 @@ public class NavBarOptionsList {
 
 	public ArrayList<NavBarOptions> getAllNavBarOptions(Integer levelRequired) {
 		ArrayList<NavBarOptions> navBarOptions = new ArrayList<>();
-		config.forEach((key, value) -> fillArrayFunctionLevelRequired(navBarOptions, levelRequired, (String) value));		
+		config.forEach((key, value) -> fillArrayFunctionLevelRequired(navBarOptions, levelRequired,  value));		
 		
 		return (ArrayList<NavBarOptions>) sortNavBarOptionsList(navBarOptions);
 	}
 
-	private void fillArrayFunctionLevelRequired(ArrayList<NavBarOptions> array, Integer levelRequired, String value) {
-		if (isAccesGranted(getNavBarOptionSecurityLevel(value), levelRequired)) {
-			array.add(fillNavBarOptions(value));			
+	private void fillArrayFunctionLevelRequired(ArrayList<NavBarOptions> array, Integer levelRequired, Object value) {
+		if (isAccesGranted(getNavBarOptionSecurityLevel(value.toString()), levelRequired)) {
+			array.add(fillNavBarOptions(value.toString()));			
 
 		}
 	}
@@ -44,7 +44,7 @@ public class NavBarOptionsList {
 			}
 
 	private Integer getNavBarOptionSecurityLevel(String value) {
-		return Integer.parseInt(navBarOptionsArg(value)[3]);
+		return Integer.parseInt(navBarOptionsArg(value)[4]);
 	}
 
 	private boolean isAccesGranted(Integer securityLevel, Integer levelRequired) {
@@ -53,7 +53,7 @@ public class NavBarOptionsList {
 
 	private NavBarOptions fillNavBarOptions(String value) {
 		String[] strArray = navBarOptionsArg(value);
-		return new NavBarOptions(strArray[0], strArray[1], FredParser.toInteger(strArray[2]));
+		return new NavBarOptions(strArray[0],strArray[1], strArray[2], FredParser.toInteger(strArray[3]));
 	}
 
 	private String[] navBarOptionsArg(String value) {

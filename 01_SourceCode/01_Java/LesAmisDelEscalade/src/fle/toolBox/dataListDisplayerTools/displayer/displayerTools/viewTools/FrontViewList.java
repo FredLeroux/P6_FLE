@@ -46,8 +46,8 @@ public class FrontViewList<O extends Object> {
 	private JSONArray pageJump = new JSONArray();
 	private String orderWay = null;
 	private String fieldName = null;
-	private Integer[] rowsPerPagesList = { 10, 20, 30 };
-	private Integer defaultRowsPerPages = rowsPerPagesList[1];
+	private Integer[] rowsPerPagesList = {5, 10, 20, 30 };
+	private Integer defaultRowsPerPages = rowsPerPagesList[0];
 	private String frontViewStoreFilterName = "storeFilter";
 
 	public FrontViewList(O entityModel) {		

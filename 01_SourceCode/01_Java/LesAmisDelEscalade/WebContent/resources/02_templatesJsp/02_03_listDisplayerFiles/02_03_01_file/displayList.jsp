@@ -10,23 +10,31 @@
 	href="${pageContext.request.contextPath}/resources/02_templatesJsp/02_03_listDisplayerFiles/02_03_03_cssFiles/button1.css" />
 
 	
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/02_templatesJsp/02_03_listDisplayerFiles/02_03_04_javaScriptFiles/tableAndFilter.js" charset="UTF-8"></script>
 
 
 
-<div id = "filterAppliedList" class ="divDisplay"></div><br><br><br>
+
+<div id = "filterAppliedList" class ="divDisplay"></div>
 <div id="clearBtn" class ="filterButton">
 <div id="clearFilter" class="hidden"><springTag:message code="clearFilter.message"></springTag:message></div>
+
 </div>
+<br>
+<div >
 <div id="filterList" class = "filterDisplay"></div>
-<button id="allData" ><springTag:message code="displayAll.message"/></button><br>
+</div>
+
 <%@ include file="/resources/02_templatesJsp/02_03_listDisplayerFiles/02_03_02_components/pagination.jsp" %>
-<div id="dataTable" ><springTag:message code="selectFilter.message"></springTag:message></div>
+<div id="dataTable" class="selectFilterMessage" ><springTag:message code="selectFilter.message"></springTag:message>
+<br>
+<button id="allData" class="allDataBtn"><springTag:message code="displayAll.message"/></button><br>
+</div>
 <div>
 </div>
 <div id="anchorage" style = "display: none"></div>
 <input type="hidden" id="refreshed" value="no">
-<br><br><br>
+<br><br>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/02_templatesJsp/02_03_listDisplayerFiles/02_03_04_javaScriptFiles/tableAndFilter.js" charset="UTF-8"></script>
 <script type="text/javascript">
 
 var reload = ${reload};

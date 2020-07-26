@@ -10,7 +10,6 @@
 </head>
 <body>
 ${siteName}<br>
-MEssage si la voie n'est nommé renseigner anonyme si plusieur incrémenter anamye de 1 en 1
 <%@ include file="/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/createNewSiteRouteTmplt.jsp" %>		
 <jstl:set var="hrefParamaters" value="?route=${routeName}&index=${indexGetter.index}"></jstl:set>
 <table>	

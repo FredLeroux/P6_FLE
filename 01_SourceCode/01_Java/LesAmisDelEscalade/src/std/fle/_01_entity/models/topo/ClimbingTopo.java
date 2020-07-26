@@ -56,7 +56,7 @@ public class ClimbingTopo extends ENT {
 	@JoinColumn(name = "users_info_fk")
 	private UsersInfo userInfo;
 	
-	@OneToMany(mappedBy = "climbingTopo",orphanRemoval = true)
+	@OneToMany(mappedBy = "climbingTopo",cascade = CascadeType.ALL)
 	private List<TopoLending> topoLendings;
 
 	public Integer getId() {

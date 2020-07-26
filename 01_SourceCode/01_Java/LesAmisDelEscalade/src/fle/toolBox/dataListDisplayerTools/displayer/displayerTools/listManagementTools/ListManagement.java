@@ -21,7 +21,6 @@ public class ListManagement<O extends Object> extends Pagination<O> {
 public ListManagement(O entityModel) {
 	
 	super(entityModel);
-	//this.entityModel = entityModel;
 	addPagesJumpRule(1, 20, 1, 5, 10);
 	addPagesJumpRule(20, 100, 1, 10, 20);
 	addPagesJumpRule(100, 1000, 10, 50, 100);

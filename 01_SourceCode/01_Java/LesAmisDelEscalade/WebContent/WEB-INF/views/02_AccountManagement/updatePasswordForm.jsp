@@ -26,8 +26,9 @@ visibility: hidden;
 <%@ include file = "/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/updatePassFormTmplt.jsp" %></div><br>
 <div class = "linkContainer">
 <label class = "link" onclick="changeParentLocation('${pageContext.request.contextPath}/index.html')" ><springTags:message code ="backHome.message"></springTags:message></label>
-</div><br>
 </div>
+</div>
+<br>
 <script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/04_01_02_link.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/04_01_01_toggle.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/02_01_03_02_loadModalJavaScript.js"></script>

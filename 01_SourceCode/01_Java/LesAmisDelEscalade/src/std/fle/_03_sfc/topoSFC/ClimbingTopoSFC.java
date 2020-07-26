@@ -85,7 +85,7 @@ public class ClimbingTopoSFC extends SFC {
 
 	@Length(max = 200)
 	@PlaceHolderText(message = "topoDescription.pht")
-	@InputTextArea(rows = 5,charByRows = 40)
+	@InputTextArea(rows = 5,charByRows = 40,maxLenght = 200)
 	private String topoDescription;
 
 

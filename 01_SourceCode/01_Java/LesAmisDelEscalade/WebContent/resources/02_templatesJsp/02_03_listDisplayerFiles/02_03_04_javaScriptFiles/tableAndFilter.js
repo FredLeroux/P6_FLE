@@ -734,7 +734,9 @@ function getAllData(action, method) {
 
 function addGetAllDataToButton(locationId,action,method){
 	var button = document.getElementById(locationId);
-	button.setAttribute("onclick", "getAllData('"+action+"','"+method+"')");	
+	if(button!=null){
+	button.setAttribute("onclick", "getAllData('"+action+"','"+method+"')");
+	}
 }
 
 

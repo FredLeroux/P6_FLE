@@ -58,8 +58,9 @@ public class AppURI {
 		uri.append(request.getServerPort());
 		uri.append(request.getContextPath() + "/");
 		return uri.toString();
-
 	}
+	
+	
 
 	/**
 	 * 

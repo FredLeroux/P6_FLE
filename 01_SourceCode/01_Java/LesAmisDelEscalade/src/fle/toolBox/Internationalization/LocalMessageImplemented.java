@@ -13,8 +13,14 @@ public class LocalMessageImplemented implements LocalMessage {
 	private Internationalization inter = new Internationalization();
 	
 	@Override
-	public String message(String key) {		
-		return inter.messI18n(key, messageSource);
+	public String message(String key) {	
+		String localMessage =null;
+		try {
+		localMessage = inter.messI18n(key, messageSource);
+		} catch (Exception e) {
+			return key;
+		}
+		return localMessage;
 	}
 
 }

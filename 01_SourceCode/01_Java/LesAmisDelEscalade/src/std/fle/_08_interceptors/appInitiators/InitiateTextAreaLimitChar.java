@@ -6,13 +6,12 @@ import std.fle._03_sfc.climbingSiteSFC.ClimbingSiteCommentsSFC;
 
 public class InitiateTextAreaLimitChar {
 	
-	
+	private InputTextAreaGetLimit setLimit = new InputTextAreaGetLimit();
 	private ClimbingSiteCommentsSFC climbingSiteCommentsSFC = new ClimbingSiteCommentsSFC();
 	
 	
-	public void initiateSessionVars(SessionVariables sessVar) {
-		InputTextAreaGetLimit.textAreaAttributeNameAndLimitMap(climbingSiteCommentsSFC)		
-		.forEach((key, value) -> sessVar.addSessionVariable(key, value));
+	public void initiateSessionVars(SessionVariables sessVar) {		
+		setLimit.addTextAreaAttributeNameAndLimitMapToSession(climbingSiteCommentsSFC, sessVar);
 	}
 	
 

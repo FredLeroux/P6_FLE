@@ -25,8 +25,8 @@ import std.fle._03_sfc.climbingSiteSFC.ClimbingSiteDisplaySFC;
 import std.fle._03_sfc.climbingSiteSFC.ClimbingSiteSFC;
 import std.fle._03_sfc.climbingSiteSFC.RoutePitchSFC;
 import std.fle._03_sfc.climbingSiteSFC.SiteRoutesSFC;
-import std.fle._06_dao._06_01_daoInterface._06_01_01_assetsDao.ClimbingLevelsDAO;
-import std.fle._06_dao._06_01_daoInterface._06_01_01_assetsDao.CountiesDao;
+import std.fle._06_dao.climbingLevelsDao.ClimbingLevelsDAO;
+import std.fle._06_dao.countiesDao.CountiesDao;
 import std.fle._06_dao.statesDao.StatesDAO;
 
 @Repository
@@ -170,6 +170,12 @@ public class ClimbingSiteDAOImplemented implements ClimbingSiteDAO {
 	
 	@Override
 	public List<RoutePitchSFC> sortedRoutePitchsSFCWithCotationLevelAsString(List<RoutePitchSFC> list) {
+		ArrayList<RoutePitchSFC> listToConvert = new ArrayList<>(routePitchsSFCWithCotationLevelAsString(list)); 		
+		
+		return sorteRoutePitchList(listToConvert);
+	}
+	
+	private List<RoutePitchSFC> routePitchsSFCWithCotationLevelAsString(List<RoutePitchSFC> list){
 		ArrayList<RoutePitchSFC> listToConvert = new ArrayList<>(); 		
 		list.forEach(o -> listToConvert.add(convertedClimbingLevelSFCIdToCotation(o.getId(), o.getPitchNumber(), o.getPitchClimbingLevels())));
 		return listToConvert;

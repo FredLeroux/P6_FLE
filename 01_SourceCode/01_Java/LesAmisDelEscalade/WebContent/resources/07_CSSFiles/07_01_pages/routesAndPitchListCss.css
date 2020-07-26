@@ -1,0 +1,52 @@
+.pageSelectionGrid{
+	width: 25%;
+	margin: auto;
+	text-align: center;
+	text-shadow: 2px 1px 2px var(--shadow-color);
+	display: grid;
+	grid-template-columns: 20% 25% 10% 25% 20%;
+	grid-template-areas: 'prevPage currentPage separator totalPages nextPage';
+	color: var(--base-color-opposite);
+	border: 2px solid;
+	border-color:var(--base-color);	
+	border-radius: 20px;
+	margin: auto;	
+	background: linear-gradient(to bottom right, var(--base-color),var(--base-color-light),var(--base-color));
+	box-shadow: 5px 5px 5px var(--shadow-color); 
+	padding:1%;	
+}
+
+.prevPage{
+	grid-area: prevPage;
+}
+
+.currentPage{
+	grid-area: currentPage;
+}
+
+.separator{
+	grid-area: separator;	
+}
+
+.totalPages{
+	grid-area: totalPages;	
+}	
+	
+
+.nextPage{	
+	grid-area: nextPage;	
+}
+
+
+.prevPage,.nextPage,.currentPage,.separator,.totalPages{	
+	margin: auto;
+	font-weight: bold;
+	color: var(--base-color-opposite);
+	
+	}
+	
+.prevPage>i:hover , .nextPage>i:hover{
+	color: var(--hover-color1);
+	cursor: pointer;
+	}
+}
