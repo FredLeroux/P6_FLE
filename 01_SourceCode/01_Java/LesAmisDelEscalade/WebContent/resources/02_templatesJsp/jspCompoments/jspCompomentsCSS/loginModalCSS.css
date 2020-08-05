@@ -1,4 +1,4 @@
-@import	url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_01_appSkin.css");
+@import url("/LesAmisDelEscalade/resources/00_centralisation/cssFiles/appSkin.css");
 
 
 .modal {
@@ -13,9 +13,9 @@
 	background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal-content {	
+.modal-content {
 	margin: 20% auto;
-	width: 300px;
+	width: 15%;
 	height: 15%;
 }
 
@@ -32,10 +32,10 @@
 	position: relative;
 	grid-template-columns: 25% 25% 25% 25%;
 	grid-template-areas:'header header header close'
-		'error error error error' 
+		'error error error error'
 		'id inputId inputId inputId'
 		'passA inputPass inputPass inputPass'
-		'empty empty empty showPass' 
+		'empty empty empty showPass'
 		'log log log log'
 		'createAccount createAccount cancel cancel'
 		'forgot forgot forgot forgot';
@@ -51,7 +51,7 @@
 
 .empty{
 	grid-area:empty;
-	
+
 }
 
 .header {
@@ -95,7 +95,7 @@ a>label {
 }
 
 
-.close>label>i:hover{	
+.close>label>i:hover{
 	color:var(--bad-color);
 	border: none;
 }
@@ -103,7 +103,7 @@ a>label {
 .cancel>label:hover {
 	cursor: pointer;
 	color: var(--bad-color);
-	
+
 }
 
 .id {
@@ -193,7 +193,7 @@ input:focus {
 .log {
 	grid-area: log;
 	padding-top: 1px;
-	padding-bottom: 10px;	
+	padding-bottom: 10px;
 }
 
 .log>button {
@@ -202,7 +202,7 @@ input:focus {
 	color: var(--base-color-opposite);
 	font-size: 22.5px;
 	cursor: pointer;
-	background: none;	
+	background: none;
 	text-shadow: 2px 1px 2px black;
 }
 

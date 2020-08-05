@@ -9,7 +9,7 @@
 
 </head>
 <body>
-<%@ include file = "/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/updateMemberStatusTmplt.jsp" %>
+<%@ include file = "/resources/02_templatesJsp/formJsp/formFiles/updateMemberStatusTmplt.jsp" %>
 <div id ="href" style="display: none;">
 <springTags:message code = "option5.href"></springTags:message>
 </div>

@@ -6,6 +6,6 @@
 	</title>
 </head>
 <div>
-	<%@ include file="/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/displayTopoTmplt.jsp" %>
+	<%@ include file="/resources/02_templatesJsp/formJsp/formFiles/displayTopoTmplt.jsp" %>
 </div>
 <a href="../../callListBack" target="_parent">back</a>

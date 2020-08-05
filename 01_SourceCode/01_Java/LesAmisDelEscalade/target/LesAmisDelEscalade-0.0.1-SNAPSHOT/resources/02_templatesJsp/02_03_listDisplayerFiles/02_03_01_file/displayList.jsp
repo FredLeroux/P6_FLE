@@ -3,11 +3,11 @@
 	<link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/00_centralisation/00_01_cssFiles/library.css" />
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/02_templatesJsp/02_03_listDisplayerFiles/02_03_03_cssFiles/table.css" />
+	href="${pageContext.request.contextPath}/resources/02_templatesJsp/listDisplayerFiles/02_03_03_cssFiles/table.css" />
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/02_templatesJsp/02_03_listDisplayerFiles/02_03_03_cssFiles/dropdownFilter.css" />
+	href="${pageContext.request.contextPath}/resources/02_templatesJsp/listDisplayerFiles/02_03_03_cssFiles/dropdownFilter.css" />
 	<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/02_templatesJsp/02_03_listDisplayerFiles/02_03_03_cssFiles/button1.css" />
+	href="${pageContext.request.contextPath}/resources/02_templatesJsp/listDisplayerFiles/02_03_03_cssFiles/button1.css" />
 
 	
 
@@ -24,7 +24,7 @@
 <div id="filterList" class = "filterDisplay"></div>
 </div>
 
-<%@ include file="/resources/02_templatesJsp/02_03_listDisplayerFiles/02_03_02_components/pagination.jsp" %>
+<%@ include file="/resources/02_templatesJsp/listDisplayerFiles/02_03_02_components/pagination.jsp" %>
 <div id="dataTable" class="selectFilterMessage" ><springTag:message code="selectFilter.message"></springTag:message>
 <br>
 <button id="allData" class="allDataBtn"><springTag:message code="displayAll.message"/></button><br>
@@ -34,7 +34,7 @@
 <div id="anchorage" style = "display: none"></div>
 <input type="hidden" id="refreshed" value="no">
 <br><br>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/02_templatesJsp/02_03_listDisplayerFiles/02_03_04_javaScriptFiles/tableAndFilter.js" charset="UTF-8"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/02_templatesJsp/listDisplayerFiles/02_03_04_javaScriptFiles/tableAndFilter.js" charset="UTF-8"></script>
 <script type="text/javascript">
 
 var reload = ${reload};

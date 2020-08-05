@@ -5,7 +5,7 @@
 	<title>
 		<springTags:message code ="editCommentForm.title"/>
 	</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/07_01_pages/pageElmtCss.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/pageElmtCss.css" />
 </head>
 <div class="commentIframe">
 	<div class= cancelAndSupressGrid>
@@ -22,7 +22,7 @@
 	</div>
 	<br>
 	<div>
-		<%@ include file="/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/editCommentTmplt.jsp" %>
+		<%@ include file="/resources/02_templatesJsp/formJsp/formFiles/editCommentTmplt.jsp" %>
 	</div>	
 	<br>
 	<div class="commnentLog">
@@ -49,5 +49,4 @@
 		var iframes = commentLoc.getElementsByTagName("iframe");
 		iframes[0].src = "../04_listPage/listInListfrontViewAddObject";
 	}
-
 </script>

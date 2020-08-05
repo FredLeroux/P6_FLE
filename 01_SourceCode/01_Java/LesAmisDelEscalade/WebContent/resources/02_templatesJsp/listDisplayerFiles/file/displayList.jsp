@@ -1,12 +1,12 @@
 <%@ taglib uri ="http://www.springframework.org/tags" prefix="springTag" %>
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/00_centralisation/00_01_cssFiles/library.css" />
+	href="${pageContext.request.contextPath}/resources/00_centralisation/cssFiles/library.css" />
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/02_templatesJsp/02_03_listDisplayerFiles/02_03_03_cssFiles/table.css" />
+	href="${pageContext.request.contextPath}/resources/02_templatesJsp/listDisplayerFiles/cssFiles/table.css" />
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/02_templatesJsp/02_03_listDisplayerFiles/02_03_03_cssFiles/dropdownFilter.css" />
+	href="${pageContext.request.contextPath}/resources/02_templatesJsp/listDisplayerFiles/cssFiles/dropdownFilter.css" />
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/02_templatesJsp/02_03_listDisplayerFiles/02_03_03_cssFiles/filter.css" />
+	href="${pageContext.request.contextPath}/resources/02_templatesJsp/listDisplayerFiles/cssFiles/filter.css" />
 <div id = "filterAppliedList" class ="divDisplay">
 </div>
 <div id="clearBtn" class ="filterButton">
@@ -20,7 +20,7 @@
 	</div>
 </div>
 <div>
-	<%@ include file="/resources/02_templatesJsp/02_03_listDisplayerFiles/02_03_02_components/pagination.jsp" %>
+	<%@ include file="/resources/02_templatesJsp/listDisplayerFiles/components/pagination.jsp" %>
 </div>
 <div id="dataTable" class="selectFilterMessage" >
 	<springTag:message code="selectFilter.message"/>
@@ -34,7 +34,7 @@
 </div>
 <input type="hidden" id="refreshed" value="no">
 <br>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/02_templatesJsp/02_03_listDisplayerFiles/02_03_04_javaScriptFiles/tableAndFilter.js" charset="UTF-8"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/02_templatesJsp/listDisplayerFiles/javaScriptFiles/tableAndFilter.js" charset="UTF-8"></script>
 <script type="text/javascript">
 	var reload = ${reload};
 	var jspName = ${jspName};

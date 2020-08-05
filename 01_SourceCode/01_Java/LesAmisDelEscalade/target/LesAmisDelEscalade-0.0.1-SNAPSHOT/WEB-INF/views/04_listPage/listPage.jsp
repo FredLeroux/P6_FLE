@@ -5,7 +5,7 @@
 	<title>
 		<springTags:message code = "${listName}"/>
 	</title>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/07_01_pages/pageElmtCss.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/pageElmtCss.css" />
 </head>
 <div id="listUpPage"></div>
 <br>
@@ -15,7 +15,7 @@
 		<springTags:message code = "${listName}"/>
 	</div>
 </jstl:if>
-<%@ include file="/resources/02_templatesJsp/02_03_listDisplayerFiles/02_03_01_file/displayList.jsp" %>
+<%@ include file="/resources/02_templatesJsp/listDisplayerFiles/file/displayList.jsp" %>
 <br>
 <script type="text/javascript">
 	window.onload = function(){

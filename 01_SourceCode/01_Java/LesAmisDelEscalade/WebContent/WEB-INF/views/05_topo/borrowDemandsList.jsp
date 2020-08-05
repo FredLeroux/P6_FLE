@@ -5,7 +5,7 @@
 	<title>
 		<springTags:message code="borrowDemandList.title"/>
 	</title>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/07_01_pages/pageElmtCss.css" />	
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/pageElmtCss.css" />	
 </head>
 <div class="borrowDemandTableName">
 	<springTags:message code="borrowDemandTable.name"/>
@@ -60,7 +60,7 @@
 	</table>
 </jstl:if>
 <br>
-<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/02_01_03_02_loadModalJavaScript.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/loadModalJavaScript.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/ajaxUpdateByTimeInterval.js"></script>
 <script type="text/javascript">
 	var demmandLeft = ${borrowDemand}

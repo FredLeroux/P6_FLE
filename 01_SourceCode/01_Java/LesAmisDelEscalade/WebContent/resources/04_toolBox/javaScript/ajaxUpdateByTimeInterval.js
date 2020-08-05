@@ -6,17 +6,21 @@ function newAjaxUpdater() {
 	return this;
 }
 
-function launchUpdateInterval(intervalMs,toDisplayLocId,borrowDemandsNbLoc,controllerUrl,displayNotificationInputLoc) {
-	setInterval("updateBorrowDemand('"+toDisplayLocId+"','"+borrowDemandsNbLoc+"','"+controllerUrl+"','"+displayNotificationInputLoc+"')", intervalMs)
+function launchUpdateInterval(intervalMs,toDisplayLocId,borrowDemandsNbLoc,controllerUrl,displayNotificationInputLoc,connexionStatusLoc) {
+	setInterval("updateBorrowDemand('"+toDisplayLocId+"','"+borrowDemandsNbLoc+"','"+controllerUrl+"','"+connexionStatusLoc+"','"+displayNotificationInputLoc+"')", intervalMs)
 }
 
-function updateBorrowDemand(toDisplayLocId,borrowDemandsNbLoc,controllerUrl,displayNotificationInputLoc) {
+function updateBorrowDemand(toDisplayLocId,borrowDemandsNbLoc,controllerUrl,displayNotificationInputLoc,connexionStatusLoc) {
+	var connexionStatus = document.getElementById(connexionStatusLoc);
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			var obj = JSON.parse(this.responseText);
-			let i = obj.numberOfWaitingDemand;
-			getBorrowDemandElmt(borrowDemandsNbLoc).innerHTML = i;
+			var nbDemand = 0;
+			if(connexionStatus.value == "true"){
+				nbDemand = obj.numberOfWaitingDemand;
+			}
+			getBorrowDemandElmt(borrowDemandsNbLoc).innerHTML = nbDemand;
 			toggleDisplayFunctionNumberOfDemand(toDisplayLocId,borrowDemandsNbLoc,displayNotificationInputLoc)
 		}
 	};

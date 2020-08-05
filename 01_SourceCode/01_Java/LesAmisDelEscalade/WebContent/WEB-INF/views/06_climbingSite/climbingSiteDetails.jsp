@@ -5,10 +5,10 @@
 	<title>
 		<springTags:message code ="climbingSiteDetails.title"/>
 	</title>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/07_01_pages/climbingSiteDetailsCss.css" />	
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/07_01_pages/iframeSetCss.css" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/07_01_pages/commentScrollBarCss.css" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/07_01_pages/pageElmtCss.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/climbingSiteDetailsCss.css" />	
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/iframeSetCss.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/commentScrollBarCss.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/pageElmtCss.css" />
 </head>
 <button onclick= "window.parent.location ='../callListBack?listType=climbingSitesShow'" class="pageButtonNormal">
 	<springTags:message code ="back.name"/>
@@ -20,7 +20,7 @@
 		</div>
 		<br>
 		<div>
-			<%@ include file="/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/displaySiteTmplt.jsp" %>			
+			<%@ include file="/resources/02_templatesJsp/formJsp/formFiles/displaySiteTmplt.jsp" %>			
 		</div>
 	</div>	
 	<div class="zone2" id="route" >
@@ -28,7 +28,7 @@
 			<springTags:message code ="routesAndPitchsList.title"/>
 		</div>
 		<br>		
-		<jsp:include page="/WEB-INF/views/06_climbingSite/ClimbingSiteIframe/RoutesAndPitchList3.jsp"/>
+		<jsp:include page="/WEB-INF/views/06_climbingSite/ClimbingSiteIframe/RoutesAndPitchList.jsp"/>
 		<br>				
 	</div>	
 	<div class="titleZ3" >
@@ -47,9 +47,9 @@
 </div>
 <br>
 <input id ="src" type="hidden" value ="${pageContext.request.contextPath}${listCommentSrc}">
-<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/02_01_03_02_loadModalJavaScript.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/04_01_01_toggle.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/02_01_03_02_iFrameJavaScript.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/loadModalJavaScript.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/toggle.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/iFrameJavaScript.js"></script>
 <script type="text/javascript">
 	var iSrc = document.getElementById("src")
 	var iframe = newIframe("commentsList");

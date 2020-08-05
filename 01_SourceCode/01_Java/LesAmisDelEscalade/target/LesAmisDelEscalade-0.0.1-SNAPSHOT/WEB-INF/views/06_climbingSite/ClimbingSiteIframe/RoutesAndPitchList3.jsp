@@ -1,7 +1,7 @@
 <!-- AJAX USE -->
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "jstl" %>
 <%@ taglib uri ="http://www.springframework.org/tags" prefix ="springTags" %>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/07_01_pages/routesAndPitchListCss.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/routesAndPitchListCss.css"/>
 
 
 <div id ="pageNav" class="pageSelectionGrid"  ><!-- style="display:flex; justify-content: center;" -->

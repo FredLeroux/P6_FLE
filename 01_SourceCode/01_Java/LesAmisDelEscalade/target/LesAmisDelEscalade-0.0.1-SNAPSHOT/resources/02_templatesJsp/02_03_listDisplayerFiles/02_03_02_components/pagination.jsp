@@ -1,10 +1,10 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="springTag"%>
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/02_templatesJsp/02_03_listDisplayerFiles/02_03_03_cssFiles/pageAndResults.css" />
+	href="${pageContext.request.contextPath}/resources/02_templatesJsp/listDisplayerFiles/02_03_03_cssFiles/pageAndResults.css" />
 	
 
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/02_templatesJsp/02_03_listDisplayerFiles/02_03_04_javaScriptFiles/pageAndResultsMax.js"
+	src="${pageContext.request.contextPath}/resources/02_templatesJsp/listDisplayerFiles/02_03_04_javaScriptFiles/pageAndResultsMax.js"
 	charset="UTF-8"></script>
 <br>
 <div class="pageNavContainer" >

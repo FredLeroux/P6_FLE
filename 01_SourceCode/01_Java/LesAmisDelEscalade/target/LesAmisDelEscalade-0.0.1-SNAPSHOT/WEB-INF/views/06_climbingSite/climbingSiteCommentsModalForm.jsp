@@ -1,8 +1,8 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="springTags" %>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/07_CSSFiles/07_01_pages/modalPage.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/07_CSSFiles/07_01_pages/siteCommentModalCss.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/07_CSSFiles/pages/modalPage.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/07_CSSFiles/pages/siteCommentModalCss.css" />
 </head>
 <div id="siteCommentModal" class ="formModal" style="display: none;">
 	<div id="commentFormContainer" class = "commentModal-content" >

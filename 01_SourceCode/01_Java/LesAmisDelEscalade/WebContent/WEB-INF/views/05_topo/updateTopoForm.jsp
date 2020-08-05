@@ -4,7 +4,7 @@
 	<title>
 		<springTags:message code ="updateTopoForm.title"/>
 	</title>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/07_01_pages/pageElmtCss.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/pageElmtCss.css" />
 </head>
 <div>
 	<button onclick= "window.parent.location ='../callListBack?listType=toposMine'" class="pageButtonNormal">
@@ -14,14 +14,14 @@
 <div class="updateTopoFormPageTitle" >
 	<springTags:message code = "updateTopoForm.title"/>
 </div>
-<div class="deleteSiteButtonPositioning">
+<div class="deleteTopoButtonPositioning">
 	<button class="pageButtonWarning"  id="deletion" onclick="deletionConfirm('${deleteURL}','${confirmMessage}')">
 		<springTags:message code = "deleteTopo.name"/>
 	</button>
 </div>
 <br>
 <div>
-	<%@ include file="/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/updateTopoTmplt.jsp" %>
+	<%@ include file="/resources/02_templatesJsp/formJsp/formFiles/updateTopoTmplt.jsp" %>
 </div>
 <br>
 <script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/confirmAction.js"></script>

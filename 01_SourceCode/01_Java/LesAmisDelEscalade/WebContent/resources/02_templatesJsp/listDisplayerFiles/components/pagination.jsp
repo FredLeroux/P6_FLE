@@ -1,11 +1,8 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="springTag"%>
+<head>
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/02_templatesJsp/02_03_listDisplayerFiles/02_03_03_cssFiles/pageAndResults.css" />
-	
-
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/02_templatesJsp/02_03_listDisplayerFiles/02_03_04_javaScriptFiles/pageAndResultsMax.js"
-	charset="UTF-8"></script>
+	href="${pageContext.request.contextPath}/resources/02_templatesJsp/listDisplayerFiles/cssFiles/pageAndResults.css" />
+</head>
 <br>
 <div class="pageNavContainer" >
 <div class="resultsMax">
@@ -23,7 +20,10 @@
 	</div>
 </div>
 <br>
-	<script type="text/javascript">	
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/02_templatesJsp/listDisplayerFiles/javaScriptFiles/pageAndResultsMax.js"
+	charset="UTF-8"></script>
+<script type="text/javascript">	
 	var pageAndResults = setpageAndResultsMax()
 	var navigation = ${navigation};
 	var pageJump = ${pageJump}

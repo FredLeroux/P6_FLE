@@ -55,14 +55,14 @@
 	</div>
 </div>
 <input id="connexionStatus" type="hidden" value ="${sessionScope.logged}">
-<script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/04_01_01_toggle.js"></script>
-<script type="text/javascript" src="/LesAmisDelEscalade/resources/04_toolBox/04_01_javaScript/ajaxUpdateByTimeInterval.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/toggle.js"></script>
+<script type="text/javascript" src="/LesAmisDelEscalade/resources/04_toolBox/javaScript/ajaxUpdateByTimeInterval.js"></script>
 <script type="text/javascript">
 	var menuToggle = toggle();
 	menuToggle.addSwitchAndToggleDisplayOnClick("connexionStatus", "connexion",	"loginModal", "disconnect");
 	var updater = newAjaxUpdater();
-	updater.updateBorrowDemand("borrowInfoZone", "borrowDemandsNb", "05_topo/updateBorrow","displayNotification");	
-	updater.launchUpdateInterval(3000,"borrowInfoZone", "borrowDemandsNb", "05_topo/updateBorrow","displayNotification");	
+	updater.updateBorrowDemand("borrowInfoZone", "borrowDemandsNb", "05_topo/updateBorrow","displayNotification","connexionStatus");	
+	updater.launchUpdateInterval(3000,"borrowInfoZone", "borrowDemandsNb", "05_topo/updateBorrow","displayNotification","connexionStatus");	
 
 
 </script>

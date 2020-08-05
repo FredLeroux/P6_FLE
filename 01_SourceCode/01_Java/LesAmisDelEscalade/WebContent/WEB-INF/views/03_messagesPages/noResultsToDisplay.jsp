@@ -1,20 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="springTags"%>
-<!DOCTYPE html>
-<html>
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/07_01_pages/07_01_02_messagesCSS.css" />
-<title><springTags:message code ="noResultsToDisplay.title"></springTags:message></title>
+	<title>
+		<springTags:message code ="noResultsToDisplay.title"/>
+	</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/messagesCSS.css" />
 </head>
-<body>
 <div class = "messageContainer">
-<springTags:message code ="noResultToDisplay.title"></springTags:message><br>
-<br>
-<div class = "messageBodyCenterAlign">
-<springTags:message code ="noResultToDisplay.message"></springTags:message><br>
+	<springTags:message code ="noResultToDisplay.title"/>
+	<br>
+	<div class = "messageBodyCenterAlign">
+		<springTags:message code ="noResultToDisplay.message"/>
+	</div>
+	<br>
 </div>
-</div><br><br>
-</body>
-</html>
+<br>

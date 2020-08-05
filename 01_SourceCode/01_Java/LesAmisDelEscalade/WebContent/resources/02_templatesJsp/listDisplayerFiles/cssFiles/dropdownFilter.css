@@ -1,5 +1,4 @@
-@import
-	url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_01_appSkin.css");
+@import url("/LesAmisDelEscalade/resources/00_centralisation/cssFiles/appSkin.css");
 
 
 html, body {

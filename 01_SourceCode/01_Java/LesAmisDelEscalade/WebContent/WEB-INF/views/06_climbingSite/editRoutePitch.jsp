@@ -4,7 +4,7 @@
 	<title>
 		<springTags:message code = "editRoutePitch.title"/>
 	</title>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/07_01_pages/pageElmtCss.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/pageElmtCss.css" />
 </head>
 <div id="upEditPitch"></div>
 <br>
@@ -12,7 +12,7 @@
 	<springTags:message code = "editRoutePitch.title"/>
 </div>
 <div>
-	<%@ include file="/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/editRoutePitchTmplt.jsp" %>
+	<%@ include file="/resources/02_templatesJsp/formJsp/formFiles/editRoutePitchTmplt.jsp" %>
 </div>
 <div class="routeFormEndingButtonPositioning">
 	<button class="pageButtonNormal"  onclick="window.location.href='${cancelEditPitch}'">

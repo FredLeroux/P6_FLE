@@ -30,7 +30,7 @@
 <script type="text/javascript" src = "jspCompomentsJavaScript/02_01_03_01_menuNavBarJavaScript.js">
 
 </script>
-<script type="text/javascript" src="toolBoxJavaScript/04_01_01_toggle.js"></script>
+<script type="text/javascript" src="toolBoxJavaScript/toggle.js"></script>
 <script type="text/javascript">
 //var option4 = ${option4};
 //var adminCode = ${adminHide};

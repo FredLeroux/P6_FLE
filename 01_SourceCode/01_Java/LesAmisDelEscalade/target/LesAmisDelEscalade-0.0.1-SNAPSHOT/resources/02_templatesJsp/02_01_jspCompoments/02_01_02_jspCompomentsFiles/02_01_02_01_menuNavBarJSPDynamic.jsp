@@ -59,8 +59,8 @@
 </div>
 </div>
 <div id="connexionStatus" style="display: none;">${sessionScope.logged}</div>
-<script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/04_01_01_toggle.js"></script>
-<script type="text/javascript" src="/LesAmisDelEscalade/resources/04_toolBox/04_01_javaScript/ajaxUpdateByTimeInterval.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/toggle.js"></script>
+<script type="text/javascript" src="/LesAmisDelEscalade/resources/04_toolBox/javaScript/ajaxUpdateByTimeInterval.js"></script>
 <script type="text/javascript">
 	var menuToggle = toggle();
 	menuToggle.addSwitchAndToggleDisplayOnClick("connexionStatus", "connexion",	"loginModal", "disconnect");

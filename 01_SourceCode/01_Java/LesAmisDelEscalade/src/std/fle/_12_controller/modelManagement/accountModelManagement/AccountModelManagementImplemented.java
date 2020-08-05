@@ -41,13 +41,13 @@ public class AccountModelManagementImplemented implements AccountModelManagement
 	@Autowired
 	private UserUpdateService userUpdate;
 
-	
+
 	@Autowired
 	private UsersAccountInfoService account;
-	
+
 	@Autowired
 	private DeleteConfirmationManager deletion;
-	
+
 
 	private SessionVariables sessVar = new SessionVariables();
 
@@ -56,7 +56,7 @@ public class AccountModelManagementImplemented implements AccountModelManagement
 		sessVar.setRequest(request);
 		model.setViewName("02_AccountManagement/userFormUpdate");
 		model.addObject("userManagement", userUpdate.getById(sessVar.getAccountID()));
-		deletion.addURLAndMessage(model, "deleteAccount", "deleteConfirmationAsk.message");
+		deletion.addURLAndMessage(model, "deleteAccount", "deleteAccountConfirmationAsk.message");
 		select.addSelectListsAndValues(userUpdate.getById(sessVar.getAccountID()), model);
 		return model;
 	}
@@ -76,10 +76,10 @@ public class AccountModelManagementImplemented implements AccountModelManagement
 		mail.sendActivationLink(userSFC.getUsersInfoSFC().getEmail(),request);
 		return new ModelAndView("redirect:/accountCreated");
 	}
-	
+
 	@Override
 	public ModelAndView displayMemeberStatus(ModelAndView model,String modelAttributeName,Integer id) {
-		model.setViewName("02_AccountManagement/UserFormUpdateMemberStatus");		
+		model.setViewName("02_AccountManagement/UserFormUpdateMemberStatus");
 		model.addObject(modelAttributeName,usersAccountInfoService.getUserAccountInfoMemberStatusById(id));
 		select.addSelectListsAndValues(usersAccountInfoService.getUserAccountInfoMemberStatusById(id), model);
 		return model;

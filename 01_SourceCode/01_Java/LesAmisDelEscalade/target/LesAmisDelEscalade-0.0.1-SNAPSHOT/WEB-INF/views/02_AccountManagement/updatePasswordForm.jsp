@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/07_01_pages/07_01_02_messagesCSS.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/messagesCSS.css" />
 <style>
 body{
 visibility: hidden;
@@ -23,15 +23,15 @@ visibility: hidden;
 <div class = "messageTitleMitaMita"><springTags:message code ="modifcationPasswordTitle.message"></springTags:message></div>
 <div id="passForm" class = "messageBodyCenterAlign">
 <div class = "errorMessage">${wrongPass}</div><br>
-<%@ include file = "/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/updatePassFormTmplt.jsp" %></div><br>
+<%@ include file = "/resources/02_templatesJsp/formJsp/formFiles/updatePassFormTmplt.jsp" %></div><br>
 <div class = "linkContainer">
 <label class = "link" onclick="changeParentLocation('${pageContext.request.contextPath}/index.html')" ><springTags:message code ="backHome.message"></springTags:message></label>
 </div>
 </div>
 <br>
-<script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/04_01_02_link.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/04_01_01_toggle.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/02_01_03_02_loadModalJavaScript.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/link.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/toggle.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/loadModalJavaScript.js"></script>
 <script type="text/javascript">
 		window.onload = function displayWhenReady() {
 	//Allow to display page only when all elements are ready needs style body visibility="hidden"

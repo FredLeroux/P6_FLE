@@ -38,7 +38,7 @@ public class UsersAccountInfoPassResetSFC extends SFC {
 	private String password;
 
 	public Integer getGhost() {
-		return ghost;		
+		return ghost;
 	}
 
 	public void setGhost(Integer ghost) {

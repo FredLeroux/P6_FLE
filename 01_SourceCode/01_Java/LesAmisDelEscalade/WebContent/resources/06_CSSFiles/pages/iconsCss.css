@@ -1,5 +1,5 @@
 @import
-	url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_01_appSkin.css");
+	url("@import url("/LesAmisDelEscalade/resources/00_centralisation/cssFiles/appSkin.css"););
 
 
 .iconBasisSize{

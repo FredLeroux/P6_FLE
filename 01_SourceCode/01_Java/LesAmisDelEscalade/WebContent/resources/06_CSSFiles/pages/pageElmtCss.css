@@ -1,5 +1,5 @@
 @import
-	url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_01_appSkin.css")
+	url("@import url("/LesAmisDelEscalade/resources/00_centralisation/cssFiles/appSkin.css");)
 	;
 
 .commentListContainer {
@@ -12,7 +12,7 @@
 	box-shadow: 5px 5px 5px var(--shadow-color);
 }
 
-.pageButtonNormal, .pageButtonWarning {
+.pageButtonNormal, .pageButtonWarning,.pageButtonMitaMita {
 	font-family: menu-font;
 	font-size: 1.2vw;
 	color: var(--base-color-opposite);
@@ -31,7 +31,12 @@
 		var(--base-color), var(--bad-color));
 }
 
-.pageButtonNormal:hover, .pageButtonWarning:hover {
+.pageButtonMitaMita {
+	background: linear-gradient(to bottom right, var(--mita-mita-color),
+		var(--base-color), var(--mita-mita-color));
+}
+
+.pageButtonNormal:hover, .pageButtonWarning:hover,.pageButtonMitaMita:hover {
 	cursor: pointer;
 	color: var(--hover-color1);
 }
@@ -64,7 +69,7 @@
 	.sitePitchFormPageTitle, .routePitchEditFormPageTitle,
 	.editRoutesSiteFormPageTitle, .listPageTitle, .updateSiteFormPageTitle,
 	.displayTopoFormPageTitle, .updateTopoFormPageTitle,
-	.createTopoFormPageTitle, .memberStatusFormPageTitle {
+	.createTopoFormPageTitle, .memberStatusFormPageTitle,.userFormUpdatePageTitle,.userFormRegisterPageTitle {
 	font-size: 1.2vw;
 	font-family: header-font;
 	color: var(--base-color-opposite);
@@ -76,7 +81,7 @@
 	.sitePitchFormPageTitle, .routePitchEditFormPageTitle,
 	.editRoutesSiteFormPageTitle, .listPageTitle, .updateSiteFormPageTitle,
 	.displayTopoFormPageTitle, .updateTopoFormPageTitle,
-	.createTopoFormPageTitle, .memberStatusFormPageTitle {
+	.createTopoFormPageTitle, .memberStatusFormPageTitle,.userFormUpdatePageTitle,.userFormRegisterPageTitle {
 	text-decoration: underline overline;
 }
 
@@ -85,7 +90,7 @@
 	.routePitchEditFormPageTitle, .editRoutesSiteFormPageTitle,
 	.listPageTitle, .borrowDemandTableName, .updateSiteFormPageTitle,
 	.displayTopoFormPageTitle, .updateTopoFormPageTitle,
-	.createTopoFormPageTitle, .memberStatusFormPageTitle {
+	.createTopoFormPageTitle, .memberStatusFormPageTitle,.userFormUpdatePageTitle,.userFormRegisterPageTitle {
 	text-align: right;
 	width: 90%;
 	margin: auto;
@@ -227,11 +232,30 @@
 }
 
 .routeFormEndingButtonPositioning, .routeAndPitchFormHead,
-	.deleteSiteButtonPositioning {
+	.deleteSiteButtonPositioning,.deleteTopoButtonPositioning {
 	text-align: right;
 	width: 60%;
 	margin: auto;
 }
+
+.editAccountButtonGrid{
+	display: grid;
+	grid-template-columns: auto;
+	grid-template-areas: 'passModifButtonPositioning deleteAccountButtonPositioning';
+	width: 60%;
+	margin:auto;
+}
+
+.passModifButtonPositioning{
+	grid-area: passModifButtonPositioning;
+	text-align: left;
+}
+
+.deleteAccountButtonPositioning{
+	grid-area: deleteAccountButtonPositioning;
+	text-align: right;
+}
+
 
 .routeAndPitchFormHead table {
 	table-layout: auto;

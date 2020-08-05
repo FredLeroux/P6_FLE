@@ -6,17 +6,18 @@
 	<entry key="user1.name">Sécurité Les Amis de l'Escalade</entry>
 	<entry key="notificationBorrow.name">Les Amis de l'Escalade Notifiation</entry>
 	<entry key="accountCreation.subject">Création de compte</entry>
-	<entry key="accountCreation.message">Ton compte n'attends plus qu une petite activation click sur le lien ci-dessous</entry>	
+	<entry key="accountCreation.message">Ton compte n'attends plus qu une petite activation click sur le lien ci-dessous</entry>
 	<entry key="accountLocked.subject">Compte bloqué</entry>
 	<entry key="accountLocked.message">Activité suspecte détectée, compte vérouillé, réinitialisation de mot de passe via le lien ci-dessous</entry>
 	<entry key="forgotPass.subject">kit "je sais plus"</entry>
 	<entry key="forgotPass.login">L'identifiant associé à cette adresse e-mail est : </entry>
 	<entry key="forgotPassOnlyLogin.message">Voici ton identifiant: </entry>
-	<entry key="forgotPassOnlyLogin.message">Ci-dessous un lien direct vers le site.</entry>
+	<entry key="forgotPassOnlyLogin.message">Ci-dessous un lien direct vers le site :</entry>
 	<entry key="forgotPass.body">Suite à la perte de ton mot de passe et comme demandé, tu trouveras ci-dessous un lien de réinitialisation de celui-ci
 	(attention action obligatoire ou ton compte reste verrouiller)</entry>
-	<entry key="borrowingDemand.subject">Demande d'emprunt pour un Topo</entry>	
-	<entry key="borrowingDemand.message"> à fais une demande d'emprunt pour l'un de tes topos, tu peux accepté ou refusé celle-ci via le site :</entry>	
+	<entry key="forgotPass.message">Ci-dessous un lien de réinitialisation :</entry>
+	<entry key="borrowingDemand.subject">Demande d'emprunt pour un Topo</entry>
+	<entry key="borrowingDemand.message"> à fais une demande d'emprunt pour l'un de tes topos, tu peux accepté ou refusé celle-ci via le site :</entry>
 	<entry key="borrowingDemandAccepted.subject">Demande d'emprunt acceptée</entry>
 	<entry key="borrowingDemandConfirmation.subject">Demande d'emprunt effectuée</entry>
 	<entry key="borrowingDemandConfirmation.message">Demande d'emprunt effectuée pour le topo : </entry>

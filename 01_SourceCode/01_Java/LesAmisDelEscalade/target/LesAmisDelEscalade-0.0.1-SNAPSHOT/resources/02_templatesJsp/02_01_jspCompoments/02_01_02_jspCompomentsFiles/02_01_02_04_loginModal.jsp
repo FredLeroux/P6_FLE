@@ -50,8 +50,8 @@
 		</form>
 	</div>
 </div>
-<script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/04_01_01_toggle.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/02_01_03_02_iFrameJavaScript.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/toggle.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/iFrameJavaScript.js"></script>
 <script type="text/javascript">
 	var logToggle = toggle();		
 	logToggle.addToggleDisplayOnClickAndClearError("cancel", "loginModal", "error","pass","visibility");

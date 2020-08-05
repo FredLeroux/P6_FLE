@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file="/resources/02_templatesJsp/02_03_listDisplayerFiles/02_03_01_file/displayList.jsp" %>
+<%@ include file="/resources/02_templatesJsp/listDisplayerFiles/file/displayList.jsp" %>
 </body>
 </html>

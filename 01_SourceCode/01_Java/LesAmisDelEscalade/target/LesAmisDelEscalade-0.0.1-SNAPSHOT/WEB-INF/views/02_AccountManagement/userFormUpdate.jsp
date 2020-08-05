@@ -15,9 +15,9 @@ visibility: hidden;
 <button id="deletion" onclick="deletionConfirmApplyURLToParent('${deleteURL}','${confirmMessage}')"><springTags:message code ="deleteAccount.name"/></button>
 <a class="formBecarefull"  href = "passwordModification"><springTags:message code="passwordModification.name"></springTags:message></a>
 <div id = "updateFormular">
-<%@ include file = "/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/userUpdateForm.jsp" %>
+<%@ include file = "/resources/02_templatesJsp/formJsp/formFiles/userUpdateForm.jsp" %>
 </div> 
-<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/02_01_03_02_loadModalJavaScript.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/loadModalJavaScript.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/confirmAction.js"></script>
 <script type="text/javascript">
 window.onload = function displayWhenReady() {

@@ -133,12 +133,10 @@ public class HomeController {
 
 	@GetMapping(value = "/unlockMyAccount")
 	public ModelAndView unlockMyAccount(ModelAndView model,HttpServletRequest request) {
-
 		model.addObject("iFrameSource", "'02_AccountManagement/resetCompromisedPassword'");
 		model.addObject("iFrameLoc","'pagesViewer'");
 		model.addObject("forgot",request.getAttribute("forgot"));
 		model.setViewName("forward:/navbar");
-
 		return model;
 	}
 
@@ -158,12 +156,6 @@ public class HomeController {
 		return model;
 	}
 
-/*	@GetMapping(value = "/errorNotException")
-	public ModelAndView errorNotException(ModelAndView model) {
-		model.setViewName("03_messagesPages/errorsPage");
-		return model;
-	}
-*/
 	@GetMapping(value = { "/internalError","/errorNotException"})
 	public ModelAndView internalError(ModelAndView model) {
 		model.setViewName("03_messagesPages/errorsPage");

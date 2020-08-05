@@ -11,6 +11,6 @@
 	</div>	
   </div>
   <div class="fullHeaderRow2">
- <%@ include file ="/resources/02_templatesJsp/02_01_jspCompoments/02_01_02_jspCompomentsFiles/02_01_02_01_menuNavBarJSPDynamic.jsp" %>
+ <%@ include file ="/resources/02_templatesJsp/jspCompoments/jspCompomentsFiles/02_01_02_01_menuNavBarJSPDynamic.jsp" %>
 </div>
 </div>
