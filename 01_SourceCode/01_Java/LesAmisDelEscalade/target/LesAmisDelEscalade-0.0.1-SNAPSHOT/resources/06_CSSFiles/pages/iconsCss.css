@@ -1,0 +1,35 @@
+@import
+	url("@import url("/LesAmisDelEscalade/resources/00_centralisation/cssFiles/appSkin.css"););
+
+
+.iconBasisSize{
+	font-size: 3vw;
+}
+
+.iconExclamationBackground,.iconExclamationBasis,.iconExclamationSmaller,.iconExclamationBasisBlue,.iconExclamationSmallerBlue{
+	text-align:center;
+	background-image: linear-gradient(#fff,#fff);
+  	background-repeat: no-repeat;
+  	background-size: 6% 50%;
+  	background-position: center;
+}
+
+
+.iconExclamationBasis,.iconExclamationBasisBlue{
+	font-size:8vw;
+}
+
+.iconExclamationSmaller,.iconExclamationSmallerBlue{
+	font-size:4vw;
+
+}
+
+.iconExclamationBasisBlue,.iconExclamationSmallerBlue{
+	color: blue;
+
+}
+
+@media all and (max-width: 900px){
+	.iconExclamationBackground,.iconExclamationBasis,.iconExclamationSmaller,.iconExclamationBasisBlue,.iconExclamationSmallerBlue{
+	background-size: 0% 0%;
+}

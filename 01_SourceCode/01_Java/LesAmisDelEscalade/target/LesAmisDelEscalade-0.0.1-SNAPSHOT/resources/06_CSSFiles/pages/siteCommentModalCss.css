@@ -1,0 +1,194 @@
+@import
+	url("@import url("/LesAmisDelEscalade/resources/00_centralisation/cssFiles/appSkin.css"););
+
+
+
+textarea {
+	font-family:menu-font;
+	font-size: 1vw;
+	resize: none;
+	width: 95%;
+	height: 100%;
+	border: solid var(--base-color);
+	border-radius: 15px;
+	padding: 2%;
+}
+
+
+
+.commentModal-content,.commentNotAllowedModal-content {
+	color:var(--base-color-opposite);
+	background: linear-gradient(to bottom right, var(--base-color),
+		rgba(32, 95, 126, 1), var(--base-color));
+	font-family:menu-font;
+	font-size: 1vw;
+	text-shadow: 2px 1px 2px black;
+	margin: 20% auto;
+	border: solid var(--base-color);
+	border-radius:20px;
+	padding:0.5%;
+	box-shadow: 5px 5px 10px var(--shadow-color);
+		
+}
+
+.commentModal-content{
+	width: 25%;
+}
+
+.commentNotAllowedModal-content{
+	width: 30%;	
+}
+
+
+.commentModalGrid {
+	background: transparent;
+	display: grid;
+	grid-gap: 2px;
+	grid-template-columns: 50% 50%;
+	grid-template-rows: auto auto auto ;
+	grid-template-areas: 
+	'charCounter closeComment' 
+	'textAreaZone textAreaZone'
+	'submitBtn submitBtn';
+}
+
+.commentNotAllowedModalGrid {
+	display: grid;
+	grid-gap: 2px;
+	grid-template-areas: 
+	'commentNotAllowed2 commentNotAllowed1' 
+	'commentNotAllowed3 commentNotAllowed3'
+	'commentNotAllowed4 commentNotAllowed4';
+}
+
+.commentNormalCSS{
+	
+}
+
+.charLimitNormalCss{
+	
+}
+
+.commentBadCSS{
+	color: var(--bad-color);
+	font-style: italic
+}
+
+.charLimitBadCSS{
+	padding: 5px;
+	color: var(--bad-color);
+	font-style: italic
+}
+
+
+.charCounter {
+	grid-area: charCounter;	 
+	padding-top: 5px;
+	padding-left: 5px;	
+}
+
+
+
+.closeComment {
+	grid-area: closeComment;
+	text-align:right;
+	padding-right: 5px;
+	padding-top:5px;
+}
+
+.closeComment i:hover{
+	color: var(--bad-color);
+	cursor: pointer;
+}
+
+.textAreaZone {
+	grid-area: textAreaZone;	
+	text-align: center;
+	
+}
+
+.submitBtn {	
+	grid-area: submitBtn;
+	text-align: center;
+
+}
+
+.sendButton,.commentNotAllowed4 button{
+	font-family: menu-font;
+	font-size:1.2vw;
+	color:var(--base-color-opposite);
+	background: linear-gradient(to bottom right, var(--base-color),rgba(32, 95, 126, 1),var(--base-color));
+	border: solid 2px var(--base-color) ;
+	border-radius: 20px;
+	padding-left:0.25%;
+	padding-right:0.25%;
+	text-shadow: 2px 1px 2px black;
+	box-shadow: 5px 5px 5px var(--shadow-color);
+	margin: 2%;
+}
+
+.sendButton {	
+	width:70%;	
+}
+
+.sendButton:hover,.commentNotAllowed4 button:hover{
+	cursor: pointer;
+	color: var(--hover-color1);
+}
+
+.commentNotAllowed1{
+	grid-area: commentNotAllowed1;
+	text-align: right;	
+	padding-top: 5px;
+	padding-right: 5px;
+}
+
+.commentNotAllowed1>i:hover{	
+	color: var(--bad-color);
+	cursor: pointer;
+}
+
+.commentNotAllowed2{
+	grid-area: commentNotAllowed2;
+	font-size: 3vw;
+	text-align: left;
+}
+
+.commentNotAllowed3{
+	grid-area: commentNotAllowed3;
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.4vw;
+}
+
+.commentNotAllowed4{
+	grid-area: commentNotAllowed4;	
+	text-align: center;
+}
+
+.commentNotAllowed4>a{
+	color: var(--base-color);
+	font-weight: normal; 
+}
+
+.commentNotAllowed4>a:hover{
+	color: var(--highlith-color);
+	font-weight: bold;	
+}
+
+@media all and (max-width: 900px){
+	.commentModal-content,.commentNotAllowedModal-content{
+		margin: 50% auto;
+		z-index: 10;
+		border-radius:15px;
+		padding-left:1%;
+		padding-right:3%;
+		width:50%;
+		font-size: 2vw;
+		
+	}
+	
+	.sendButton {
+	font-size:2vw;
+	
+}

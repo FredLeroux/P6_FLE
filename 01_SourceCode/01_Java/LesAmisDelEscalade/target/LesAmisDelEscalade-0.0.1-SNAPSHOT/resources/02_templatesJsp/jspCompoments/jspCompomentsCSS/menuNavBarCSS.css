@@ -1,0 +1,214 @@
+@import url("/LesAmisDelEscalade/resources/00_centralisation/cssFiles/appSkin.css");
+
+
+
+
+.menuBar{
+	height:100%;
+	width: 98%;
+	background: linear-gradient(to bottom right, var(--base-color),var(--base-color-light),var(--base-color));;
+	border: solid var(--base-color);
+	border-radius:20px;
+	color:var(--base-color-opposite);
+	font-family: menu-font;
+	font-weight: bold;
+	font-size: 1.4vw;
+	text-shadow: 2px 1px 2px var(--shadow-color);
+	box-shadow: 5px 5px 5px var(--shadow-color);
+	margin: auto;
+
+
+}
+
+
+
+
+.firstLign{
+	align-content: center;
+	height:95%;
+	border-radius:20px;
+	display: grid;
+	grid-template-columns: 5% 25% 60% 10%;
+	grid-template-areas:'menu hail borrow logIn';
+
+
+}
+
+.menu{
+	grid-area:menu;
+}
+
+
+.hail{
+	grid-area:hail;
+}
+
+.borrow {
+	grid-area:borrow;
+	text-align: left;
+}
+
+.borrow button{
+	font-family: menu-font;
+	font-weight: bold;
+	font-size: 1.2vw;
+	color:var(--base-color-opposite);
+	background: transparent;
+	border: none;
+	text-shadow: 2px 1px 2px var(--shadow-color);
+
+}
+
+.borrow button:hover{
+	cursor: pointer;
+	color:var(--hover-color1);
+	box-shadow: 5px 5px 5px var(--shadow-color);
+}
+
+.logIn{
+	grid-area:logIn;
+}
+
+.greetings{
+	text-align: justify;
+}
+
+.containerConnexion {
+	text-align: right;
+	padding-right: 1vw;
+
+}
+
+
+.connexion,.identifiedAs,.pseudo,.borrow {
+	text-decoration: none;
+	font-size: 1.5vw;
+	font-family: header-font;
+
+}
+.connexion,.identifiedAs,.borrow{
+color: var(--menu-text-color);
+}
+
+.pseudo{
+	text-align: center;
+	color:var(--highlith-color);
+}
+
+.connexion:hover{
+	color: var(--menu-text-hover-color);
+}
+
+.menuDrop{
+	text-align: left;
+	padding-left: 1vw;
+	position: relative;
+
+
+
+}
+
+.menuDrop:hover{
+	color:var(--hover-color1);
+}
+
+.menuDrop:hover> i{
+	transform: rotate(90deg);
+}
+
+
+
+.menuDrop:hover .list{
+	display: block;
+
+}
+
+.list {
+	background: linear-gradient(to bottom right, var(--base-color),var(--base-color-light-light));
+	position: absolute;
+	display:none;
+	z-index: 1;
+	list-style-type: none;
+	overflow: hidden;
+	margin:auto;
+	margin-left: -10%;
+	width: 600%;
+	padding: 20%;
+	border:solid;
+	border-width: medium;
+	border-style:inset;
+	border-color: var(--base-color-opposite);
+	border-radius: 20px;
+	box-shadow: 5px 5px 10px var(--base-color);
+}
+
+
+
+.list li {
+	z-index: 4;
+
+	}
+
+
+.list li a {
+	display:block; /*allow to apply width property otherwise width property is no taked in account*/
+	cursor: pointer;
+	color: var(--menu-text-color);
+	text-decoration: none;
+	width: 100%;
+}
+
+.menuNavBarIcon{
+	display:inline-block;
+	padding:0.5%;
+	width: 10%;
+}
+
+.list li:hover a {
+	color: var(--menu-text-hover-color);
+	box-shadow: 5px 5px 10px var(--shadow-color);
+}
+
+
+
+.list li:hover a .menuNavBarIcon{
+	text-shadow: 2px 1px 1px var(--hover-color1);
+}
+
+
+
+
+
+@media all and (max-width: 1400px) {
+	.list>li a, .connexion {
+		font-size: 1.4vw;
+	}
+	.list>li a:hover, .connexion {
+		font-size: 1.4vw;
+	}
+}
+
+@media all and (max-width: 900px) {
+
+	.list{
+		border--radius: 10px;
+	}
+
+	.list>li {
+		margin-left: 2%;
+		float: none;
+		display: list-item;
+	}
+
+	.list>li a {
+		font-size: 2vw;
+
+	}
+
+	.list>li a:hover {
+		font-size: 2vw;
+		background-color: var(--menu-border-hover-color);
+	}
+
+
+}

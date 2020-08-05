@@ -1,0 +1,282 @@
+@import
+	url("@import url("/LesAmisDelEscalade/resources/00_centralisation/cssFiles/appSkin.css");)
+	;
+
+.commentListContainer {
+	background: linear-gradient(to bottom right, var(--base-color),
+		rgba(32, 95, 126, 1), var(--base-color));
+	border-radius: 20px;
+	border: solid;
+	border-color: var(--base-color);
+	text-shadow: 2px 1px 2px var(--shadow-color);
+	box-shadow: 5px 5px 5px var(--shadow-color);
+}
+
+.pageButtonNormal, .pageButtonWarning,.pageButtonMitaMita {
+	font-family: menu-font;
+	font-size: 1.2vw;
+	color: var(--base-color-opposite);
+	background: linear-gradient(to bottom right, var(--base-color),
+		rgba(32, 95, 126, 1), var(--base-color));
+	border: solid 2px var(--base-color);
+	border-radius: 20px;
+	padding-left: 0.25%;
+	padding-right: 0.25%;
+	text-shadow: 2px 1px 2px black;
+	box-shadow: 5px 5px 5px var(--shadow-color);
+}
+
+.pageButtonWarning {
+	background: linear-gradient(to bottom right, var(--bad-color),
+		var(--base-color), var(--bad-color));
+}
+
+.pageButtonMitaMita {
+	background: linear-gradient(to bottom right, var(--mita-mita-color),
+		var(--base-color), var(--mita-mita-color));
+}
+
+.pageButtonNormal:hover, .pageButtonWarning:hover,.pageButtonMitaMita:hover {
+	cursor: pointer;
+	color: var(--hover-color1);
+}
+
+.cancelAndSupressGrid {
+	display: grid;
+	width: 95%;
+	margin: auto;
+	grid-template-columns: 50% 50%;
+	grid-template-areas: 'cancelComment supressComment';
+}
+
+.cancelComment {
+	grid-area: cancelComment;
+	text-align: left;
+}
+
+.supressComment {
+	grid-area: supressComment;
+	text-align: right;
+}
+
+.commnentLog {
+	width: 90%;
+}
+
+.commentLogTitle, .commentLogPreviousMessage, .borrowDemandTableName,
+	.emptyBorrowList, .routesListTitle, .pitchsListTitle,
+	.siteRoutesFormPageTitle, .createNewSiteFormPageTitle,
+	.sitePitchFormPageTitle, .routePitchEditFormPageTitle,
+	.editRoutesSiteFormPageTitle, .listPageTitle, .updateSiteFormPageTitle,
+	.displayTopoFormPageTitle, .updateTopoFormPageTitle,
+	.createTopoFormPageTitle, .memberStatusFormPageTitle,.userFormUpdatePageTitle,.userFormRegisterPageTitle {
+	font-size: 1.2vw;
+	font-family: header-font;
+	color: var(--base-color-opposite);
+	text-shadow: 1px 2px 1px var(--shadow-color);
+}
+
+.commentLogTitle, .borrowDemandTableName, .routesListTitle,
+	.pitchsListTitle, .siteRoutesFormPageTitle, .createNewSiteFormPageTitle,
+	.sitePitchFormPageTitle, .routePitchEditFormPageTitle,
+	.editRoutesSiteFormPageTitle, .listPageTitle, .updateSiteFormPageTitle,
+	.displayTopoFormPageTitle, .updateTopoFormPageTitle,
+	.createTopoFormPageTitle, .memberStatusFormPageTitle,.userFormUpdatePageTitle,.userFormRegisterPageTitle {
+	text-decoration: underline overline;
+}
+
+.routesListTitle, .pitchsListTitle, .siteRoutesFormPageTitle,
+	.createNewSiteFormPageTitle, .sitePitchFormPageTitle,
+	.routePitchEditFormPageTitle, .editRoutesSiteFormPageTitle,
+	.listPageTitle, .borrowDemandTableName, .updateSiteFormPageTitle,
+	.displayTopoFormPageTitle, .updateTopoFormPageTitle,
+	.createTopoFormPageTitle, .memberStatusFormPageTitle,.userFormUpdatePageTitle,.userFormRegisterPageTitle {
+	text-align: right;
+	width: 90%;
+	margin: auto;
+}
+
+.commentLogPreviousMessage {
+	font-size: 1vw;
+	font-style: italic;
+}
+
+.emptyBorrowList {
+	text-align: center;
+	font-family: menu-font;
+	font-size: 1.4vw;
+	background: linear-gradient(to bottom right, var(--base-color),
+		rgba(32, 95, 126, 1), var(--base-color));
+	border: solid 2px var(--base-color);
+	border-radius: 20px;
+	padding-left: 0.25%;
+	padding-right: 0.25%;
+	text-shadow: 2px 1px 2px black;
+	box-shadow: 5px 5px 5px var(--shadow-color);
+	width: 50%;
+	margin: auto;
+}
+
+.emptyBorrowListIconExclamation {
+	font-size: 2vw;
+	text-align: left;
+	padding: 0.5%;
+}
+
+.tableStyle0, .tableStyle1 {
+	border: 2px solid;
+	border-color: var(--base-color);
+	width: 40%;
+	border-radius: 20px;
+	margin: auto;
+	background: linear-gradient(to bottom right, var(--base-color),
+		var(--base-color-light), var(--base-color));
+	box-shadow: 5px 5px 5px var(--shadow-color);
+	text-shadow: 1px 2px 1px var(--shadow-color);
+	padding: 1%;
+}
+
+.tableStyle1 {
+	font-family: menu-font;
+	color: var(--base-color-opposite);
+	width: 60%;
+	font-size: 1.2vw;
+	padding: 0.5em;
+}
+
+.tableStyle1>tbody>tr:hover {
+	box-shadow: 5px 5px 5px var(--shadow-color);
+}
+
+}
+.tableStyle0>thead>tr:first-child th:first-child {
+	border-top-left-radius: 20px;
+}
+
+.tableStyle0>thead>tr:first-child th:last-child {
+	border-top-right-radius: 20px;
+}
+
+.tableStyle0 tr:last-child td:first-child {
+	border-bottom-left-radius: 20px;
+}
+
+.tableStyle0 tr:last-child td:last-child {
+	border-bottom-right-radius: 20px;
+}
+
+.tableStyle0>thead>tr>th {
+	font-size: 1.2vw;
+	font-family: menu-font;
+	padding-right: 0.5%;
+	color: var(--base-color-opposite);
+	text-align: right;
+	font-weight: bold;
+}
+
+.tableStyle0>thead>tr>th>a, .linkInTable, .trash {
+	text-decoration: none;
+	color: var(--hover-color1);
+}
+
+.trash {
+	color: var(--bad-color);
+}
+
+.trash:hover {
+	color: var(--hover-color1);
+}
+
+.tableStyle0>thead>tr>th>a:hover, .linkInTable:hover {
+	color: var(--highlith-color);
+}
+
+.tableStyle0>tbody>tr>td {
+	font-size: 1vw;
+	font-family: menu-font;
+	padding-right: 1%;
+	width: 5%;
+	color: var(--hover-color1);
+	text-align: right;
+	text-shadow: 1px 2px 1px var(--shadow-color);
+}
+
+.tableStyle0>tbody>tr:hover>td {
+	color: var(--highlith-color);
+	cursor: pointer;
+	text-shadow: 1px 2px 1px var(--shadow-color);
+}
+
+.borrowerChoice {
+	text-align: center;
+	color: blue;
+	background-color: red;
+}
+
+.borrowDemandAccept, .borrowDemandReject {
+	text-decoration: none;
+	margin: auto;
+}
+
+.borrowDemandAccept {
+	color: var(--highlith-color);
+}
+
+.borrowDemandReject {
+	color: var(--bad-color);
+}
+
+.borrowDemandAccept:hover, .borrowDemandReject:hover {
+	color: var(--hover-color1);
+	cursor: pointer;
+}
+
+.routeFormEndingButtonPositioning, .routeAndPitchFormHead,
+	.deleteSiteButtonPositioning,.deleteTopoButtonPositioning {
+	text-align: right;
+	width: 60%;
+	margin: auto;
+}
+
+.editAccountButtonGrid{
+	display: grid;
+	grid-template-columns: auto;
+	grid-template-areas: 'passModifButtonPositioning deleteAccountButtonPositioning';
+	width: 60%;
+	margin:auto;
+}
+
+.passModifButtonPositioning{
+	grid-area: passModifButtonPositioning;
+	text-align: left;
+}
+
+.deleteAccountButtonPositioning{
+	grid-area: deleteAccountButtonPositioning;
+	text-align: right;
+}
+
+
+.routeAndPitchFormHead table {
+	table-layout: auto;
+	margin: auto;
+	text-align: left;
+	color: var(--base-color-opposite);
+	font-family: header-font;
+	font-size: 1.4vw;
+	text-shadow: 2px 1px 2px var(--shadow-color);
+}
+
+.routeAndPitchFormHead table>tbody>tr>td {
+	color: var(--highlith-color);
+	padding-left: 1em;
+}
+
+@media all and (max-width: 900px) {
+	.commentLogTitle, .commentLogPreviousMessage {
+		font-size: 2vw;
+	}
+	.cancelComment button, .supressComment button {
+		font-size: 2vw;
+	}
+}

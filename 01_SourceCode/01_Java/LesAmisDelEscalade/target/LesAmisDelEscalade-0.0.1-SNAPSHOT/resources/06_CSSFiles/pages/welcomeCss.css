@@ -1,0 +1,12 @@
+@import url("/LesAmisDelEscalade/resources/00_centralisation/cssFiles/appSkin.css");
+
+.welcomeFormatting{
+	color : var(--base-color);
+	text-align: center;
+	font-size: 10vw;
+	font-family: header-font;
+	background: linear-gradient(to bottom right, var(--base-color),rgba(32, 95, 126, 1),var(--base-color));
+ 	-webkit-background-clip: text;
+ 	-webkit-text-fill-color: transparent;
+ 	 -webkit-filter: drop-shadow(1px 2px var(--base-color));
+}

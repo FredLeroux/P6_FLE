@@ -1,0 +1,184 @@
+@import url("/LesAmisDelEscalade/resources/00_centralisation/cssFiles/appSkin.css");
+
+
+.pageNavContainer{
+	border: solid 2px var(--base-color);
+	width: 35%;
+	margin: auto;
+	border-radius: 20px;
+	background: linear-gradient(to bottom right, var(--base-color),rgba(32, 95, 126, 1),var(--base-color));
+	box-shadow: 5px 5px 5px var(--shadow-color);
+	text-shadow: 2px 1px 2px var(--shadow-color);
+
+
+}
+
+
+
+.pagesList, .resultsMax {
+	position: relative;
+	padding: 0.5%;
+	font-family: cursive;
+	text-align: center;
+	color: var(--base-color-opposite);
+	padding: 0.5%;
+}
+
+.container {
+	display: inline-block;
+	position: relative;
+	cursor: pointer;
+	user-select: none;
+	padding-left: 3%;
+	padding-right: 1%;
+}
+
+.container:hover {
+	color: var(--hover-color1);
+	text-shadow: 2px 1px 2px var(--shadow-color);
+}
+
+.container input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.checkmark {
+	position: absolute;
+	top: 0.5vw;
+	left: 0;
+	height: 0.5vw;
+	width: 0.5vw;
+	border-radius: 50%;
+	border-style: solid;
+	border-width: thin;
+	border-color: var(--hover-color1);
+	background-color:var(--hover-color1);
+}
+
+
+.container:hover input ~ .checkmark {
+	border-color: var(--base-color);
+}
+
+.container input:checked ~ .checkmark {
+	border-color: var(--base-color-opposite);
+	background: var(--base-color-opposite);
+}
+
+.pagesList>div>a:link, .pagesList a:link {
+	color: var(--base-color-opposite);
+	text-decoration: none;
+}
+
+.pagesList>div>a:visited, .pagesList a:visited {
+	color: var(--base-color-opposite);
+	text-decoration: none;
+}
+
+.pagesList>div>a:hover, .pagesList a:hover {
+	color:var(--hover-color1);
+}
+
+.pagesList>div>a:active, .pagesList a:active {
+	color: var(--base-color) ;
+}
+.pagesList>div>a.selected {
+	color: var(--hover-color1);
+	font-weight: bolder;
+	font-style: oblique;
+	text-shadow: 2px 2px 2px var(--shadow-color);
+}
+
+.grid-area {
+	font-size: 1vw;
+	display: grid;
+	width: 15%;
+	min-width: 250px;
+	margin: auto;
+	grid-gap: 5px;
+	grid-template-columns: 5% 5% 5% 70% 5% 5% 5%;
+	grid-template-areas:
+		'previousPlusPlusZone previousPlusZone previousZone pageZone nextZone nextPlusZone nextPlusPlusZone'
+}
+
+.previousPlusPlusZone, .previousPlusZone, .previousZone, .nextZone,
+	.nextPlusZone, .nextPlusPlusZone {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: none;
+}
+
+.previousZone, .nextZone {
+	font-size: 75%;
+}
+
+.previousPlusZone, .nextPlusZone {
+	font-size: 100%;
+}
+
+.previousPlusPlusZone, .nextPlusPlusZone {
+	font-size: 125%;
+}
+
+.previousPlusPlusZone {
+	grid-area: previousPlusPlusZone;
+}
+
+.previousPlusZone {
+	grid-area: previousPlusZone;
+}
+
+.previousZone {
+	grid-area: previousZone;
+}
+
+.pageZone {
+	min-width: 50%;
+	grid-area: pageZone;
+	text-align: center;
+}
+
+.nextZone {
+	grid-area: nextZone;
+}
+
+.nextPlusZone {
+	grid-area: nextPlusZone;
+}
+
+.nextPlusPlusZone {
+	grid-area: nextPlusPlusZone;
+}
+
+.resultsMax{
+	text-align: center;
+	position:relative;
+	font-size: 1vw;
+}
+
+
+@media screen and (max-width:900px) {
+	.resultsMax, .grid-area {
+		font-size: 2vw;
+	}
+
+	.grid-area{
+		min-width: 100px;
+
+	}
+
+	.pageNavContainer {
+		width: 80%;
+	}
+	.container {
+		margin: auto;
+		padding-left: 2%;
+		padding-right: 2%;
+	}
+	.checkmark {
+		margin-top: 0.75vw;
+	}}

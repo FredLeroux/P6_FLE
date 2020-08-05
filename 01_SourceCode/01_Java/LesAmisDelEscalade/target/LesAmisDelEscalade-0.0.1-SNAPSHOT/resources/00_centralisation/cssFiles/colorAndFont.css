@@ -1,0 +1,32 @@
+
+
+@import url("https://use.fontawesome.com/releases/v5.9.0/css/all.css");
+
+@font-face {
+  font-family: menu-font;
+  src: url("/LesAmisDelEscalade/resources/00_centralisation/fonts/handlee-Regular.ttf");
+}
+@font-face {
+  font-family: header-font;
+  src: url("/LesAmisDelEscalade/resources/00_centralisation/fonts/lobster-Regular.ttf") format("truetype");
+}
+
+:root{
+
+	--base-color: rgb(17,36,45);
+	--base-color-light: rgba(28, 82, 109, 1);
+	--base-color-light-light:rgba(66, 140, 174);
+	--base-color-opposite : darkOrange;
+	--mita-mita-color: OrangeRed;
+	--bad-color : FireBrick;
+	--hover-color1 : white;
+	--text-shadow-lvl1 : orange;
+	--text-shadow-lvl2 : darkOrange;
+	--highlith-color: SeaGreen;
+	--info-color:MidnightBlue;
+	--border-emphasis: #1D1F20;
+	--shadow-color:black;
+
+
+
+}
