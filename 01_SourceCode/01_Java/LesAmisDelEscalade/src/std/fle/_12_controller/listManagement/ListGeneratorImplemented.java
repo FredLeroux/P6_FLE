@@ -65,8 +65,8 @@ public class ListGeneratorImplemented implements ListGenerator {
 	}
 
 	@Override
-	public LinkedHashMap<String, Object> getTopoSLOsLoggedOwnerExcludedList(HttpServletRequest request) {
-		return map(topoSLOsLoggedOwnerExcluded(request), topoListSLO, "borrowMe");
+	public LinkedHashMap<String, Object> getTopoSLOsLoggedOwnerExcludedList(HttpServletRequest request,String listType) {
+		return map(topoSLOsLoggedOwnerExcluded(request),"toposList.name", topoListSLO, "borrowMe",listType);
 	}
 
 	private List<TopoListSLO> topoSLOsLoggedOwnerExcluded(HttpServletRequest request) {
@@ -74,15 +74,15 @@ public class ListGeneratorImplemented implements ListGenerator {
 	}
 
 	@Override
-	public LinkedHashMap<String, Object> getTopoSLOList() {
-		return map(topoSLOs(), topoListSLO, "borrowMe");
+	public LinkedHashMap<String, Object> getTopoSLOList(String listType) {
+		return map(topoSLOs(),"toposList.name", topoListSLO, "borrowMe",listType);
 	}
 
 	@Override
 	public List<TopoListSLO> topoSLOs() {
 		return topoListService.getAllTopoList();
 	}
-		
+
 
 	private String getLoggedUserPseudo(HttpServletRequest request) {
 		sessVar.setRequest(request);
@@ -95,58 +95,60 @@ public class ListGeneratorImplemented implements ListGenerator {
 	}
 
 	@Override
-	public LinkedHashMap<String, Object> getMembersList() {
+	public LinkedHashMap<String, Object> getMembersList(String listType) {
 		List<MembersListSLO> list = new ArrayList<>(membersList());
 		list.removeIf(o -> o.getPseudonyme().equals(config.getProperty("admin.pseudo")));
-		return map(list, members, "memberDetails");
+		return map(list,"membersList.name", members, "memberDetails",listType);
 	}
 
 	@Override
-	public LinkedHashMap<String, Object> getClimbingSiteListShow() {
-		return climbingSiteListGeneric("climbingSiteDetails");
+	public LinkedHashMap<String, Object> getClimbingSiteListShow(String listType) {
+		return climbingSiteListGeneric("climbingSiteDetails",listType);
 	}
 
 	@Override
-	public LinkedHashMap<String, Object> getClimbingSiteListEdit() {
-		return climbingSiteListGeneric("climbingSiteEdit");
+	public LinkedHashMap<String, Object> getClimbingSiteListEdit(String listType) {
+		return climbingSiteListGeneric("climbingSiteEdit",listType);
 	}
 
-	private LinkedHashMap<String, Object> climbingSiteListGeneric(String editControllerURI) {
+	private LinkedHashMap<String, Object> climbingSiteListGeneric(String editControllerURI,String listType) {
 		List<ClimbingSiteSLO> list = new ArrayList<>(climbingSiteSLOs());
-		return map(list, climbingSiteSLO, editControllerURI);
+		return map(list,"climbingSiteList.name", climbingSiteSLO, editControllerURI,listType);
 	}
 
 	@Override
-	public LinkedHashMap<String, Object> getclimbingSiteCommentsSLOList(Integer id, HttpServletRequest request) {
+	public LinkedHashMap<String, Object> getclimbingSiteCommentsSLOList(Integer id, HttpServletRequest request,String listType) {
 		sessVar.setRequest(request);
 		String editComment = sessVar.getSecurityLevel() < SecurityLevel.USER.rank() ? "commentEdit" : "none";
-		return map(climbingSiteCommentsSLOs(id), climbingSiteCommentsSLO, editComment);
+		return map(climbingSiteCommentsSLOs(id),"climbingSiteCommentList.name", climbingSiteCommentsSLO, editComment,listType);
 	}
-	
+
 	@Override
-	public LinkedHashMap<String, Object> getTopoMineSLOList(HttpServletRequest request) {		
-		return map(topoMines(request), topoMineListSLO, "editTopo");
+	public LinkedHashMap<String, Object> getTopoMineSLOList(HttpServletRequest request,String listType) {
+		return map(topoMines(request),"myTopoList.name", topoMineListSLO, "editTopo",listType);
 	}
-	
-	
+
+
 	@Override
 	public List<TopoMineListSLO> topoMines(HttpServletRequest request){
 		return topoListService.getMineTopo(getLoggedUserAccountId(request));
 	}
-	
+
 	private Integer getLoggedUserAccountId(HttpServletRequest request) {
 		sessVar.setRequest(request);
 		return sessVar.getAccountID();
 	}
 
-	private LinkedHashMap<String, Object> map(List<?> list, Object clazz, String editControllerURI) {
+	private LinkedHashMap<String, Object> map(List<?> list,String listName, Object clazz, String editControllerURI,String listType) {
 		LinkedHashMap<String, Object> map = new LinkedHashMap<>();
 		map.put("list", list);
+		map.put("listName", listName);
 		map.put("class", clazz);
 		map.put("editControllerURI", editControllerURI);
+		map.put("listType", listType);
 		return map;
 	}
 
-	
+
 
 }

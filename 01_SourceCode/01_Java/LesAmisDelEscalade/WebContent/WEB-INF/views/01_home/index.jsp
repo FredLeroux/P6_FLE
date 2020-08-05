@@ -4,6 +4,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/07_01_pages/indexCss.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/07_01_pages/iframeSetCss.css" />
 <title>Les Amis de l'escalade</title>
 </head>
 <body  id="budy" class="ladeIndex"  >

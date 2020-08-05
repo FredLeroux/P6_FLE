@@ -57,11 +57,10 @@ public class TopoModelManagementImplemented implements TopoModelManagement {
 	private LocalMessage local;
 
 	@Autowired
-	private DeleteConfirmationManager deletion;
+	private DeleteConfirmationManager deleteTopo;
 
 	private SessionVariables sessVar = new SessionVariables();
 	private Integer climbingTopoId = null;
-	private Integer demandId = null;
 
 	@Override
 	public ModelAndView manageDisplayCreateNewTopoForm(ModelAndView model, ClimbingTopoSFC climbingTopoSFC) {
@@ -94,7 +93,7 @@ public class TopoModelManagementImplemented implements TopoModelManagement {
 			ClimbingTopoSFC climbingTopoSFC) {
 		model.setViewName("05_topo/updateTopoForm");
 		model.addObject(modelAttributeName, topoService.getClimbingTopoSFC(climbingTopoId));
-		deletion.addURLAndMessage(model, "deleteTopo", "deleteConfirmationAsk.message");
+		deleteTopo.addURLAndMessage(model, "deleteTopo", "deleteTopoConfirmationAsk.message");
 		selectFieldManager.addSelectListsAndValues(topoService.getClimbingTopoSFC(climbingTopoId), model);
 		return model;
 	}
@@ -157,11 +156,11 @@ public class TopoModelManagementImplemented implements TopoModelManagement {
 
 	@Override
 	public Integer numberOfWaitingBorrowDemand() {
-		return waitingBorrowDemandList().size();
+			return waitingBorrowDemandList().size();
 	}
 
 	/**
-	 * 
+	 *
 	 * @return only logged user waiting borrow demand list
 	 */
 	private List<TopoBorrowSLO> waitingBorrowDemandList() {
@@ -177,7 +176,6 @@ public class TopoModelManagementImplemented implements TopoModelManagement {
 
 	@Override
 	public ModelAndView manageSeeDemand() {
-		demandId = topoLendingIdOnRequest();
 		return new ModelAndView("05_topo/acceptOrNot");
 
 	}
@@ -223,7 +221,7 @@ public class TopoModelManagementImplemented implements TopoModelManagement {
 		} else {
 			model.setViewName("03_messagesPages/accesDenied");
 		}
-		waitAsyncReady(2);
+		waitAsyncReady(1/10);
 							/*
 							 * No choice than wait causse some issues on Async mail sometime send to wrong
 							 * person some time not send at all, this 2 sec wait allow to solve this issue

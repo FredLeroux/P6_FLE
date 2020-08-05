@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 var isDisplayed = false;
 
@@ -18,7 +18,7 @@ function toggleDisplay(elementId) {
 }
 
 /**
- * 
+ *
  * @param elementId
  * @allows to display or hide an element plus set the boolean "isDisplayed" to
  *         true if displayed , false if not
@@ -63,7 +63,7 @@ function clearError(errorLoc) {
 }
 
 /**
- * 
+ *
  * @param statusId
  *            is the status to check in order to switch the onclick command
  * @param ownerId
@@ -79,7 +79,7 @@ function addSwitchAndToggleDisplayOnClick(statusId, ownerId, elementToToggleId,
 		newHrefValue) {
 	var element = document.getElementById(ownerId);
 	var status = document.getElementById(statusId);
-	if (status.textContent === "true") {
+		if (status.value=="true") {
 		element.setAttribute("onclick", "href('" + newHrefValue + "')")
 	} else {
 		element.setAttribute("onclick", "toggleDisplay('" + elementToToggleId
@@ -92,7 +92,7 @@ function href(loc) {
 }
 
 /**
- * 
+ *
  * @param onclickOwnerElementId
  *            the element onclick function owner
  * @param toggleDisplayElementId
@@ -117,7 +117,7 @@ function addToggleDisplayAndColorOnclick(onclickOwnerElementId,
 			+ invertColorSet + "')");
 }
 /**
- * 
+ *
  * @param elementToCheckEmptyness
  * @param elementToToggleDisplay
  * @returns check if the elementToCheckEmptyness is empty if false the display
@@ -133,7 +133,7 @@ function displayOnError(elementToCheckEmptyness, elementToToggleDisplay) {
 }
 
 /**
- * 
+ *
  * @param elementId iframe parent element to toggle display
  * @apiNote allow to toggle display an iframe parent element
  */

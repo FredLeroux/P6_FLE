@@ -8,7 +8,7 @@ input, select, textarea {
 	-ms-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	
+
 }
 
  select{
@@ -18,7 +18,7 @@ input, select, textarea {
 @
 supports (-ms-ime-align:auto ) { .selector {input ,select,textarea{
 	box-sizing:border-box;
-	
+
 }
 
 
@@ -36,18 +36,18 @@ background: linear-gradient(to bottom right, var(--base-color),
 	border-color: var(--base-color);
 	text-shadow: 2px 1px 2px var(--shadow-color);
 	box-shadow: 5px 5px 5px var(--shadow-color);
-	padding: 2%;
+	padding: 0.5%;
 	}
 
 
 .tableForm {
 	width: 60%;
-	min-width: 360px;	
+	min-width: 360px;
 	margin: auto;
-	
+
 }
 
-.tableForm2 {	
+.tableForm2 {
 	width: 98%;
 	margin: auto;
 	}
@@ -150,7 +150,7 @@ option {
 	margin: 2%;
 }
 
-.formButton:hover {	
+.formButton:hover {
 	color: var(--hover-color1);
 	cursor:pointer;
 }
@@ -170,7 +170,7 @@ option {
 }
 
 .limitCharSpanForm1 {
-	
+
 }
 
 tr:hover .inputStyle {
@@ -196,8 +196,8 @@ tr:hover span{
 }
 
 @media all and (max-width: 790px) {
-	
-	.tableForm2{		
+
+	.tableForm2{
 		border-radius: 10px;
 	}
 	.tdForm2 {

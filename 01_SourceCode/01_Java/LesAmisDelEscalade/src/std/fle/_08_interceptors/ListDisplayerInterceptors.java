@@ -23,23 +23,24 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 
 	@Autowired
 	ListGenerator listGenerator;
-	
-	//TODO 0-00 Implement empty list error with jsp no noResultToDisplay to add to message controller and home 
-	
-	
-	
-	
+
+	//TODO 0-00 Implement empty list error with jsp no noResultToDisplay to add to message controller and home
+
+
+
+
 	private final String membersListType = "members";
 	private final String climbingSiteShowListType = "climbingSitesShow";
 	private final String climbingSiteEditListType = "climbingSitesEdit";
 	private final String climbingSiteCommentsListType = "climbingSitesComments";
 	private final String toposListType = "topos";
 	private final String toposMineListType = "toposMine";
+	private final String listInListController = "/04_listPage/listInListPage";
 	private final String forbiddenMessageURI = "/03_messagesPages/accesDenied";
 	private final String emptyListMessageURI = "/03_messagesPages/noResultsToDisplay";
 	private String listInitiate =null;
 	private String siteIdForComment = null;
-	
+
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -48,32 +49,32 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 		LinkedHashMap<String, Object> map = new LinkedHashMap<>();
 		if (listType != null) {
 			listInitiate = listType;
-		}
-		
-		if (ismembersListType(listInitiate)) {
+		}if (ismembersListType(listInitiate)) {
 			if (granting.toAdmin()) {
-				map= listGenerator.getMembersList();
-			} else {				
+				map= listGenerator.getMembersList(listInitiate);
+			} else {
 				redirectToForbiddenMessage(request,response);
 				return false;
 			}
 		}
 		else if(isClimbingSiteShowType(listInitiate)) {
-			map=listGenerator.getClimbingSiteListShow();
+			map=listGenerator.getClimbingSiteListShow(listInitiate);
 		}
 		else if(isClimbingSiteEditType(listInitiate)) {
-			map=listGenerator.getClimbingSiteListEdit();
+			map=listGenerator.getClimbingSiteListEdit(listInitiate);
 		}
-		else if(isClimbingSiteCommentsType(listInitiate)) {		
-			map=listGenerator.getclimbingSiteCommentsSLOList(getId(request),request);			
-		}		
+		else if(isClimbingSiteCommentsType(listInitiate)) {
+			LinkedHashMap<String, Object> mapComment = new LinkedHashMap<>();
+			mapComment=listGenerator.getclimbingSiteCommentsSLOList(getId(request),request,listInitiate);
+			redirectToListInListController(request, response, mapComment);
+			return false;
+		}
 		else if(isToposListType(listInitiate)) {
-			map = listGenerator.getTopoSLOsLoggedOwnerExcludedList(request);
+			map = listGenerator.getTopoSLOsLoggedOwnerExcludedList(request,listInitiate);
 		}
 		else if(isToposMineListType(listInitiate)) {
-			map = listGenerator.getTopoMineSLOList(request);
+			map = listGenerator.getTopoMineSLOList(request,listInitiate);
 		}
-		
 		if(isListEmpty(map)) {
 			redirectToNoResultsMessage(request,response);
 			return false;
@@ -85,41 +86,47 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 	private boolean ismembersListType(String listType) {
 		return membersListType.equals(listType);
 	}
-	
+
 	private boolean isClimbingSiteShowType(String listType) {
 		return climbingSiteShowListType.equals(listType);
 	}
-	
+
 	private boolean isClimbingSiteEditType(String listType) {
 		return climbingSiteEditListType.equals(listType);
 	}
-	
+
 	private boolean isClimbingSiteCommentsType(String listType) {
 		return climbingSiteCommentsListType.equals(listType);
 	}
-	
+
 	private boolean isToposListType(String listType) {
 		return toposListType.equals(listType);
 	}
-	
+
 	private boolean isToposMineListType(String listType) {
 		return toposMineListType.equals(listType);
 	}
-	
+
 	private boolean isListEmpty(LinkedHashMap<String, Object> map) {
-		List<?> list = (List<?>) map.get("list");		
-		return list.isEmpty(); 
+		List<?> list = (List<?>) map.get("list");
+		return list.isEmpty();
+	}
+
+
+	private void redirectToListInListController(HttpServletRequest request,HttpServletResponse response,LinkedHashMap<String, Object> map) {
+		request.setAttribute("map", map);
+		dispatch(request,response, listInListController);
 	}
 
 	private void redirectToForbiddenMessage(HttpServletRequest request,HttpServletResponse response) {
-		dispatch(request,response, forbiddenMessageURI);	
+		dispatch(request,response, forbiddenMessageURI);
 	}
-	
+
 	private void redirectToNoResultsMessage(HttpServletRequest request,HttpServletResponse response) {
-		dispatch(request,response, emptyListMessageURI);	
+		dispatch(request,response, emptyListMessageURI);
 	}
-	
-	
+
+
 
 	private void dispatch(HttpServletRequest request,HttpServletResponse response, String redirectURL) {
 		RequestDispatcher dispatcher;
@@ -129,18 +136,17 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 		} catch (ServletException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
 	}
-	
+
 	private Integer getId(HttpServletRequest request) {
 		Integer id = null;
 		if(request.getParameter("id") == null) {
 			id =FredParser.toInteger(siteIdForComment);  ;
 		}else {
 			siteIdForComment = request.getParameter("id");
-			id= FredParser.toInteger(siteIdForComment);			
-		}	
+			id= FredParser.toInteger(siteIdForComment);
+		}
 		return id;
 	}
-
 }

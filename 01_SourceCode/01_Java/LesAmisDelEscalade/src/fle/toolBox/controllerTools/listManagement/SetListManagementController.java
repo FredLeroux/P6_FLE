@@ -4,16 +4,16 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.servlet.ModelAndView;
 
-import fle.toolBox.dataListDisplayerTools.displayer.DataListDisplay;
+import fle.toolBox.controllerTools.listManagement.dataListDisplayerTools.displayer.DataListDisplay;
 
 /**
- * 
+ *
  * @author Frederic Leroux <br>
  *
  * to be used with templates Jsp displayList and pagination
  * to be implemented with DataListDisplay interface setted with controllerConfig method;
  * each handler have to be in web.xml
- * 
+ *
  * @advise set the following <br>
  * private final String jspFolderName = "";<br>
 	private final String getMappingFolderName = "/" + jspFolderName + "/";<br>
@@ -24,19 +24,17 @@ import fle.toolBox.dataListDisplayerTools.displayer.DataListDisplay;
 	private final String rowsDisplayedHandlerName = "";<br>
 	private final String selectPageHandlerName = "";<br>
 	private final String orderListHandlerName = "";<br>
- * 
+ *
  */
 public interface SetListManagementController {
-	//
-	
-	
-	public DataListDisplay controllerConfig();
 
-	
+
+	public DataListDisplay listControllerConfig();
+
 	/**
 	 * @required GetMapping annotation with value set as follow <br>
 	 * value = "/jspFolder(if needed)/jspName"
-	 * 
+	 *
 	 */
 	public ModelAndView initiatePage(ModelAndView model,HttpServletRequest request);
 	/**
@@ -48,7 +46,7 @@ public interface SetListManagementController {
 	 * @required GetMapping annotation with value set as follow <br>
 	 * value = "/jspFolder(if needed)/frontViewAddObjectHandlerName"
 	 */
-	public ModelAndView frontViewAddObject();	
+	public ModelAndView frontViewAddObject();
 	/**
 	 * @required GetMapping annotation with value set as follow <br>
 	 * value = "/jspFolder(if needed)/sortListHandlerName"
@@ -69,5 +67,9 @@ public interface SetListManagementController {
 	 * value = "/jspFolder(if needed)/orderListHandlerName"
 	 */
 	public ModelAndView orderedPage();
-	
+
+
+
+
+
 }

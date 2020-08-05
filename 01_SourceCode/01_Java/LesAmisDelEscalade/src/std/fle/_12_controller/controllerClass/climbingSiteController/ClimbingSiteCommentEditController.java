@@ -16,7 +16,7 @@ import std.fle._12_controller.modelManagement.climbingSiteCommentsManagement.Cli
 
 @Controller
 public class ClimbingSiteCommentEditController {
-	
+
 	@Autowired
 	ClimbingSiteCommentsModelManagement manager;
 
@@ -24,18 +24,18 @@ public class ClimbingSiteCommentEditController {
 	public ModelAndView initVar(ModelAndView model,@PathVariable Integer id) {
 		return manager.manageInitVar(model, id, "06_climbingSite/displayComment");
 	}
-	
+
 	@GetMapping(value= "/06_climbingSite/displayComment")
 	public ModelAndView displayCommentEditor(ModelAndView model,
 			@ModelAttribute(value = "climbingSiteComment") ClimbingSiteCommentsSFC climbingSiteCommentsSFC) {
 		return manager.manageDisplayCommentEditor(model, "climbingSiteComment" );
 	}
-			
+
 	@PostMapping(value="/06_climbingSite/updateComment")
 	public ModelAndView updateComments(ModelAndView model,@ModelAttribute(value = "climbingSiteComment") @Validated ClimbingSiteCommentsSFC climbingSiteCommentsSFC,BindingResult result) {
 		return manager.manageUpdateComment(model, climbingSiteCommentsSFC,"climbingSiteComment",result);
 	}
-	
+
 	@GetMapping(value ="/06_climbingSite/deleteComment")
 	public ModelAndView deleteComment(ModelAndView model,ClimbingSiteCommentsSFC climbingSiteCommentsSFC) {
 		return manager.manageDeleteComment(model, climbingSiteCommentsSFC);

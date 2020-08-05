@@ -1,7 +1,5 @@
 package std.fle._09_mailCreation;
 
-import java.util.concurrent.TimeUnit;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -234,7 +232,7 @@ public class MailCreatorImplemented implements MailCreator {
 		String url = uri.fullContextPathURINotStatic(request);
 		while (url.contains("null") || url.contains("-1")) {
 			url = uri.fullContextPathURINotStatic(request);
-			System.out.println("loop while on urlBuilder ");
+			//TODO logger Here
 		}
 		return url;
 	}

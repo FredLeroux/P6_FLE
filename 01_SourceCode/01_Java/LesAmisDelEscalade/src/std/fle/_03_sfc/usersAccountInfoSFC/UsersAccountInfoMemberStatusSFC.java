@@ -6,7 +6,7 @@ import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import fle.toolBox.classType.SFC;
-import fle.toolBox.dataListDisplayerTools.annotations.ToTranslate;
+import fle.toolBox.controllerTools.listManagement.dataListDisplayerTools.annotations.ToTranslate;
 import fle.toolBox.springFormManager.annotations.HiddenPath;
 import fle.toolBox.springFormManager.annotations.ReadOnlyInput;
 import fle.toolBox.springFormManager.annotations.SelectInputType;
@@ -23,11 +23,11 @@ import std.fle._01_entity.assetsEnum.AccountRank;
 		submitButtonMessagePropertyKey = "userFormBtn.message.memberStatus",
 		jspFilePath = "updateMemberStatusForm.path",
 		labelMessageSourceSuffix = "userForm.label",
-		
-		
+
+
 		readOnly = false)
 public class UsersAccountInfoMemberStatusSFC extends SFC {
-	
+
 	@HiddenPath
 	private Integer id;
 	@ReadOnlyInput
@@ -35,19 +35,18 @@ public class UsersAccountInfoMemberStatusSFC extends SFC {
 	@ReadOnlyInput
 	private String lastName;
 	@ReadOnlyInput
-	private String pseudonyme;		
+	private String pseudonyme;
 	@ReadOnlyInput
 	@DateTimeFormat(pattern = "dd  MMMM  yyyy")
 	private Date signUpDate;
-	//@SelectInputType(enumClass = BooleanValue.class,messageSourceSuffix = ".isMember", selectListName = "statusList", selectValueName = "statusValue")
-	@ToTranslate(suffix = ".isMember")	
+	@ToTranslate(suffix = ".isMember")
 	@ReadOnlyInput
 	private String member;
 	@SelectInputType(enumClass = AccountRank.class, selectListName = "securityList", selectValueName = "securityValue",
-			defaultValue = "")
+			defaultValue = "",messageSourceSuffix = ".name")
 	private String security;
-	
-	
+
+
 	public Integer getId() {
 		return id;
 	}
@@ -90,12 +89,12 @@ public class UsersAccountInfoMemberStatusSFC extends SFC {
 	public void setSecurity(String security) {
 		this.security = security;
 	}
-	
-	
-	
+
+
+
 	}
-	
-	
+
+
 
 
 

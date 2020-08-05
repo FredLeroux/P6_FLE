@@ -17,6 +17,7 @@ function parentElementToggleDisplay(elementId) {
 
 }
 
+
 /**
  * 
  * @param parentModalId the parent modal id
@@ -38,11 +39,9 @@ function killParentModalOnHashChange() {
 	document.addEventListener("hashchange", killParentModal("loading"));
 }
 
-
 function killParentModalOnHashChange(modalName) {
 	document.addEventListener("hashchange", killParentModal(modalName));
 }
-
 
 function addToElementToggleDisplayOnClickAndHashChange(element,
 		elementToToggleId) {
@@ -70,28 +69,40 @@ function disableLoadModalCustom(modalId) {
 
 /**
  * 
- * @param buttonElementContainerId the tag element (div,spam,...)containing button(s) 
- * on which to apply the on click toggle action.
- * @apiNote create an array containins all buttons of the buttonElementContainerId 
- * an add to each addToElementToggleDisplayOnClickAndHashChange() function.
+ * @param buttonId button on which to apply the on click toggle action. 
  * @default modal id is "loading" in accordance to 02_01_02_04_loginModal.jsp.
  */
 function addButtonOnclickParentModalToggle(buttonId) {
-	var element = document.getElementById(buttonId);	
-		addToElementToggleDisplayOnClickAndHashChange(element, "loading")
-	
-}
+	var element = document.getElementById(buttonId);
+	addToElementToggleDisplayOnClickAndHashChange(element, "loading")
 
+}
+/**
+ * 
+ * @param element on which to apply the on click toggle action.
+ * @default modal id is "loading" in accordance to loginModal.jsp.
+ */
+function onclickParentModalToggle(element) {
+	addToElementToggleDisplayOnClickAndHashChange(element, "loading")
+}
 
 /**
  * 
- * @param buttonElementContainerId the tag element (div,spam,...)containing button(s) 
- * on which to apply the on click toggle action
- * @apiNote create an array containins all buttons of the buttonElementContainerId 
- * an add to each addToElementToggleDisplayOnClickAndHashChange() function to iframe parent modalId.
+ * @param element on which to apply the on click toggle action.
+ * @param modaId the modal name to be toggle
+ *
+ */
+function onclickParentModalToggle(element, modalId) {
+	addToElementToggleDisplayOnClickAndHashChange(element, modalId)
+}
+
+/**
+ * 
+ * @param  button on which to apply the on click toggle action
+ *@param modaId the modal name to be toggle
  * 
  */
-function  addButtonOnclickParentModalToggleCustomModalName(buttonId, modalId) {
-	var element = document.getElementById(buttonId);	
+function addButtonOnclickParentModalToggleCustomModalName(buttonId, modalId) {
+	var element = document.getElementById(buttonId);
 	addToElementToggleDisplayOnClickAndHashChange(element, modalId)
 }

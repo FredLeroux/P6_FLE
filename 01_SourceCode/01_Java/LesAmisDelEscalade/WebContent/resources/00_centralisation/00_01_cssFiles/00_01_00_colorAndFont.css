@@ -1,6 +1,6 @@
 
 
-@import url("https://use.fontawesome.com/releases/v5.8.1/css/all.css");
+@import url("https://use.fontawesome.com/releases/v5.9.0/css/all.css");
 
 @font-face {
   font-family: menu-font;
@@ -8,11 +8,11 @@
 }
 @font-face {
   font-family: header-font;
-  src: url("/LesAmisDelEscalade/resources/00_centralisation/00_03_fonts/00_03_02_Lobster-Regular.ttf") format("truetype");  
+  src: url("/LesAmisDelEscalade/resources/00_centralisation/00_03_fonts/00_03_02_Lobster-Regular.ttf") format("truetype");
 }
 
 :root{
-	
+
 	--base-color: rgb(17,36,45);
 	--base-color-light: rgba(28, 82, 109, 1);
 	--base-color-light-light:rgba(66, 140, 174);
@@ -27,6 +27,6 @@
 	--border-emphasis: #1D1F20;
 	--shadow-color:black;
 
-	
-	
+
+
 }

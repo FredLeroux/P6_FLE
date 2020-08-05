@@ -15,17 +15,17 @@ public class SessionVariables {
 	private String loginTentative = AppVariables.LOGIN_TENTATIVE.var();
 	private String login = AppVariables.LOGIN.var();
 	private String allowResetPass = AppVariables.ALLOW_RESET_PASS.var();
-	
+
 
 	public SessionVariables(HttpServletRequest request) {
 		this.request = request;
 	}
-	
+
 	public SessionVariables() {
-		
+
 	}
-	
-	
+
+
 
 	public HttpServletRequest getRequest() {
 		return request;
@@ -122,12 +122,12 @@ public class SessionVariables {
 
 	public void setIsAppInitiated(Boolean isAppInitiated) {
 		session().setAttribute(this.isAppInitiated, isAppInitiated);
-	}	
+	}
 
 	public void clearSession() {
 		session().invalidate();
 	}
-	
+
 	public void addSessionVariable(String varName, Object value) {
 		session().setAttribute(varName, value);
 	}

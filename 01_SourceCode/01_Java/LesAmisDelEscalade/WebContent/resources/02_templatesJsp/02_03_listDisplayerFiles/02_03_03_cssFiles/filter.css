@@ -1,0 +1,115 @@
+@import
+	url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_01_appSkin.css");
+
+.hidden {
+	display: none;
+}
+
+.filterButton p {
+	width: 100%;
+	display: inline-block;
+	text-align: center;
+}
+
+.filterButton button:hover {
+	color: var(--bad-color);
+}
+
+.divDisplay {
+	width: 100%;
+	display: inline-block;
+	text-align: center;
+}
+
+.aDisplay {
+	display: inline-table;
+	text-align: left;
+	padding-left: 1%;
+	padding-right: 0.5%;
+	color: var(--base-color);
+	font-weight: bolder;
+	text-align: justify;
+	font-family: menu-font;
+	font-size: 1vw;
+	cursor: default;
+}
+
+.aDisplay:Hover {
+	color: var(--bad-color);
+}
+
+.aDisplay button::before {
+	color: var(--base-color);;
+	border: none;
+	text-decoration: none;
+	font-size: 1vw;
+	min-width: 2.5%;
+	cursor: pointer;
+	border-radius: 10%;
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+	height: 1px;
+	background-color: var(--bad-color);
+	transform-origin: center right;
+	transform: scaleX(0) translateY(-50%);
+	transition: transform 0.3s ease;
+}
+
+.aDisplay button {
+	display: list-item;
+	color: var(--base-color);
+	border: none;
+	position: relative;
+	transform-origin: center right;
+	background-color: transparent;
+	text-align: center;
+	font-family: menu-font;
+	font-style: italic;
+	font-size: 1vw;
+	cursor: pointer;
+}
+
+.aDisplay button:hover {
+	color: var(--bad-color);
+}
+
+.aDisplay button:hover::before {
+	transform-origin: center left;
+	transform: scaleX(1) translateY(-50%);
+}
+
+.aDisplay i {
+	font-size: 1vw;
+	float: right;
+	color: red;
+}
+
+.allDataBtn, .filterButton button {
+	font-family: menu-font;
+	font-size: 1.2vw;
+	color: var(--base-color-opposite);
+	cursor: pointer; background : linear-gradient( to bottom right, var( -
+	-base-color), rgba( 32, 95, 126, 1), var( --base-color));
+	border: solid 2px var(--base-color);
+	border-radius: 20px;
+	padding-left: 0.25%;
+	padding-right: 0.25%;
+	text-shadow: 2px 1px 2px black;
+	box-shadow: 5px 5px 5px var(--shadow-color);
+	background: linear-gradient(to bottom right, var(--base-color),
+		rgba(32, 95, 126, 1), var(--base-color));
+}
+
+.allDataBtn:hover {
+	cursor: pointer;
+	color: var(--hover-color1);
+}
+
+@media screen and (max-width:900px) {
+	.aDisplay, .aDisplay button, .allDataBtn, .filterButton button {
+		font-size: 2vw;
+	}
+}

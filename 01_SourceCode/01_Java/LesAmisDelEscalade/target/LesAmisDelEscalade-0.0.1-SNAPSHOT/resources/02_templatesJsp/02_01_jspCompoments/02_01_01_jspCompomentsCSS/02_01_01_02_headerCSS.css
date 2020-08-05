@@ -1,64 +1,59 @@
-@import url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_01_appSkin.css"); 
+@import url("/LesAmisDelEscalade/resources/00_centralisation/00_01_cssFiles/00_01_01_appSkin.css");
 
-body ,html{
-	height: 100%;
-}
-
-
-
-.head{
-max-width:100%;
-height: 25%;
-
-}
-
-.bgImage{
-position:relative;
-background-image: var(--header-bg-images);
-max-width:100%;
+.fullHeader{
 height: 100%;
-filter:blur(2px);
-background-position:center; 
-background-repeat: no-repeat;
-background-size: 100% 100%;
-z-index: 1;
-}
-
-.headBox{  
-  font-family: header-font,sans-serif;
-  font-size:5vw;
-  font-weight:900;  
-  position: absolute;
-  top: 5%;
-  left: 50%;
-  transform: translate(-50%, -50%);  
-  z-index: 2;
-  width: 90%;
-  height: 10%;
-  text-align: center;  
-  color:var(--header-text-color);
-  letter-spacing: .1em;
-  text-shadow: 
-      -1px -1px 1px var(--header-text-shadow-lvl1), 
-      2px 2px 1px var(--header-text-shadow-lvl2); 
+	width: 100%;
+	top:0;
+	background: linear-gradient(to right, var(--base-color),rgba(32, 95, 126, 1),var(--base-color));
+	display: grid;
+	grid-template-rows: 70% 30%;
+	grid-template-areas:
+		'fullHeaderRow1'
+		'fullHeaderRow2';
 }
 
 
-@media all and (max-width: 1400px) {
-	.head{
-max-width:100%;
-height: 20%;
-}
-	
-	
+.fullHeaderRow1{
+	grid-area: fullHeaderRow1;
+	height: 100%;
+	width: 100%;
+	text-align: center;
 }
 
-@media all and (max-width: 650px) {
-	.head{
-max-width:100%;
-height: 10%;
+.headerBackground{
+	height: 100%;
+	width: 100%;
+	background-image: var(--header-bg-images);
+	background-size: 100% 100%;
+	filter:blur(2px);
 }
-	
-	
-	
+
+
+.headBox {
+	color: var(- -base-color);
+	text-align: center;
+	font-size: 5vw;
+	font-family: header-font;
+	background: linear-gradient(rgba(32, 95, 126, 1), var(--hover-color1));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	-webkit-filter: drop-shadow(1px 2px var(--base-color));
+	z-index: 3;
+	width: 100%;
+	height: 15%;
+	letter-spacing: .1em;
+	position: absolute;
+	top: 0;
 }
+
+.fullHeaderRow2{
+	grid-area: fullHeaderRow2;
+	z-index: 4;
+	}
+
+
+
+
+
+
+

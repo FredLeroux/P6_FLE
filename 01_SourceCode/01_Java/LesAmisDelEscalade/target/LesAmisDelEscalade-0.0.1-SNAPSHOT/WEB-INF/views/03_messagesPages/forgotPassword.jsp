@@ -27,6 +27,7 @@
 		<label class="link"	onclick="changeParentLocation('${pageContext.request.contextPath}/index.html')"><springTags:message
 				code="backHome.message"></springTags:message></label></div><br><br>
 	</div>
+	<br>
 
 	
 

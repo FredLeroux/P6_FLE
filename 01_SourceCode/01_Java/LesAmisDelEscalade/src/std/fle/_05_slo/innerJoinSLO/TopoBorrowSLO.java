@@ -5,9 +5,9 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
 import fle.toolBox.classType.SLO;
-import fle.toolBox.dataListDisplayerTools.annotations.ToTranslate;
-import fle.toolBox.dataListDisplayerTools.annotations.operator.Operator;
-import fle.toolBox.dataListDisplayerTools.annotations.operator.OperatorArrays;
+import fle.toolBox.controllerTools.listManagement.dataListDisplayerTools.annotations.ToTranslate;
+import fle.toolBox.controllerTools.listManagement.dataListDisplayerTools.annotations.operator.Operator;
+import fle.toolBox.controllerTools.listManagement.dataListDisplayerTools.annotations.operator.OperatorArrays;
 
 
 @NamedQuery(name = "TopoBorrowSLO",

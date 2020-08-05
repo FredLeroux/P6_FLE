@@ -1,24 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "jstl" %>
-<!DOCTYPE html>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri ="http://www.springframework.org/tags" prefix ="springTags" %>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<title>
+		<springTags:message code = "editRoutesSite.title"/>
+	</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/07_01_pages/pageElmtCss.css" />
 </head>
-<body>
-
-<%@ include file="/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/editSiteRouteTmplt.jsp" %>	
-
-<jstl:set var="routePithContainer" scope="page" value="${routePitchList}"/>
-<jstl:forEach items="${routePitchList}" var="pitch">
-<jstl:set var="lvl" scope="page" value="${pitch.climbingLevels}"/>
-			<li><a href="${routePitchEditController}">${pitch.pitchNumber}->${lvl.cotationLevel}</a></li>
-		</jstl:forEach>
-
-<button  onclick="window.location.href='${cancel}'">CANCEL</button>
+<div id="upEditRouteName"></div>
 <br>
+<div class="editRoutesSiteFormPageTitle" >
+	<springTags:message code = "editRoutesSite.title"/>
+</div>
+<div>
+	<%@ include file="/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/editSiteRouteTmplt.jsp" %>	
+</div>
+<div class="routeFormEndingButtonPositioning">
+	<button class="pageButtonNormal"  onclick="window.location.href='${cancelRouteNameEdit}'">
+		<springTags:message code = "cancelEdition.name"/>
+	</button>
+</div>
 <br>
-</body>
-</html>

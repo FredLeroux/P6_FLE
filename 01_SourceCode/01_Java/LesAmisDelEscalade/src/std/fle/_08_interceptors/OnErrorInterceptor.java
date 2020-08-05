@@ -13,23 +13,23 @@ import std.fle._08_interceptors.appInitiators.InitiateAppInterceptor;
 public class OnErrorInterceptor extends HandlerInterceptorAdapter {
 	@Autowired
 	LocalMessage local;
-	
+
 	private InitiateAppInterceptor initiateAppInterceptor = new InitiateAppInterceptor();
-	
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {	
-		
+			throws Exception {
+
 		SessionVariables sessVar = new SessionVariables(request);
 		if(sessVar.getIsAppInitiated()) {
 			System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++here");
-			response.sendRedirect("internalError");			
+			response.sendRedirect("internalError");
 			return false;
-			
+
 		}else {
-			initiateAppInterceptor.initiateApp(request, local);			
-			return true;}	
-		
+			initiateAppInterceptor.initiateApp(request, local);
+			return true;}
+
 	}
 
 }

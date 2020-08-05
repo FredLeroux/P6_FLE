@@ -15,26 +15,26 @@ public interface ListGenerator {
 
 	public List<MembersListSLO> membersList();
 
-	public LinkedHashMap<String, Object> getMembersList();	
+	public LinkedHashMap<String, Object> getMembersList(String listType);
 
 	public List<ClimbingSiteSLO> climbingSiteSLOs();
-	
+
 	public List<TopoListSLO> topoSLOs();
 
-	public LinkedHashMap<String, Object> getClimbingSiteListShow();
-	
-	public LinkedHashMap<String,Object> getClimbingSiteListEdit();
-	
+	public LinkedHashMap<String, Object> getClimbingSiteListShow(String listType);
+
+	public LinkedHashMap<String,Object> getClimbingSiteListEdit(String listType);
+
 	public List<ClimbingSiteCommentsSLO> climbingSiteCommentsSLOs(Integer id);
-	
-	public LinkedHashMap<String,Object> getclimbingSiteCommentsSLOList(Integer id,HttpServletRequest request);
-	
-	public LinkedHashMap<String,Object> getTopoSLOList();
-	
-	public LinkedHashMap<String, Object> getTopoSLOsLoggedOwnerExcludedList(HttpServletRequest request);
-	
+
+	public LinkedHashMap<String,Object> getclimbingSiteCommentsSLOList(Integer id,HttpServletRequest request,String listType);
+
+	public LinkedHashMap<String,Object> getTopoSLOList(String listType);
+
+	public LinkedHashMap<String, Object> getTopoSLOsLoggedOwnerExcludedList(HttpServletRequest request,String listType);
+
 	public List<TopoMineListSLO> topoMines(HttpServletRequest request);
-	
-	public LinkedHashMap<String, Object> getTopoMineSLOList(HttpServletRequest request);
+
+	public LinkedHashMap<String, Object> getTopoMineSLOList(HttpServletRequest request,String listType);
 
 }

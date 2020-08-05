@@ -15,7 +15,7 @@
 			</div>
 		</div>
 		<div class ="borrow"> 
-			<div id = "borrowInfoZone" >
+			<div id = "borrowInfoZone" style ="display: none" >
 				<label id="borrowDemandsNb">
 					0
 				</label>
@@ -25,6 +25,7 @@
 				<button onclick="location.href='borrowDemands'" >
 					<springTags:message code="goBorrowDemands.name" />
 				</button>
+				<input type="hidden" id="displayNotification" value = true >
 			</div>
 		</div>
 		<div class="logIn">
@@ -34,73 +35,35 @@
 				</label>		
 			</div>
 		</div>		
-	
-	<div class="menu">
-	<div class="menuDrop"><springTags:message code="siteMenu.name"/>
-	<div id="menuNavBar" >
-		<ul id="menuNavBarList" class="list">	
-			<jstl:forEach items="${optionList}" var="option">
-				<li>
-					<a id="${option.name}" href=<springTags:message code="${option.href}"/>>
-					<span class="menuNavBarIcon"><springTags:message code="${option.icon}"/></span>
-					<span><springTags:message code="${option.name}"/></span>
-					</a>
-			</jstl:forEach>
-		</ul>
+		<div class="menu">
+			<div class="menuDrop"><springTags:message code="siteMenu.name"/>				
+				<ul id="menuNavBarList" class="list">	
+					<jstl:forEach items="${optionList}" var="option">
+						<li>
+							<a id="${option.name}" href=<springTags:message code="${option.href}"/>>
+								<span class="menuNavBarIcon">
+									<springTags:message code="${option.icon}"/>
+								</span>
+								<span>
+									<springTags:message code="${option.name}"/>
+								</span>
+							</a>
+					</jstl:forEach>
+				</ul>			
+			</div>
+		</div>
 	</div>
 </div>
-</div>
-</div>
-</div>
-<div id="connexionStatus" style="display: none;">${sessionScope.logged}</div>
-
-
-
-
-<script type="text/javascript" src="toolBoxJavaScript/04_01_01_toggle.js"></script>
+<input id="connexionStatus" type="hidden" value ="${sessionScope.logged}">
+<script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/04_01_01_toggle.js"></script>
+<script type="text/javascript" src="/LesAmisDelEscalade/resources/04_toolBox/04_01_javaScript/ajaxUpdateByTimeInterval.js"></script>
 <script type="text/javascript">
 	var menuToggle = toggle();
-	menuToggle.addSwitchAndToggleDisplayOnClick("connexionStatus", "connexion",
-			"loginModal", "disconnect");
+	menuToggle.addSwitchAndToggleDisplayOnClick("connexionStatus", "connexion",	"loginModal", "disconnect");
+	var updater = newAjaxUpdater();
+	updater.updateBorrowDemand("borrowInfoZone", "borrowDemandsNb", "05_topo/updateBorrow","displayNotification");	
+	updater.launchUpdateInterval(3000,"borrowInfoZone", "borrowDemandsNb", "05_topo/updateBorrow","displayNotification");	
 
-	
-	updateBorrowDemand();
-	launchUpdateInterval();			
-	
-	function launchUpdateInterval() {
-		setInterval("updateBorrowDemand()", 30000)
-	}
-	function count(num) {
-		document.getElementById("borrowDemandsNb").innerHTML = parseInt(document
-				.getElementById("borrowDemandsNb").textContent) + 1;
-	}
-	function updateBorrowDemand() {
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				var obj = JSON.parse(this.responseText);
-				getBorrowDemandElmt().innerHTML=obj.numberOfWaitingDemand;
-				//toggleDisplayFunctionNumberOfDemand()
-			}
-		};
-		xhttp.open("GET", "05_topo/updateBorrow", true);
-		xhttp.send();
-	}
 
-	function toggleDisplayFunctionNumberOfDemand() {
-		var div = document.getElementById("borrowInfoZone");
-		if (getBorrowDemandNumber() == 0) {
-			div.style.display = "none";
-		} else {
-			div.style.display = "block";
-		}
-	}
-	function getBorrowDemandNumber() {
-		return parseInt(getBorrowDemandElmt().textContent);
-	}
-
-	function getBorrowDemandElmt() {
-		return document.getElementById("borrowDemandsNb");
-	}
 </script>
 

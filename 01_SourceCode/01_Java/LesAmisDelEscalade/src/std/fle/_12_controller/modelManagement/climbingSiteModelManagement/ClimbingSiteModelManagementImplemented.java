@@ -50,8 +50,8 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 	private ClimbingSiteCommentsService commentService;
 
 	@Autowired
-	private DeleteConfirmationManager deletion;
-	
+	private DeleteConfirmationManager deleteSite;
+
 	@Autowired
 	private LocalMessage localMesage;
 
@@ -108,7 +108,7 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 	public ModelAndView manageClimbingSiteUpdateForm(ModelAndView model) {
 		model.setViewName("06_climbingSite/updateSiteForm");
 		model.addObject("siteFullInfoUpdate", climbingSiteSFC);
-		deletion.addURLAndMessage(model, "deleteSite", "deleteConfirmationAsk.message");
+		deleteSite.addURLAndMessage(model, "deleteSite", "deleteSiteConfirmationAsk.message");
 		selectService.addSelectListsAndValues(climbingSiteSFC, model);
 		siteFormModelAttribute(model);
 		return model;
@@ -207,9 +207,9 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 	public ModelAndView storeClimbingSiteInfo(ModelAndView model, ClimbingSiteSFC climbingSiteSFC) {
 		this.climbingSiteSFC = climbingSiteSFC;
 		siteName = climbingSiteSFC.getClimbingSiteName();
-		if(siteName.isEmpty()) {
+		if (siteName.isEmpty()) {
 			siteName = localMesage.message("noSiteName.info");
-		}	
+		}
 		model.setViewName("redirect:displaySiteRoutesList");
 		return model;
 	}
@@ -263,22 +263,29 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 	@Override
 	public ModelAndView manageDisplaySiteRouteEditForm(ModelAndView model, SiteRoutesSFC siteRouteSFC,
 			String modelAttributeName) {
+		editRouteModelAttributName = modelAttributeName;
 		routeToEdit = request.getParameter("route");
+		siteRouteSFC.setRouteName(modelAttributeName);
 		model.setViewName("06_climbingSite/editRouteSite");
-		model.addObject(routePitchEditController, routePitchEditController);
 		model.addObject(modelAttributeName, siteRoutesMap.get(routeToEdit));
-		model.addObject("cancel", "displaySiteRoutesList");
-		if (routePitchSFCListIsNotNull(routeToEdit)) {
-			model.addObject("routePitchList",
-					climbingSiteService.sortedRoutePitchsDTOList(routeToEdit, routePitchsMap));
-		}
+		setCancelFromEdition(model, "cancelRouteNameEdit", "displaySiteRoutesList");
 		return model;
 	}
 
 	@Override
-	public ModelAndView manageSiteRouteModification(ModelAndView model, SiteRoutesSFC siteRouteSFC) {
+	public ModelAndView manageSiteRouteModification(ModelAndView model, SiteRoutesSFC siteRouteSFC,
+			BindingResult result) {
 		model.setViewName("redirect:displaySiteRoutesList");
 		routeName = siteRouteSFC.getRouteName();
+		if (!routeToEdit.equals(routeName)) {
+			climbingFormsValidation.checkRouteExistence(siteRoutesMap, siteRouteSFC.getRouteName(),
+					editRouteModelAttributName, result);
+			if (result.hasErrors()) {
+				model.setViewName("06_climbingSite/editRouteSite");
+				setCancelFromEdition(model, "cancelRouteNameEdit", "displaySiteRoutesList");
+				return model;
+			}
+		}
 		siteRoutesMap.remove(routeToEdit);
 		siteRoutesMap.put(routeName, siteRouteSFC);
 		if (routePitchSFCListIsNotNull(routeToEdit)) {
@@ -378,9 +385,13 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 		model.setViewName("06_climbingSite/editRoutePitch");// 06_
 		model.addObject("routeToEdit", route);// routeToEdit
 		model.addObject(modelAttributeName, routePitchEdit);
-		model.addObject("cancelEditPitch", "displayRoutePitchForm");
+		setCancelFromEdition(model, "cancelEditPitch", "displayRoutePitchForm");
 		selectService.upDateSelectListAndValue(routePitchEdit, model, request);
 		return model;
+	}
+
+	private void setCancelFromEdition(ModelAndView model, String jspAttributeName, String backUrl) {
+		model.addObject(jspAttributeName, backUrl);
 	}
 
 	@Override
@@ -417,7 +428,7 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 	}
 
 	private String listCommentSrc(Integer id) {
-		return "/04_listPage/listPage?listType=climbingSitesComments&id=" + id;
+		return "/04_listPage/setListPage?listType=climbingSitesComments&id=" + id;
 	}
 
 	private String setCommentModalName() {
@@ -488,7 +499,7 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 	public ModelAndView managePostComment(String requestCommentParameterName) {
 		sessVar.setRequest(request);
 		String comment = request.getParameter(requestCommentParameterName);
-		if (!comment.isEmpty()) {			
+		if (!comment.isEmpty()) {
 			commentService.postComment(climbingSiteId, sessVar.getAccountID(), comment);
 		}
 		return new ModelAndView("redirect:/siteHaveBeenCommented");

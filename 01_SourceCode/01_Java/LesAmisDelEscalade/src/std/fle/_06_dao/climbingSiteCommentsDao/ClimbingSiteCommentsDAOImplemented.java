@@ -49,14 +49,14 @@ public class ClimbingSiteCommentsDAOImplemented implements ClimbingSiteCommentsD
 	private ClimbingSiteCommentsDTO climbingSiteCommentsDTO = new ClimbingSiteCommentsDTO();
 	private ClimbingSiteCommentsEditDTO climbingSiteCommentsEditDTO = new ClimbingSiteCommentsEditDTO();
 	private CommentsModificationLogDTO commentsModificationLogDTO = new CommentsModificationLogDTO();
-	private ClimbingSiteCommentsSFC climbingSiteCommentsSFC = new ClimbingSiteCommentsSFC();	
+	private ClimbingSiteCommentsSFC climbingSiteCommentsSFC = new ClimbingSiteCommentsSFC();
 	private String originalComment = null;
 	private String charLimiter = "*";
 	private String modifyBy = "modifyBy.label";
 	private String the = "the.label";
 	private String was = "was.label";
 	private String deleted = "deleted.label";
-	
+
 
 	@Override
 	public void postComment(Integer climbingSiteId, Integer userAccountId, String comment) {
@@ -69,7 +69,6 @@ public class ClimbingSiteCommentsDAOImplemented implements ClimbingSiteCommentsD
 		dto.setClimbingSite(climbingSiteDTO(climbingSiteId));
 		dto.setUsersAccountInfo(usersAccountInfoDTO(userAccountId));
 		dto.setComment(commentParseToFrontString(comment));
-		System.out.println(LocalDateTime.now());
 		dto.setPostDate(LocalDateTime.now());
 		return dto;
 	}
@@ -102,19 +101,19 @@ public class ClimbingSiteCommentsDAOImplemented implements ClimbingSiteCommentsD
 	}
 
 	private String extractComment(String originalComment) {
-		String comment = extractor.extractAllAfterLastIndexOf(originalComment, charLimiter);		
+		String comment = extractor.extractAllAfterLastIndexOf(originalComment, charLimiter);
 		String commentClean = commentParseToBackString(comment).trim();
 		return commentClean;
 	}
 
 	private String commentParseToBackString(String str) {
-		return str.replace("<br>", "\r\n"); 
+		return str.replace("<br>", "\r\n");
 	}
-	
+
 	private String commentParseToFrontString(String str) {
 		return str.replace("\r\n", "<br>");
 	}
-	
+
 	private boolean cleanComment(String originalComment) {
 		return originalComment.contains(charLimiter);
 
@@ -128,12 +127,12 @@ public class ClimbingSiteCommentsDAOImplemented implements ClimbingSiteCommentsD
 	public void updateComment(ClimbingSiteCommentsSFC climbingSiteCommentsSFC,Integer commentId, String author) {
 		updateOrDeleteComment(climbingSiteCommentsSFC,commentId, author, true);
 	}
-	
+
 	@Override
 	public void deleteComment(ClimbingSiteCommentsSFC climbingSiteCommentsSFC, Integer commentId,String author) {
 		updateOrDeleteComment(climbingSiteCommentsSFC,commentId, author, false);
 	}
-	
+
 	private void updateOrDeleteComment(ClimbingSiteCommentsSFC climbingSiteCommentsSFC,Integer commentId, String author,boolean update) {
 		ClimbingSiteCommentsDTO dto = dao.getDtoByID(climbingSiteComments, climbingSiteCommentsDTO,
 				commentId);
@@ -143,13 +142,13 @@ public class ClimbingSiteCommentsDAOImplemented implements ClimbingSiteCommentsD
 			commentUpdated = climbingSiteCommentsSFC.getComment();
 		}else {
 			commentUpdated = buildDeleteSentence();
-		}		
+		}
 		dto.setComment(commentWithModificationLog(author, formattedLocalDate(date), commentUpdated));
 		conditionnalUpdate(commentUpdated, author, date, dto);
 	}
 
 	private void conditionnalUpdate(String commentUpdated, String author, LocalDateTime date, ClimbingSiteCommentsDTO dto) {
-		if (!originalComment.equals(commentUpdated)) {	
+		if (!originalComment.equals(commentUpdated)) {
 			dao.updateDTO(climbingSiteComments, dto);
 			dao.saveSpecificDTO(commentsModificationLog, modificationLogNewEntry(author, date, dto));
 		}
@@ -205,7 +204,7 @@ public class ClimbingSiteCommentsDAOImplemented implements ClimbingSiteCommentsD
 	private String formattedLocalDate(LocalDateTime date) {
 		return date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL));//.ofLocalizedDate(FormatStyle.FULL)
 	}
-	
+
 	private String buildDeleteSentence() {
 		return localMessage.message(deleted);
 	}

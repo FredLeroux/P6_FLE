@@ -48,11 +48,11 @@
 
 
 
-	<!-- equivalent is <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
-		<property name="locations" > <list> <value>resources/01_properties/hibernate.properties</value> 
-		<value>resources/01_properties/db.properties</value> <value>resources/01_properties/pathSrc.properties</value> 
-		</list> </property> <property name="ignoreResourceNotFound" value="true"></property> 
-		<property name="ignoreUnresolvablePlaceholders" value="true"></property> 
+	<!-- equivalent is <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations" > <list> <value>resources/01_properties/hibernate.properties</value>
+		<value>resources/01_properties/db.properties</value> <value>resources/01_properties/pathSrc.properties</value>
+		</list> </property> <property name="ignoreResourceNotFound" value="true"></property>
+		<property name="ignoreUnresolvablePlaceholders" value="true"></property>
 		</bean> -->
 	<context:component-scan
 		base-package="std.fle,fle.toolBox"></context:component-scan>
@@ -120,7 +120,7 @@
 	 	 <mvc:interceptor>
 			<mvc:mapping path="/error" />
 			<bean class="std.fle._08_interceptors.OnErrorInterceptor"></bean>
-		</mvc:interceptor>  
+		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/authentification" />
 			<bean class="std.fle._08_interceptors.AuthentificatorInterceptor"></bean>
@@ -142,13 +142,13 @@
 			<bean class="std.fle._08_interceptors.UpdatePasswordInterceptor"></bean>
 		</mvc:interceptor>
 		<mvc:interceptor>
-			<mvc:mapping path="/04_listPage/listPage" />
+			<mvc:mapping path="/04_listPage/setListPage" />
 			<bean class="std.fle._08_interceptors.ListDisplayerInterceptors"></bean>
-		</mvc:interceptor>		
+		</mvc:interceptor>
 	  	<mvc:interceptor>
 			<mvc:mapping path="/errorNotException" />
 			<bean class="std.fle._08_interceptors.OnNoExceptionError"></bean>
-		</mvc:interceptor> 
+		</mvc:interceptor>
 	</mvc:interceptors>
 	<bean id="localeResolver"
 		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">

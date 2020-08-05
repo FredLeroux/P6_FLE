@@ -19,33 +19,39 @@ import std.fle._12_controller.modelManagement.climbingSiteModelManagement.Climbi
 
 @Controller
 public class ClimbingSiteShowerController extends ClimbingSiteModelMgntAndControllerVar {
-	
+
 	@Autowired
-	private ClimbingSiteModelManagement manager; 
-	
-	
-	
+	private ClimbingSiteModelManagement manager;
+
+
+
 	@GetMapping(value = "/04_listPage/climbingSiteDetails/{id}")
 	public ModelAndView displayFormVarInit (ModelAndView model,@PathVariable Integer id) {
 		return manager.displayFormVarInit(model,id, "06_climbingSite/climbingSiteDetailsDisplay");
-		
+
 	}
-		
-	
+
+	@GetMapping(value = "06_climbingSite/callListInListBack")
+	public void  listInListBack(ModelAndView model,HttpServletRequest request) {
+		model.addObject("iFrameSource", "'04_listPage/listInListfrontViewAddObject'");
+		model.addObject("iFrameLoc","'commentsList'");
+	}
+
+
 	@GetMapping(value = "06_climbingSite/climbingSiteDetailsDisplay")
 	public ModelAndView displayClimBingSiteDetails(ModelAndView model,
 			@ModelAttribute(name = "siteInfoDisplay") ClimbingSiteDisplaySFC climbingSiteDisplaySFC) {
 		return manager.manageDisplayClimBingSiteDetails(model);
 	}
-	
+
 	@PostMapping(value ="06_climbingSite/postComment")
-	public ModelAndView postComment(ModelAndView model) {		
+	public ModelAndView postComment(ModelAndView model) {
 		return manager.managePostComment("comment");
 	}
-	
-	
+
+
 	@GetMapping(value = "06_climbingSite/RoutesAndPitchsListPage")
-	public  @ResponseBody String routesAndPitchsListPage(HttpServletRequest request) {	
+	public  @ResponseBody String routesAndPitchsListPage(HttpServletRequest request) {
 		JSONObject object = new JSONObject();
 		Integer currentPage = FredParser.toInteger(request.getParameter("page"));
 		String to = request.getParameter("to");
@@ -54,14 +60,14 @@ public class ClimbingSiteShowerController extends ClimbingSiteModelMgntAndContro
 			pageToDisplay = currentPage+1;
 		}else {
 			pageToDisplay = currentPage-1;
-		}	
+		}
 		object.put("list", manager.getPageAsJSONArray(pageToDisplay));
 		object.put("page", pageToDisplay);
 		return object.toString();
 	}
-	
 
 
-	
+
+
 
 }

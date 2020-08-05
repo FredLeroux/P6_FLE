@@ -21,7 +21,7 @@ import std.fle._12_controller.modelManagement.climbingSiteModelManagement.Climbi
 @Controller
 public class ClimbingSiteController extends ClimbingSiteModelMgntAndControllerVar {
 
-	
+
 	@Autowired
 	ClimbingSiteModelManagement manager;
 
@@ -95,8 +95,8 @@ public class ClimbingSiteController extends ClimbingSiteModelMgntAndControllerVa
 	}
 
 	@PostMapping("06_climbingSite/routeModification")
-	public ModelAndView siteRouteModification(ModelAndView model, SiteRoutesSFC siteRouteSFC) {
-		return manager.manageSiteRouteModification(model, siteRouteSFC);
+	public ModelAndView siteRouteModification(ModelAndView model,@ModelAttribute(name = "editRoute") @Validated SiteRoutesSFC siteRouteSFC, BindingResult result) {
+		return manager.manageSiteRouteModification(model, siteRouteSFC,result);
 	}
 
 	@GetMapping("06_climbingSite/" + deleteSiteRoute)
@@ -152,7 +152,7 @@ public class ClimbingSiteController extends ClimbingSiteModelMgntAndControllerVa
 			BindingResult result, HttpServletRequest request) {
 		return manager.manageUpdateClimbingSite(model, climbingSiteSFC, "siteFullInfoUpdate", result);
 	}
-	
+
 	@GetMapping("06_climbingSite/deleteSite")
 	public ModelAndView deleteSite(ModelAndView model) {
 		return manager.manageClimbingSiteDelete(model);

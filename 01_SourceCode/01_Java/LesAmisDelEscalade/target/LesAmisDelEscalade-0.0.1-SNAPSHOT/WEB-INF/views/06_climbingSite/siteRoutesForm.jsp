@@ -1,33 +1,75 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "jstl" %>
 <%@ taglib uri ="http://www.springframework.org/tags" prefix ="springTags" %>
-<!DOCTYPE html>
-<html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<title>
+		<springTags:message code = "siteRoutesForm.title"/>
+	</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/07_01_pages/pageElmtCss.css" />
 </head>
-<body>
-${siteName}<br>
-MEssage si la voie n'est nommé renseigner anonyme si plusieur incrémenter anamye de 1 en 1
-<%@ include file="/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/createNewSiteRouteTmplt.jsp" %>		
-<jstl:set var="hrefParamaters" value="?route=${routeName}&index=${indexGetter.index}"></jstl:set>
-<table>	
-<jstl:forEach items="${siteRoutesList}" var="route">
-<jstl:set var = "routeName" value = "${route.key}"></jstl:set>
+<div id="up"></div>
+<br>
+<div class="siteRoutesFormPageTitle" >
+	<springTags:message code = "siteRoutesForm.title"/>
+</div>
+<div class ="routeAndPitchFormHead">
+	<table style="align-content: right" class="routeAndPitchFormHeadTable">
+		<tr>
+			<th>
+				<springTags:message code = "siteNameTitle.name"/>	
+			</th>
+			<td>
+				${siteName}	
+			</td>
+		</tr>	
+	</table>
+</div>
+<br>
+<div>
+	<%@ include file="/resources/02_templatesJsp/02_02_formJsp/02_02_01_formFiles/createNewSiteRouteTmplt.jsp" %>	
+</div>	
+<div class="routeFormEndingButtonPositioning">
+	<button class="pageButtonNormal"  onclick="window.location.href='${routeEndController}'">
+		<springTags:message code = "finishHim.name"/>
+	</button>
+</div>
+<br>
+<div>
+	<jstl:set var="hrefParamaters" value="?route=${routeName}&index=${indexGetter.index}"></jstl:set>
+	<jstl:set var="checkList" value="${siteRoutesList}"	></jstl:set>
+	<jstl:if test="${!empty(checkList)}">	
+		<div class="routesListTitle" >
+			<springTags:message code = "routesListTitle.name"/>
+		</div>
+		<br>
+		<table class ="tableStyle1">	
+			<jstl:forEach items="${siteRoutesList}" var="route">
+				<jstl:set var = "routeName" value = "${route.key}">
+				</jstl:set>
 				<tr>
-					<td><springTags:message code = "route.name"/> ${routeName}</td>
-					<td><a href="${siteRouteEditController}?route=${routeName}" ><springTags:message code = "routeModification.name"/></a></td>
-					<td><a href="${editRoutePitchs}?route=${routeName}" ><springTags:message code = "routePitchListModification.name"/></a></td>
-					<td><a href="${siteRouteDeleteController}?route=${routeName}" ><springTags:message code = "deleteSiteRoute.name"/></a></td>				
+					<td>
+						${routeName}
+					</td>
+					<td>
+						<a href="${siteRouteEditController}?route=${routeName}#upEditRouteName" class="linkInTable">
+							<springTags:message code = "routeNameModification.name"/>
+						</a>
+					</td>
+					<td>
+						<a href="${editRoutePitchs}?route=${routeName}#pitchFormUp" class="linkInTable">
+							<springTags:message code = "routePitchListModification.name"/>
+						</a>
+					</td>
+					<td>
+						<a href="${siteRouteDeleteController}?route=${routeName}" class="trash" >
+						<springTags:message code = "deleteSiteRoute.name"/>
+						</a>
+					</td>				
 				</tr>
-		</jstl:forEach>
-		
-		
-</table>
-		<br><br>
-		<button  onclick="window.location.href='${routeEndController}'">terminer</button>
-		<br><br>
-</body>
-</html>
+			</jstl:forEach>		
+		</table>
+	</jstl:if>	
+</div>
+<br>
+
+

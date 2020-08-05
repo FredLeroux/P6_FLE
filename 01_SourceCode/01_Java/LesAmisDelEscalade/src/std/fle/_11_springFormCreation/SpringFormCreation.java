@@ -41,7 +41,7 @@ public class SpringFormCreation implements ApplicationListener<ContextRefreshedE
 	private SiteRoutesSFC siteRoutesSFC = new SiteRoutesSFC();
 	private RoutePitchSFC routePitchSFC	= new RoutePitchSFC();
 	private ClimbingSiteCommentsSFC climbingSiteCommentsSFC = new ClimbingSiteCommentsSFC();
-	
+
 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -52,13 +52,13 @@ public class SpringFormCreation implements ApplicationListener<ContextRefreshedE
 		build.generateForm(context, updatepassConfig(), usersAccountInfoPassUpdateSFC);
 		build.generateForm(context, basisConfig(), UsersAccountInfoMemberStatusSFC);
 		build.generateForm(context, basisConfig(), climbingTopoSFC);
-		build.generateForm(context, basisConfig(), climbingTopoDisplaySFC);
+		build.generateForm(context, topoDisplay(), climbingTopoDisplaySFC);
 		build.generateForm(context, basisConfig(), climbingSiteSFC);
 		build.generateForm(context, formDisplay(), climbingSiteDisplaySFC);
 		build.generateForm(context, basisConfig(), siteRoutesSFC);
 		build.generateForm(context, basisConfig(), routePitchSFC);
 		build.generateForm(context, tableStyle2(), climbingSiteCommentsSFC);
-		
+
 	}
 
 	private SpringFormCssConfig basisConfig() {
@@ -93,17 +93,21 @@ public class SpringFormCreation implements ApplicationListener<ContextRefreshedE
 				.trStyle("trStyleClass.form2")
 				.tdStyle("tdStyleClass.form3");
 	}
-	
+
 	private SpringFormCssConfig tableStyle2() {
 		return basisConfig()
 				.tableStyle("tableStyleClass.form2");
 	}
-	
+
 	private SpringFormCssConfig formDisplay() {
 		return basisConfig()
 				.tableStyle("tableStyleClass.form2")
 				.tdStyle("tdStyleClass.form2");
-		
+	}
+
+	private SpringFormCssConfig topoDisplay() {
+		return basisConfig()
+				.tdStyle("tdStyleClass.form2");
 	}
 
 }

@@ -5,7 +5,7 @@ import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import fle.toolBox.classType.SFC;
-import fle.toolBox.dataListDisplayerTools.annotations.ToTranslate;
+import fle.toolBox.controllerTools.listManagement.dataListDisplayerTools.annotations.ToTranslate;
 import fle.toolBox.springFormManager.annotations.HiddenPath;
 import fle.toolBox.springFormManager.annotations.ReadOnlyInput;
 

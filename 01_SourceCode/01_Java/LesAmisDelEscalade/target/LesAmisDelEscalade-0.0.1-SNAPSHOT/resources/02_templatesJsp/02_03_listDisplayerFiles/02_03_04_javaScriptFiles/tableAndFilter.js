@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 var anchor = null;
 var formAction = null;
@@ -42,7 +42,7 @@ function getSplitter() {
 }
 
 /**
- * 
+ *
  * @param separatorSign
  *            is the sign wich separe the element of a string i.e. <br>
  *            in a string composed of 3 elements like<br>
@@ -56,7 +56,7 @@ function getSplitter() {
  *            index 0 "element1"<br>
  *            index 1 "element2" <br>
  *            etc...
- * 
+ *
  */
 function setSplitter(separatorSign) {
 	splitter = separatorSign;
@@ -147,14 +147,14 @@ function getFilterSettedFromBackEnd() {
 
 /**
  * <p>
- * 
+ *
  * @Note this function will iterate througth the infoArray, each string will be
  *       splitted based on the separator, and function will set an array
  *       containing the data at: string split array[dataIndex1] + separator +
  *       and string split array[dataIndex2], will also avoid any duplicates
  *       present in the infoarray.
  *       </p>
- * 
+ *
  * <p>
  * @param infoArray
  *            array containing elements of interest in a string.<br>
@@ -204,18 +204,18 @@ function createTable(tableId) {
 }
 
 /**
- * 
+ *
  * @param infoArray
  *            array containing column info containing strings composed of field
  *            names and Internationalized names to display in frontend from
  *            backend.
- * 
+ *
  * @returns an array containing strings composed of field names /
  *          Internationalized names to display without duplicates.
  */
 
 /**
- * 
+ *
  * @param infoArray
  *            array containing column info containing strings composed of field
  *            names and Internationalized names to display in frontend from
@@ -223,7 +223,7 @@ function createTable(tableId) {
  * @param dataIndex1
  *            for a string in infoArray as "country/France/=/equals to", Column
  *            Field Name "country" ColumnFieldNameIndex = 0
- * 
+ *
  * @param dataIndex2
  *            dataIndex1 for a string in infoArray as "country/France/=/equals
  *            to", Column I18N Name "France" dataIndex 2 = 1
@@ -242,7 +242,7 @@ function getColumnsFieldAndIname() {
 }
 
 /**
- * 
+ *
  * @param infoArray
  *            array containing column info containing strings composed of field
  *            names and Internationalized names to display in frontend from
@@ -250,7 +250,7 @@ function getColumnsFieldAndIname() {
  * @param dataIndex1
  *            for a string in infoArray as "country/France/=/equals to",
  *            Operator "=" operatorIndex 1 = 2
- * 
+ *
  * @param dataIndex2
  *            dataIndex1 for a string in infoArray as "country/France/=/equals
  *            to", Operator I18N Name "equals to" operatorI18NNameIndex = 3
@@ -349,7 +349,7 @@ function createTableHead(table) {
 		var tableHeadRowCell = document.createElement("th");// not in auto
 		// completion this
 		// html 5
-		var infoSplit = getColumnsFieldAndIname()[i].split(getSplitter());		
+		var infoSplit = getColumnsFieldAndIname()[i].split(getSplitter());
 			var column = addInputColumnNames(infoSplit[0], i)
 			tableHeadRowCell.innerHTML = infoSplit[1];
 			tableHeadRowCell.appendChild(column);
@@ -360,13 +360,13 @@ function createTableHead(table) {
 }
 
 function getRowObjectId(id) {
-	
+
 	if(getEditHandlerName()!="none"){
 	sendRowIdToBacKEnd(id);
 	}
 }
 
-function sendRowIdToBacKEnd(id){		
+function sendRowIdToBacKEnd(id){
 	var form = document.createElement("form");
 	form.action = getEditHandlerName()+"/"+id;
 	form.method = getFormMethod();
@@ -390,9 +390,9 @@ function createTableBody(table, data, idName) {
 											// from backend
 			var cell = tableBody.rows[i].insertCell();
 			cell.innerHTML = dataUsed[i][arrayName];
-		}		
+		}
 	}
-	
+
 }
 
 // * = DOM HTML5 not in autocompletion
@@ -409,14 +409,14 @@ function generateTable(LocToSetTableId, tableID, data, cssStyle, idName) {
 		document.getElementById(LocToSetTableId).innerHTML = "";
 		// erase message
 		// when table is
-		// created		
+		// created
 		return document.getElementById(LocToSetTableId).appendChild(table);
 	}
 }
 
 
 /**
- * 
+ *
  * @param dipslayLocation
  * @param infotable
  * @param style
@@ -543,15 +543,15 @@ function createFilterButton(str) {
 	return filter;
 }
 
-function createFilterList(filterArray, setLocId, elmt) {	
-	var listing = document.getElementById(setLocId);	
+function createFilterList(filterArray, setLocId, elmt) {
+	var listing = document.getElementById(setLocId);
 	for (let i = 0; i < filterArray.length; i++) {
 		filterElement = filterArray[i].split(getSplitter());
 		if(!filterElement[0].includes("notAFilter")){
 		var divgeneral = document.createElement("div")
 		divgeneral.setAttribute("class", "dropdown");
 		var divId = filterElement[0] + "-Elmnt-" + i;
-		var div = setElmtList(divId, "dropdownList");		
+		var div = setElmtList(divId, "dropdownList");
 		var search = searchBar(divId, i);
 		div.appendChild(search)
 		divgeneral.appendChild(div);
@@ -575,7 +575,7 @@ function createFilterList(filterArray, setLocId, elmt) {
 
 function setListOfElement(elmt, fieldName) {
 	var list = [];
-	
+
 	for (let i = 0; i < elmt.length; i++) {
 		var d = elmt[i][fieldName];
 		if (d !== undefined) {
@@ -585,7 +585,7 @@ function setListOfElement(elmt, fieldName) {
 	for (let j = 0; j < elmt[index][fieldName].length; j++) {
 		list.push(elmt[index][fieldName][j]);
 	}
-	
+
 	return list;
 
 }
@@ -640,7 +640,7 @@ function setFilterValue(buttonId, dataValue) {
 	}
 }
 /**
- * 
+ *
  * @param criteriaSendFromBackEnd
  *            the criteria send from back in order to kept criteria historic and
  *            append or delete a criterion, set to "null" in order to display
@@ -728,13 +728,15 @@ function deleteSessionFilter(jspName) {
 	window.location.href = jspName; //+".html"
 }
 
-function getAllData(action, method) {	
+function getAllData(action, method) {
 	submitFilter(null, action, method);
 }
 
 function addGetAllDataToButton(locationId,action,method){
 	var button = document.getElementById(locationId);
-	button.setAttribute("onclick", "getAllData('"+action+"','"+method+"')");	
+	if(button!=null){
+	button.setAttribute("onclick", "getAllData('"+action+"','"+method+"')");
+	}
 }
 
 
@@ -804,7 +806,7 @@ function listfilter(divId,searchId){
 	  filter = input.value.toUpperCase();
 	  div = document.getElementById(divId);
 	  a = div.getElementsByTagName('a');
-	  for (i = 0; i < a.length; i++) {	
+	  for (i = 0; i < a.length; i++) {
 		  if(filter.length>=2){
 		    txtValue = a[i].textContent || a[i].innerText;
 		    if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -814,13 +816,13 @@ function listfilter(divId,searchId){
 		    }
 		  }if(filter.length<2){
 			  a[i].style.display = ""; }
-	  
+
 	  }}
 
 
 
 
-function messagealert() {	
+function messagealert() {
 	window.alert(" value");
 
 }

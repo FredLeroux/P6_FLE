@@ -14,7 +14,7 @@ public interface ClimbingSiteModelManagement {
 	public ModelAndView createNewSiteFormVarInit();
 
 	public ModelAndView updateFormVarInit(Integer id);
-	
+
 	public ModelAndView displayFormVarInit(ModelAndView model,Integer id,String redirectURI);
 
 	public ModelAndView manageClimbingSiteForm(ModelAndView model, ClimbingSiteSFC climbingSiteSFC);
@@ -29,10 +29,10 @@ public interface ClimbingSiteModelManagement {
 
 	public ModelAndView manageCreateClimbingSite(ModelAndView model, ClimbingSiteSFC climbingSiteSFC,
 			String modelAttributeName, BindingResult result);
-	
+
 	public ModelAndView manageUpdateClimbingSite(ModelAndView model, ClimbingSiteSFC climbingSiteSFC,
 			String modelAttributeName, BindingResult result);
-	
+
 	public ModelAndView manageClimbingSiteDelete(ModelAndView model);
 
 	public ModelAndView storeClimbingSiteInfo(ModelAndView model, ClimbingSiteSFC climbingSiteSFC);
@@ -48,7 +48,7 @@ public interface ClimbingSiteModelManagement {
 	public ModelAndView manageDisplaySiteRouteEditForm(ModelAndView model, SiteRoutesSFC siteRouteSFC,
 			String modelAttributeName);
 
-	public ModelAndView manageSiteRouteModification(ModelAndView model, SiteRoutesSFC siteRouteSFC);
+	public ModelAndView manageSiteRouteModification(ModelAndView model, SiteRoutesSFC siteRouteSFC,BindingResult results);
 
 	public ModelAndView manageDeleteSiteRoute();
 
@@ -65,11 +65,11 @@ public interface ClimbingSiteModelManagement {
 	public ModelAndView manageRoutePitchsModification(ModelAndView model, RoutePitchSFC routePitchSFC);
 
 	public ModelAndView manageDeleteRoutePitch(ModelAndView model, RoutePitchSFC routePitchSFC);
-	
+
 	public ModelAndView manageDisplayClimBingSiteDetails(ModelAndView model);
-	
+
 	public JSONArray getPageAsJSONArray(Integer currentPage);
-	
+
 	public ModelAndView managePostComment(String requestCommentParameterName);
 
 }

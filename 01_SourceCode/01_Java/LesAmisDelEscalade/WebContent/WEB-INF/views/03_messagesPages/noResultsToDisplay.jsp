@@ -10,9 +10,8 @@
 </head>
 <body>
 <div class = "messageContainer">
-<div class = "iconExclamation">
 <springTags:message code ="noResultToDisplay.title"></springTags:message><br>
-</div><br>
+<br>
 <div class = "messageBodyCenterAlign">
 <springTags:message code ="noResultToDisplay.message"></springTags:message><br>
 </div>

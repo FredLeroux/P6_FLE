@@ -11,7 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.annotation.Validated;
 
 import fle.toolBox.classType.SFC;
-import fle.toolBox.dataListDisplayerTools.annotations.ToTranslate;
+import fle.toolBox.controllerTools.listManagement.dataListDisplayerTools.annotations.ToTranslate;
 import fle.toolBox.springFormManager.annotations.HiddenPath;
 import fle.toolBox.springFormManager.annotations.PlaceHolderText;
 import fle.toolBox.springFormManager.annotations.SelectInputType;
@@ -30,7 +30,7 @@ import std.fle._02_dto.assetsClassesDTO.StatesDTO;
 		propertiesFilePath = "configuration/springFormSettings/formSettings.xml",
 		jspFilePath = "createNewTopoForm.path",
 		labelMessageSourceSuffix = "userForm.label",
-		submitButtonAlignmentPropertyKey = "center",
+		submitButtonAlignmentPropertyKey = "userFormBtn.align",
 		submitButtonMessagePropertyKey = "userFormBtn.message.createTopo",
 		readOnly = false )
 
@@ -42,12 +42,12 @@ import std.fle._02_dto.assetsClassesDTO.StatesDTO;
 		propertiesFilePath = "configuration/springFormSettings/formSettings.xml",
 		jspFilePath = "updateTopoForm.path",
 		labelMessageSourceSuffix = "userForm.label",
-		submitButtonAlignmentPropertyKey = "center",
+		submitButtonAlignmentPropertyKey = "userFormBtn.align",
 		submitButtonMessagePropertyKey = "userFormBtn.message.updateTopo",
 		readOnly = false )
 
 public class ClimbingTopoSFC extends SFC {
-	
+
 	@HiddenPath
 	private Integer id;
 
@@ -56,13 +56,13 @@ public class ClimbingTopoSFC extends SFC {
 	@PlaceHolderText(message = "topoTitle.pht")
 	private String title;
 
-	
+
 	@PastOrPresent
 	@NotNull
 	@DateTimeFormat(pattern = "yyyy")
 	private Year editionYear;
-	
-	
+
+
 	@SelectInputType(
 			selectListName = "topoStatesList",
 			selectValueName = "topoStateValue",
@@ -73,7 +73,7 @@ public class ClimbingTopoSFC extends SFC {
 			defaultValue = "19")
 	private String state;
 
-	@NotEmpty	
+	@NotEmpty
 	@SelectInputType(
 			enumClass = BooleanValue.class,
 			messageSourceSuffix = ".isAvailable",
@@ -138,9 +138,9 @@ public class ClimbingTopoSFC extends SFC {
 		this.state = state;
 	}
 
-	
-	
-	
+
+
+
 
 
 }

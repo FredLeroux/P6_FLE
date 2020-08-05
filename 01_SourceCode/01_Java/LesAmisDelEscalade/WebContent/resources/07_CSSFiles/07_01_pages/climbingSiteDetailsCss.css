@@ -7,9 +7,10 @@
 	display: grid;
 border-radius:20px;
 grid-template-columns: 60% auto;
-grid-template-rows: auto minmax(40vw,30vh);
-grid-template-areas: 
+grid-template-rows: auto auto minmax(40vw,30vh);
+grid-template-areas:
 'zone1 zone2'
+'titleZ3 titleZ3 '
 'zone3 zone3';
 }
 
@@ -30,45 +31,54 @@ font-size: 1vw;
 font-family: menu-font;
 background: transparent;
 }
-.zone3{	
+
+.titleZ3{
+	grid-area: titleZ3;
+}
+
+.zone3{
 	grid-area: zone3;
 	overflow: auto;
 	background: transparent;
-	border-top: solid var(--base-color-opposite) ;
-	border-width: thin;
-	padding-top: 2%;
+	padding-top: 0.5%;
+	border-bottom:solid;
+	border-bottom-color: var(--base-color-opposite);
+	border-bottom-width: thin;
 	}
 
-.zone1
+
 
 .zone1:hover,.zone2:hover,.zone3:hover{
 	cursor:default;
 }
 
 .zoneTitle{
-	color: var(--base-color-opposite); 
+	width: 90%;
+	color: var(--base-color-opposite);
 	font-size:1.2vw;
-	font-family:menu-font;
-	font-weight: bold;
+	font-family:header-font;
 	text-shadow: 1px 2px 1px var(--shadow-color);
-	padding-left:0.5%;
+	text-align:right;
+	text-decoration: overline underline;
+
+
 }
 
 
-.thumbnail{	
+.thumbnail{
 	border: 2px solid;
-	border-color:var(--base-color);	
+	border-color:var(--base-color);
 	width:70%;
 	border-radius: 20px;
-	margin: auto;	
+	margin: auto;
 	background: linear-gradient(to bottom right, var(--base-color),var(--base-color-light),var(--base-color));
-	box-shadow: 5px 5px 5px var(--shadow-color); 
+	box-shadow: 5px 5px 5px var(--shadow-color);
 	padding: 2%;
-	
+
 }
 
 .thumbnail>table{
-	
+
 }
 
 .thumbnail>thead>tr>th{
@@ -78,7 +88,7 @@ background: transparent;
 	color: var(--base-color-opposite);
 	text-align:right;
 	font-weight: bold;
-	text-shadow: 1px 2px 1px var(--shadow-color);	
+	text-shadow: 1px 2px 1px var(--shadow-color);
 }
 
 .thumbnail>tbody>tr>td[id~="routeTdBody"],.thumbnail>thead>tr>th[id~="routeTdHead"]{
@@ -87,12 +97,12 @@ background: transparent;
 
 .thumbnail>tbody>tr>td{
 	font-size:1vw;
-	font-family:menu-font;	
+	font-family:menu-font;
 	padding-right:1%;
 	width:10%;
-	color: var(--hover-color1);	
+	color: var(--hover-color1);
 	text-align:right;
-	text-shadow: 1px 2px 1px var(--shadow-color);	
+	text-shadow: 1px 2px 1px var(--shadow-color);
 }
 
 .thumbnail>thead>tr>th:hover{
@@ -104,4 +114,3 @@ background: transparent;
 	border-radius: 10px;
 	}
 	}
-	

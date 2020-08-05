@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fle.toolBox.Internationalization.LocalMessage;
-import fle.toolBox.dataListDisplayerTools.annotations.ToTranslate;
+import fle.toolBox.controllerTools.listManagement.dataListDisplayerTools.annotations.ToTranslate;
 import fle.toolBox.fieldsReflectivity.extractSetAndGetComponents.ClassFields;
 import fle.toolBox.fieldsReflectivity.extractSetAndGetComponents.ClassFieldsSetAndGet;
 
