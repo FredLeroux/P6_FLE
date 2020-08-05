@@ -60,8 +60,4 @@ function getBorrowDemandElmt(borrowDemandsNbLoc) {
 
 function updateBorrowNumber(borrowDemandsNbLoc,demandLeftNb) {
 	window.parent.document.getElementById(borrowDemandsNbLoc).innerHTML = demandLeftNb;
-
-
-function myFunction() {
-
-	}	}
+}

@@ -1,8 +1,7 @@
-@import
-	url("@import url("/LesAmisDelEscalade/resources/00_centralisation/cssFiles/appSkin.css"););
+@import url("/LesAmisDelEscalade/resources/00_centralisation/cssFiles/appSkin.css");
 
 
-.formModal {	
+.formModal {
 	position: fixed;
 	z-index: 100;
 	left: 0;
@@ -11,13 +10,13 @@
 	height: 100%;
 	overflow: hidden;
 	background-color: rgb(0, 0, 0);
-	background-color: rgba(0, 0, 0, 0.4); 
+	background-color: rgba(0, 0, 0, 0.4);
 }
 
 .formModal-content {
 	background-color: #fefefe;
-	margin: 20% auto;	
+	margin: 20% auto;
 	border: 1px solid #888;
-	width: 300px; 
+	width: 300px;
 	height: 15%;
 }

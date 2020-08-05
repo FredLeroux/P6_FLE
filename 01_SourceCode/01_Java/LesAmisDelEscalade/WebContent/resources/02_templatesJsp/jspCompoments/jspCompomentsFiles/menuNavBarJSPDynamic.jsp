@@ -1,6 +1,6 @@
 <%@ taglib prefix="springTags" uri="http://www.springframework.org/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl"%>
-<link rel="stylesheet" type="text/css" href="jspCompomentsCss/02_01_01_01_menuNavBarCSS.css" />
+<link rel="stylesheet" type="text/css" href="jspCompomentsCss/menuNavBarCSS.css" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <div class="menuBar">
 	<div class="firstLign">

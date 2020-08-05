@@ -50,23 +50,23 @@ function setCotationDesignation(designation) {
 }
 
 /**
- * 
+ *
  * @param elementId
  *            elementId the element Id wher to set the value
  * @param totalPagesNb
  *            the total pages number Integer|String
- * 
+ *
  */
 function setTotalPages(elementId, totalPagesNb) {
 	addTextToElement(elementId, totalPagesNb);
 }
 /**
- * 
+ *
  * @param elementId
  *            the element Id where to set the value
  * @param currentPageNb
  *            the current page Integer|String
- * 
+ *
  */
 function setCurrentPage(elementId, currentPageNb) {
 	addTextToElement(elementId, currentPageNb);
@@ -84,7 +84,7 @@ function getElementById(id) {
 	return document.getElementById(id);
 }
 /**
- * 
+ *
  * @param prevButtonId
  * @param nextButtonId
  * @param isNext
@@ -113,7 +113,7 @@ function setPageChangeActionElements(prevButtonId, nextButtonId, currentPageId,
 			+ "','" + pitch + "','" + cot + "','" + currentPageId + "','"
 			+ prevButtonId + "','" + nextButtonId + "','" + totalPages
 			+ "', 'prev')");
-	
+
 
 }
 
@@ -135,7 +135,7 @@ function displayNextButton(nextButtonId, currentPageId, totalPages) {
 	}
 }
 /**
- * 
+ *
  * @param tableId
  * @param routeDesignation
  * @param pitchDesignation
@@ -147,7 +147,7 @@ function displayNextButton(nextButtonId, currentPageId, totalPages) {
 function changePage(locId, routeDesignation, pitchDesignation,
 		cotationDesignation, currentPageId, prevButtonId, nextButtonId,
 		totalPages, nextOrPrev) {
-	
+
 	var link = setControllerLink(currentPageId, nextOrPrev);
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
@@ -166,14 +166,14 @@ function changePage(locId, routeDesignation, pitchDesignation,
 				let obj = tables[i];
 				obj.setAttribute("class", "thumbnail");
 			}
-			
+
 		}
 	};
 	xhttp.open("GET", link, true);
 	xhttp.send();
 }
 /**
- * 
+ *
  * @param currentPageId
  * @param nextOrPrev
  * @use setChangePageLink(controllerURL)
@@ -187,29 +187,29 @@ function setControllerLink(currentPageId, nextOrPrev) {
 
 function removeThumbnail(locId){
 	var loc = getElementById(locId)
-	
+
 	while(loc.firstChild){
 		loc.removeChild(loc.firstChild);
 	}
 }
 
 function setTable(jsonArray, locId, routeDesignation, pitchDesignation,
-		cotationDesignation,cssClass) {	
-		addThumbnail(locId, jsonArray, routeDesignation, pitchDesignation, cotationDesignation,cssClass);	
+		cotationDesignation,cssClass) {
+		addThumbnail(locId, jsonArray, routeDesignation, pitchDesignation, cotationDesignation,cssClass);
 }
 
 function addThumbnail(locId,jsonArray,routeDesignation, pitchDesignation,
 		cotationDesignation,cssClass){
-	var thumbnailLoc = getElementById("test");
+	var thumbnailLoc = getElementById(locId);
 	let i = 0;
 	for (i; i < jsonArray.length; i++) {
 		var obj = jsonArray[i];
 		var table = createTable(cssClass);
 		createThumbnail(table,obj,routeDesignation,pitchDesignation,cotationDesignation);
-		thumbnailLoc.appendChild(table);		
+		thumbnailLoc.appendChild(table);
 		thumbnailLoc.appendChild(document.createElement("br"));
 	}
-	
+
 }
 
 function createThumbnail(table,routesAndPitchsListArray,routeDesignation,pitchDesignation,cotationDesignation){
@@ -217,9 +217,9 @@ function createThumbnail(table,routesAndPitchsListArray,routeDesignation,pitchDe
 	createPitchsAndCotationList(table, pitchDesignation, cotationDesignation,routesAndPitchsListArray);
 }
 
-function createRouteNameTable(table,routeDesignation,routesAndPitchsListArray){	
+function createRouteNameTable(table,routeDesignation,routesAndPitchsListArray){
 	let thead = createTHead();
-	let tbody = createTBody();	
+	let tbody = createTBody();
 	let trHead = createTr();
 	let trBody = createTr();
 	let tdHead = createTh(routeDesignation);
@@ -240,7 +240,7 @@ function createPitchsAndCotationList(table,pitchDesignation, cotationDesignation
 }
 
 function createPitchsAndCotationListHead(table,pitchDesignation, cotationDesignation){
-	let thead = createTHead();	
+	let thead = createTHead();
 	let trHead = createTr();
 	trHead.appendChild(createTh(pitchDesignation))
 	trHead.appendChild(createTh(cotationDesignation))
@@ -250,7 +250,7 @@ function createPitchsAndCotationListHead(table,pitchDesignation, cotationDesigna
 
 function createPitchsAndCotationListBody(table,routesAndPitchsListArray){
 	let array = routesAndPitchsListArray.pitchsList;
-	let tbody = createTBody();	
+	let tbody = createTBody();
 	let i = 0;
 	for (i; i < array.length; i++) {
 		let trBody = createTr();
@@ -258,7 +258,7 @@ function createPitchsAndCotationListBody(table,routesAndPitchsListArray){
 		trBody.appendChild(createTd(array[i].pitchClimbingLevels));
 		tbody.appendChild(trBody);
 	}
-	table.appendChild(tbody);	
+	table.appendChild(tbody);
 }
 
 function createTable(cssClass){

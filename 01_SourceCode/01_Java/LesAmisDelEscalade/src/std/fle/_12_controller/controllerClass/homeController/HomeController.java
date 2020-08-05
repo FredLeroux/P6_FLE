@@ -43,7 +43,7 @@ public class HomeController {
 
 	@GetMapping(value = "/index")
 	public ModelAndView indexDisplay(ModelAndView model) {
-		model.addObject("iFrameSource", "'01_home/01_01_welcomePage/welcomePage'");
+		model.addObject("iFrameSource", "'01_home/welcomePage/welcomePage'");
 		model.addObject("iFrameLoc","'pagesViewer'");
 		model.setViewName("forward:/navbar");
 		return model;
@@ -63,7 +63,7 @@ public class HomeController {
 	@GetMapping(value = "/emptyConnexion")
 	public ModelAndView emptyError(ModelAndView model) {
 		model.addObject("error", locale.message("logEmpty.error"));
-		model.addObject("iFrameSource", "'01_home/01_01_welcomePage/welcomePage'");
+		model.addObject("iFrameSource", "'01_home/welcomePage/welcomePage'");
 		model.addObject("iFrameLoc","'pagesViewer'");
 		model.setViewName("forward:/navbar");
 		return model;
@@ -72,7 +72,7 @@ public class HomeController {
 	@GetMapping(value = "/incorrectConnexion")
 	public ModelAndView incorrectError(ModelAndView model) {
 		model.addObject("error", locale.message("logIncorrect.error"));
-		model.addObject("iFrameSource", "'01_home/01_01_welcomePage/welcomePage'");
+		model.addObject("iFrameSource", "'01_home/welcomePage/welcomePage'");
 		model.addObject("iFrameLoc","'pagesViewer'");
 		model.setViewName("forward:/navbar");
 		return model;

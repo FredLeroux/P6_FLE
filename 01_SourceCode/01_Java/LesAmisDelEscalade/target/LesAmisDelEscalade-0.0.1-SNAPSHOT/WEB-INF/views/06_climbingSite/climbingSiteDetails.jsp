@@ -10,9 +10,11 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/commentScrollBarCss.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/pageElmtCss.css" />
 </head>
-<a href="../callListBack" target="_parent">back</a>
-<div class = "climbingDetailsContainer">
-	<div id ="site" class="zone1">
+<button onclick= "window.parent.location ='../callListBack?listType=climbingSitesShow'" class="pageButtonNormal">
+	<springTags:message code ="back.name"/>
+</button>
+<div class = "climbingDetailsContainer">	
+	<div id ="site" class="zone1">	
 		<div class="zoneTitle">
 			<springTags:message code ="climbingSiteDetails.title"/>
 		</div>
@@ -26,7 +28,7 @@
 			<springTags:message code ="routesAndPitchsList.title"/>
 		</div>
 		<br>		
-		<jsp:include page="/WEB-INF/views/06_climbingSite/ClimbingSiteIframe/RoutesAndPitchList3.jsp"/>
+		<jsp:include page="/WEB-INF/views/06_climbingSite/ClimbingSiteIframe/RoutesAndPitchList.jsp"/>
 		<br>				
 	</div>	
 	<div class="titleZ3" >

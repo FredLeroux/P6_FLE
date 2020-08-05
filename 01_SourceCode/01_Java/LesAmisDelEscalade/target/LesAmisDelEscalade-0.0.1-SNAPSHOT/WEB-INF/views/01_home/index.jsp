@@ -9,7 +9,7 @@
 </head>
 <body  id="budy" class="ladeIndex"  >
 	<div class="indexHeader">
-		<%@ include file ="/resources/02_templatesJsp/jspCompoments/jspCompomentsFiles/02_01_02_02_headerJSP.jsp"%>
+		<%@ include file ="/resources/02_templatesJsp/jspCompoments/jspCompomentsFiles/headerJSP.jsp"%>
 	</div>
 	<div class="indexIframe">
 		<div  id="pagesViewer">
@@ -18,8 +18,8 @@
 	</div>
 	<br>	
 	<div>
-		<%@ include file ="/resources/02_templatesJsp/jspCompoments/jspCompomentsFiles/02_01_02_04_loginModal.jsp" %>
-		<%@ include file ="/resources/02_templatesJsp/jspCompoments/jspCompomentsFiles/02_01_02_05_loadModal.jsp" %>
+		<%@ include file ="/resources/02_templatesJsp/jspCompoments/jspCompomentsFiles/loginModal.jsp" %>
+		<%@ include file ="/resources/02_templatesJsp/jspCompoments/jspCompomentsFiles/loadModal.jsp" %>
 		<%@ include file ="/WEB-INF/views/06_climbingSite/climbingSiteCommentsModalForm.jsp" %>
 		<%@ include file ="/WEB-INF/views/06_climbingSite/climbingSiteCommentsNotAllowedModal.jsp" %>
 	</div>

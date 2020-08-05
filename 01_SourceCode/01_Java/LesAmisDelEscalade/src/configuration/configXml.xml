@@ -3,8 +3,8 @@
 
 <properties>
 
-<entry key="fieldStyle.normal">basicInput</entry>	
-	<entry key="cssFilePath">${pageContext.request.contextPath}/resources/07_CSSFiles/07_02_form/</entry>
+<entry key="fieldStyle.normal">basicInput</entry>
+	<entry key="cssFilePath">${pageContext.request.contextPath}/resources/06_CSSFiles/form/</entry>
 	<entry key="cssFileName">form.css</entry>
 	<entry key="tableStyleClass.form1">tableForm</entry>
 	<entry key="tableStyleClass.form2">tableForm2</entry>
@@ -20,10 +20,10 @@
 	<entry key="fieldStyleClass.error">inputStyleBad</entry>
 	<entry key="buttonStyleClass">formButton</entry>
 	<entry key="labelStyleClass.hide">labelStyleHide</entry>
-	
-	
-	
-	
-	
+
+
+
+
+
 
 </properties>

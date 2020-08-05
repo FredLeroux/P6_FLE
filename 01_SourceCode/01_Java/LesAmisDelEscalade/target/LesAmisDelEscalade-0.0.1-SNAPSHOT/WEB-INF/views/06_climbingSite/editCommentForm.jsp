@@ -15,7 +15,7 @@
 			</button>
 		</div>
 		<div class = "cancelComment">
-			<button class="pageButtonNormal" onclick = "window.parent.location.reload()">
+			<button class="pageButtonNormal" onclick = "backCommentsList()">
 				<springTags:message code ="cancelComment.name"/>
 			</button>
 		</div>
@@ -43,3 +43,10 @@
 		</table>
 	</div>
 </div>
+<script type="text/javascript">
+	function backCommentsList(){
+		var commentLoc = window.parent.document.getElementById("commentsList");
+		var iframes = commentLoc.getElementsByTagName("iframe");
+		iframes[0].src = "../04_listPage/listInListfrontViewAddObject";
+	}
+</script>

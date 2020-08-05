@@ -1,23 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="springTags"%>
-<!DOCTYPE html>
-<html>
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/messagesCSS.css" />
-<title><springTags:message code ="accountNotYetActivated.title"></springTags:message></title>
+	<title>
+		<springTags:message code ="accountNotYetActivated.title"/>
+	</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/messagesCSS.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/pageElmtCss.css" />
 </head>
-<body>
 <div class = "messageContainer">
-<div class = "messageTitleMitaMita"><springTags:message code ="accountNotYetActivatedTitle.message"></springTags:message></div><br><br>
-<div class = "messageBodyLeftAlign"><springTags:message code ="accountNotYetActivatedBody.message"></springTags:message></div>
-<div class = linkContainer>
-<a href="accountActivationError"><springTags:message code ="accountNotYetActivated.link"></springTags:message></a><br><br>
-<label class = "link"   onclick="changeParentLocation('${pageContext.request.contextPath}/index.html')" ><springTags:message code ="backHome.message"></springTags:message></label><br><br>
+	<div class = "messageTitleMitaMita">
+		<springTags:message code ="accountNotYetActivatedTitle.message"/>
+	</div>
+	<div class = "messageBodyLeftAlign">
+		<springTags:message code ="accountNotYetActivatedBody.message"/>
+	</div>
+	<div class = linkContainer>
+		<div>
+			<button onclick= "window.parent.location ='accountActivationError'" class="pageButtonNormal">
+				<springTags:message code ="accountNotYetActivated.link"/>
+			</button>
+		</div>
+	</div>
 </div>
-</div>
-<script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/link.js"></script>
-</body>
-</body>
-</html>

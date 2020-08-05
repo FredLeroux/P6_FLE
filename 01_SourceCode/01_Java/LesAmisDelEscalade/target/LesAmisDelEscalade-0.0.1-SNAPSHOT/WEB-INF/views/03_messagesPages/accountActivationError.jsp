@@ -5,39 +5,29 @@
 	href="${pageContext.request.contextPath}/cssFiles/pages/messagesCSS.css" />	
 <title><springTags:message code="accountActivatedError.title"/></title>
 </head>
-	<div class="messageContainer">
-		<div class = "messageTitleBad">
-			<springTags:message code="activationErrorTitle.message"/>
-		</div>	
-		<div class = "messageBodyLeftAlign">
-			<springTags:message code="alreadyActivatedListIntro.message"></springTags:message>		
-			<ol>
-				<li>
-					<springTags:message code="activationErrorAlreadyActivated.message"/>
-					<br>	
-					<br>				
-				</li>				
-				<li>
-					<springTags:message code="activationErrorGetNewCode.message"/>
-					<span id="formular" class="formLi">
-						<%@ include	file="/resources/02_templatesJsp/formJsp/formFiles/askMail.jsp"%>
-					</span>
-				</li>
-				<li>
-					<springTags:message code="activationErrorBadMan.message"/>
-				</li>
-			</ol>
-		</div>
-		<div class = linkContainer>
-			<label class="link"	onclick="changeParentLocation('${pageContext.request.contextPath}/index.html')">
-				<springTags:message	code="backHome.message"/>				
-			</label>			
-		</div>
-		<br>
+<div class="messageContainer">
+	<div class = "messageTitleBad">
+		<springTags:message code="activationErrorTitle.message"/>
 	</div>	
-<script type="text/javascript"	src="${pageContext.request.contextPath}/toolBoxJavaScript/link.js"></script>	
-<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/loadModalJavaScript.js"></script>
-<script type="text/javascript">
-	var loadModal = newLoadModal();
-	loadModal.addButtonOnclickParentModalToggle("userMailFormularButton");		
-</script>
+	<div class = "messageBodyLeftAlign">
+		<springTags:message code="alreadyActivatedListIntro.message"></springTags:message>		
+		<ol>
+			<li>
+				<springTags:message code="activationErrorAlreadyActivated.message"/>
+				<br>	
+				<br>				
+			</li>				
+			<li>
+				<springTags:message code="activationErrorGetNewCode.message"/>
+				<span id="formular" class="formLi">
+					<%@ include	file="/resources/02_templatesJsp/formJsp/formFiles/askMail.jsp"%>
+				</span>
+			</li>
+			<li>
+				<springTags:message code="activationErrorBadMan.message"/>
+			</li>
+		</ol>
+	</div>
+	<br>
+</div>	
+<br>

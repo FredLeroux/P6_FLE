@@ -4,7 +4,7 @@
 	<title>
 		<springTags:message code = "createNewSiteForm.title"/>
 	</title>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/07_CSSFiles/pages/modalPage.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/06_CSSFiles/pages/modalPage.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/pageElmtCss.css" />
 </head>
 <div class="createNewSiteFormPageTitle" >

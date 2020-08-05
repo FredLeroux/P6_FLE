@@ -30,16 +30,16 @@ public class MessagesPagesController {
 
 	@Autowired
 	MailCreator mail;
-	
+
 	@Autowired
 	LocalMessage locale;
-	
+
 	@Autowired
 	ModelManagement manager;
 
-	@GetMapping(value = "/01_home/01_01_welcomePage/welcomePage")
+	@GetMapping(value = "/01_home/welcomePage/welcomePage")
 	public ModelAndView welcome() {
-		return new ModelAndView("/01_home/01_01_welcomePage/welcomePage");
+		return new ModelAndView("/01_home/welcomePage/welcomePage");
 
 	}
 
@@ -83,7 +83,7 @@ public class MessagesPagesController {
 			model.addObject("backToCallPageHref","accountActivationError");
 			return model;
 		}
-		
+
 	}
 
 	@GetMapping(value = "/03_messagesPages/accountAlreadyActivated")
@@ -121,21 +121,21 @@ public class MessagesPagesController {
 	public ModelAndView codeExpired() {
 		return new ModelAndView("/03_messagesPages/codeExpired");
 	}
-	
-	
+
+
 	@GetMapping(value = "/03_messagesPages/passwordChangeConfirmation")
 	public ModelAndView passwordChangeConfirmation() {
 		return new ModelAndView("/03_messagesPages/passwordChangeConfirmation");
 	}
-	
-	
-	
+
+
+
 	@GetMapping(value = "/03_messagesPages/errorsPage")
 	public ModelAndView errorsPage() {
 		return new ModelAndView("/03_messagesPages/errorsPage");
 	}
-	
-	
+
+
 	@GetMapping(value = "/03_messagesPages/accesDenied")
 	public ModelAndView accesDenied() {
 		return new ModelAndView("/03_messagesPages/accesDenied");
@@ -145,16 +145,12 @@ public class MessagesPagesController {
 	public ModelAndView noResultsToDisplay() {
 		return new ModelAndView("/03_messagesPages/noResultsToDisplay");
 	}
-	/*@GetMapping(value = "/internalError")
-	public ModelAndView internalError() {
-		return new ModelAndView("/03_messagesPages/errorsPage");
-	}*/
-	
+
 	@GetMapping(value = "/03_messagesPages/forgotPassword")
 	public ModelAndView forgotPasswordPage(@ModelAttribute(value = "forgotPasswordMail")UsersInfoMailSFC usersInfoMailSFC) {
 		return new ModelAndView("/03_messagesPages/forgotPassword");
 	}
-	
+
 	@PostMapping(value = "/03_messagesPages/forgotPasswordReset")
 	public ModelAndView forgotPasswordReset(ModelAndView model,
 			@ModelAttribute(value = "forgotPasswordMail") @Validated UsersInfoMailSFC usersInfoMailSFC, BindingResult result,HttpServletRequest request) {
@@ -163,9 +159,9 @@ public class MessagesPagesController {
 			return model;
 		}
 		return manager.manageForgotPassModel(model,  usersInfoMailSFC, request);
-		
+
 	}
-	
+
 	@GetMapping(value = "/03_messagesPages/topoLendingRefused")
 	public ModelAndView topoLendingRefused() {
 		return new ModelAndView("03_messagesPages/topoLendingRefused");

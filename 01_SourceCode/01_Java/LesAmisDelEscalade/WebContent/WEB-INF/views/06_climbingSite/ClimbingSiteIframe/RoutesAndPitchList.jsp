@@ -22,8 +22,11 @@
 	</div>
 </div>
 <br>
-<table id = "tableRoutesAndList">
-</table>
+<div id = "tableRoutesAndList">
+
+</div>
+
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/routesAndPitchsList.js"></script>
 <script type="text/javascript">
 	var changePageController =${changePageController};
@@ -41,6 +44,6 @@
 	manager.setRouteDesignation(routeDesignation);
 	manager.setPitchDesignation(pitchDesignation);
 	manager.setCotationDesignation(cotationDesignation);
-	manager.setPageChangeActionElements("prevButton", "nextButton", "currentPage", totalPages, "test")
+	manager.setPageChangeActionElements("prevButton", "nextButton", "currentPage", totalPages,"tableRoutesAndList");
 </script>
 
