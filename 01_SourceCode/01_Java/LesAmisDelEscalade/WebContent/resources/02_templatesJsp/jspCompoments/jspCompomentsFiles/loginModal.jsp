@@ -27,7 +27,7 @@
 					placeholder='<springTag:message code ="pass.placeHolder"/>'>
 			</div>
 			<div class="forgot">
-				<a href="<springTag:message code ="forgot.thref"/>">
+				<a href="<springTag:message code ="forgot.href"/>">
 					<label><springTag:message code="forgot.name" /></label>
 				</a>
 			</div>

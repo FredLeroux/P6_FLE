@@ -37,10 +37,16 @@ public class MessagesPagesController {
 	@Autowired
 	ModelManagement manager;
 
+
+
 	@GetMapping(value = "/01_home/welcomePage/welcomePage")
 	public ModelAndView welcome() {
 		return new ModelAndView("/01_home/welcomePage/welcomePage");
+	}
 
+	@GetMapping(value = "/03_messagesPages/reload")
+	public ModelAndView reloadSite() {
+		return new ModelAndView("03_messagesPages/reload");
 	}
 
 	@GetMapping(value = "accountCreated")

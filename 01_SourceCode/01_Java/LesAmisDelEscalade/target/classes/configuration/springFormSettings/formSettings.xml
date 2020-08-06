@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="createNewSiteForm.path">/resources/02_templatesJsp/formJsp/formFiles/createNewSiteTmplt.jsp</entry>
+	<entry key="createNewSiteRouteForm.path">/resources/02_templatesJsp/formJsp/formFiles/createNewSiteRouteTmplt.jsp</entry>
+	<entry key="createNewSiteRoutePitchForm.path">/resources/02_templatesJsp/formJsp/formFiles/createNewRoutePitchTmplt.jsp</entry>
+	<entry key="createNewTopoForm.path">/resources/02_templatesJsp/formJsp/formFiles/createNewTopoTmplt.jsp</entry>
+	<entry key="displaySiteForm.path">/resources/02_templatesJsp/formJsp/formFiles/displaySiteTmplt.jsp</entry>
+	<entry key="displayTopoForm.path">/resources/02_templatesJsp/formJsp/formFiles/displayTopoTmplt.jsp</entry>
+	<entry key="editCommentFormular.path">/resources/02_templatesJsp/formJsp/formFiles/editCommentTmplt.jsp</entry>
+	<entry key="editSiteRouteForm.path">/resources/02_templatesJsp/formJsp/formFiles/editSiteRouteTmplt.jsp</entry>
+	<entry key="editSiteRoutePitchForm.path">/resources/02_templatesJsp/formJsp/formFiles/editRoutePitchTmplt.jsp</entry>
+	<entry key="forgotPasswordForm.path">/resources/02_templatesJsp/formJsp/formFiles/forgotPasswordFormTmplt.jsp</entry>
+	<entry key="resetPassForm.label">.resetPassLabel</entry>
+	<entry key="resetPassForm.path">/resources/02_templatesJsp/formJsp/formFiles/resetPassFormTmplt.jsp</entry>
+	<entry key="updateMemberStatusForm.path">/resources/02_templatesJsp/formJsp/formFiles/updateMemberStatusTmplt.jsp</entry>
+	<entry key="updatePassForm.path">/resources/02_templatesJsp/formJsp/formFiles/updatePassFormTmplt.jsp</entry>
+	<entry key="updateSiteForm.path">/resources/02_templatesJsp/formJsp/formFiles/updateSiteTmplt.jsp</entry>
+	<entry key="updateTopoForm.path">/resources/02_templatesJsp/formJsp/formFiles/updateTopoTmplt.jsp</entry>
+	<entry key="userForm.label">.label</entry>
+	<entry key="userFormBTN.message.postComment">button.postComment.label</entry>
+	<entry key="userFormBtn.align">center</entry>
+	<entry key="userFormBtn.message.borrowThisTopo">button.borrowThisTopo.label</entry>
+	<entry key="userFormBtn.message.createRoute">button.createRoute.label</entry>
+	<entry key="userFormBtn.message.createRoutePitch">button.createRoutePitch.label</entry>
+	<entry key="userFormBtn.message.createSite">button.createSite.label</entry>
+	<entry key="userFormBtn.message.createTopo">button.createTopo.label</entry>
+	<entry key="userFormBtn.message.editRoute">button.editRoute.label</entry>
+	<entry key="userFormBtn.message.editRoutePitch">button.editRoutePitch.label</entry>
+	<entry key="userFormBtn.message.forgotPass">button.forgotPass.label</entry>
+	<entry key="userFormBtn.message.memberStatus">button.memeberStatus.label</entry>
+	<entry key="userFormBtn.message.reSend">button.reSend.label</entry>
+	<entry key="userFormBtn.message.register">button.register.label</entry>
+	<entry key="userFormBtn.message.resetPass">button.resetPass.label</entry>
+	<entry key="userFormBtn.message.update">button.update.label</entry>
+	<entry key="userFormBtn.message.updateSite">button.updateSite.label</entry>
+	<entry key="userFormBtn.message.updateTopo">button.updateTopo.label</entry>
+	<entry key="userMailForm.path">/resources/02_templatesJsp/formJsp/formFiles/askMail.jsp</entry>
+	<entry key="userRegisterForm.path">/resources/02_templatesJsp/formJsp/formFiles/userForm.jsp</entry>
+	<entry key="userUpdateForm.path">/resources/02_templatesJsp/formJsp/formFiles/userUpdateForm.jsp</entry>
+	</properties>

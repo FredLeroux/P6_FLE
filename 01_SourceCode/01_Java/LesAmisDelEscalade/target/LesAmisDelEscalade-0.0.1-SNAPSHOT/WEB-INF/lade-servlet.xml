@@ -155,7 +155,7 @@
 				</value>
 				<value>${pageTitlesMessagesSrc.path}${pageTitles.fileNamePattern}
 				</value>
-				<value>${logModalJspHref.path}05_01_logModalJspHref
+				<value>${logModalJspHref.path}logModalJspHref
 				</value>
 				<value>${placeHolderMessagesSrc.path}${placeHolder.filePattern}
 				</value>

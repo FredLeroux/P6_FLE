@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="age.maxDigits">3</entry>
+	<entry key="age.totalDigits">0</entry>
+	<entry key="age.precision">0</entry></properties>

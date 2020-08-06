@@ -155,19 +155,19 @@
 				</value>
 				<value>${pageTitlesMessagesSrc.path}${pageTitles.fileNamePattern}
 				</value>
-				<value>${logModalJspHref.path}05_01_logModalJspHref
+				<value>${logModalJspHref.path}${logModalJspHref.fileNamePattern}
 				</value>
-				<value>${placeHolderMessagesSrc.path}${placeHolder.filePattern}
+				<value>${placeHolderMessagesSrc.path}${placeHolder.fileNamePattern}
 				</value>
-				<value>${labelDisplayNamesSrc.path}${labelDisplayNames.filePattern}
+				<value>${labelDisplayNamesSrc.path}${labelDisplayNames.fileNamePattern}
 				</value>
-				<value>${formMessagesSrc.path}${formMessages.filePattern}
+				<value>${formMessagesSrc.path}${formMessages.fileNamePattern}
 				</value>
-				<value>${pageMessagesSrc.path}${pageMessage.filePattern}
+				<value>${pageMessagesSrc.path}${pageMessage.fileNamePattern}
 				</value>
-				<value>${validationMessages.path}${validationMessages.filePattern}
+				<value>${validationMessages.path}${validationMessages.fileNamePattern}
 				</value>
-				<value>${mailContentMessages.path}${mailContentMessages.filePattern}
+				<value>${mailContentMessages.path}${mailContentMessages.fileNamePattern}
 				</value>
 			</list>
 
