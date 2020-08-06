@@ -95,7 +95,7 @@ public class AccountModelManagementImplemented implements AccountModelManagement
 		sessVar.setRequest(request);
 		account.deleteAccount(sessVar.getAccountID());
 		sessVar.clearSession();
-		return new ModelAndView("redirect:/reInit");
+		return new ModelAndView("redirect:/disconnect");
 	}
 
 }
