@@ -22,8 +22,8 @@ public class ClimbingSiteCommentsModelManagementImplemented implements ClimbingS
 
 	private SessionVariables sessVar = new SessionVariables();
 	private Integer commentId = null;
-	
-	
+
+
 	@Override
 	public ModelAndView manageInitVar(ModelAndView model,Integer id,String redirectTo) {
 		commentId = id;
@@ -35,12 +35,13 @@ public class ClimbingSiteCommentsModelManagementImplemented implements ClimbingS
 	public ModelAndView manageDisplayCommentEditor(ModelAndView model,  String modelAttributName) {
 		model.setViewName("06_climbingSite/editCommentForm");
 		model.addObject(modelAttributName, commentsService.getClimbingSiteCommentsSFCForEdit(commentId));
-		model.addObject("log",commentsService.modificationLogI18N(commentId));		
+		model.addObject("log",commentsService.modificationLogI18N(commentId));
+		model.addObject("commentListBackUrl", "04_listPage/listInListfrontViewAddObject");
 		return model;
 	}
 
 	@Override
-	public ModelAndView manageUpdateComment(ModelAndView model, ClimbingSiteCommentsSFC climbingSiteCommentsSFC,String modelAttributeName,BindingResult result) {		
+	public ModelAndView manageUpdateComment(ModelAndView model, ClimbingSiteCommentsSFC climbingSiteCommentsSFC,String modelAttributeName,BindingResult result) {
 		if(result.hasErrors()) {
 			model.setViewName("06_climbingSite/editCommentForm");
 			model.addObject(modelAttributeName,climbingSiteCommentsSFC);
@@ -51,21 +52,21 @@ public class ClimbingSiteCommentsModelManagementImplemented implements ClimbingS
 		setBackToList(model);
 		return model;
 	}
-	
+
 	@Override
 	public ModelAndView manageDeleteComment(ModelAndView model, ClimbingSiteCommentsSFC climbingSiteCommentsSFC) {
 		commentsService.deleteComment(climbingSiteCommentsSFC,commentId, getAuthorPseudo());
 		setBackToList(model);
 		return model;
 	}
-	
+
 	private String getAuthorPseudo() {
 		sessVar.setRequest(request);
 		return sessVar.getPseudo();
 	}
-	
+
 	private void setBackToList(ModelAndView model) {
-		model.setViewName("redirect:/04_listPage/listPage?listType=climbingSitesComments");
+		model.setViewName("redirect:/04_listPage/listInListfrontViewAddObject");
 	}
 
 }

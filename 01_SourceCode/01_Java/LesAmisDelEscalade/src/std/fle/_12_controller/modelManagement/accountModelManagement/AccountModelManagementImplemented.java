@@ -87,15 +87,25 @@ public class AccountModelManagementImplemented implements AccountModelManagement
 	@Override
 	public ModelAndView doUpdateMemberStatus(ModelAndView model,Integer id, UsersAccountInfoMemberStatusSFC memberStatusSFC) {
 		usersAccountInfoService.updateMemberStatus(id, memberStatusSFC);
-		model.setViewName("redirect:/04_listPage/listPage");
+		model.setViewName("redirect:/callListBack?listType=members");
 		return model;
 	}
 	@Override
+	public String manageAccountDeletion() {
+	sessVar.setRequest(request);
+		//account.deleteAccount(sessVar.getAccountID());
+		System.out.println("simulation delete");
+		sessVar.clearSession();
+		return "accountDeleted";
+	}
+
+	/*@Override
 	public ModelAndView manageAccountDeletion() {
 		sessVar.setRequest(request);
-		account.deleteAccount(sessVar.getAccountID());
+		//account.deleteAccount(sessVar.getAccountID());
+		System.out.println("simulation delete");
 		sessVar.clearSession();
-		return new ModelAndView("redirect:/disconnect?deletion=true");
-	}
+		return new ModelAndView("redirect:/reinit");
+	}*/
 
 }

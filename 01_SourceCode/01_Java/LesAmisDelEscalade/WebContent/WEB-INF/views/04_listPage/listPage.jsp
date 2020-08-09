@@ -18,9 +18,11 @@
 <%@ include file="/resources/02_templatesJsp/listDisplayerFiles/file/displayList.jsp" %>
 <br>
 <script type="text/javascript">
-	window.onload = function(){
-		window.location = "#listUpPage"}
+window.onload = function(){
+	window.location = "#listUpPage"}
 </script>
-
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/loadModalJavaScript.js"></script>
+<script type="text/javascript">
+	disableLoadModal();
+</script>
 

@@ -58,12 +58,6 @@ public class DisplayListController implements SetListManagementController {
 		return new ModelAndView("redirect:setListPage?listType=" + listType);
 	}
 
-	@GetMapping(value = "04_listPage/frontViewAddObjectListType")
-	public ModelAndView frontViewAddObjectListType(ModelAndView model, HttpServletRequest request) {
-		String listType = request.getParameter("listType");
-		return listControllerConfig().frontViewAddObject("04_listPage", "listPage", "sortList", "listRowsDisplayer",
-				"selectedPage", "orderedPage", editControllerURI, listName);
-	}
 
 	@GetMapping(value = "04_listPage/setDataToDisplay")
 	@Override

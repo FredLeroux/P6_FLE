@@ -3,13 +3,14 @@ package std.fle._10_security;
 
 
 public enum SecurityLevel  {
-	
+
 	ADMIN(0),
 	SUPER_USER(1),
 	USER(2),
-	VISITOR(3);
-	
-	
+	VISITOR(3),
+	ERROR(4);
+
+
 	private Integer rank;
 
 	private SecurityLevel(Integer rank) {
@@ -19,17 +20,17 @@ public enum SecurityLevel  {
 	public Integer rank() {
 		return rank;
 	}
-	
-	
-	
-	
-	
-	
 
 
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
 
 }

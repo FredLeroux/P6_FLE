@@ -182,4 +182,18 @@ function hidePass(passElmtId,visibilityElemtId){
 	}
 }
 
+/**
+ *
+ * @param elemtToToggleClassLoc
+ * @param classCss1
+ * @param classCss2
+ * @returns if elemtToToggleClassLoc class = classCss2 toggle to classCss1
+ */
+function toggleClassCss(elemtToToggleClassLoc,classCss1,classCss2){
+	var toToggleClass = document.getElementById(elemtToToggleClassLoc);
+	if(toToggleClass.getAttribute("class").includes(classCss2)){
+		toToggleClass.setAttribute("class", classCss1);
+	}
+}
+
 

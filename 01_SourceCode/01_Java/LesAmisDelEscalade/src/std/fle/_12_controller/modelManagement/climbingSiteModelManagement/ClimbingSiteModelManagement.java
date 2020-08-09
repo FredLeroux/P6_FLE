@@ -70,6 +70,6 @@ public interface ClimbingSiteModelManagement {
 
 	public JSONArray getPageAsJSONArray(Integer currentPage);
 
-	public ModelAndView managePostComment(String requestCommentParameterName);
+	public String managePostComment(String requestCommentParameterName);
 
 }

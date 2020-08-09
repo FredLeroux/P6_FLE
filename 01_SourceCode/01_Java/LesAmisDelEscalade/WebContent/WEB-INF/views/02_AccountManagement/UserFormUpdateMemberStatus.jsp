@@ -6,7 +6,7 @@
 	</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/pageElmtCss.css" />
 </head>
-<button onclick= "window.parent.location ='../../callListBack?listType=toposMine'" class="pageButtonNormal">
+<button onclick= "window.location ='../../callListBack?listType=members'" class="pageButtonNormal">
 		<springTags:message code ="back.name"/>
 </button>
 <div class="memberStatusFormPageTitle" >

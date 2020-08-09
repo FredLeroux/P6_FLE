@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import fle.toolBox.springFormManager.selectInputManagement.controllerClass.SelectInputForController;
@@ -21,7 +22,7 @@ import std.fle._07_service.userUpdateService.UserUpdateService;
 import std.fle._12_controller.modelManagement.accountModelManagement.AccountModelManagement;
 
 @Controller
-public class AccountController {	
+public class AccountController {
 
 	@Autowired
 	private SelectInputForController select;
@@ -107,8 +108,13 @@ public class AccountController {
 	}
 
 	@GetMapping(value = "/02_AccountManagement/deleteAccount")
-	public ModelAndView deleteAccount() {
+	public @ResponseBody String deleteAccount() {
 		return manager.manageAccountDeletion();
+	}
+
+	@GetMapping(value = "/02_AccountManagement/testError")
+	public ModelAndView testError() {
+		throw new NullPointerException();
 	}
 
 }

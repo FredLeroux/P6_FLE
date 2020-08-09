@@ -75,13 +75,17 @@ body{
 	transform:rotate(1deg);
 	}
 
+
+
 .style1>tbody>tr:hover>td{
 	color: var(--highlith-color);
 	cursor:pointer;
 	text-shadow: 1px 2px 1px var(--shadow-color);
+	}
 
-
-}
+.style1>tbody>tr:active>td {
+	color: var(--base-color-opposite);;
+	}
 
 .selectFilterMessage{
 	font-size: 1.2vw;

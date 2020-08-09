@@ -36,6 +36,7 @@
 
 .menu{
 	grid-area:menu;
+	height: 40%;
 }
 
 
@@ -97,30 +98,26 @@ color: var(--menu-text-color);
 
 .connexion:hover{
 	color: var(--menu-text-hover-color);
+	cursor:pointer;
 }
 
 .menuDrop{
 	text-align: left;
 	padding-left: 1vw;
 	position: relative;
-
-
-
 }
 
 .menuDrop:hover{
 	color:var(--hover-color1);
+
 }
 
 .menuDrop:hover> i{
 	transform: rotate(90deg);
 }
 
-
-
-.menuDrop:hover .list{
-	display: block;
-
+.hideList{
+	display:none;
 }
 
 .list {
@@ -132,7 +129,7 @@ color: var(--menu-text-color);
 	overflow: hidden;
 	margin:auto;
 	margin-left: -10%;
-	width: 600%;
+	width: 450%;
 	padding: 20%;
 	border:solid;
 	border-width: medium;
@@ -142,7 +139,10 @@ color: var(--menu-text-color);
 	box-shadow: 5px 5px 10px var(--base-color);
 }
 
+.menuDrop:hover .list {
+	display: block;
 
+}
 
 .list li {
 	z-index: 4;
@@ -157,6 +157,8 @@ color: var(--menu-text-color);
 	text-decoration: none;
 	width: 100%;
 }
+
+
 
 .menuNavBarIcon{
 	display:inline-block;
@@ -175,7 +177,14 @@ color: var(--menu-text-color);
 	text-shadow: 2px 1px 1px var(--hover-color1);
 }
 
+.list li a:active{
+	color: var(--highlith-color);
+}
 
+.list li a:active .menuNavBarIcon{
+	text-shadow: 2px 1px 1px var(--highlith-color);
+
+}
 
 
 
@@ -190,8 +199,8 @@ color: var(--menu-text-color);
 
 @media all and (max-width: 900px) {
 
-	.list{
-		border--radius: 10px;
+	.list,.listClicked{
+		border-radius: 10px;
 	}
 
 	.list>li {

@@ -95,15 +95,21 @@
 	<!-- HandlerInterceptor -->
 	<mvc:interceptors>
 		<mvc:interceptor>
+		<mvc:mapping path="index" />
 			<mvc:mapping path="index.jsp" />
 			<mvc:mapping path="/index.html" />
 			<bean class="std.fle._08_interceptors.OpeningInterceptor"></bean>
 		</mvc:interceptor>
 		<mvc:interceptor>
-			<mvc:mapping path="reload" />
-			<bean class="std.fle._08_interceptors.Reload"></bean>
+			<mvc:mapping path="/home"/>
+			<mvc:mapping path="/welcome"/>
+			<mvc:mapping path="/callList"/>
+			<mvc:mapping path="/addSite"/>
+			<mvc:mapping path="/addMineTopo"/>
+			<mvc:mapping path="/myAccount"/>
+			<bean class="std.fle._08_interceptors.SiteAcces"></bean>
 		</mvc:interceptor>
-	 	 <mvc:interceptor>
+		 <mvc:interceptor>
 			<mvc:mapping path="/error" />
 			<bean class="std.fle._08_interceptors.OnErrorInterceptor"></bean>
 		</mvc:interceptor>

@@ -14,7 +14,7 @@ public class OpeningInterceptor extends HandlerInterceptorAdapter {
 	@Autowired
 	LocalMessage local;
 	private InitiateAppInterceptor initiateAppInterceptor = new InitiateAppInterceptor();
-	
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {

@@ -45,8 +45,10 @@ public class ClimbingSiteShowerController extends ClimbingSiteModelMgntAndContro
 	}
 
 	@PostMapping(value ="06_climbingSite/postComment")
-	public ModelAndView postComment(ModelAndView model) {
-		return manager.managePostComment("comment");
+	public @ResponseBody String postComment(ModelAndView model) {
+		JSONObject reloadUrl = new JSONObject();
+		reloadUrl.put("url",manager.managePostComment("comment"));
+		return reloadUrl.toString() ;
 	}
 
 

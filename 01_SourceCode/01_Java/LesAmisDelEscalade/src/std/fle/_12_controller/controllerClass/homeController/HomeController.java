@@ -1,8 +1,10 @@
 package std.fle._12_controller.controllerClass.homeController;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import fle.toolBox.logger.Log4J2;
 import fle.toolBox.navBarManagement.NavBarOptions;
 import fle.toolBox.navBarManagement.NavBarOptionsList;
 import std.fle._00_general.SessionVariables;
+import std.fle._10_security.SecurityLevel;
 
 @Controller
 public class HomeController {
@@ -34,30 +37,39 @@ public class HomeController {
 
 	@GetMapping(value = "/navbar")
 	public ModelAndView navbar(ModelAndView model, HttpServletRequest request) {
-		SessionVariables sessVar = new SessionVariables(request);
-		ArrayList<NavBarOptions> option =  optionList.getAllNavBarOptions(sessVar.getSecurityLevel());
-		model.setViewName("01_home/index");
+		ArrayList<NavBarOptions> option =  optionList.getAllNavBarOptions(securityLevelToApply(request));
+		model.setViewName("01_home/home");
 		model.addObject("optionList", option);
 		return model;
 	}
 
-	@GetMapping(value = "/index")
+	private Integer securityLevelToApply(HttpServletRequest request) {
+		SessionVariables sessVar = new SessionVariables(request);
+		Integer securityLevel = sessVar.getSecurityLevel();
+		if (securityLevel == null) {
+			return SecurityLevel.ERROR.rank();
+		} else {
+			return securityLevel;
+		}
+
+	}
+
+	@GetMapping(value = { "/index","/welcome"})
 	public ModelAndView indexDisplay(ModelAndView model) {
 		model.addObject("iFrameSource", "'01_home/welcomePage/welcomePage'");
 		model.addObject("iFrameLoc","'pagesViewer'");
 		model.setViewName("forward:/navbar");
 		return model;
-
 	}
 
-
+	@GetMapping(value = "/home")
+	public ModelAndView home() {
+		return siteNav("01_home/welcomePage/welcomePage");
+	}
 
 	@GetMapping(value = "/createAccount")
-	public ModelAndView createAccountNav(ModelAndView model) {
-		model.addObject("iFrameSource", "'02_AccountManagement/userFormRegister'");
-		model.addObject("iFrameLoc","'pagesViewer'");
-		model.setViewName("forward:/navbar");
-		return model;
+	public ModelAndView createAccountNav() {
+		return siteNav("02_AccountManagement/userFormRegister");
 	}
 
 	@GetMapping(value = "/emptyConnexion")
@@ -83,18 +95,15 @@ public class HomeController {
 	public ModelAndView wrong(ModelAndView model, HttpServletRequest request) {
 		Integer tentativeLeft = maxTentative - FredParser.toInteger(request.getParameter("tentative"));
 		model.addObject("error", tentativeLeft + locale.message("wrong.error"));
-		model.addObject("iFrameSource", "'01_home/01_01_welcomePage/welcomePage'");
+		model.addObject("iFrameSource", "'01_home/welcomePage/welcomePage'");
 		model.addObject("iFrameLoc","'pagesViewer'");
 		model.setViewName("forward:/navbar");
 		return model;
 	}
 
 	@GetMapping(value = "/myAccount")
-	public ModelAndView myAccount(ModelAndView model) {
-		model.addObject("iFrameSource", "'02_AccountManagement/userFormUpdate'");
-		model.addObject("iFrameLoc","'pagesViewer'");
-		model.setViewName("forward:/navbar");
-		return model;
+	public ModelAndView myAccount() {
+		return siteNav("02_AccountManagement/userFormUpdate");
 	}
 
 	@GetMapping(value = "/accountActivated")
@@ -149,7 +158,15 @@ public class HomeController {
 	}
 
 	@GetMapping(value = "/error")
-	public ModelAndView error(ModelAndView model) {
+	public ModelAndView error(ModelAndView model,HttpServletRequest request) {
+		String externalCall = request.getParameter("externalCall");
+		if(externalCall.equals("true")) {
+			SessionVariables sessVar = new SessionVariables(request);
+			System.out.println(sessVar.getPseudo()+"++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+			model.setViewName("03_messagesPages/errorsPage");
+
+			return model;
+		}
 		model.addObject("iFrameSource", "'03_messagesPages/errorsPage'");
 		model.addObject("iFrameLoc","'pagesViewer'");
 		model.setViewName("forward:/navbar");
@@ -165,27 +182,19 @@ public class HomeController {
 
 	@GetMapping(value = "/forgotPassword")
 	public ModelAndView forgotPassword(ModelAndView model) {
-		model.addObject("iFrameSource", "'03_messagesPages/forgotPassword'");
-		model.addObject("iFrameLoc","'pagesViewer'");
-		model.setViewName("forward:/navbar");
-		return model;
+		return siteNav("03_messagesPages/forgotPassword");
 	}
 
 	@GetMapping(value = "/callList")
 	public ModelAndView list(ModelAndView model,HttpServletRequest request) {
 		String listType = request.getParameter("listType");
-		model.addObject("iFrameSource", "'04_listPage/setListPage?listType="+listType+"'");
-		model.addObject("iFrameLoc","'pagesViewer'");
-		model.setViewName("forward:/navbar");
+		model.setViewName("redirect:04_listPage/setListPage?listType="+listType);
 		return model;
 	}
 
 	@GetMapping(value = "/callListBack")
-	public ModelAndView listBack(ModelAndView model,HttpServletRequest request) {
-		String listType = request.getParameter("listType");
-		model.addObject("iFrameSource", "'04_listPage/frontViewAddObjectListType?listType="+listType+"'");
-		model.addObject("iFrameLoc","'pagesViewer'");
-		model.setViewName("forward:/navbar");
+	public ModelAndView listBack(ModelAndView model) {
+		model.setViewName("redirect:04_listPage/frontViewAddObject");
 		return model;
 	}
 
@@ -202,47 +211,29 @@ public class HomeController {
 
 	@GetMapping(value = "/noResultsToDisplay")
 	public ModelAndView noResultsToDisplay(ModelAndView model) {
-		model.addObject("iFrameSource", "'03_messagesPages/noResultsToDisplay'");
-		model.addObject("iFrameLoc","'pagesViewer'");
-		model.setViewName("forward:/navbar");
-		return model;
+		return siteNav("03_messagesPages/noResultsToDisplay");
 	}
 
 
 	@GetMapping(value="/addMineTopo")
 	public ModelAndView addMineTopo(ModelAndView model) {
-		model.addObject("iFrameSource", "'05_topo/createNewTopoForm'");
-		model.addObject("iFrameLoc","'pagesViewer'");
-		model.setViewName("forward:/navbar");
-		return model;
+		return siteNav("05_topo/createNewTopoForm");
 	}
-
-
 
 	@GetMapping(value="/borrowDemands")
 	public ModelAndView borrowDemands(ModelAndView model) {
-		model.addObject("iFrameSource", "'05_topo/borrowDemandsList'");
-		model.addObject("iFrameLoc","'pagesViewer'");
-		model.setViewName("forward:/navbar");
-		return model;
+		return siteNav("05_topo/borrowDemandsList");
 	}
 
 	@GetMapping(value="/addSite")
 	public ModelAndView addSite(ModelAndView model) {
-		model.addObject("iFrameSource", "'06_climbingSite/createNewSite'");//
-		model.addObject("iFrameLoc","'pagesViewer'");
-		model.setViewName("forward:/navbar");
-		return model;
+		return siteNav("06_climbingSite/createNewSite");
 	}
 
-	@GetMapping(value="/siteHaveBeenCommented")
-	public ModelAndView siteDetails(ModelAndView model) {
-		model.addObject("iFrameSource", "'06_climbingSite/climbingSiteDetailsDisplay'");//
-		model.addObject("iFrameLoc","'pagesViewer'");
-		model.setViewName("forward:/navbar");
-		return model;
-	}
 
+	private ModelAndView siteNav(String controllerUrl) {
+		return new ModelAndView ("redirect:"+controllerUrl);
+	}
 
 
 

@@ -55,7 +55,7 @@ public class AuthentificatorInterceptor extends HandlerInterceptorAdapter {
 			}
 			if (passManager.isPassMatch(pass, authen.getPassword())) {
 				setSessionVar(authen, sessVar,login);
-				response.sendRedirect("index.html");
+				response.sendRedirect("welcome");
 			} else {
 				setTentative(sessVar);
 				response.sendRedirect("wrongConnexion?tentative=" + sessVar.getLoginTentative());

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 
 function newLink() {
@@ -7,7 +7,7 @@ function newLink() {
 }
 
 /**
- * 
+ *
  * @param newURL
  *            the URL to apply for subframe parent
  * @returns change the subframe location on click
@@ -22,8 +22,21 @@ function addOnclickChangeLocation(elementId, newUrl) {
 	var element = document.getElementById(elementId);
 	element.setAttribute("onclick", "changeLocation('" + newUrl + "')");
 }
+
+function navBack(backUrl){
+	changeLocation(backUrl);
+}
+
+function navTo(toUrl){
+	changeLocation(toUrl);
+}
+
+function changeLocation(url){
+	location.href=url;
+}
+
 /**
- * 
+ *
  * @param elementId
  * @param formName
  * @param formAction

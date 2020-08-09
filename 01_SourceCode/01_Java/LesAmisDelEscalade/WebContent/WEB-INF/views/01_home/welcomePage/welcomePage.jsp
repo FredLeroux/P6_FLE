@@ -12,4 +12,7 @@
 	<springTags:message  code = "welcome.locale"/>
 </div>
 <br>
-<br>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/loadModalJavaScript.js"></script>
+<script type="text/javascript">
+	disableLoadModal();
+</script>

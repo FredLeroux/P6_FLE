@@ -19,10 +19,8 @@ public class OnErrorInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-
 		SessionVariables sessVar = new SessionVariables(request);
 		if(sessVar.getIsAppInitiated()) {
-			System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++here");
 			response.sendRedirect("internalError");
 			return false;
 

@@ -17,11 +17,11 @@ function getIFrameLoc() {
 }
 
 /**
- * 
+ *
  * @param iFrameLoc id of the div used to insert the iframe
  * @returns this javaScript class (02_01_03_02_iFrameJavaScript.js) with iFrameloc setted
  *  Allow to set multiple iframes on the same page
- * 
+ *
  */
 function newIframe(iFrameLoc) {
 	setIFrameLoc(iFrameLoc);
@@ -29,13 +29,13 @@ function newIframe(iFrameLoc) {
 }
 
 /**
- * 
+ *
  * append the iFrame at setted iFrameLoc
  */
-function setIframe() {
+function setIframe(iframeId) {
 	var location = document.getElementById(getIFrameLoc());
 	var iframe = document.createElement("iframe");
-	iframe.id = "iframeNav";
+	iframe.id = iframeId;
 	iframe.width = "100%";
 	iframe.setAttribute("frameborder", 0);
 	//attribute scrolling avoid the iframe scroll bar keep in mind to adjuste the height and width
@@ -46,23 +46,31 @@ function setIframe() {
 }
 
 /**
- * 
+ *
  * @param src the source to be displayed in the iframe
  * set the src to the iframe
  */
-function navIframe(src) {
-	var iframe = document.getElementById("iframeNav");
+function navIframe(src,iframeId) {
+	var iframe = document.getElementById(iframeId);
 	iframe.setAttribute("src", src);
 
 }
 
+function navIframeAndHideMenu(src,iframeId,menuLoc,hideCssClass) {
+
+	document.getElementById(menuLoc).setAttribute("class", hideCssClass)
+	var iframe = document.getElementById(iframeId);
+	iframe.style.cursor='wait';
+	iframe.setAttribute("src", src);
+}
+
 /**
- * 
+ *
  * @param src =  the source to be displayed in the iframe
  * Display the source in the iframe;
  */
-function loadIframe(src){
-	setIframe();
-	navIframe(src);
-		
+function loadIframe(iframeId,src){
+	setIframe(iframeId);
+	navIframe(src,iframeId);
+
 }

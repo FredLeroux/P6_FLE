@@ -108,7 +108,7 @@ public class TopoModelManagementImplemented implements TopoModelManagement {
 			return model;
 		}
 		topoService.updateClimbingTopo(climbingTopoSFC, loggedUserAccountId());
-		model.setViewName("redirect:/04_listPage/listPage");
+		model.setViewName("redirect:displayUpdateForm");
 		return model;
 	}
 
@@ -272,8 +272,8 @@ public class TopoModelManagementImplemented implements TopoModelManagement {
 
 	@Override
 	public ModelAndView manageDeleteTopo() {
-		topoService.deleteTopo(climbingTopoId);
-		return new ModelAndView("redirect:/04_listPage/listPage");
+		//topoService.deleteTopo(climbingTopoId);
+		return new ModelAndView("redirect:../callLisBack");
 	}
 
 }

@@ -17,4 +17,5 @@
 <script type="text/javascript">
 	var loadModal = newLoadModal();
 	loadModal.addButtonOnclickParentModalToggle("createNewTopoFormularButton");
+	loadModal.disableLoadModal();
 </script>

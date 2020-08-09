@@ -36,6 +36,9 @@ public class SessionVariables {
 	}
 
 	private HttpSession session() {
+		if(request == null) {
+			throw new NullPointerException();
+		}
 		return request.getSession();
 	}
 

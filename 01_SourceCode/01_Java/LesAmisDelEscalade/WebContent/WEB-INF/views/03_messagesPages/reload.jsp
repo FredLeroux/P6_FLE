@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <title>ReloadPage</title>
 </head>
-<body onload="changeParentLocation('${pageContext.request.contextPath}/index')">
+<body onload="changeParentLocation('${pageContext.request.contextPath}?error=501')">
 <script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/link.js"></script>
 </body>
 </html>

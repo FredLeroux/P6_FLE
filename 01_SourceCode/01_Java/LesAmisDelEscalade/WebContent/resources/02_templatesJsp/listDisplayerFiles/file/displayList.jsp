@@ -63,6 +63,7 @@
 	dataTable.setStoredFilterArrayName(storedFilterArrayName);
 	dataTable.setFilterSettedFromBackEnd(filterSetted);
 	dataTable.setOrderLink(orderLink);
+	dataTable.setParentLoadingModal("loading");
 	dataTable.generateTable("dataTable","dataTable",dataBaseData,"style1","id");
 	dataTable.createFilterList(filterHead, "filterList", tableElementsList);
 	dataTable.displayFilterSetted("filterAppliedList", filterHead , "aDisplay")

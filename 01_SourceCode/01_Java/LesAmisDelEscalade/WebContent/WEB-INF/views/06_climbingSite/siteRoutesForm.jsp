@@ -29,7 +29,7 @@
 	<%@ include file="/resources/02_templatesJsp/formJsp/formFiles/createNewSiteRouteTmplt.jsp" %>	
 </div>	
 <div class="routeFormEndingButtonPositioning">
-	<button class="pageButtonNormal"  onclick="window.location.href='${routeEndController}'">
+	<button class="pageButtonNormal"  onclick="navBack('${routeEndController}')">
 		<springTags:message code = "finishHim.name"/>
 	</button>
 </div>
@@ -71,5 +71,6 @@
 	</jstl:if>	
 </div>
 <br>
+<script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/link.js"></script>
 
 
