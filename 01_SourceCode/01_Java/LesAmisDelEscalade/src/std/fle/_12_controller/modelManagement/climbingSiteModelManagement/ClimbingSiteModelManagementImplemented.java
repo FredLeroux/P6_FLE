@@ -25,7 +25,6 @@ import std.fle._03_sfc.climbingSiteSFC.SiteRoutesSFC;
 import std.fle._07_service.climbingSiteCommentsService.ClimbingSiteCommentsService;
 import std.fle._07_service.climbingSiteService.ClinbingSiteService;
 import std.fle._10_security.SecurityLevel;
-import std.fle._12_controller.modelManagement.climbingSiteCommentsManagement.ClimbingSiteCommentsModelManagementImplemented;
 import std.fle._12_controller.modelManagement.deleteManager.DeleteConfirmationManager;
 import std.fle._12_controller.modelManagement.formsValidation.FormsValidation;
 

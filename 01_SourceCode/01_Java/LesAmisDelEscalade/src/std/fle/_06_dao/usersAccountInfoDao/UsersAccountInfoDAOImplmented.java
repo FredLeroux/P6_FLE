@@ -145,8 +145,7 @@ public class UsersAccountInfoDAOImplmented implements UsersAccountInfoDAO {
 
 	}
 
-	// TODO find another way to avoid retranscript field find use redirect in
-	// controller instead of page url
+
 	@Override
 	public UsersAccountInfo converteUpdateSFCToEntity(UsersAccountInfoUpdateSFC updatedSFC) {
 		UsersAccountInfoUpdateDTO dto = dao.converter()
@@ -154,7 +153,7 @@ public class UsersAccountInfoDAOImplmented implements UsersAccountInfoDAO {
 		return dao.converter().convertDTOToEntity(dto, usersAccountInfo);
 	}
 
-//TODO think about annotation to manage this
+
 	private UsersAccountInfoUpdateSFC converteSFCMembersStatusValueToBooleanValue(
 			UsersAccountInfoUpdateSFC updatedSFC) {
 		UsersAccountInfoUpdateSFC sfc = updatedSFC;

@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import fle.toolBox.logger.Log4J2;
-import std.fle._12_controller.controllerClass.errorhandler.ErrorHandler;
 
 /**
  * @apiNote will catch all request sending a error (excepted 500), this

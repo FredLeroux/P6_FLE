@@ -10,8 +10,8 @@ import fle.toolBox.exceptionsThrower.ExceptionsThrower;
 
 public abstract class Pagination<O extends Object> extends FilterAndSortListViaJava<O> {
 
-	
-	
+
+
 	private Integer rowsPerPages = null;
 	private Integer totalPages = null;
 	private Integer listSize = null;
@@ -28,8 +28,8 @@ public abstract class Pagination<O extends Object> extends FilterAndSortListViaJ
 	public Pagination(O entityModel) {
 		super(entityModel);
 	}
-	
-	
+
+
 	protected Integer getRowsPerPages() throws NullPointerException {
 		ExceptionsThrower.ifZero(rowsPerPages, "rowsPerPAges = 0");
 		return rowsPerPages;
@@ -88,7 +88,7 @@ public abstract class Pagination<O extends Object> extends FilterAndSortListViaJ
 	 *       pages will be = 13.<br>
 	 *       return 1 if rowsPerPages >= listSize.
 	 * @throws NullPointerException
-	 * 
+	 *
 	 */
 	protected void setTotalPages() {
 		double a = 0;
@@ -116,7 +116,7 @@ public abstract class Pagination<O extends Object> extends FilterAndSortListViaJ
 	}
 
 	/**
-	 * 
+	 *
 	 * @param listSize
 	 * @param rowsPerPages
 	 * @return int listSize/rowsPerpPages result rounded up(see setTotalPages()).
@@ -146,7 +146,7 @@ public abstract class Pagination<O extends Object> extends FilterAndSortListViaJ
 	}
 
 	/**
-	 * 
+	 *
 	 * @param pageWished the page number's to display
 	 * @param list       the list containing rows of interest
 	 * @throws PageWishedException
@@ -188,7 +188,7 @@ public abstract class Pagination<O extends Object> extends FilterAndSortListViaJ
 	}
 
 	/**
-	 * 
+	 *
 	 * @param pageWished   the page number's to display
 	 * @param rowsPerPages the number of rows displayed by pages
 	 * @param pageMax      the maximum pages available
@@ -200,7 +200,7 @@ public abstract class Pagination<O extends Object> extends FilterAndSortListViaJ
 	 *          2<br>
 	 *          will set a list(page) containing 10 rows from list containing list
 	 *          object index 10 to 20
-	 * 
+	 *
 	 */
 	protected void setPage(Integer pageWished, Integer rowsPerPages, Integer pageMax, List<O> list)
 			throws PageWishedException {
@@ -224,7 +224,7 @@ public abstract class Pagination<O extends Object> extends FilterAndSortListViaJ
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param totalPages
 	 * @param amplitude
@@ -267,7 +267,7 @@ public abstract class Pagination<O extends Object> extends FilterAndSortListViaJ
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param totalPages
 	 * @param rulesList
@@ -322,9 +322,8 @@ public abstract class Pagination<O extends Object> extends FilterAndSortListViaJ
 		return jumpListFooPage;
 	}
 
-	// TODO modify
 	/**
-	 * 
+	 *
 	 * @param totalpagesTenPower
 	 * @param rulesList
 	 * @return the low medium and high jump set function of the totalPagesTenPower
@@ -357,9 +356,9 @@ public abstract class Pagination<O extends Object> extends FilterAndSortListViaJ
 	}
 
 	/**
-	 * 
+	 *
 	 * @param pagesLimitMin
-	 * @param pagesLimitMax put -1 to indicate infinite 
+	 * @param pagesLimitMax put -1 to indicate infinite
 	 * @param lowJump
 	 * @param mediumJump
 	 * @param highJump
@@ -370,7 +369,7 @@ public abstract class Pagination<O extends Object> extends FilterAndSortListViaJ
 	 *         lowJumpKey-> lowJump<br>
 	 *         mediumJumpKey-> mediumJump<br>
 	 *         highJumpKey-> highJump<br>
-	 * 
+	 *
 	 */
 	protected LinkedHashMap<String, Integer> createPagesJumpRule(Integer pagesLimitMin, Integer pagesLimitMax,
 			Integer lowJump, Integer mediumJump, Integer highJump) {
@@ -384,7 +383,7 @@ public abstract class Pagination<O extends Object> extends FilterAndSortListViaJ
 	}
 
 	/**
-	 * 
+	 *
 	 * @return a list of LinkedHashMap<String, Integer> pagesJumpRule
 	 */
 	protected ArrayList<LinkedHashMap<String, Integer>> getRulesList() {
@@ -392,15 +391,15 @@ public abstract class Pagination<O extends Object> extends FilterAndSortListViaJ
 	}
 
 	/**
-	 * 
+	 *
 	 * @param pagesJumpRule
 	 */
 	protected void addRuleToRulesList(LinkedHashMap<String, Integer> pagesJumpRule) {
 		this.rulesList.add(pagesJumpRule);
 	}
-//getTendegre
+
 	/**
-	 * 
+	 *
 	 * @param totalPages
 	 * @return totalPages ten power rounded i.e.<br>
 	 *         for a integer value of 2568 return 2000
@@ -412,290 +411,5 @@ public abstract class Pagination<O extends Object> extends FilterAndSortListViaJ
 		return totalpagesTenPower;
 	}
 
-/// not used yet may usefull one day 	
-	/**
-	 * 
-	 * @param navigationArray
-	 * @param page
-	 * @param totalPages
-	 * @param trigger         is the mimimum total pages available before add jump
-	 *                        totalPages/4 and totalpages/2
-	 * @return return navigationArray bounded by "<" and ">" function of first and
-	 *         last page i.e. <br>
-	 *         if page != 1 add "<" to the start<br>
-	 *         if page != total pages add ">" to the end
-	 */
-/*	private ArrayList<String> addBasicBoundary(ArrayList<String> navigationArray, Integer page, Integer totalPages,
-			Integer trigger, Integer lowJump) {
-		ArrayList<String> navigation = new ArrayList<String>(navigationArray);
-		ArrayList<Integer> highAndMediumTbl = new ArrayList<>();
-		// highAndMediumTbl = highAndMedium(totalpagesTenPower(totalPages), trigger);
-
-		String notToDisplay = "n/a";
-		int high = highAndMediumTbl.get(0);
-		int medium = highAndMediumTbl.get(1);
-		String lowJumpStr = notToDisplay;
-		String mediumJump = notToDisplay;
-		String highJump = notToDisplay;
-
-		if (page != 1) {
-			lowJumpStr = Integer.toString(-lowJump);
-
-			if (medium + 1 <= page) {
-				if (medium == 0) {
-					mediumJump = notToDisplay;
-				} else {
-					mediumJump = Integer.toString(-medium);
-				}
-			}
-			if (high + 1 <= page) {
-				if (high == 0) {
-					highJump = notToDisplay;
-				} else {
-					highJump = Integer.toString(-high);
-				}
-			}
-		}
-
-		navigation.add(0, lowJumpStr);
-		navigation.add(0, mediumJump);
-		navigation.add(0, highJump);
-		lowJumpStr = Integer.toString(lowJump);
-		if (medium == 0) {
-			mediumJump = notToDisplay;
-		} else {
-			mediumJump = Integer.toString(medium);
-		}
-		if (high == 0) {
-			highJump = notToDisplay;
-		} else {
-			highJump = Integer.toString(high);
-		}
-
-		if (page >= (totalPages + 1 - high)) {
-			highJump = notToDisplay;
-		}
-		if (page >= (totalPages + 1 - medium)) {
-			mediumJump = notToDisplay;
-		}
-		if (page == totalPages) {
-			lowJumpStr = notToDisplay;
-		}
-		navigation.add(lowJumpStr);
-		navigation.add(mediumJump);
-		navigation.add(highJump);
-
-		return navigation;
-	}
-
-	/**
-	 * 
-	 * @param page
-	 * @param totalPages
-	 * @param empty
-	 * @return return a string array containing page list and bounded by "<" and/or
-	 *         ">" see :<br>
-	 *         basicNav<br>
-	 *         addBasicBoundary<br>
-	 */
-	/*private ArrayList<String> basicNavBounded(Integer page, Integer totalPages, String empty, Integer trigger,
-			Integer lowJump) {
-		return (addBasicBoundary(basicNav(page, totalPages, empty), page, totalPages, trigger, lowJump));
-	}
-
-//TODO to enhance
-	/**
-	 * 
-	 * @param page
-	 * @param totalPages
-	 * @param amplitude
-	 * @param empty
-	 * @Note Concept on build
-	 */
-/*	private ArrayList<String> ligthNavigationVOnBuild(int page, int totalPages, int amplitude, String empty) {
-		// Version on build
-		// less amplitude accepted = 5;
-		ArrayList<String> navigation = new ArrayList<String>();
-		int delta = amplitude / 2;
-		if (delta % 2 != 0) {
-			delta = (amplitude / 2) - 1;
-		}
-		int lowestPage = (page - delta);
-		int highestPage = (page + delta);
-		if (page == 0 || totalPages == 0) {
-			navigation.add(empty);
-			return navigation;
-		}
-		if (totalPages <= amplitude + delta) {
-			for (int i = 1; i <= totalPages; i++) {
-				navigation.add(Integer.toString(i));
-			}
-			return navigation;
-		}
-		if (totalPages > amplitude) {
-
-			if (lowestPage <= 1) {
-				lowestPage = 1;
-				highestPage = amplitude;
-			}
-			if (highestPage > amplitude) {
-				highestPage = highestPage - 1;
-			}
-			if (highestPage > totalPages) {
-				lowestPage = lowestPage - (highestPage - totalPages);
-				highestPage = totalPages;
-			}
-			if (lowestPage <= 1) {
-
-				lowestPage = 1;
-				highestPage = amplitude;
-			}
-			if (highestPage > totalPages) {
-
-				lowestPage = lowestPage - (highestPage - totalPages);
-				highestPage = totalPages;
-			}
-			for (int i = lowestPage; i < page; i++) {
-				navigation.add(Integer.toString(i));
-			}
-			for (int i = page; i <= highestPage; i++) {
-				navigation.add(Integer.toString(i));
-			}
-
-		}
-		return navigation;
-	}
-*/
-	// TODO to enhance
-	/**
-	 * 
-	 * @param page
-	 * @param totalPages
-	 * @param amplitude
-	 * @param empty
-	 * @param separator
-	 * @Note Concept on build
-	 */
-/*	private ArrayList<String> mediumNavigation(int page, int totalPages, int amplitude, String empty,
-			String separator) {
-		ArrayList<String> navigation = new ArrayList<String>();
-		String maxPage = Integer.toString(totalPages);
-		// navigation = ligthNavigation(page, totalPages, amplitude, empty);
-		if (!navigation.get(0).equals("1")) {
-			navigation.add(0, separator);
-			navigation.add(0, "1");
-		}
-		if (!navigation.get(navigation.size() - 1).equals(maxPage)) {
-			navigation.add(separator);
-			navigation.add(maxPage);
-		}
-		int pageLog = (int) Math.log10(page);
-		int maxPageLog = (int) Math.log10(totalPages);
-		if (page > 1 && page <= amplitude) {
-			navigation.add(0, Integer.toString(-1));
-		}
-		if (page > amplitude) {
-			navigation.add(0, Integer.toString(-1));
-			if (amplitude * pageLog <= 0) {
-				navigation.add(0, Integer.toString(-amplitude));
-			} else {
-				for (int i = 1; i <= pageLog; i++)
-					navigation.add(0, Integer.toString((int) -(Math.pow(10, i)) / 2));
-			}
-		}
-		return navigation;
-	}
-
-	// TODO to enhance
-	/**
-	 * 
-	 * @param navigationBase
-	 * @param totalPages
-	 * @param separator
-	 * @param first
-	 * @param last
-	 * @Note Concept on build
-	 */
-/*	private ArrayList<String> mediumNavigation(ArrayList<String> navigationBase, int totalPages, String separator,
-			String first, String last) {
-		ArrayList<String> navigation = new ArrayList<String>(navigationBase);
-		String maxPage = Integer.toString(totalPages);
-
-		if (!navigation.get(0).equals("1")) {
-			navigation.add(0, separator);
-			navigation.add(0, first);
-		}
-		if (!navigation.get(navigation.size() - 1).equals(maxPage)) {
-			navigation.add(separator);
-			navigation.add(last);
-		}
-
-		return navigation;
-	}
-
-	// TODO to enhance
-	/**
-	 * 
-	 * @param page
-	 * @param totalPages
-	 * @param amplitude
-	 * @param empty
-	 * @param separator
-	 * @Note Concept on build
-	 * @throws ArithmeticException
-	 */
-/*	private ArrayList<String> heavyNavigation(int page, int totalPages, int amplitude, String empty, String separator)
-			throws ArithmeticException {
-		ArrayList<String> navigation = new ArrayList<String>();
-		int delta = amplitude / 2;
-		if (delta % 2 != 0) {
-			delta = (amplitude / 2) - 1;
-		}
-		int interval = delta / 2;
-
-		// navigation = ligthNavigation(page, totalPages, amplitude, empty);
-		if (totalPages <= amplitude + delta) {
-			return navigation;
-		}
-		int lowestPage = Integer.parseInt(navigation.get(0));
-		int lastNavIndex = navigation.size() - 1;
-		int highestPage = Integer.parseInt(navigation.get(lastNavIndex));
-		if ((lowestPage - delta) <= (0)) {
-			for (int i = lowestPage - 1; i >= 1; i--) {
-				navigation.add(0, Integer.toString((i)));
-			}
-			if (highestPage > amplitude) {
-				navigation.remove(Integer.toString(highestPage));
-			}
-		}
-		if ((lowestPage > delta)) {
-			navigation.add(0, "..");
-			for (int i = interval; i >= 1; i--) {
-				navigation.add(0, Integer.toString((i)));
-			}
-			if (highestPage < (totalPages - interval)) {
-				navigation.remove(Integer.toString(lowestPage));
-			}
-		}
-		if (highestPage < totalPages) {
-			if (highestPage < (totalPages - (interval))) {
-				navigation.add("..");
-				for (int i = 1; i <= interval; i++) {
-					navigation.add(Integer.toString((totalPages - interval) + i));
-				}
-			} else {
-				for (int i = 1; i <= (totalPages - highestPage); i++) {
-					navigation.add(Integer.toString((highestPage) + i));
-				}
-			}
-		}
-		if (lowestPage > (totalPages - amplitude)) {
-			for (int i = 0; i < ((amplitude - 1) - (totalPages - lowestPage)); i++) {
-
-				navigation.add((interval + 1), Integer.toString((lowestPage - 1) - i));
-			}
-		}
-		return navigation;
-	}*/
 
 }

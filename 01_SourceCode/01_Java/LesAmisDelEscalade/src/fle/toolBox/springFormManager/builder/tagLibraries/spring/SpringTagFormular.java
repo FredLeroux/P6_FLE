@@ -4,14 +4,14 @@ import fle.toolBox.FredParser;
 import fle.toolBox.exceptionsThrower.ExceptionsThrower;
 
 /**
- * 
+ *
  * @author Frederic Leroux <br>
  * @version 1.0
  * @apiNote this class contains methods returning as string different
  *          "http://www.springframework.org/tags/form" &
  *          "http://www.springframework.org/tags" tags and allow to generate a
  *          StringBuilder used to build a Spring Formular at compile time
- * 
+ *
  */
 
 public abstract class SpringTagFormular {
@@ -62,10 +62,7 @@ public abstract class SpringTagFormular {
 	private String messageTagName = "message";
 	private String inputTagName = "input";
 	private String selectTagName = "select";
-
-	// TODO implement all textArea CSSClass and option CSS like input and Select
 	private String textAreaTagName = "textarea";
-
 	private String errorTagName = "errors";
 	private String buttonTagName = "button";
 	private String passWordTagName = "password";
@@ -440,7 +437,7 @@ public abstract class SpringTagFormular {
 		return openTagsTag(bindTagName, path, closeTag) + ln;
 	}
 
-	// TODO here add springbind end
+
 	protected String bindEnd() {
 		return closeTagsTag(bindTagName);
 	}
@@ -462,7 +459,7 @@ public abstract class SpringTagFormular {
 	/**
 	 * This set will make getStatusError return custom true message if true, false
 	 * message if false
-	 * 
+	 *
 	 * @param customTrueMessage
 	 * @param customFasleMessage
 	 */
@@ -545,9 +542,8 @@ public abstract class SpringTagFormular {
 		this.labelCssErrorClass = cssErrorClass(labelCssErrorClass);
 	}
 
-//TODO 0- modif add check empty
+
 	protected String getInputCssClass() {
-		// ExceptionsThrower.ifNull(inputCssClass);
 		return inputCssClass;
 	}
 
@@ -670,7 +666,7 @@ public abstract class SpringTagFormular {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param path is the path to the entity model field i.e. for a field in a
 	 *             simple entity model is id path is the fieldName id
 	 * @return
@@ -746,7 +742,6 @@ public abstract class SpringTagFormular {
 		return inputFinal.toString();
 	}
 
-	// TODO implement css textarea
 	protected String textAreaCssClassCssErrorClassTagMessagePlaceHolder(String path, String code, String rowsNb,
 			String cols, String maxLength) {
 		StringBuilder textAreaFinal = new StringBuilder();
@@ -791,7 +786,7 @@ public abstract class SpringTagFormular {
 				+ argument(targetForm) + getSelectCssClass() + getSelectCssErrorClass() + closeTag + ln;
 	}
 
-	// TODO complete implementation (with and w/o css class )
+
 	protected String textAreaCssClassCssErrorClass(String path, String rowsNb, String cols, String maxLength) {
 		return openFormTag(textAreaTagName, path) + textAreaRowsAttribut + argument(rowsNb) + textAreaColsAttribut
 				+ argument(cols) + getInputCssClass() + getInputCssErrorClass() + addMaxLength(maxLength) + closeTag
@@ -838,7 +833,7 @@ public abstract class SpringTagFormular {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param buttonText
 	 * @param name       the name which be suffixed by "Button"
 	 * @return the submit button with id = formNameButton

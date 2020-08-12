@@ -11,7 +11,6 @@ import fle.toolBox.logger.Log4J2;
 import std.fle._00_general.SessionVariables;
 import std.fle._03_sfc.climbingSiteSFC.ClimbingSiteCommentsSFC;
 import std.fle._07_service.climbingSiteCommentsService.ClimbingSiteCommentsService;
-import std.fle._08_interceptors.OnNoExceptionError;
 
 @Service
 public class ClimbingSiteCommentsModelManagementImplemented implements ClimbingSiteCommentsModelManagement {

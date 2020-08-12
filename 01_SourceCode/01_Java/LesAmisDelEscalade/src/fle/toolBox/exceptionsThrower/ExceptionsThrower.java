@@ -5,10 +5,10 @@ import java.util.List;
 import exceptions.NoIdAnnotedHiddenPathFoundException;
 import exceptions.NotUniqueJavaScriptVarFound;
 
-//TODO passthrough all class using Exceptions thrower and replace with static 
+
 
 /**
- * 
+ *
  * @author Frederic Leroux <br>
  *         Contains method to:<br>
  *         Check if the specified arg is null || 0.<br>
@@ -40,7 +40,7 @@ public  class ExceptionsThrower {
 			throw new NullPointerException(customMessage);
 		}
 	}
-	
+
 	public static void ifNull(Object toCheck) throws NullPointerException {
 		if (toCheck == null) {
 			throw new NullPointerException();
@@ -52,8 +52,8 @@ public  class ExceptionsThrower {
 			throw new NullPointerException(customMessage);
 		}
 	}
-	
-	
+
+
 
 	public static void ifZero(char toCheck) throws NullPointerException {
 		if (toCheck == 0) {
@@ -138,60 +138,60 @@ public  class ExceptionsThrower {
 			throw new ArithmeticException(customMessage);
 		}
 	}
-	
+
 	public static void ifDifferent(int int1,int int2) throws NotUniqueJavaScriptVarFound {
 		if (int1!=int2) {
 			throw new  NotUniqueJavaScriptVarFound();
 		}
-		
+
 	}
-	
+
 	public static void ifDifferent(int int1,int int2, String customMessage) throws NotUniqueJavaScriptVarFound {
 		if (int1!=int2) {
 			throw new  NotUniqueJavaScriptVarFound(customMessage);
 		}
-		
+
 	}
-	
+
 	public static void ifDifferent(Integer int1,Integer int2) throws NotUniqueJavaScriptVarFound {
 		if (int1!=int2) {
 			throw new  NotUniqueJavaScriptVarFound();
 		}
-		
+
 	}
-	
+
 	public static void ifDifferent(Integer int1,Integer int2, String customMessage) throws NotUniqueJavaScriptVarFound {
 		if (int1!=int2) {
 			throw new  NotUniqueJavaScriptVarFound(customMessage);
 		}
-		
+
 	}
 
 	public static void ifDifferent(String int1,String  int2) throws NotUniqueJavaScriptVarFound {
 		if (!int1.equals(int2)) {
 			throw new  NotUniqueJavaScriptVarFound();
 		}
-		
+
 	}
-	
+
 	public static void ifDifferent(String  int1,String  int2, String customMessage) throws NotUniqueJavaScriptVarFound {
 		if (!int1.equals(int2)) {
 			throw new  NotUniqueJavaScriptVarFound(customMessage);
 		}
-		
+
 	}
-	
+
 	public static void ifEmpty(List<?> list) throws NoIdAnnotedHiddenPathFoundException {
 		if(list.isEmpty()) {
 			throw new NoIdAnnotedHiddenPathFoundException();
 		}
 	}
-	
+
 	public static void ifEmpty(List<?> list,String customMessage) throws NoIdAnnotedHiddenPathFoundException {
 		if(list.isEmpty()) {
 			throw new NoIdAnnotedHiddenPathFoundException(customMessage);
 		}
 	}
-	
-	
+
+
 }

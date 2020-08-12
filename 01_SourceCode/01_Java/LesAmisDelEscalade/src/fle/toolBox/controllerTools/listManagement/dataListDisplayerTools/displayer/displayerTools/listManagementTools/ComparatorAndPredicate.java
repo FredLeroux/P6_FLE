@@ -15,7 +15,7 @@ import fle.toolBox.fieldsReflectivity.extractSetAndGetComponents.ClassFields;
 import fle.toolBox.fieldsReflectivity.extractSetAndGetComponents.ClassFieldsSetAndGet;
 
 /**
- * 
+ *
  * @author Frederic Leroux <br>
  *
  * @version : 1.0
@@ -40,7 +40,7 @@ public class ComparatorAndPredicate<O extends Object> extends ExtractSetAndGetFi
 	}
 
 	/**
-	 * 
+	 *
 	 * @return by default "="
 	 */
 	protected String getEqualsOperator() {
@@ -52,7 +52,7 @@ public class ComparatorAndPredicate<O extends Object> extends ExtractSetAndGetFi
 	}
 
 	/**
-	 * 
+	 *
 	 * @return by default ">"
 	 */
 	protected String getGreaterThanOperator() {
@@ -64,7 +64,7 @@ public class ComparatorAndPredicate<O extends Object> extends ExtractSetAndGetFi
 	}
 
 	/**
-	 * 
+	 *
 	 * @return by default "<"
 	 */
 	protected String getLessThanOperator() {
@@ -79,20 +79,12 @@ public class ComparatorAndPredicate<O extends Object> extends ExtractSetAndGetFi
 		return (String) ClassFieldsSetAndGet.getFieldValue(javaClass, fieldName);
 	}
 
-//TODO CHEK Here if not work
-	/*
-	 * public String fieldTypeT(String fieldName) { String type =
-	 * fieldTypeName(fieldName); return type; }
-	 */
-//, O javaClass
 	public Comparator<O> fredComparator(String fieldName) throws TypeNotConfiguredException {
-
 		String fieldType = fieldTypeName(fieldName).toLowerCase();
-	
 		Comparator<O> fredComparator = null;
 		boolean check = false;
 		if (isFieldDate(fieldName)) {
-			fredComparator = comparatorStringDate(fieldName,formatStyleOnAnnotation(fieldName));			
+			fredComparator = comparatorStringDate(fieldName, formatStyleOnAnnotation(fieldName));
 			check = true;
 		} else if (fieldType.equals(str)) {
 			fredComparator = comparatorString(fieldName);
@@ -119,7 +111,7 @@ public class ComparatorAndPredicate<O extends Object> extends ExtractSetAndGetFi
 	public Predicate<O> fredPredicate(String criterion, String fieldName, String operator)
 			throws TypeNotConfiguredException {
 		String fieldType = fieldTypeName(fieldName).toLowerCase();/// fieldType(fieldName, javaClass).toLowerCase();
-		
+
 		boolean check = false;
 		Predicate<O> fredPredicate = null;
 		if (fieldType.equals(str)) {
@@ -158,13 +150,13 @@ public class ComparatorAndPredicate<O extends Object> extends ExtractSetAndGetFi
 	 * Collections.sort(list,comparator.reversed()) THe following comparators as to
 	 * be used with Collections.sort and will compare parsed values function of
 	 * field type. Thus methos use Java 8 lambda expression
-	 * 
+	 *
 	 * another way to do it is to create class implements comparator then override
 	 * comparator and set the rule for each fields, from my point of view too long
 	 * too boring
-	 * 
-	 * 
-	 * 
+	 *
+	 *
+	 *
 	 */
 	Comparator<O> comparatorString(String fieldName) {
 		Comparator<O> comparator = null;
@@ -179,7 +171,7 @@ public class ComparatorAndPredicate<O extends Object> extends ExtractSetAndGetFi
 		return comparator;
 	}
 
-//TODO 0-URGENT correct all other than double
+
 	Comparator<O> comparatorDouble(String fieldName) {
 		Comparator<O> comparator = null;
 		comparator = (O o1, O o2) -> FredParser.toDouble(fieldValue(fieldName, o1))
@@ -204,8 +196,8 @@ public class ComparatorAndPredicate<O extends Object> extends ExtractSetAndGetFi
 	Comparator<O> comparatorStringDate(String fieldName, FormatStyle formatStyle) {
 		Comparator<O> comparator = null;
 		DateTimeFormatter dtf = DateTimeFormatter.ofLocalizedDate(formatStyle);
-		comparator = (O o1, O o2) ->  LocalDate.parse(fieldValue(fieldName, o1),dtf)
-				.compareTo(LocalDate.parse(fieldValue(fieldName, o2),dtf));		
+		comparator = (O o1, O o2) -> LocalDate.parse(fieldValue(fieldName, o1), dtf)
+				.compareTo(LocalDate.parse(fieldValue(fieldName, o2), dtf));
 		return comparator;
 	}
 
@@ -234,8 +226,6 @@ public class ComparatorAndPredicate<O extends Object> extends ExtractSetAndGetFi
 		return predicate;
 	}
 
-	// TODO 0-Done 1-change all appart int and intger like this double pay attention
-	// to the direction what is at left and right think well
 	Predicate<O> predicateDouble(String criterion, String fieldName, String operator) {
 		Predicate<O> predicate = null;
 		if (operator.equals(getEqualsOperator())) {
@@ -277,15 +267,15 @@ public class ComparatorAndPredicate<O extends Object> extends ExtractSetAndGetFi
 		}
 		return predicate;
 	}
-	
+
 	private Field field(String fieldName) {
 		return ClassFields.getFieldByIsName(entityModel, fieldName);
 	}
 
 	private Boolean isFieldDate(String fieldName) {
-		return isAnnotationPresence(field(fieldName),dateTimeRawFormat);
+		return isAnnotationPresence(field(fieldName), dateTimeRawFormat);
 	}
-	
+
 	private FormatStyle formatStyleOnAnnotation(String fieldName) {
 		return field(fieldName).getAnnotation(dateTimeRawFormat).dateFormatStyle();
 	}

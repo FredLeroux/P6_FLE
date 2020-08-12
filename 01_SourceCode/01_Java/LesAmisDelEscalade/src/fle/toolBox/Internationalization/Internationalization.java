@@ -24,7 +24,7 @@ public class Internationalization {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param key           the key to be find in message source properties file
 	 * @param messageSource org.springframework.context.MessageSource autowired
 	 * @return the properties message source key at locale language
@@ -43,10 +43,10 @@ public class Internationalization {
 		}
 		return message;
 	}
-//TODO 00-00 MODIF ALL CLASS WHICH NEEDS THE SUFFIX TO IMPLEMENTS SUFFIX ONLY WITH NO "." BEFORE SUFFIX 	
+
 	/**
-	 * 
-	 * 
+	 *
+	 *
 	 * @return a string composed of the string str +"." suffix setted via setSuffix
 	 *         setter not if this is used do not add mpoint to the suffix
 	 */
@@ -54,7 +54,7 @@ public class Internationalization {
 		return str.concat(".").concat(getSuffix());
 	}
 	/**
-	 * 
+	 *
 	 @return a string composed of the string str + suffix setted via setSuffix
 	 *         setter
 	 */

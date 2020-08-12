@@ -171,7 +171,7 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 		return session().createQuery("SELECT FROM "+ entity.getClass().getSimpleName()).getResultList();
 	}
 
-	//TODO CHECK IF IT IS NEEDED
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Object> getList(SLO joinClass) {

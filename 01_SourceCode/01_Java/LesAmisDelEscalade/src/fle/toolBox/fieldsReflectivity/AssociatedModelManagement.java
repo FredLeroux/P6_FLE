@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 /**
- * 
+ *
  * @author Frederic Leroux <br>
  *
  * @param <O> Class which have as fields entities classes.<br>
@@ -15,7 +15,7 @@ import java.util.LinkedHashMap;
  *            Entities have to contains fields annotated "@Column" with name
  *            value setted.
  * @see {@link FieldsAndAnnotation}
- * 
+ *
  */
 public class AssociatedModelManagement<O extends Object> extends FieldsAndAnnotation<O> {
 
@@ -26,12 +26,12 @@ public class AssociatedModelManagement<O extends Object> extends FieldsAndAnnota
 
 	public <A extends Annotation> LinkedHashMap<Field, ArrayList<Field>> associatedModelFields(Class<A> annotationClass) {
 		LinkedHashMap<Field, ArrayList<Field>> modelsFields = new LinkedHashMap<>();
-		for (Field classField : fieldsArrayList()) {			
+		for (Field classField : fieldsArrayList()) {
 			modelsFields.put(classField, fieldClassTypeExtractor(classField).fieldsArrayListByAnnotation(annotationClass));
-		}		
+		}
 		return modelsFields;
 	}
-	
+
 	private void iterateThroughValue(Field key, ArrayList<Field> value,ArrayList<String> modelsFieldsNames,boolean withEntitiesNames) {
 		for(Field field:value) {
 			fillArrayList(entityName(key, withEntitiesNames), field.getName(), modelsFieldsNames);
@@ -46,11 +46,7 @@ public class AssociatedModelManagement<O extends Object> extends FieldsAndAnnota
 		return modelsFieldsNames;
 	}
 
-	
 
-	// TODO 0-Urgent change name causse this method allow to use associated model or
-	// not non c pas vrai mais comme elle extends fau trouver unb autre nom plus
-	// generique car on peut tou gerer a partir de la
 	public ArrayList<String> AssociatedModelFieldsName(boolean withEntitiesNames) {
 		ArrayList<String> modelsFieldsNames = new ArrayList<>();
 		for (Field classField : fieldsArrayList()) {

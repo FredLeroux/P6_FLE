@@ -6,9 +6,9 @@ import fle.toolBox.Internationalization.Internationalization;
 
 //TODO 1-JAVADOC
 /**
- * 
+ *
  * @author Frederic Leroux <br>
- * 
+ *
  */
 
 public class SelectOptions extends Internationalization implements SelectOptionsInterface {
@@ -43,7 +43,7 @@ public class SelectOptions extends Internationalization implements SelectOptions
 	@Override
 	public String getDisplayValueI18N(MessageSource messageSource, String suffix) {
 		setSuffix(suffix);
-		return messI18n(keyFinal(value), messageSource);//TODO why is displayValue.toLowerCase() before
+		return messI18n(keyFinal(value), messageSource);
 	}
 
 }

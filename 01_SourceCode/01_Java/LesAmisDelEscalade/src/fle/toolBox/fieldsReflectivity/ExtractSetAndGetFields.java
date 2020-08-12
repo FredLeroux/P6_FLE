@@ -33,7 +33,7 @@ public class ExtractSetAndGetFields<O extends Object> {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param <A>
 	 * @param field
 	 * @param annotationClass
@@ -45,7 +45,7 @@ public class ExtractSetAndGetFields<O extends Object> {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param <A>
 	 * @param entity
 	 * @param annotationClass
@@ -57,7 +57,7 @@ public class ExtractSetAndGetFields<O extends Object> {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param <A>
 	 * @param entity
 	 * @param annotationClass
@@ -75,7 +75,7 @@ public class ExtractSetAndGetFields<O extends Object> {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param fieldName
 	 * @return a java.lang.reflect.Field using is simple name as a string
 	 * @see com.fle.tools.fieldsManagement.finalVersion.extractSetAndGetComponents.ClassFields
@@ -85,7 +85,7 @@ public class ExtractSetAndGetFields<O extends Object> {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return java.lang.reflect.Field array containing all declared entityModel
 	 *         Fields
 	 * @see com.fle.tools.fieldsManagement.finalVersion.extractSetAndGetComponents.ClassFields
@@ -95,7 +95,7 @@ public class ExtractSetAndGetFields<O extends Object> {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return java.lang.reflect.Field ArrayList containing all declared entityModel
 	 *         Fields
 	 */
@@ -106,7 +106,7 @@ public class ExtractSetAndGetFields<O extends Object> {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param <A>
 	 * @param annotationClass
 	 * @return java.lang.reflect.Field ArrayList containing all declared entityModel
@@ -118,7 +118,7 @@ public class ExtractSetAndGetFields<O extends Object> {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return java.lang.String ArrayList containing all declared entityModel Fields
 	 *         name
 	 */
@@ -143,7 +143,7 @@ public class ExtractSetAndGetFields<O extends Object> {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param fieldName
 	 * @return field value using is name <br>
 	 *         step-1 : try to find getter via PropertyDescriptor if an exception is
@@ -153,14 +153,14 @@ public class ExtractSetAndGetFields<O extends Object> {
 	 *         InvocationTargetException if method no found
 	 * @Note method created following issue when using method via PropertyDescriptor
 	 *       on classes(Enum) which not use setter method
-	 * 
+	 *
 	 */
 	public Object getFieldValue(String fieldName) {
 		return ClassFieldsSetAndGet.getFieldValue(entityModel, fieldName);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param fieldName
 	 * @return field value using is name <br>
 	 *         step-1 : try to find getter via PropertyDescriptor, if an exception
@@ -170,7 +170,7 @@ public class ExtractSetAndGetFields<O extends Object> {
 	 *         InvocationTargetException if method not found
 	 * @Note method created following issue when using method via PropertyDescriptor
 	 *       on classes(Enum) hich not use setter method
-	 * 
+	 *
 	 */
 	public Object getFieldValue(Field field) {
 		return ClassFieldsSetAndGet.getFieldValue(entityModel, field.getName());
@@ -236,7 +236,7 @@ public class ExtractSetAndGetFields<O extends Object> {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param entity
 	 * @return a new instance of the entity class
 	 */
@@ -255,9 +255,7 @@ public class ExtractSetAndGetFields<O extends Object> {
 	}
 
 	/**
-	 * allow to create an instance of class using the type of a field //TODO
-	 * 2-Clarified
-	 * 
+	 * allow to create an instance of class using the type of a field
 	 * @param field
 	 * @return
 	 */
@@ -270,7 +268,7 @@ public class ExtractSetAndGetFields<O extends Object> {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param field
 	 * @return a new ExtractSetAndGetFieldsV1 setted with a class type field new
 	 *         instance

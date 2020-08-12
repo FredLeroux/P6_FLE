@@ -49,7 +49,7 @@ abstract class FilterAndSortListViaJava<O extends Object> extends ComparatorAndP
 		return tofiltre.stream().filter(predicateToApply).collect(Collectors.toList());
 	}
 
-	// TODO change to protected both
+
 	protected void sortNaturalOrderByField(String fieldName, List<O> list, O modelUsed) {
 
 		Comparator<O> comparator = null;
@@ -60,7 +60,7 @@ abstract class FilterAndSortListViaJava<O extends Object> extends ComparatorAndP
 			e.printStackTrace();
 		}
 		Collections.sort(list, comparator);
-		
+
 	}
 
 	protected void sortReverseOrderByField(String fieldName, List<O> list, O modelUsed) {

@@ -27,7 +27,6 @@ import std.fle._07_service.climbingTopoService.TopoService;
 import std.fle._07_service.usersInfoService.UsersInfoService;
 import std.fle._09_mailCreation.MailCreator;
 import std.fle._10_security.SecurityLevel;
-import std.fle._12_controller.modelManagement.climbingSiteModelManagement.ClimbingSiteModelManagementImplemented;
 import std.fle._12_controller.modelManagement.deleteManager.DeleteConfirmationManager;
 import std.fle._12_controller.modelManagement.formsValidation.FormsValidation;
 

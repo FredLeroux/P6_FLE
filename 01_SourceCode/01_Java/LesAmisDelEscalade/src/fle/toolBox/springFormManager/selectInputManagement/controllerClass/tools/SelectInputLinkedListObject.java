@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import fle.toolBox.classType.DTO;
 import fle.toolBox.fieldsReflectivity.ExtractSetAndGetFields;
 
-//TODO 0-Find another name more explicit
 //TODO 1-JAVADOC
 public class SelectInputLinkedListObject {
 
@@ -72,32 +71,32 @@ public class SelectInputLinkedListObject {
 	public List<DTO> getFilterdListEqualsTo(Integer criterion) {
 		List<DTO> listFiltered = list.stream()
 				.filter(dto ->equalsCriterion(criterion,dto))
-				.collect(Collectors.toList());		
+				.collect(Collectors.toList());
 		return listFiltered;
 	}
-	
+
 	public List<DTO> getFilterdListGreaterThan(Integer criterion) {
 		List<DTO> listFiltered = list.stream()
 				.filter(dto ->greaterThanCriterion(criterion,dto))
-				.collect(Collectors.toList());		
+				.collect(Collectors.toList());
 		return listFiltered;
 	}
-	
+
 	public List<DTO> getFilterdListLessThan(Integer criterion) {
 		List<DTO> listFiltered = list.stream()
 				.filter(dto ->lessThanCriterion(criterion,dto))
-				.collect(Collectors.toList());		
+				.collect(Collectors.toList());
 		return listFiltered;
 	}
-	
-	
+
+
 	/**
-	 * 
+	 *
 	 * @param <D>
 	 * @param clazz
 	 * @param relationShipField
 	 * @param relationShipFieldFilter
-	 * @return the integer FilterByFieldName value of the masterField 
+	 * @return the integer FilterByFieldName value of the masterField
 	 */
 	private <D extends DTO> Integer getFilterValue(D clazz, String masterFieldName, String filterByFieldName
 			) {
@@ -107,21 +106,21 @@ public class SelectInputLinkedListObject {
 		Integer value = (Integer) componentManager.getFieldValue(filterByFieldName);
 		return value;
 	}
-	
-	private boolean equalsCriterion( Integer criterion,DTO clazz){		
+
+	private boolean equalsCriterion( Integer criterion,DTO clazz){
 		return getFilterValue(clazz, relationShipField, relationShipFieldFilter).compareTo(criterion) == 0;
 	}
-	
-	private boolean greaterThanCriterion( Integer criterion,DTO clazz){		
+
+	private boolean greaterThanCriterion( Integer criterion,DTO clazz){
 		return getFilterValue(clazz, relationShipField, relationShipFieldFilter).compareTo(criterion) > 0;
 	}
-	
-	private boolean lessThanCriterion( Integer criterion,DTO clazz){		
+
+	private boolean lessThanCriterion( Integer criterion,DTO clazz){
 		return getFilterValue(clazz, relationShipField, relationShipFieldFilter).compareTo(criterion) < 0;
 	}
 
-	
 
-	
+
+
 
 }

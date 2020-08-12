@@ -10,7 +10,7 @@ import javax.servlet.ServletContext;
 import fle.toolBox.logger.Log4J2;
 
 /**
- * 
+ *
  * @author Frederic Leroux
  * @Note this classe allow to create different type of file at different place
  *       <br>
@@ -55,7 +55,7 @@ public class FileCreation {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param path is the path where to create the file
 	 * @Note: application path already set in this function add only the path after
 	 *        the application name w/o '/', example :<br>
@@ -110,7 +110,7 @@ public class FileCreation {
 
 	/**
 	 * create new file function of path parameter
-	 * 
+	 *
 	 * @param path string containing all informations<br>
 	 *             i.e. path/fileName.fileExtension
 	 */
@@ -125,7 +125,7 @@ public class FileCreation {
 
 	/**
 	 * create a new file function of parameters
-	 * 
+	 *
 	 * @param fileName
 	 * @param extension
 	 * @param path
@@ -139,7 +139,7 @@ public class FileCreation {
 
 	}
 
-//TODO 0-URGENT create a specific class when at this point 
+
 	public void writeInFile1(String str) throws IOException {
 		String filePath = this.path + "/" + this.fileName + "." + fileExtension;
 		FileWriter fileWriter = new FileWriter(filePath);
@@ -148,12 +148,5 @@ public class FileCreation {
 		printwriter.close();
 	}
 
-	// TODO to finish see
-	// https://www.mkyong.com/java/how-to-read-file-from-java-bufferedreader-example/
-	/*
-	 * public String ReadFile(String str) throws IOException { String filePath =
-	 * this.path + "/" + this.fileName + "." + fileExtension; FileReader fileReader
-	 * = new FileReader(filePath); fileReader.read(); return null; }
-	 */
 
 }

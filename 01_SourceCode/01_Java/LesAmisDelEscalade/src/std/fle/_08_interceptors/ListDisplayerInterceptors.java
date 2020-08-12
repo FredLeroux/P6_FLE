@@ -24,11 +24,6 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 	@Autowired
 	ListGenerator listGenerator;
 
-	//TODO 0-00 Implement empty list error with jsp no noResultToDisplay to add to message controller and home
-
-
-
-
 	private final String membersListType = "members";
 	private final String climbingSiteShowListType = "climbingSitesShow";
 	private final String climbingSiteEditListType = "climbingSitesEdit";

@@ -26,7 +26,6 @@ public class SelectInputForControllerImplemented extends SelectInputListAndValue
 
 	private LinkedHashMap<String, JSONArray> listToAddToModel = new LinkedHashMap<>();
 	private LinkedHashMap<String, Object> valueToAddToModel = new LinkedHashMap<>();
-	// TODO 3-Improvement change this two linkedhashmap for a Class
 	private LinkedHashMap<String, String> formularAndRequestMap = new LinkedHashMap<>();
 	private LinkedHashMap<String, String> formularOnErrorAndRequestMap = new LinkedHashMap<>();
 	private ArrayList<SelectInputLinkedListObject> linkedList = new ArrayList<>();
@@ -56,7 +55,7 @@ public class SelectInputForControllerImplemented extends SelectInputListAndValue
 	@Override
 	public LinkedHashMap<String, JSONArray> listToAddToModelFiltered() {
 		listName = request.getParameter("listName");
-		
+
 			criterion = request.getParameter("criterion");
 		if(criterion !=null && !criterion.isEmpty()) {
 		for (SelectInputLinkedListObject o : linkedList) {
@@ -174,7 +173,7 @@ public class SelectInputForControllerImplemented extends SelectInputListAndValue
 			}
 		}
 	}
-	
+
 	private void addEmptyArrayToListToAddToModel(Field fOI) {
 		listToAddToModel.put(selectListName(fOI), emptyJSONArray());
 	}

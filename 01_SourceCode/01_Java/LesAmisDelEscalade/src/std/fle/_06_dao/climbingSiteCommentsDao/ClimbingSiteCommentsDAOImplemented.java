@@ -200,7 +200,7 @@ public class ClimbingSiteCommentsDAOImplemented implements ClimbingSiteCommentsD
 	private List<CommentsModificationLog> getModificationlogByCommentId(Integer climbingSiteCommentId) {
 		return daoList.getListOfObjectWhere(commentsModificationLog, "climbingSiteComments.id", climbingSiteCommentId);
 	}
-//TODO Find a way to get hour and min at save and modif peut eter ajouté le temps manuellemnt
+
 	private String formattedLocalDate(LocalDateTime date) {
 		return date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL));//.ofLocalizedDate(FormatStyle.FULL)
 	}

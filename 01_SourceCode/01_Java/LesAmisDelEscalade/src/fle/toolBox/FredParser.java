@@ -8,11 +8,11 @@ import java.time.format.FormatStyle;
 import exceptions.TypeNotConfiguredException;
 
 /**
- * 
+ *
  * @author Frederic Leroux <br>
- * 
+ *
  * @version : 1.0
- * 
+ *
  * @Summary FredParser class : <br>
  *          Give number type intvalue(Double,Long,Float)<br>
  *          Parse string to wiched number type <br>
@@ -22,7 +22,7 @@ import exceptions.TypeNotConfiguredException;
  *          Parse String to Float and Float(or float) to String <br>
  *          Parse String to Long and Long (or long) to String <br>
  */
-//TODO implement other types
+
 public class FredParser {
 
 	public static final int toInt(String value) {
@@ -54,7 +54,7 @@ public class FredParser {
 		String parsed = String.valueOf(value);
 		return parsed;
 	}
-	
+
 	public static final String asString(char value) {
 		String parsed = String.valueOf(value);
 		return parsed;
@@ -79,17 +79,17 @@ public class FredParser {
 		String parsed = String.valueOf(value);
 		return parsed;
 	}
-	
+
 	public static final String asString(Boolean value) {
 		String parsed = String.valueOf(value);
 		return parsed;
 	}
-	
+
 	public static final String asString(Year value) {
 		String parsed = String.valueOf(value);
 		return parsed;
 	}
-	
+
 	public static final String asString(Object value) {
 		String parsed = String.valueOf(value);
 		return parsed;
@@ -109,27 +109,27 @@ public class FredParser {
 		int intValue = num.intValue();
 		return intValue;
 	}
-	
+
 	public static final Boolean asBoolean(String value) {
 		return Boolean.parseBoolean(value);
 	}
-	
+
 	public static final Boolean asBoolean(Object value) {
 		return Boolean.parseBoolean(value.toString());
 	}
-	
-	public static final LocalDate asDate(String value,FormatStyle formatStyle) {		
+
+	public static final LocalDate asDate(String value,FormatStyle formatStyle) {
 		return LocalDate.parse(value,dateTimeFormatter(formatStyle));
 	}
-	
+
 	public static final LocalDate asDate(Object value,FormatStyle formatStyle) {
 		return LocalDate.parse(value.toString(),dateTimeFormatter(formatStyle));
 	}
 
 	public static final Object numericParser(String type, String value) throws TypeNotConfiguredException  {
-		
+
 		Object parsedValue = null;
-		String typeCompare = type.toLowerCase();		
+		String typeCompare = type.toLowerCase();
 		if(typeCompare.equals("integer")) {
 			parsedValue = toInteger(value);
 		}else if(typeCompare.equals("int")) {
@@ -142,18 +142,18 @@ public class FredParser {
 			parsedValue = toDouble(value);
 		}else {
 			parsedValue = null;
-		}		
+		}
 		if(parsedValue==null) {
-			throw new TypeNotConfiguredException();	
-		}		 
-		return parsedValue;	
+			throw new TypeNotConfiguredException();
+		}
+		return parsedValue;
 
 	}
-	
+
 	private static DateTimeFormatter dateTimeFormatter(FormatStyle formatStyle) {
 		return DateTimeFormatter.ofLocalizedDate(formatStyle);
 	}
-	
+
 	public static final Year toYear(String year) {
 		return Year.parse(year);
 	}
