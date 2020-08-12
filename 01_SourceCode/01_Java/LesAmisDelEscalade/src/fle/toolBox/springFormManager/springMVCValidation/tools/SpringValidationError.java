@@ -4,7 +4,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
 /**
- * 
+ *
  * @author Frederic Leroux <br>
  * @version 1.0
  * @apiNote allow to create a springFrameWork FieldError and add it to a
@@ -13,7 +13,7 @@ import org.springframework.validation.FieldError;
 public abstract class SpringValidationError {
 
 	/**
-	 * 
+	 *
 	 * @param modelAttributeValue the @ModelAttribute value
 	 * @param fieldValueName      is the fieldname where to apply constraint.
 	 *                            <b><u>Note</u></b> in case of associated model
@@ -36,7 +36,7 @@ public abstract class SpringValidationError {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param modelAttributeValue the @ModelAttribute value
 	 * @param fieldValueName      is the fieldname where to apply Unique constraint.
 	 *                            <b><u>Note</u></b> in case of associated model

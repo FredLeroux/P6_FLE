@@ -95,15 +95,27 @@
 	<!-- HandlerInterceptor -->
 	<mvc:interceptors>
 		<mvc:interceptor>
+		<mvc:mapping path="index" />
 			<mvc:mapping path="index.jsp" />
 			<mvc:mapping path="/index.html" />
 			<bean class="std.fle._08_interceptors.OpeningInterceptor"></bean>
 		</mvc:interceptor>
 		<mvc:interceptor>
-			<mvc:mapping path="reload" />
-			<bean class="std.fle._08_interceptors.Reload"></bean>
+			<mvc:mapping path="/home"/>
+			<mvc:mapping path="/welcome"/>
+			<mvc:mapping path="/callList"/>
+			<mvc:mapping path="/addSite"/>
+			<mvc:mapping path="/addMineTopo"/>
+			<mvc:mapping path="/myAccount"/>
+			<mvc:mapping path="/01_home/**"/>
+			<mvc:mapping path="/02_AccountManagement/**"/>
+			<mvc:mapping path="/03_messagesPages/**"/>
+			<mvc:mapping path="/04_listPage/**"/>
+			<mvc:mapping path="/05_topo/**"/>
+			<mvc:mapping path="/06_climbingSite/**"/>
+			<bean class="std.fle._08_interceptors.SiteAcces"></bean>
 		</mvc:interceptor>
-	 	 <mvc:interceptor>
+		 <mvc:interceptor>
 			<mvc:mapping path="/error" />
 			<bean class="std.fle._08_interceptors.OnErrorInterceptor"></bean>
 		</mvc:interceptor>
@@ -155,19 +167,19 @@
 				</value>
 				<value>${pageTitlesMessagesSrc.path}${pageTitles.fileNamePattern}
 				</value>
-				<value>${logModalJspHref.path}logModalJspHref
+				<value>${logModalJspHref.path}${logModalJspHref.fileNamePattern}
 				</value>
-				<value>${placeHolderMessagesSrc.path}${placeHolder.filePattern}
+				<value>${placeHolderMessagesSrc.path}${placeHolder.fileNamePattern}
 				</value>
-				<value>${labelDisplayNamesSrc.path}${labelDisplayNames.filePattern}
+				<value>${labelDisplayNamesSrc.path}${labelDisplayNames.fileNamePattern}
 				</value>
-				<value>${formMessagesSrc.path}${formMessages.filePattern}
+				<value>${formMessagesSrc.path}${formMessages.fileNamePattern}
 				</value>
-				<value>${pageMessagesSrc.path}${pageMessage.filePattern}
+				<value>${pageMessagesSrc.path}${pageMessage.fileNamePattern}
 				</value>
-				<value>${validationMessages.path}${validationMessages.filePattern}
+				<value>${validationMessages.path}${validationMessages.fileNamePattern}
 				</value>
-				<value>${mailContentMessages.path}${mailContentMessages.filePattern}
+				<value>${mailContentMessages.path}${mailContentMessages.fileNamePattern}
 				</value>
 			</list>
 

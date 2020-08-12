@@ -16,7 +16,8 @@
 		</button>
 	</div>
 	<div class= "deleteAccountButtonPositioning">
-		<button class="pageButtonWarning"  id="deletion" onclick="deletionConfirm('${deleteURL}','${confirmMessage}')">
+		<button class="pageButtonWarning"  id="deletion" 
+		onclick="deletionConfirmAndAppReload('${pageContext.request.contextPath}','${deleteURL}','${confirmMessage}')">
 			<springTags:message code = "deleteAccount.name"/>
 		</button>
 	</div>
@@ -25,5 +26,23 @@
 <div id = "updateFormular">
 	<%@ include file = "/resources/02_templatesJsp/formJsp/formFiles/userUpdateForm.jsp" %>
 </div> 
-<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/loadModalJavaScript.js"></script>
+<br>
+<a href="testError">testError</a>
 <script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/confirmAction.js"></script>
+<script type="text/javascript">	
+	function reInitApp(contextPath,url) {
+		var xhttp1 = new XMLHttpRequest();
+		xhttp1.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				window.parent.location.href= contextPath;
+			}
+		};
+		xhttp1.open("GET", url, true);
+		xhttp1.send();
+	}
+</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/loadModalJavaScript.js"></script>
+<script type="text/javascript">
+	disableLoadModal();
+	addButtonOnclickParentModalToggle("userUpdateFormularButton");
+</script>

@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import std.fle._05_slo.innerJoinSLO.ClimbingSiteCommentsSLO;
+import std.fle._05_slo.directSLO.ClimbingSiteCommentsSLO;
 import std.fle._06_dao.climbingSiteCommentsListDao.ClimbingSiteCommentsListDAO;
 
 @Service

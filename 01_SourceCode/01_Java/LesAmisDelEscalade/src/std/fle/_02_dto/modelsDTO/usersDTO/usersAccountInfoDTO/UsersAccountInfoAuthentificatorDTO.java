@@ -7,6 +7,7 @@ public class UsersAccountInfoAuthentificatorDTO extends DTO {
 	private String password;
 	private Integer securityLevel;
 	private String pseudonyme;
+	private String login;
 	private Integer loginTentativeNumber;
 	private Integer id;
 
@@ -49,7 +50,16 @@ public class UsersAccountInfoAuthentificatorDTO extends DTO {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
-	
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+
+
 
 }

@@ -18,5 +18,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/link.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/loadModalJavaScript.js"></script>
 <script type="text/javascript">
-	disableLoadModal();
+	disableLoadModal();	
+	addButtonOnclickParentModalToggle("displayTopoFormularButton");	
 </script>

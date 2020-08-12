@@ -1,6 +1,7 @@
 package std.fle._01_entity.models.site;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,17 +11,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import fle.toolBox.classType.ENT;
-import std.fle._01_entity.models.users.UsersAccountInfo;
 
 @Entity
 @Table(name = "climbing_site_comments", schema = "cliff")
 public class ClimbingSiteComments extends ENT {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 28840530513804341L;
 
@@ -34,13 +35,16 @@ public class ClimbingSiteComments extends ENT {
 	@Column(name = "post_date")
 	private LocalDateTime postDate;
 
+	@Column(name = "comment_author")
+	private String commentAuthor;
+
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "climbing_site_fk")
 	private ClimbingSite climbingSite;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "user_account_info_fk")
-	private UsersAccountInfo usersAccountInfo;
+	@OneToMany(mappedBy = "climbingSiteComments",cascade = CascadeType.ALL)
+	private List<CommentsModificationLog> commentsModificationLog;
+
 
 	public Integer getId() {
 		return id;
@@ -74,12 +78,26 @@ public class ClimbingSiteComments extends ENT {
 		this.climbingSite = climbingSite;
 	}
 
-	public UsersAccountInfo getUsersAccountInfo() {
-		return usersAccountInfo;
+	public String getCommentAuthor() {
+		return commentAuthor;
 	}
 
-	public void setUsersAccountInfo(UsersAccountInfo usersAccountInfo) {
-		this.usersAccountInfo = usersAccountInfo;
+	public void setCommentAuthor(String commentAuthor) {
+		this.commentAuthor = commentAuthor;
 	}
+
+	public List<CommentsModificationLog> getCommentsModificationLog() {
+		return commentsModificationLog;
+	}
+
+	public void setCommentsModificationLog(List<CommentsModificationLog> commentsModificationLog) {
+		this.commentsModificationLog = commentsModificationLog;
+	}
+
+
+
+
+
+
 
 }

@@ -42,10 +42,12 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 	private String siteIdForComment = null;
 
 
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		String listType = request.getParameter("listType");
+		String update = request.getParameter("update");
 		LinkedHashMap<String, Object> map = new LinkedHashMap<>();
 		if (listType != null) {
 			listInitiate = listType;
@@ -66,7 +68,11 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 		else if(isClimbingSiteCommentsType(listInitiate)) {
 			LinkedHashMap<String, Object> mapComment = new LinkedHashMap<>();
 			mapComment=listGenerator.getclimbingSiteCommentsSLOList(getId(request),request,listInitiate);
-			redirectToListInListController(request, response, mapComment);
+			if(isListEmpty(mapComment)) {
+				redirectToNoResultsMessage(request,response);
+				return false;
+			}
+			redirectToListInListController(request, response, mapComment,update);
 			return false;
 		}
 		else if(isToposListType(listInitiate)) {
@@ -79,7 +85,8 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 			redirectToNoResultsMessage(request,response);
 			return false;
 		}
-		request.setAttribute("map", map);
+		addRequestAttributes(map, update, request);
+
 		return true;
 	}
 
@@ -113,9 +120,16 @@ public class ListDisplayerInterceptors extends HandlerInterceptorAdapter {
 	}
 
 
-	private void redirectToListInListController(HttpServletRequest request,HttpServletResponse response,LinkedHashMap<String, Object> map) {
-		request.setAttribute("map", map);
+	private void redirectToListInListController(HttpServletRequest request,HttpServletResponse response,LinkedHashMap<String, Object> map,String update) {
+		addRequestAttributes(map, update, request);
 		dispatch(request,response, listInListController);
+	}
+
+	private void addRequestAttributes(LinkedHashMap<String, Object> map, String update,HttpServletRequest request) {
+		request.setAttribute("map", map);
+		if(update!=null) {
+			request.setAttribute("update", "true");
+		}
 	}
 
 	private void redirectToForbiddenMessage(HttpServletRequest request,HttpServletResponse response) {

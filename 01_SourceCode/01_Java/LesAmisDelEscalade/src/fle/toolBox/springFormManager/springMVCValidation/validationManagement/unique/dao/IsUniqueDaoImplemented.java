@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import fle.toolBox.springFormManager.springMVCValidation.validationManagement.unique.IsUniqueGenericInterface;
 
 /**
- * 
+ *
  * @author Frederic Leroux <br>
  *	@see {@link IsUniqueGenericInterface} and  {@link IsUniqueGenericInterface#columnElementsList(String, String)}
  */
@@ -24,11 +24,11 @@ public class IsUniqueDaoImplemented implements IsUniqueDao {
 		return sessionFactory.getCurrentSession();
 	}
 
-	
+
 	@Override
 	public List<Object> columnElementsList(String fieldName, String entityName) {
 		@SuppressWarnings("unchecked")
-		List<Object> columnElements = getSession().createQuery("SELECT T." + fieldName + " FROM " + entityName + " T")
+		List<Object> columnElements = getSession().createQuery("SELECT LOWER(T." + fieldName + ") FROM " + entityName + " T")
 				.getResultList();
 		return columnElements;
 	}

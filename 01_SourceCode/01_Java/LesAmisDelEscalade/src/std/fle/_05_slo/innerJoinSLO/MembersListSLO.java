@@ -12,7 +12,7 @@ import fle.toolBox.controllerTools.listManagement.dataListDisplayerTools.annotat
 import fle.toolBox.controllerTools.listManagement.dataListDisplayerTools.annotations.operator.OperatorArrays;
 import fle.toolBox.dateAndTime.annotation.DateTimeRawFormat;
 
-@NamedQuery(name = "MembersListSLO", query = "SELECT  B.id,A.firstName,A.lastName,B.pseudonyme,B.signUpDate,B.member"
+@NamedQuery(name = "MembersListSLO", query = "SELECT  B.id,B.pseudonyme,B.signUpDate,B.member,B.securityLevel"
 		+ " FROM UsersInfo A INNER JOIN  UsersAccountInfo B ON A.userAccountInfo = B.id ORDER by B.signUpDate")
 
 @Entity
@@ -21,10 +21,7 @@ public class MembersListSLO extends SLO {
 	@Id
 	private Integer Id;
 
-	@Operator(signsArray = OperatorArrays.EQUAL)
-	private String firstName;
-	@Operator(signsArray = OperatorArrays.EQUAL)
-	private String lastName;
+
 	@Operator(signsArray = OperatorArrays.EQUAL)
 	private String pseudonyme;
 	@Operator(signsArray = OperatorArrays.EQUAL)
@@ -33,6 +30,9 @@ public class MembersListSLO extends SLO {
 	@Operator(signsArray = OperatorArrays.EQUAL)
 	@ToTranslate(suffix = "isMember")
 	private String member;
+	@Operator(signsArray = OperatorArrays.EQUAL)
+	@ToTranslate(suffix = "name")
+	private String securityLevel;
 
 	public Integer getId() {
 		return Id;
@@ -40,22 +40,6 @@ public class MembersListSLO extends SLO {
 
 	public void setId(Integer id) {
 		Id = id;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
 	}
 
 	public String getPseudonyme() {
@@ -82,6 +66,17 @@ public class MembersListSLO extends SLO {
 		this.member = member;
 	}
 
-	
-	
+	public String getSecurityLevel() {
+		return securityLevel;
+	}
+
+	public void setSecurityLevel(String securityLevel) {
+		this.securityLevel = securityLevel;
+	}
+
+
+
+
+
+
 }

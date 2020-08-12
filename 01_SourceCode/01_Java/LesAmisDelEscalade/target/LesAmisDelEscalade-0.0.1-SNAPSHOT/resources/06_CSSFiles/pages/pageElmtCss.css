@@ -1,6 +1,4 @@
-@import
-	url("@import url("/LesAmisDelEscalade/resources/00_centralisation/cssFiles/appSkin.css");)
-	;
+@import url("/LesAmisDelEscalade/resources/00_centralisation/cssFiles/appSkin.css");
 
 .commentListContainer {
 	background: linear-gradient(to bottom right, var(--base-color),
@@ -12,7 +10,7 @@
 	box-shadow: 5px 5px 5px var(--shadow-color);
 }
 
-.pageButtonNormal, .pageButtonWarning,.pageButtonMitaMita {
+.pageButtonNormal, .pageButtonWarning,.pageButtonMitaMita,.pageButtonBigAndRound {
 	font-family: menu-font;
 	font-size: 1.2vw;
 	color: var(--base-color-opposite);
@@ -36,10 +34,22 @@
 		var(--base-color), var(--mita-mita-color));
 }
 
-.pageButtonNormal:hover, .pageButtonWarning:hover,.pageButtonMitaMita:hover {
+.pageButtonBigAndRound{
+font-size: 3vw;
+	border-radius: 50%;
+	padding: 0.5%;
+}
+
+.pageButtonNormal:hover, .pageButtonWarning:hover,.pageButtonMitaMita:hover,.pageButtonBigAndRound:hover {
 	cursor: pointer;
 	color: var(--hover-color1);
 }
+
+.pageButtonNormal:active, .pageButtonWarning:active,.pageButtonMitaMita:active,.pageButtonBigAndRound:active {
+	color: var(--highlith-color);
+}
+
+
 
 .cancelAndSupressGrid {
 	display: grid;

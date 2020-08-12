@@ -94,16 +94,12 @@ public class UsersAccountInfoDAOImplmented implements UsersAccountInfoDAO {
 	@Override
 	public void updateMemberStatus(Integer id, UsersAccountInfoMemberStatusSFC memberStatusSFC) {
 		UsersAccountInfoDTO dto = getDTOByID(id);
-		//dto.setMember(memberStatusSFCToDTO(memberStatusSFC));
-		//setSecurityLevelFunctionOfMemberStatus(dto);
 		if(FredParser.toInteger(memberStatusSFC.getSecurity())>1) {
 			dto.setMember(false);
 		}else {
 			dto.setMember(true);
 		}
 		dto.setSecurityLevel(FredParser.toInteger(memberStatusSFC.getSecurity()));
-		
-		
 		dao.updateDTO(usersAccountInfo, dto);
 	}
 
@@ -114,7 +110,14 @@ public class UsersAccountInfoDAOImplmented implements UsersAccountInfoDAO {
 
 	@Override
 	public UsersAccountInfoAuthentificatorDTO getAuthentificatorDTOByLogin(String login) {
-		return dao.getSpecificDTOWhereCondition("login", login, usersAccountInfo, passwordDTO);
+		UsersAccountInfoAuthentificatorDTO dto = null;
+			try {
+				dto = dao.getSpecificDTOWhereCondition("login",login, usersAccountInfo, passwordDTO);
+			} catch (Exception e) {
+				login = getLoginByEmail(login);
+				dto = dao.getSpecificDTOWhereCondition("login",login, usersAccountInfo, passwordDTO);
+			}
+		return dto;
 	}
 
 	@Override
@@ -179,7 +182,14 @@ public class UsersAccountInfoDAOImplmented implements UsersAccountInfoDAO {
 
 	@Override
 	public UsersAccountInfoAccessDTO accountAcces(String login) {
-		return dao.getSpecificDTOWhereCondition("login", login, usersAccountInfo, accountAccess);
+		UsersAccountInfoAccessDTO dto = null;
+		try {
+			dto = dao.getSpecificDTOWhereCondition("login", login, usersAccountInfo, accountAccess);
+		} catch (Exception e) {
+			login = getLoginByEmail(login);
+			dto = dao.getSpecificDTOWhereCondition("login", login, usersAccountInfo, accountAccess);
+		}
+		return dto;
 	}
 
 	@Override
@@ -285,19 +295,20 @@ public class UsersAccountInfoDAOImplmented implements UsersAccountInfoDAO {
 		dto.setLoginTentativeNumber(0);
 		dao.updateDTO(usersAccountInfo, dto);
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @return SFC memberStatus String to DTO Boolean memberStatus
 	 */
 	private Boolean memberStatusSFCToDTO(String toConvert) {
 		return localKeyToBoolean.localKey(toConvert, "true.isMember", "false.isMember");
 	}
-	
+
 	@Override
 	public void deleteAccount(Integer id) {
 		dao.removeByID(usersAccountInfo, id);
+		System.out.println("done");
 	}
-	
-	
+
+
 }

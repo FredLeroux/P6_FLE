@@ -31,24 +31,32 @@ public class AuthentificatorInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-
 		SessionVariables sessVar = new SessionVariables(request);
 		String login = request.getParameter("login");
 		String pass = request.getParameter("pass");
+		UsersAccountInfoAuthentificatorDTO authen = null;
+		UsersAccountInfoAccessDTO accountAcces = null;
 		if (!login.isEmpty() && !pass.isEmpty()) {
-			UsersAccountInfoAuthentificatorDTO authen = null;
+
 			try {
 				authen = uAccservice.getAuthentificatorDTOByLogin(request.getParameter("login"));
+				login=authen.getLogin();
 			} catch (Exception e) {
 				response.sendRedirect("incorrectConnexion");
 				return false;
 			}
-			if (!isAccountActivated(login)) {
+			try {
+				accountAcces = access(login);
+			} catch (Exception e) {
+				response.sendRedirect("accountAccesError");
+				return false;
+			}
+			if (!isAccountActivated(accountAcces)) {
 				response.sendRedirect("accountNotActivated");
 				return false;
 			}
 			lockAccount(login, sessVar.getLoginTentative(), maxTentative);
-			if (isAccountLocked(login, maxTentative)) {
+			if (isAccountLocked(accountAcces, maxTentative)) {
 				sessVar.setLogin(login);
 				response.sendRedirect("lockedAccount");
 				return false;
@@ -96,13 +104,14 @@ public class AuthentificatorInterceptor extends HandlerInterceptorAdapter {
 		}
 	}
 
-	private boolean isAccountLocked(String login, Integer maxTentativeAllowed) {
-		return access(login).getLoginTentativeNumber() >= maxTentativeAllowed;
+	private boolean isAccountLocked(UsersAccountInfoAccessDTO accountAcces, Integer maxTentativeAllowed) {
+		return accountAcces.getLoginTentativeNumber() >= maxTentativeAllowed;
 	}
 
-	private boolean isAccountActivated(String login) {
-		return access(login).getAccountActivationStatus();
+	private boolean isAccountActivated(UsersAccountInfoAccessDTO accountAcces) {
+		return accountAcces.getAccountActivationStatus();
 	}
+
 
 	private UsersAccountInfoAccessDTO access(String login) {
 		return uAccservice.accountAcces(login);

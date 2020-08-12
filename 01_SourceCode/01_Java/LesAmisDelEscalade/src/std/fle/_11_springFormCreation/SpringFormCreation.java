@@ -83,7 +83,7 @@ public class SpringFormCreation implements ApplicationListener<ContextRefreshedE
 	private SpringFormCssConfig mailFormConfig() {
 		return basisConfig()
 				.tableStyle("tableStyleClass.form2")
-				.tdStyle("tdStyleClass.form2")
+				.tdStyle("tdStyleClass.form4")
 				.labelStyle("labelStyleClass.hide")
 				.labelErrorStyle("labelStyleClass.hide");
 	}

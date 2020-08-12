@@ -3,19 +3,18 @@ package std.fle._02_dto.modelsDTO.climbingSiteDTO;
 import java.time.LocalDateTime;
 
 import fle.toolBox.classType.DTO;
-import std.fle._02_dto.modelsDTO.usersDTO.usersAccountInfoDTO.UsersAccountInfoDTO;
 
 public class ClimbingSiteCommentsDTO extends DTO {
 
 	private Integer id;
 
-	private String comment;
+	private String commentAuthor;
 
 	private LocalDateTime postDate;
 
-	private ClimbingSiteDTO climbingSite;
+	private String comment;
 
-	private UsersAccountInfoDTO usersAccountInfo;
+	private ClimbingSiteDTO climbingSite;
 
 	public Integer getId() {
 		return id;
@@ -49,12 +48,14 @@ public class ClimbingSiteCommentsDTO extends DTO {
 		this.climbingSite = climbingSite;
 	}
 
-	public UsersAccountInfoDTO getUsersAccountInfo() {
-		return usersAccountInfo;
+	public String getCommentAuthor() {
+		return commentAuthor;
 	}
 
-	public void setUsersAccountInfo(UsersAccountInfoDTO usersAccountInfo) {
-		this.usersAccountInfo = usersAccountInfo;
+	public void setCommentAuthor(String commentAuthor) {
+		this.commentAuthor = commentAuthor;
 	}
+
+
 
 }

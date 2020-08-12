@@ -107,11 +107,13 @@
 			<mvc:mapping path="/addSite"/>
 			<mvc:mapping path="/addMineTopo"/>
 			<mvc:mapping path="/myAccount"/>
+			<mvc:mapping path="/01_home/**"/>
+			<mvc:mapping path="/02_AccountManagement/**"/>
+			<mvc:mapping path="/03_messagesPages/**"/>
+			<mvc:mapping path="/04_listPage/**"/>
+			<mvc:mapping path="/05_topo/**"/>
+			<mvc:mapping path="/06_climbingSite/**"/>
 			<bean class="std.fle._08_interceptors.SiteAcces"></bean>
-		</mvc:interceptor>
-		 <mvc:interceptor>
-			<mvc:mapping path="/error" />
-			<bean class="std.fle._08_interceptors.OnErrorInterceptor"></bean>
 		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/authentification" />

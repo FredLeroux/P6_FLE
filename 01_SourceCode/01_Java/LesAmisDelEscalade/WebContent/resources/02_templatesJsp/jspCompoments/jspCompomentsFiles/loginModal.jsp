@@ -27,7 +27,7 @@
 					placeholder='<springTag:message code ="pass.placeHolder"/>'>
 			</div>
 			<div id="forgot" class="forgot">
-				<a onclick="navIframe('<springTag:message code ="forgot.href"/>','iframeHome')">
+				<a onclick="navIframe('<springTag:message code ="forgot.href"/>','iframeHome'),displayLoadModal('loading')">
 					<label><springTag:message code="forgot.name" /></label>
 				</a>
 			</div>
@@ -39,7 +39,7 @@
 				<button type="submit"><springTag:message code ="log.name"/></button>
 			</div>
 			<div id="createAccount" class="createAccount">			
-				<a onclick="navIframe('<springTag:message code ="createAccount.href"/>','iframeHome')">
+				<a onclick="navIframe('<springTag:message code ="createAccount.href"/>','iframeHome'),displayLoadModal('loading')">
 					<label><springTag:message code="createAccount.name" /></label>
 				</a>
 			</div>			

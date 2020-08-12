@@ -30,7 +30,7 @@ public class UsersAccountInfo extends ENT implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@Column(name = "login")
-	private String login;	
+	private String login;
 	@Column(name = "password")
 	private String password;
 	@Column(name = "pseudonyme")
@@ -38,20 +38,21 @@ public class UsersAccountInfo extends ENT implements Serializable {
 	@Column(name ="sign_up_date")
 	private Date signUpDate;
 	@Column(name ="login_tentative_number")
-	private Integer loginTentativeNumber;	
+	private Integer loginTentativeNumber;
 	@Column(name= "security_level")
 	private Integer securityLevel;
 	@Column(name = "account_activation_status")
-	private Boolean accountActivationStatus;	
-	@Column (name = "is_member")	
+	private Boolean accountActivationStatus;
+	@Column (name = "is_member")
 	private Boolean member;
 	@Column (name = "activation_code")
 	private String activationCode;
 	@Column (name = "password_reset_code")
 	private String passwordResetCode;
-	
+
 	@OneToOne(mappedBy =  "userAccountInfo",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private UsersInfo userInfo;
+
 
 	public Integer getId() {
 		return id;
@@ -101,7 +102,7 @@ public class UsersAccountInfo extends ENT implements Serializable {
 		this.loginTentativeNumber = loginTentativeNumber;
 	}
 
-	
+
 	public Integer getSecurityLevel() {
 		return securityLevel;
 	}
@@ -110,7 +111,7 @@ public class UsersAccountInfo extends ENT implements Serializable {
 		this.securityLevel = securityLevel;
 	}
 
-	
+
 	public Boolean isAccountActivationStatus() {
 		return accountActivationStatus;
 	}
@@ -119,7 +120,7 @@ public class UsersAccountInfo extends ENT implements Serializable {
 		this.accountActivationStatus = accountActivationStatus;
 	}
 
-	
+
 	public Boolean getMember() {
 		return member;
 	}
@@ -151,11 +152,14 @@ public class UsersAccountInfo extends ENT implements Serializable {
 	public void setPasswordResetCode(String passwordResetCode) {
 		this.passwordResetCode = passwordResetCode;
 	}
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
 
 }

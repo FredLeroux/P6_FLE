@@ -26,8 +26,8 @@
 				<input type="password" name="pass" id="pass"  
 					placeholder='<springTag:message code ="pass.placeHolder"/>'>
 			</div>
-			<div class="forgot">
-				<a href="<springTag:message code ="forgot.href"/>">
+			<div id="forgot" class="forgot">
+				<a onclick="navIframe('<springTag:message code ="forgot.href"/>','iframeHome'),displayLoadModal('loading')">
 					<label><springTag:message code="forgot.name" /></label>
 				</a>
 			</div>
@@ -38,8 +38,8 @@
 			<div class="log">
 				<button type="submit"><springTag:message code ="log.name"/></button>
 			</div>
-			<div class="createAccount">			
-				<a href="<springTag:message code ="createAccount.href"/>">
+			<div id="createAccount" class="createAccount">			
+				<a onclick="navIframe('<springTag:message code ="createAccount.href"/>','iframeHome'),displayLoadModal('loading')">
 					<label><springTag:message code="createAccount.name" /></label>
 				</a>
 			</div>			
@@ -55,6 +55,8 @@
 	var logToggle = toggle();		
 	logToggle.addToggleDisplayOnClickAndClearError("cancel", "loginModal", "error","pass","visibility");
 	logToggle.addToggleDisplayOnClickAndClearError("close", "loginModal", "error","pass","visibility");
+	logToggle.addToggleDisplayOnClickAndClearError("createAccount", "loginModal", "error","pass","visibility");
+	logToggle.addToggleDisplayOnClickAndClearError("forgot", "loginModal", "error","pass","visibility");
 	logToggle.addOnclickTogglePassVisibility("pass","visibility");
 	logToggle.displayOnError("error","loginModal");
 </script>

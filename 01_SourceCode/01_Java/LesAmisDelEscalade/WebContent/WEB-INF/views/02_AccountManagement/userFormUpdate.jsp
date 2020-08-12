@@ -27,8 +27,6 @@
 	<%@ include file = "/resources/02_templatesJsp/formJsp/formFiles/userUpdateForm.jsp" %>
 </div> 
 <br>
-<button onclick="reInitApp('${pageContext.request.contextPath}','deleteAccount')">test</button>
-<a href="testError">testError</a>
 <script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/confirmAction.js"></script>
 <script type="text/javascript">	
 	function reInitApp(contextPath,url) {

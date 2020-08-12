@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import std.fle._05_slo.innerJoinSLO.ClimbingSiteCommentsSLO;
+import std.fle._05_slo.directSLO.ClimbingSiteCommentsSLO;
 import std.fle._05_slo.innerJoinSLO.ClimbingSiteSLO;
 import std.fle._05_slo.innerJoinSLO.MembersListSLO;
 import std.fle._05_slo.innerJoinSLO.TopoListSLO;

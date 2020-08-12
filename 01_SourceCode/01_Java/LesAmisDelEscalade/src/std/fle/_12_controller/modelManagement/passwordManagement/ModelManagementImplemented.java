@@ -22,7 +22,7 @@ import std.fle._10_security.PassEncoder;
 
 @Service
 public class ModelManagementImplemented implements ModelManagement {
-	
+
 	@Autowired
 	SelectInputForController select;
 
@@ -40,7 +40,7 @@ public class ModelManagementImplemented implements ModelManagement {
 
 	@Autowired
 	UsersAccountInfoService usersAccountInfoService;
-	
+
 	@Autowired
 	UserService userService;
 
@@ -48,9 +48,9 @@ public class ModelManagementImplemented implements ModelManagement {
 	private ConfigurationFileReader config = new ConfigurationFileReader(
 			"configuration/securitySettings/securitySettings.xml");
 
-	
-	
-	
+
+
+
 	@Override
 	public ModelAndView manageForgotPassModel(ModelAndView model, UsersInfoMailSFC usersInfoMailSFC,
 			HttpServletRequest request) {
@@ -90,6 +90,7 @@ public class ModelManagementImplemented implements ModelManagement {
 			usersAccountInfoService.unLockAccountById(id);
 			sessVar.setAllowResetPass(false);
 			sessVar.setAccountID(null);
+			sessVar.setLoginTentative(0);
 			model.setViewName("03_messagesPages/passwordChangeConfirmation");
 		} else {
 			model.setViewName("03_messagesPages/codeExpired");
@@ -106,9 +107,9 @@ public class ModelManagementImplemented implements ModelManagement {
 		model.setViewName("03_messagesPages/passwordChangeConfirmation");
 		return model;
 	}
-	
-	
-	
+
+
+
 	private ModelAndView confirmationModel(String confirmationMessage) {
 		ModelAndView confirmation = new ModelAndView("03_messagesPages/confirmationNewCodeSent");
 		confirmation.addObject("confirmationMessage", locale.message(confirmationMessage));

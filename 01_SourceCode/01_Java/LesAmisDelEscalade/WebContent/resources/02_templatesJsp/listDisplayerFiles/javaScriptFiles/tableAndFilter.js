@@ -18,7 +18,6 @@ var splitter = null;
 var orderLink = null;
 var editHandler = null;
 var loadingModal = null;
-var parentLoadingModal = null;
 
 function setLoadingModal(loadingModalName) {
 	loadingModal = loadingModalName;
@@ -28,13 +27,6 @@ function getLoadingModal() {
 	return loadingModal;
 }
 
-function setParentLoadingModal(parentLoadingModalName) {
-	parentLoadingModal = parentLoadingModalName;
-}
-
-function getParentLoadingModal() {
-	return parentLoadingModal;
-}
 
 function setEditHandlerName(editHandlerName) {
 	editHandler = editHandlerName;
@@ -373,24 +365,24 @@ function createTableHead(table) {
 }
 
 function getRowObjectId(id) {
-	displayLoadingModal()
-	displayParentLoadingModal()
 	if (getEditHandlerName() != "none") {
+		displayLoadingModal();
 		sendRowIdToBacKEnd(id);
-	}
-
-}
-
-function displayParentLoadingModal() {
-	if (getParentLoadingModal() != null) {
-		window.parent.document.getElementById(getParentLoadingModal()).style.display = "block";
 	}
 }
 
 function displayLoadingModal() {
+	var modal =null;
 	if (getLoadingModal() != null) {
-		document.getElementById(getLoadingModal()).style.display = "block";
+		modal = document.getElementById(getLoadingModal());
+		if(modal == null){
+			modal = window.parent.document.getElementById(getLoadingModal());
+			if(modal == null){
+				modal = window.parent.parent.document.getElementById(getLoadingModal());
+			}
+		}
 	}
+	modal.style.display = "block";
 }
 
 function sendRowIdToBacKEnd(id) {
@@ -420,7 +412,6 @@ function createTableBody(table, data, idName) {
 			cell.innerHTML = dataUsed[i][arrayName];
 		}
 	}
-
 }
 
 // * = DOM HTML5 not in autocompletion
@@ -435,7 +426,7 @@ function generateTable(LocToSetTableId, tableID, data, cssStyle, idName) {
 		createTableBody(table, dataToLoad, idName);
 		table.setAttribute("class", cssStyle)
 		document.getElementById(LocToSetTableId).innerHTML = "";
-		// erase message
+		// delete message
 		// when table is
 		// created
 		return document.getElementById(LocToSetTableId).appendChild(table);
@@ -748,7 +739,6 @@ function loader() {
 	}
 }
 
-// TODO CheckJAVASCRIPT HERE
 function deleteSessionFilter(jspName) {
 	loader();
 	location.href = jspName;

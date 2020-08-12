@@ -41,7 +41,7 @@ public class UniqueValidationImplemented extends UniqueAnnotationBoolean impleme
 	}
 
 	/**
-	 * 
+	 *
 	 * @param entityName          the "entity.class" name.
 	 * @param fieldName           the field in entity representing the column of
 	 *                            interest.
@@ -62,7 +62,7 @@ public class UniqueValidationImplemented extends UniqueAnnotationBoolean impleme
 	}
 
 	/**
-	 * 
+	 *
 	 * @param fieldName the field in entity representing the column of interest
 	 * @Param entityName the entity name of entity representing database table of
 	 *        interest
@@ -73,7 +73,7 @@ public class UniqueValidationImplemented extends UniqueAnnotationBoolean impleme
 	private boolean isUnique(String entityName, String fieldName, String valueTocheckUnicity, Field fOI,
 			String modelAttributeName) {
 		if (applyOnModelAttribute(modelAttributeName, fOI)) {
-			if (service.columnElementsList(fieldName, entityName).contains(valueTocheckUnicity)) {
+			if (service.columnElementsList(fieldName, entityName).contains(valueTocheckUnicity.toLowerCase())) {
 				return false;
 			} else {
 				return true;
@@ -84,7 +84,7 @@ public class UniqueValidationImplemented extends UniqueAnnotationBoolean impleme
 	}
 
 	/**
-	 * 
+	 *
 	 * @param modelAttributeName the model attribuet where to apply the unique
 	 *                           constraint if not needed i.e case of update this
 	 *                           value is nullable

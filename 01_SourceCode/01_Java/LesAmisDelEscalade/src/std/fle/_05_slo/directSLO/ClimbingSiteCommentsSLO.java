@@ -1,4 +1,4 @@
-package std.fle._05_slo.innerJoinSLO;
+package std.fle._05_slo.directSLO;
 
 import java.time.format.FormatStyle;
 
@@ -13,9 +13,8 @@ import fle.toolBox.controllerTools.listManagement.dataListDisplayerTools.annotat
 import fle.toolBox.dateAndTime.annotation.DateTimeRawFormat;
 
 @NamedQuery(name = "ClimbingSiteCommentsSLO",
-query = "SELECT A.id,B.pseudonyme,A.postDate,A.comment"
+query = "SELECT A.id,A.commentAuthor,A.postDate,A.comment"
 		+ " FROM ClimbingSiteComments A"
-		+ " INNER JOIN UsersAccountInfo B ON A.usersAccountInfo = B.id"
 		+ " WHERE A.climbingSite.id = :siteId"
 		+ " ORDER BY A.postDate DESC")
 
@@ -25,16 +24,15 @@ public class ClimbingSiteCommentsSLO extends SLO {
 
 	@Id
 	private Integer id;
-	
-	
-	
+
+
 	@Operator(signsArray = OperatorArrays.EQUAL)
-	private String userName;
-	
-	@Operator(signsArray = OperatorArrays.INFERIOR_EQUAL_SUPERIOR )//{"<", "=",">" }
+	private String commentAuthor;
+
+	@Operator(signsArray = OperatorArrays.INFERIOR_EQUAL_SUPERIOR )
 	@DateTimeRawFormat(dateFormatStyle = FormatStyle.LONG,rawFormatPattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
 	private String postDate;
-	
+
 	@NotAListFilter
 	private String comment;
 
@@ -63,12 +61,16 @@ public class ClimbingSiteCommentsSLO extends SLO {
 		this.postDate = postDate;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getCommentAuthor() {
+		return commentAuthor;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setCommentAuthor(String commentAuthor) {
+		this.commentAuthor = commentAuthor;
 	}
+
+
+
+
 
 }

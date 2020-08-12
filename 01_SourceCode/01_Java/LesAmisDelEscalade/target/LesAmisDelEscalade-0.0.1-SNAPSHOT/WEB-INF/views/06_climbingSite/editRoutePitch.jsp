@@ -15,8 +15,9 @@
 	<%@ include file="/resources/02_templatesJsp/formJsp/formFiles/editRoutePitchTmplt.jsp" %>
 </div>
 <div class="routeFormEndingButtonPositioning">
-	<button class="pageButtonNormal"  onclick="window.location.href='${cancelEditPitch}'">
+	<button class="pageButtonNormal"  onclick="navBack('${cancelEditPitch}')">
 		<springTags:message code = "cancelEdition.name"/>
 	</button>
 </div>
 <br>
+<script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/link.js"></script>

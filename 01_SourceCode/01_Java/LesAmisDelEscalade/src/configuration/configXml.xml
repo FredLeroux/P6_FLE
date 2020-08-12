@@ -14,6 +14,7 @@
 	<entry key="tdStyleClass.form1">tdForm1</entry>
 	<entry key="tdStyleClass.form2">tdForm2</entry>
 	<entry key="tdStyleClass.form3">tdForm3</entry>
+	<entry key="tdStyleClass.form4">tdForm4</entry>
 	<entry key="labelStyleClass.normal">labelStyle</entry>
 	<entry key="labelStyleClass.error">labelStyleBad</entry>
 	<entry key="fieldStyleClass.normal">inputStyle</entry>

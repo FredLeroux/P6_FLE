@@ -24,7 +24,7 @@ public interface DataListDisplayBasis {
 	 * @required GetMapping annotation with value set as follow <br>
 	 *           value = "/jspFolder(if needed)/setDataToDisplayHandlerName"
 	 */
-	public ModelAndView setDataToDisplay(String frontViewAddObjectHandlerName);
+	public ModelAndView setDataToDisplay(String frontViewAddObjectHandlerName,List<?> fullData);
 
 	/**
 	 * @required GetMapping annotation with value set as follow <br>

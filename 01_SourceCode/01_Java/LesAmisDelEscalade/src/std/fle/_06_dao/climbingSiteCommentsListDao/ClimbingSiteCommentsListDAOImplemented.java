@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fle.toolBox.CRUD.daoList.DAOListGeneric;
-import std.fle._05_slo.innerJoinSLO.ClimbingSiteCommentsSLO;
+import std.fle._05_slo.directSLO.ClimbingSiteCommentsSLO;
 
 @Repository
 public class ClimbingSiteCommentsListDAOImplemented implements ClimbingSiteCommentsListDAO {

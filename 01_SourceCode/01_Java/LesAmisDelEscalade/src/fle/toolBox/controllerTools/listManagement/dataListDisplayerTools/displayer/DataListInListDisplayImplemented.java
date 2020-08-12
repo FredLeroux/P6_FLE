@@ -74,10 +74,11 @@ public class DataListInListDisplayImplemented  implements DataListInListDisplay 
 
 
 	@Override
-	public ModelAndView setDataToDisplaylistInList(String frontViewAddObjectHandlerName) {
+	public ModelAndView setDataToDisplaylistInList(String frontViewAddObjectHandlerName,List<?> fullData) {
 		frontView.setViewName(redirectTo(frontViewAddObjectHandlerName));
+		List<Object> list = new ArrayList<>(fullData);
 		try {
-			frontViewList.setComponentsToDisplay();
+			frontViewList.setComponentsToDisplay(list);
 		} catch (Exception e) {
 			frontViewList.setDataToSend(frontViewList.getEmptyArray());
 		}

@@ -1,17 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-	<entry key="NotEmpty">Information requise</entry>
-	<entry key="NotNull">Information requise</entry>
+	<!-- 11-08-2020 Fréderic Leroux
+	Note: for now concerning custon validation annotation as per Numeric
+		or Unique, it seems that the error code array is first filled with the error
+		code, and then the error codes appended with object and field name, however
+		the documentaion specified the exact opposite, the only way to get custon
+		validation message on custom validation annotation is to not use the generic
+		error code (example NotNumeric for Numeric validation) only use as key the
+		code error appended with object name and field name -->
 	<entry key="Email">E-mail Invalide</entry>
+	<entry key="NoCheckBox.forgotPass.error">Attention tu dois choisir soit l'identifiant, soit le mot de passe, soit le total recall.</entry>
+	<entry key="NotEmpty">Information requise</entry>
+	<entry key="NotEmpty.siteFullInfo.climbingSiteName">Nom du site requis</entry>
+	<entry key="NotNull">Information requise</entry>
+	<entry key="NotNumeric.siteFullInfo.altitude">Entrée numeric uniquement, maximum 4 chiffres</entry>
+	<entry key="NotNumeric.siteFullInfo.heightMax">Entrée numeric uniquement, maximum 3 chiffres</entry>
+	<entry key="NotNumeric.siteFullInfo.heightMin">Entrée numeric uniquement, maximum 3 chiffres</entry>
 	<entry key="NotUnique.userManagement.usersAccountInfoSFC.login">Cet identifiant éxiste déjà</entry>
 	<entry key="NotUnique.userManagement.usersAccountInfoSFC.pseudonyme">Ce nom n'est plus disponible</entry>
 	<entry key="NotUnique.userManagement.usersInfoSFC.email">Cette adresse e-mail éxiste déja</entry>
-	<entry key="typeMismatch.createTopo.editionYear">N''est acceptée que l''année ici</entry>
+	<entry key="Pattern.password"> le mot de passe doit contenir 1 minuscule, 1 majsucule et 1 chiffre au minimum</entry>
+	<entry key="countyEmpty.siteFullInfo.climbingSiteCountyId">Département requis</entry>
+	<entry key="heightError.siteFullInfo.heightMax">Maximum inférieur à Minimum </entry>
+	<entry key="heightError.siteFullInfo.heightMin">Minimum supérieur à Maximum </entry>
 	<entry key="logEmpty.error">Identifiant et/ou Mot de passe vide</entry>
 	<entry key="logIncorrect.error">Identifiant et/ou mot de passe incorrecte</entry>
+	<entry key="noRoute.route.routeName">Au moins 1 voie doit être renseignée</entry>
+	<entry key="pitchListEmpty.pitchNumber.pitchNumber">Au moins 1 longueur doit être renseignée</entry>
+	<entry key="pitchNotUnique.pitchNumber.pitchNumber">Cette longueur éxiste déjà</entry>
+	<entry key="routeListEmpty.siteFullInfo.numberOfRoutes">1 voie minimum</entry>
+	<entry key="routeNotUnique.route.routeName">Cette voie éxiste déjà</entry>
+	<entry key="stateEmpty.createTopo.state">Département requis</entry>
+	<entry key="stateEmpty.siteFullInfo.climbingSiteStateId">Région requise</entry>
+	<entry key="typeMismatch.createTopo.editionYear">N''est acceptée que l''année ici</entry>
 	<entry key="wrong.error"> tentative(s) restante</entry>
-	<entry key="Pattern.password"> le mot de passe doit contenir 1 minuscule, 1 majsucule et 1 chiffre au minimum </entry>
 	<entry key="wrongOldPass.error">Echec de la confirmation du mot de passe.... t'es bien celui que tu prétends être ??</entry>
-	<entry key="NoCheckBox.forgotPass.error">Attention tu dois choisir soit l'identifiant, soit le mot de passe, soit le total recall.</entry>
 </properties>
+
+

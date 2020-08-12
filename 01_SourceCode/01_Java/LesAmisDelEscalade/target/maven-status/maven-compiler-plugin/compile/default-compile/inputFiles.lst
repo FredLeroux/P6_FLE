@@ -89,7 +89,6 @@ O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\fle\toolBox\CRUD\
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_02_dto\modelsDTO\topoDTO\TopoLendingDTO.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_12_controller\controllerClass\climbingSiteController\bugOnController\RoutePitchsController.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_01_entity\models\site\ClimbingSiteComments.java
-O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_05_slo\innerJoinSLO\ClimbingSiteCommentsSLO.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_03_sfc\assetsSFC\ClimbingLevelSFC.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_01_entity\models\topo\TopoLending.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_01_entity\assetsEnum\Gender.java
@@ -107,7 +106,6 @@ O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_06_dao\c
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_02_dto\modelsDTO\usersDTO\usersAccountInfoDTO\UsersAccountInfoAccessDTO.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_01_entity\models\users\UsersInfo.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_02_dto\modelsDTO\climbingSiteDTO\ClimbingSiteCommentsEditDTO.java
-O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_08_interceptors\Reload.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_12_controller\modelManagement\climbingSiteCommentsManagement\ClimbingSiteCommentsModelManagement.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_04_associationModel\dto\UserDTO.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\fle\toolBox\mail\EmailSender.java
@@ -117,8 +115,7 @@ O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\fle\toolBox\contr
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\fle\toolBox\CRUD\tools\HibernateSessionImplemented.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\exceptions\TypeNotConfiguredException.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_07_service\climbingSiteCommentsListService\ClimbingSiteCommentsListService.java
-O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_12_controller\controllerClass\homeController\TestController.java
-O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_12_controller\controllerClass\errorhandler\ErrorHAndler.java
+O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_12_controller\controllerClass\errorhandler\ErrorHandler.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_06_dao\countiesDao\CountiesDAOImplemented.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\fle\toolBox\controllerTools\listManagement\dataListDisplayerTools\annotations\ToTranslate.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_05_slo\innerJoinSLO\TopoBorrowSLO.java
@@ -243,6 +240,7 @@ O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\exceptions\NotUni
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_07_service\countiesService\CountiesServiceImplemented.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\fle\toolBox\controllerTools\listManagement\dataListDisplayerTools\displayer\displayerTools\listManagementTools\Pagination.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_07_service\usersAccountInfoService\UsersAccountInfoServiceImplemented.java
+O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_08_interceptors\SiteAcces.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_12_controller\controllerClass\homeController\HomeController.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\fle\toolBox\springFormManager\springMVCValidation\validationManagement\unique\Unique.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\fle\toolBox\EnumToJSONArray.java
@@ -257,6 +255,7 @@ O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\fle\toolBox\contr
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\fle\toolBox\CRUD\daoList\daoListTools\ListElementTransLator.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\fle\toolBox\springFormManager\builder\annotationsManagement\SpringFormSettingsAnnotation.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\fle\toolBox\springFormManager\springMVCValidation\validationManagement\unique\service\IsUniqueService.java
+O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_05_slo\directSLO\ClimbingSiteCommentsSLO.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_07_service\userService\UserService.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\fle\toolBox\StreamListFilter.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_08_interceptors\AccountActivationInterceptor.java
@@ -284,7 +283,6 @@ O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_05_slo\i
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_12_controller\controllerClass\topoController\LendAndBorrowController.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\fle\toolBox\controllerTools\listManagement\dataListDisplayerTools\displayer\DataListInListDisplayImplemented.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_07_service\climbingLevelsService\ClimbingLevelsService.java
-O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_12_controller\controllerClass\homeController\Reinit.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\fle\toolBox\FredCodeGenerator.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_07_service\climbingLevelsService\ClimbingLevelsServiceImplemented.java
 O:\Project\P6_FLE\01_SourceCode\01_Java\LesAmisDelEscalade\src\std\fle\_02_dto\modelsDTO\climbingSiteDTO\SiteRoutesDTO.java

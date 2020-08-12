@@ -59,6 +59,5 @@
 	var toggleComment = toggle();
 		toggleComment.addToElementToggleParentElementDisplayOnClick("commentSite", comment);
 	var modal = newLoadModal();		
-		modal.disableLoadModal();
-		
+		modal.disableLoadModal();		
 </script>

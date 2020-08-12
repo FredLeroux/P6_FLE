@@ -8,6 +8,7 @@
 
 :root{
 	--header-bg-images : url("/LesAmisDelEscalade/resources/00_centralisation/imagesSrc/headerBgImage.jpg");
+	--site-bg-images : url("/LesAmisDelEscalade/resources/00_centralisation/imagesSrc/test.jpg");
 	--header-text-color : var(--base-color);
 	--header-text-shadow-lvl1 : var(--text-shadow-lvl1);
 	--header-text-shadow-lvl2 : var(--text-shadow-lvl2);

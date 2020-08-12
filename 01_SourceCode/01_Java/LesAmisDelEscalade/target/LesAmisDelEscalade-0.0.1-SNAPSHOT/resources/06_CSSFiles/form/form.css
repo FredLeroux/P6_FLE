@@ -1,6 +1,4 @@
-@import
-	url("@import url("/LesAmisDelEscalade/resources/00_centralisation/cssFiles/appSkin.css");)
-	;
+@import url("/LesAmisDelEscalade/resources/00_centralisation/cssFiles/appSkin.css");
 
 /* ###############  START : set input and select box size identical ###################*/
 input, select, textarea {
@@ -59,13 +57,17 @@ background: linear-gradient(to bottom right, var(--base-color),
 	min-width: 33%;
 }
 
-.tdForm2 {
+.tdForm2,.tdForm4 {
 	min-width: 50%;
 }
 
 .tdForm3 {
 	display:flex;
 	min-width: 50%;
+}
+
+.tdForm4 {
+	width:auto;
 }
 
 .tdForm3[colspan *="3"]{

@@ -74,10 +74,11 @@ public class DataListDisplayImplementedBasis implements DataListDisplayBasis {
 
 
 	@Override
-	public ModelAndView setDataToDisplay(String frontViewAddObjectHandlerName) {
+	public ModelAndView setDataToDisplay(String frontViewAddObjectHandlerName,List<?> fullData) {
 		frontView.setViewName(redirectTo(frontViewAddObjectHandlerName));
+		List<Object> list = new ArrayList<>(fullData);
 		try {
-			frontViewList.setComponentsToDisplay();
+			frontViewList.setComponentsToDisplay(list);
 		} catch (Exception e) {
 			frontViewList.setDataToSend(frontViewList.getEmptyArray());
 		}

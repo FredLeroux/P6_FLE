@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import fle.toolBox.logger.Log4J2;
 import fle.toolBox.springFormManager.selectInputManagement.controllerClass.SelectInputForController;
 import fle.toolBox.springFormManager.springMVCValidation.SpringMVCValidation;
 import std.fle._03_sfc.usersAccountInfoSFC.UsersAccountInfoMemberStatusSFC;
@@ -35,6 +36,8 @@ public class AccountController {
 
 	@Autowired
 	private AccountModelManagement manager;
+
+	private Log4J2<AccountController> logger = new Log4J2<AccountController>(this);
 
 	@GetMapping(value = "/02_AccountManagement/userFormRegister")
 	public ModelAndView initUserForm(ModelAndView model, @ModelAttribute(value = "userManagement") UserSFC userSFC) {
@@ -98,6 +101,7 @@ public class AccountController {
 		userUpdate.update(userUpdateSFC);
 		model.setViewName("redirect:/02_AccountManagement/userFormUpdate");
 		select.addSelectListsAndValues(userUpdateSFC, model);
+		logger.log().info("Account updated");
 		return model;
 	}
 
@@ -109,12 +113,7 @@ public class AccountController {
 
 	@GetMapping(value = "/02_AccountManagement/deleteAccount")
 	public @ResponseBody String deleteAccount() {
-		return manager.manageAccountDeletion();
+		manager.manageAccountDeletion();
+		return null;
 	}
-
-	@GetMapping(value = "/02_AccountManagement/testError")
-	public ModelAndView testError() {
-		throw new NullPointerException();
-	}
-
 }

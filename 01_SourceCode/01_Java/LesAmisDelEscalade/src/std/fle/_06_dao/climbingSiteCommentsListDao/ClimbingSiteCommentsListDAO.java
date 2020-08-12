@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import std.fle._05_slo.innerJoinSLO.ClimbingSiteCommentsSLO;
+import std.fle._05_slo.directSLO.ClimbingSiteCommentsSLO;
 
 @Transactional
 public interface ClimbingSiteCommentsListDAO {

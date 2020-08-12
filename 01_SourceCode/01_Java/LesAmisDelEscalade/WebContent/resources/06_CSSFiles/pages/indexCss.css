@@ -1,6 +1,7 @@
 @import url("/LesAmisDelEscalade/resources/00_centralisation/cssFiles/appSkin.css");
 
 body,html{
+	width: 100%;
 	height: 99%;
 	overflow: hidden;
 	margin: auto;
@@ -33,6 +34,7 @@ body,html{
 @media all and (max-width: 900px) {
 	.ladeIndex{
 		grid-template-rows: 10% 90%;
+		width: 99%;
 	}
 
 

@@ -31,10 +31,6 @@ public class UsersAccountInfoMemberStatusSFC extends SFC {
 	@HiddenPath
 	private Integer id;
 	@ReadOnlyInput
-	private String firstName;
-	@ReadOnlyInput
-	private String lastName;
-	@ReadOnlyInput
 	private String pseudonyme;
 	@ReadOnlyInput
 	@DateTimeFormat(pattern = "dd  MMMM  yyyy")
@@ -46,55 +42,44 @@ public class UsersAccountInfoMemberStatusSFC extends SFC {
 			defaultValue = "",messageSourceSuffix = ".name")
 	private String security;
 
-
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+
 	public String getPseudonyme() {
 		return pseudonyme;
 	}
+
 	public void setPseudonyme(String pseudonyme) {
 		this.pseudonyme = pseudonyme;
 	}
+
 	public Date getSignUpDate() {
 		return signUpDate;
 	}
+
 	public void setSignUpDate(Date signUpDate) {
 		this.signUpDate = signUpDate;
 	}
+
 	public String getMember() {
 		return member;
 	}
+
 	public void setMember(String member) {
 		this.member = member;
 	}
+
 	public String getSecurity() {
 		return security;
 	}
-	public void setSecurity(String security) {
-		this.security = security;
+
+	public void setSecurity(String securityLevel) {
+		this.security = securityLevel;
 	}
 
-
-
-	}
-
-
-
-
-
+}

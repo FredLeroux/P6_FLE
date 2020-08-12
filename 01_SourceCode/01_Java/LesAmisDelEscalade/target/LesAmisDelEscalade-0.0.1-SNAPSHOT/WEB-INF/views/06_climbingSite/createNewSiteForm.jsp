@@ -27,3 +27,7 @@
 	var displayer = newFormFieldDisplayer();
 	displayer.display(displayOfficial, "official.formLabel", "official.select");
 </script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/loadModalJavaScript.js"></script>
+<script type="text/javascript">
+	disableLoadModal();
+</script>

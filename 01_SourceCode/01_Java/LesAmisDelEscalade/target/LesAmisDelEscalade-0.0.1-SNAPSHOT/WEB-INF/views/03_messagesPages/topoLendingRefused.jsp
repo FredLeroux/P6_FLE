@@ -6,19 +6,28 @@
 	</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/messagesCSS.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/iconsCss.css" />	
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/pageElmtCss.css" />
 </head>
 <div class = "messageContainer">
 	<div class = "iconBasisSize">
 		<springTags:message code ="topoLendingRefused.title"/>
 	</div>
 	<div class = "messageBodyCenterAlign">
-		<springTags:message code ="topoLendingRefused.message"/>
+		<div>
+			<springTags:message code ="topoLendingRefused.message"/>
+		</div>
 		<br>
-		<button class = "link" onclick="changeParentLocation('${pageContext.request.contextPath}/<springTags:message code ="createAccount.href"/>')" >
-			<springTags:message code ="createAccount.name"/>
-		</button>
+		<div>
+			<button class = "pageButtonNormal" onclick="navTo('../<springTags:message code ="createAccount.href"/>')" >
+				<springTags:message code ="createAccount.name"/>
+			</button>		
+		</div>
 		<br>
 	</div>
 </div>
 <br>
 <script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/link.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/loadModalJavaScript.js"></script>
+<script type="text/javascript">
+	disableLoadModal();
+</script>

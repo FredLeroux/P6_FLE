@@ -6,7 +6,7 @@
 </head>
 <div id="siteCommentModal" class ="formModal" style="display: none;">
 	<div id="commentFormContainer" class = "commentModal-content" >
-		<form class = "commentModalGrid" action="06_climbingSite/postComment" method = "Post">
+		<div class = "commentModalGrid">
 			<div  class="charCounter">
 				<span id="count" class="charLimitNormalCss">${commentMaxChar}</span>
 			</div>
@@ -17,9 +17,13 @@
 				<textarea id="comment" name="comment" rows="10" cols="50" maxlength="${commentMaxChar}" ></textarea>
 			</div>
 			<div class="submitBtn">
-				<button id="postCommentBtn" type="submit" class="sendButton"><springTags:message code="sendComment.message"/></button>
+				<button id="postCommentBtn"
+					onclick="hide('siteCommentModal'),displayLoadModal('loading'),AJAXSubmitAndRedirectIframe('siteCommentModal','06_climbingSite/postComment','POST','iframeHome','url')"
+					class="sendButton">
+					<springTags:message code="sendComment.message" />
+				</button>
 			</div>
-		</form>		
+		</div>		
 	</div>
 </div>
 <input id="charLimit" type="hidden" value="${sessionScope.commentMaxChar}">
@@ -27,7 +31,12 @@
 <input id="sendMessage" type ="hidden" value="<springTags:message code="sendComment.message"/>">
 <input id="errorLimitMessage" type ="hidden" value="<springTags:message code="charLimitReached.message"/>">
 <script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/modalTools.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/AJAXSubmitForm.js"></script>
 <script type="text/javascript">
 countAndCheckLimitCharOnKeyPress("comment", "postCommentBtn", "count", "charLimit", "*", "sendMessage", "errorMessage","commentNormalCSS","charLimitNormalCss", "commentBadCSS","charLimitBadCSS");
 hideOnclick("closeComment", "siteCommentModal");
+</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/loadModalJavaScript.js"></script>
+<script type="text/javascript">
+	disableLoadModal();
 </script>

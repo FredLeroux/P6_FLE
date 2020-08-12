@@ -30,20 +30,13 @@ public class TopoDaoImplemented implements TopoDAO {
 
 	@Autowired
 	private StatesDAO statesDAO;
-	
-	
-	
-	
 
 	private ClimbingTopo climbingTopo = new ClimbingTopo();
 	private UsersInfo usersInfo = new UsersInfo();
-
 	private ClimbingTopoDTO climbingTopoDTO = new ClimbingTopoDTO();
 	private ClimbingTopoDisplayDTO climbingTopoDisplayDTO = new ClimbingTopoDisplayDTO();
 	private UsersInfoDTO usersInfoDTO = new UsersInfoDTO();
 	private UsersInfoToTopoDTO usersInfoToTopoDTO = new UsersInfoToTopoDTO();
-
-	private ClimbingTopoSFC climbingTopoSFC = new ClimbingTopoSFC();
 	private ClimbingTopoDisplaySFC climbingTopoDisplaySFC = new ClimbingTopoDisplaySFC();
 
 	public ClimbingTopo getClimbingENTById(Integer id) {
@@ -75,28 +68,28 @@ public class TopoDaoImplemented implements TopoDAO {
 
 	private ClimbingTopoDTO setClimbingTopoDTOToSave(ClimbingTopoSFC climbingTopoSFC, Integer loggedUserId) {
 		ClimbingTopoDTO dto = dao.converter().convertSFCToDTO(climbingTopoSFC, climbingTopoDTO);
-		setClimbingDTOSaveOrUpdate(dto,climbingTopoSFC, loggedUserId);
+		setClimbingDTOSaveOrUpdate(dto, climbingTopoSFC, loggedUserId);
 		return dto;
 	}
 
 	private String parseYearToString(Year year) {
 		return FredParser.asString(year);
 	}
-	
+
 	@Override
 	public void updateClimbingTopo(ClimbingTopoSFC climbingTopoSFC, Integer loggedUserId) {
 		ClimbingTopoDTO dto = climbingTopoDTOUpdate(climbingTopoSFC, loggedUserId);
 		ClimbingTopo entity = dao.converter().convertDTOToEntity(dto, climbingTopo);
-		dao.update(entity);	
+		dao.update(entity);
 	}
-	
+
 	private ClimbingTopoDTO climbingTopoDTOUpdate(ClimbingTopoSFC climbingTopoSFC, Integer loggedUserId) {
 		ClimbingTopoDTO dto = dao.converter().convertSFCToDTO(climbingTopoSFC, climbingTopoDTO);
-		setClimbingDTOSaveOrUpdate(dto,climbingTopoSFC, loggedUserId);
+		setClimbingDTOSaveOrUpdate(dto, climbingTopoSFC, loggedUserId);
 		return dto;
 	}
-	
-	private void setClimbingDTOSaveOrUpdate(ClimbingTopoDTO dto,ClimbingTopoSFC sfc, Integer loggedUserId) {
+
+	private void setClimbingDTOSaveOrUpdate(ClimbingTopoDTO dto, ClimbingTopoSFC sfc, Integer loggedUserId) {
 		setClimbingTopoState(dto, FredParser.toInteger(sfc.getState()));
 		setClimbingTopoUserInfo(dto, loggedUserId);
 		dto.setEditionYear(parseYearToString(sfc.getEditionYear()));
@@ -211,7 +204,7 @@ public class TopoDaoImplemented implements TopoDAO {
 	public TopoLendingDTO getTopoLendingById(Integer id) {
 		return topoLendingDAO.getTopoLendingDTOById(id);
 	}
-	
+
 	@Override
 	public void deleteTopo(Integer id) {
 		dao.removeByID(climbingTopo, id);

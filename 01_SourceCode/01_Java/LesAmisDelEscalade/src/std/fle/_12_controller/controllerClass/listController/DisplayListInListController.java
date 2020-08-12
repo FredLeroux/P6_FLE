@@ -33,7 +33,8 @@ public class DisplayListInListController implements SetListInListManagementContr
 	}
 
 	private String editControllerURI = null;
-	private String listName = null;
+	private String listInListName = null;
+	private String listInListType = null;
 	private List<?> listInList = null;
 	private Object clazzListInList = null;
 
@@ -41,13 +42,19 @@ public class DisplayListInListController implements SetListInListManagementContr
 	@GetMapping(value = "/04_listPage/listInListPage")
 	@Override
 	public ModelAndView initiatePageListInList(ModelAndView model, HttpServletRequest request) {
+		String update = request.getParameter("update");
 		LinkedHashMap<String, Object> map = new LinkedHashMap<>();
 		map = (LinkedHashMap<String, Object>) request.getAttribute("map");
 		if (map != null) {
 			listInList = (List<?>) map.get("list");
 			clazzListInList = map.get("class");
 			editControllerURI = (String) map.get("editControllerURI");
-			listName = (String) map.get("listName");
+			listInListName = (String) map.get("listInListName");
+			listInListType = (String) map.get("listType");
+		}
+		if(update != null) {
+			model.setViewName("redirect:listInListsetDataToDisplay");
+			return model;
 		}
 		return listInListControllerConfig().initiatePagelistInList(listInList, clazzListInList,
 				"listInListfrontViewAddObject", "label");
@@ -59,13 +66,18 @@ public class DisplayListInListController implements SetListInListManagementContr
 	public ModelAndView frontViewAddObjectListInList() {
 		return listInListControllerConfig().frontViewAddObjectlistInList("04_listPage", "listInListPage",
 				"listInListsortList", "listInListRowsDisplayer", "listInListselectedPage", "listInListorderedPage",
-				editControllerURI, listName);
+				editControllerURI, listInListName);
+	}
+
+	@GetMapping(value = "04_listPage/getUpdatedListInList")
+	public ModelAndView getUpdatedList() {
+		return new ModelAndView("redirect:setListPage?listType=" + listInListType+"&update=true");
 	}
 
 	@GetMapping(value = "04_listPage/listInListsetDataToDisplay")
 	@Override
 	public ModelAndView setDataToDisplayListInList() {
-		return listInListControllerConfig().setDataToDisplaylistInList("listInListfrontViewAddObject");
+		return listInListControllerConfig().setDataToDisplaylistInList("listInListfrontViewAddObject",listInList);
 	}
 
 	@GetMapping(value = "04_listPage/listInListsortList")

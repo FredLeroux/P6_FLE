@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/pageElmtCss.css" />
 </head>
 <div>
-	<button onclick= "window.parent.location ='../callListBack?listType=toposMine'" class="pageButtonNormal">
+	<button onclick= "navBack('../callListBack')" class="pageButtonNormal">
 		<springTags:message code ="back.name"/>
 	</button>
 </div>
@@ -24,4 +24,10 @@
 	<%@ include file="/resources/02_templatesJsp/formJsp/formFiles/updateTopoTmplt.jsp" %>
 </div>
 <br>
+<script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/link.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/confirmAction.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/loadModalJavaScript.js"></script>
+<script type="text/javascript">
+	disableLoadModal();	
+	addButtonOnclickParentModalToggle("updateTopoFormularButton");
+</script>

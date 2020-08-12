@@ -67,7 +67,7 @@ public class ClimbingSiteCommentsDAOImplemented implements ClimbingSiteCommentsD
 			String comment) {
 		ClimbingSiteCommentsDTO dto = new ClimbingSiteCommentsDTO();
 		dto.setClimbingSite(climbingSiteDTO(climbingSiteId));
-		dto.setUsersAccountInfo(usersAccountInfoDTO(userAccountId));
+		dto.setCommentAuthor(usersAccountInfoDTO(userAccountId).getPseudonyme());
 		dto.setComment(commentParseToFrontString(comment));
 		dto.setPostDate(LocalDateTime.now());
 		return dto;

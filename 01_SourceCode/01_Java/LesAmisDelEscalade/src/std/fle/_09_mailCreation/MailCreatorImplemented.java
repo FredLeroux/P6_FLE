@@ -1,5 +1,6 @@
 package std.fle._09_mailCreation;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import fle.toolBox.AppURI;
 import fle.toolBox.FredCodeGenerator;
 import fle.toolBox.Internationalization.LocalMessage;
+import fle.toolBox.logger.Log4J2;
 import fle.toolBox.mail.EmailSender;
 import std.fle._07_service.usersAccountInfoService.UsersAccountInfoService;
 
@@ -24,7 +26,11 @@ public class MailCreatorImplemented implements MailCreator {
 	@Autowired
 	UsersAccountInfoService accountService;
 
-	AppURI uri = new AppURI();
+	@Autowired
+	ServletContext context;
+
+	private AppURI uri = new AppURI();
+	private Log4J2<MailCreatorImplemented> logger = new Log4J2<MailCreatorImplemented>(this);
 	private EmailSender mail = new EmailSender("configuration/mailConfig/mailConfig.xml");
 	private String senderMail = null;
 	private String senderName = null;
@@ -35,12 +41,13 @@ public class MailCreatorImplemented implements MailCreator {
 	@Override
 	public void sendActivationLink(String contact, HttpServletRequest request) {
 		String activationCode = new FredCodeGenerator(24, false).toString();
-		setActivationMailMessage(contact,activationCode, request);		
+		setActivationMailMessage(contact,activationCode, request);
 		accountService.updateActivationCode(contact, activationCode.toString());
+		logger.log().info("Activation mail sent");
 	}
 
 	private void setActivationMailMessage(String contact,String code, HttpServletRequest request) {
-		sender0();		
+		sender0();
 		subject = local.message("accountCreation.subject");
 		body = local.message("accountCreation.message") + "\n" +urlBuilder(request) + "activation?code=" + code + "\n"
 				+ local.message("endMail.message");
@@ -51,8 +58,9 @@ public class MailCreatorImplemented implements MailCreator {
 	@Override
 	public void sendLockedAccountMailMessage(String contact, HttpServletRequest request) {
 		String resetCode = new FredCodeGenerator(36, false).toString();
-		setLockedAccountMailMessage(contact,resetCode, request);		
+		setLockedAccountMailMessage(contact,resetCode, request);
 		accountService.addResetPassCode(contact, resetCode);
+		logger.log().info("Reset pass code mail sent");
 	}
 
 	private void setLockedAccountMailMessage(String contact,String code, HttpServletRequest request) {
@@ -67,8 +75,9 @@ public class MailCreatorImplemented implements MailCreator {
 	@Override
 	public void sendforgotPassMessage(String contact, String login, HttpServletRequest request) {
 		String forgotResetCode = new FredCodeGenerator(26, false).toString();
-		setforgotPassMessage(contact,forgotResetCode, login, request);		
+		setforgotPassMessage(contact,forgotResetCode, login, request);
 		accountService.addResetPassCode(contact, forgotResetCode);
+		logger.log().info("Forgot pass code mail sent");
 	}
 
 	private void setforgotPassMessage(String contact,String code, String login, HttpServletRequest request) {
@@ -84,7 +93,7 @@ public class MailCreatorImplemented implements MailCreator {
 	@Override
 	public void sendforgotPassMessageLoginOnly(String contact, String login, HttpServletRequest request) {
 		setforgotPassMessageOnlyLogin(contact,login, request);
-		
+		logger.log().info("Identity mail sent");
 	}
 
 	private void setforgotPassMessageOnlyLogin(String contact,String login, HttpServletRequest request) {
@@ -96,20 +105,19 @@ public class MailCreatorImplemented implements MailCreator {
 	}
 
 	@Override
-	@Async	
+	@Async
 	public void sendBorrowDemandNotificationAndConfirmation(String contactNotification, String pseudo,
-			HttpServletRequest request, String contactConfirmation, String lenderPseudo, String topoTitle) {		
-		setBorrowingDemandNotification(contactNotification, pseudo, request);		
+			HttpServletRequest request, String contactConfirmation, String lenderPseudo, String topoTitle) {
+		setBorrowingDemandNotification(contactNotification, pseudo, request);
 		setBorrowDemandConfirmation(contactConfirmation, lenderPseudo, topoTitle);
-		
-
+		logger.log().info("Borrow demand & notification mails sent");
 	}
 
 	@Async
 	@Override
 	public void sendBorrowingDemandNotification(String contact, String pseudo, HttpServletRequest request) {
 		setBorrowingDemandNotification(contact, pseudo, request);
-
+		logger.log().info("Borrow notification mail sent");
 	}
 
 	private void setBorrowingDemandNotification(String contact, String login, HttpServletRequest request) {
@@ -124,7 +132,7 @@ public class MailCreatorImplemented implements MailCreator {
 	@Override
 	public void sendBorrowDemandConfirmation(String contact, String lenderPseudo, String topoTitle) {
 		setBorrowDemandConfirmation(contact, lenderPseudo, topoTitle);
-
+		logger.log().info("Borrow confirmation mail sent");
 	}
 
 	private void setBorrowDemandConfirmation(String contact, String lenderPseudo, String topoTitle) {
@@ -139,9 +147,10 @@ public class MailCreatorImplemented implements MailCreator {
 	@Async
 	@Override
 	public void sendBorrowingDemandAcceptedMails(String lenderPseudo, String lenderEmail, String borrowerPseudo,
-			String borrowerEmail, String topoTitle) {		
-		setBorrowingDemandAcceptedToLender(lenderEmail, topoTitle, borrowerPseudo, borrowerEmail);		
+			String borrowerEmail, String topoTitle) {
+		setBorrowingDemandAcceptedToLender(lenderEmail, topoTitle, borrowerPseudo, borrowerEmail);
 		setBorrowingDemandAcceptedToBorrower(borrowerEmail, topoTitle, lenderPseudo, lenderEmail);
+		logger.log().info("Borrow  accepted confirmation mail sent");
 	}
 
 	@Async
@@ -149,7 +158,7 @@ public class MailCreatorImplemented implements MailCreator {
 	public void sendBorrowDemandAcceptedToLender(String lenderEmail, String topoTitle, String borrowerPseudo,
 			String borrowerEmail) {
 		setBorrowingDemandAcceptedToLender(lenderEmail, topoTitle, borrowerPseudo, borrowerEmail);
-
+		logger.log().info("Borrow accepted confirmation to lender mail sent");
 	}
 
 	private void setBorrowingDemandAcceptedToLender(String lenderEmail, String topoTitle, String borrowerPseudo,
@@ -165,7 +174,7 @@ public class MailCreatorImplemented implements MailCreator {
 	public void sendBorrowDemandAcceptedToBorrower(String borrowerEmail, String topoTitle, String lenderPseudo,
 			String lenderEmail) {
 		setBorrowingDemandAcceptedToBorrower(borrowerEmail, topoTitle, lenderPseudo, lenderEmail);
-
+		logger.log().info("Borrow accepted confirmation to borrower mails sent");
 	}
 
 	private void setBorrowingDemandAcceptedToBorrower(String borrowerEmail, String topoTitle, String lenderPseudo,
@@ -188,6 +197,7 @@ public class MailCreatorImplemented implements MailCreator {
 	@Override
 	public void sendBorrowDemandRejectedToBorrower(String borrowerEmail, String topoTitle, String lenderPseudo) {
 		setBorrowingDemandRejected(borrowerEmail, topoTitle, lenderPseudo);
+		logger.log().info("Borrow rejected notification to lender mail sent");
 	}
 
 	private void setBorrowingDemandRejected(String borrowerEmail, String topoTitle, String lenderPseudo) {
@@ -225,14 +235,15 @@ public class MailCreatorImplemented implements MailCreator {
 		to = contact;
 		mail.sendMessageToOneContact(to, senderMail, senderName, subject, body);
 
-	}	
-	
-	
+	}
+
+
 	private String urlBuilder(HttpServletRequest request) {
 		String url = uri.fullContextPathURINotStatic(request);
+		Integer i =0;
 		while (url.contains("null") || url.contains("-1")) {
-			url = uri.fullContextPathURINotStatic(request);
-			//TODO logger Here
+			url = uri.fullContextPathURINotStatic(request,context);
+			logger.log().info("loop after uri generated containing null or -1 nb= "+i++);
 		}
 		return url;
 	}

@@ -19,6 +19,7 @@
 }
 
 .messageTitleGood,.messageTitleBad,.messageTitleMitaMita {
+	cursor: default;
 	text-align: center;
 	font-size: 2.5vw;
 	font-weight: bold;
@@ -37,6 +38,7 @@
 }
 
 .messageBodyLeftAlign,.messageBodyCenterAlign,.messageBodyRightAlign,li{
+	cursor: default;
 	font-size: 1.2vw;
 }
 .messageBodyLeftAlign{
@@ -106,10 +108,21 @@ li {
 	cursor: pointer;
 	color: var(--base-color-opposite);
 }
+
+input[type=checkbox]:hover {
+    cursor:pointer;
+}
+
 @media all and (max-width: 900px) {
 	.messageContainer{
-	width: 100%;
+	width: 80%;
 	}
+
+	input[type=checkbox] {
+    transform: scale(0.5);
+}
+
+
 
 }
 

@@ -15,39 +15,40 @@ import std.fle._12_controller.modelManagement.topoModelManagement.TopoModelManag
 
 @Controller
 public class LendAndBorrowController {
-	
+
 	@Autowired
 	TopoModelManagement manager;
-	
-	
+
+	private String backToTopoListUrl = "05_topo/borrowDemandsList";
+
 	@GetMapping(value = "05_topo/borrowDemandsList")
 	public ModelAndView displayBorroDemandsList(ModelAndView model) {
-		return manager.manageBorrowDemandsList(model);		
+		return manager.manageBorrowDemandsList(model);
 	}
-	
+
 	@GetMapping(value = "05_topo/borrowDemand")
 	public ModelAndView seeDemand(ModelAndView model) {
-		return manager.manageBorrowDemand(model, "05_topo/borrowDemandsList");		
+		return manager.manageBorrowDemand(model, backToTopoListUrl);
 	}
-	
+
 	@GetMapping(value = "05_topo/borrowDemandAccepted")
 	public ModelAndView acceptDemand(ModelAndView model) {
-		return manager.manageDemandeAccepted(model,"05_topo/borrowDemandsList");		
+		return manager.manageDemandeAccepted(model,backToTopoListUrl);
 	}
-	
+
 	@GetMapping(value = "05_topo/borrowDemandRejected")
 	public ModelAndView rejectedDemand(ModelAndView model) {
-		return manager.manageDemandeRejected(model,"05_topo/borrowDemandsList");		
+		return manager.manageDemandeRejected(model,backToTopoListUrl);
 	}
-	
+
 	@GetMapping(value = "05_topo/updateBorrow")
-	public  @ResponseBody String testSendReceived(HttpServletRequest request) {	
+	public  @ResponseBody String testSendReceived(HttpServletRequest request) {
 		JSONObject object = new JSONObject();
 		object.put("numberOfWaitingDemand", manager.numberOfWaitingBorrowDemand());//
 		return object.toString();
 	}
-	
-	
-	
-	
+
+
+
+
 }

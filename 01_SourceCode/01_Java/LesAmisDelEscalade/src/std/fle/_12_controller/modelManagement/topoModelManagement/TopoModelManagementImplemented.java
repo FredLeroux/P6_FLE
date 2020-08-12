@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import fle.toolBox.FredParser;
 import fle.toolBox.StreamListFilter;
 import fle.toolBox.Internationalization.LocalMessage;
+import fle.toolBox.logger.Log4J2;
 import fle.toolBox.springFormManager.selectInputManagement.controllerClass.SelectInputForController;
 import std.fle._00_general.SessionVariables;
 import std.fle._01_entity.assetsEnum.LendingStatus;
@@ -26,6 +27,7 @@ import std.fle._07_service.climbingTopoService.TopoService;
 import std.fle._07_service.usersInfoService.UsersInfoService;
 import std.fle._09_mailCreation.MailCreator;
 import std.fle._10_security.SecurityLevel;
+import std.fle._12_controller.modelManagement.climbingSiteModelManagement.ClimbingSiteModelManagementImplemented;
 import std.fle._12_controller.modelManagement.deleteManager.DeleteConfirmationManager;
 import std.fle._12_controller.modelManagement.formsValidation.FormsValidation;
 
@@ -59,6 +61,7 @@ public class TopoModelManagementImplemented implements TopoModelManagement {
 	@Autowired
 	private DeleteConfirmationManager deleteTopo;
 
+	private Log4J2<TopoModelManagementImplemented> logger = new Log4J2<TopoModelManagementImplemented>(this);
 	private SessionVariables sessVar = new SessionVariables();
 	private Integer climbingTopoId = null;
 
@@ -74,11 +77,13 @@ public class TopoModelManagementImplemented implements TopoModelManagement {
 			String modelAttributeName, BindingResult results) {
 		formsValidation.checkStateNotEmpty(climbingTopoSFC, modelAttributeName, results);
 		if (results.hasErrors()) {
+			results.getFieldErrors().forEach(o->System.out.println(o));
 			model.setViewName("05_topo/createNewTopoForm");
 			selectFieldManager.selectListAndValueOnBindingError(climbingTopoSFC, model);
 			return model;
 		}
 		topoService.saveNewTopo(climbingTopoSFC, loggedUserAccountId());
+		logger.log().info("Topo created");
 		return new ModelAndView("redirect:/05_topo/createNewTopoForm");
 	}
 
@@ -108,7 +113,8 @@ public class TopoModelManagementImplemented implements TopoModelManagement {
 			return model;
 		}
 		topoService.updateClimbingTopo(climbingTopoSFC, loggedUserAccountId());
-		model.setViewName("redirect:displayUpdateForm");
+		logger.log().info("Topo updated");
+		model.setViewName("redirect:/callListBack");
 		return model;
 	}
 
@@ -143,7 +149,7 @@ public class TopoModelManagementImplemented implements TopoModelManagement {
 				climbingTopoDisplaySFC.getOwner(), climbingTopoDisplaySFC.getTitle());
 		topoService.borrowThisTopo(climbingTopoDisplaySFC.getId(), sessVar.getAccountID(),
 				climbingTopoDisplaySFC.getOwner());
-		return new ModelAndView("redirect:/04_listPage/listPage");
+		return new ModelAndView("redirect:../../callListBack");
 	}
 
 	@Override
@@ -272,8 +278,9 @@ public class TopoModelManagementImplemented implements TopoModelManagement {
 
 	@Override
 	public ModelAndView manageDeleteTopo() {
-		//topoService.deleteTopo(climbingTopoId);
-		return new ModelAndView("redirect:../callLisBack");
+		topoService.deleteTopo(climbingTopoId);
+		logger.log().info("Topo deleted");
+		return new ModelAndView("redirect:../callListBack");
 	}
 
 }

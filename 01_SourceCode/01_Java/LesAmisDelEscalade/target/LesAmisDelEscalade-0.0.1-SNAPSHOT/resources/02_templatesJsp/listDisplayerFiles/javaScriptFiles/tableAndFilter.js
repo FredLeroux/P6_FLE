@@ -17,25 +17,32 @@ var criteria = null;
 var splitter = null;
 var orderLink = null;
 var editHandler = null;
+var loadingModal = null;
+
+function setLoadingModal(loadingModalName) {
+	loadingModal = loadingModalName;
+}
+
+function getLoadingModal() {
+	return loadingModal;
+}
 
 
-
-function setEditHandlerName(editHandlerName){
+function setEditHandlerName(editHandlerName) {
 	editHandler = editHandlerName;
 }
 
-function getEditHandlerName(){
+function getEditHandlerName() {
 	return editHandler;
 }
 
-function getOrderLink(){
+function getOrderLink() {
 	return orderLink;
 }
 
-function setOrderLink(getOrderLink){
+function setOrderLink(getOrderLink) {
 	orderLinlk = getOrderLink;
 }
-
 
 function getSplitter() {
 	return splitter;
@@ -178,14 +185,13 @@ function extractInfo(infoArray, dataIndex1, dataIndex2, separator) {
 	var fieldName = null;
 	for (i = 0; i < infoArray.length; i++) {
 		filterSplit = infoArray[i].split(separator);
-		if(filterSplit[dataIndex1].includes("notAFilter")){
+		if (filterSplit[dataIndex1].includes("notAFilter")) {
 			var fieldSplit = filterSplit[dataIndex1].split(".");
 			fieldName = fieldSplit[0];
-		}else{
+		} else {
 			fieldName = filterSplit[dataIndex1];
 		}
-		transientArray.push(fieldName + separator
-				+ filterSplit[dataIndex2]);
+		transientArray.push(fieldName + separator + filterSplit[dataIndex2]);
 	}
 	for (j = 0; j < transientArray.length; j++) {
 		bool = infoExtractedArray.includes(transientArray[j]);
@@ -195,7 +201,6 @@ function extractInfo(infoArray, dataIndex1, dataIndex2, separator) {
 	}
 	return infoExtractedArray;
 }
-
 
 function createTable(tableId) {
 	var table = document.createElement("table");
@@ -281,7 +286,7 @@ function addInputColumnNames(columnName, idNb) {
 function addSortButton(sortWay, idNb, columnValue) {
 	var a = document.createElement("a");
 	a.name = "sortWay";
-	var link =  getOrderLink() + "?column=" + columnValue + "&orderWay=";
+	var link = getOrderLink() + "?column=" + columnValue + "&orderWay=";
 	if (sortWay === "asc") {
 		a.id = "sortButtonAsc" + idNb;
 		a.innerHTML = "\u25b2";
@@ -350,25 +355,39 @@ function createTableHead(table) {
 		// completion this
 		// html 5
 		var infoSplit = getColumnsFieldAndIname()[i].split(getSplitter());
-			var column = addInputColumnNames(infoSplit[0], i)
-			tableHeadRowCell.innerHTML = infoSplit[1];
-			tableHeadRowCell.appendChild(column);
-			tableHeadRowCell.appendChild(addSortButton("asc", i, column.value));
-			tableHeadRowCell.appendChild(addSortButton("desc", i, column.value));
-			tableHeadRow.appendChild(tableHeadRowCell);
+		var column = addInputColumnNames(infoSplit[0], i)
+		tableHeadRowCell.innerHTML = infoSplit[1];
+		tableHeadRowCell.appendChild(column);
+		tableHeadRowCell.appendChild(addSortButton("asc", i, column.value));
+		tableHeadRowCell.appendChild(addSortButton("desc", i, column.value));
+		tableHeadRow.appendChild(tableHeadRowCell);
 	}
 }
 
 function getRowObjectId(id) {
-
-	if(getEditHandlerName()!="none"){
-	sendRowIdToBacKEnd(id);
+	if (getEditHandlerName() != "none") {
+		displayLoadingModal();
+		sendRowIdToBacKEnd(id);
 	}
 }
 
-function sendRowIdToBacKEnd(id){
+function displayLoadingModal() {
+	var modal =null;
+	if (getLoadingModal() != null) {
+		modal = document.getElementById(getLoadingModal());
+		if(modal == null){
+			modal = window.parent.document.getElementById(getLoadingModal());
+			if(modal == null){
+				modal = window.parent.parent.document.getElementById(getLoadingModal());
+			}
+		}
+	}
+	modal.style.display = "block";
+}
+
+function sendRowIdToBacKEnd(id) {
 	var form = document.createElement("form");
-	form.action = getEditHandlerName()+"/"+id;
+	form.action = getEditHandlerName() + "/" + id;
 	form.method = getFormMethod();
 	anchorage().appendChild(form);
 	form.submit();
@@ -382,17 +401,17 @@ function createTableBody(table, data, idName) {
 	for (i = 0; i < dataUsed.length; i++) {
 		var row = tableBody.insertRow();
 		row.id = "trSendId" + dataUsed[i][idName];
-		row.setAttribute("onclick", "getRowObjectId(" + dataUsed[i][idName] + ")");
+		row.setAttribute("onclick", "getRowObjectId(" + dataUsed[i][idName]
+				+ ")");
 		for (j = 0; j < getColumnsFieldAndIname().length; j++) {
 			var infoSplit = getColumnsFieldAndIname()[j].split(getSplitter());
 			var arrayName = infoSplit[0];// arrayName is used to call the
-											// array contained in data JSONArray
-											// from backend
+			// array contained in data JSONArray
+			// from backend
 			var cell = tableBody.rows[i].insertCell();
 			cell.innerHTML = dataUsed[i][arrayName];
 		}
 	}
-
 }
 
 // * = DOM HTML5 not in autocompletion
@@ -407,13 +426,12 @@ function generateTable(LocToSetTableId, tableID, data, cssStyle, idName) {
 		createTableBody(table, dataToLoad, idName);
 		table.setAttribute("class", cssStyle)
 		document.getElementById(LocToSetTableId).innerHTML = "";
-		// erase message
+		// delete message
 		// when table is
 		// created
 		return document.getElementById(LocToSetTableId).appendChild(table);
 	}
 }
-
 
 /**
  *
@@ -547,26 +565,26 @@ function createFilterList(filterArray, setLocId, elmt) {
 	var listing = document.getElementById(setLocId);
 	for (let i = 0; i < filterArray.length; i++) {
 		filterElement = filterArray[i].split(getSplitter());
-		if(!filterElement[0].includes("notAFilter")){
-		var divgeneral = document.createElement("div")
-		divgeneral.setAttribute("class", "dropdown");
-		var divId = filterElement[0] + "-Elmnt-" + i;
-		var div = setElmtList(divId, "dropdownList");
-		var search = searchBar(divId, i);
-		div.appendChild(search)
-		divgeneral.appendChild(div);
-		var button = filterButton(filterElement[0], filterElement[1],
-				filterElement[2], filterElement[3], i);
-		divgeneral.insertBefore(button, divgeneral.childNodes[0])
-		listing.appendChild(divgeneral);
-		var array = setListOfElement(elmt, filterElement[0]);
-		for (let l = 0; l < array.length; l++) {
-			var a = document.createElement("a");
-			a.innerHTML = array[l];
-			a.setAttribute("onclick", "setFilterValue('" + button.id + "','"
-					+ array[l] + "')");
-			div.appendChild(a);
-		}
+		if (!filterElement[0].includes("notAFilter")) {
+			var divgeneral = document.createElement("div")
+			divgeneral.setAttribute("class", "dropdown");
+			var divId = filterElement[0] + "-Elmnt-" + i;
+			var div = setElmtList(divId, "dropdownList");
+			var search = searchBar(divId, i);
+			div.appendChild(search)
+			divgeneral.appendChild(div);
+			var button = filterButton(filterElement[0], filterElement[1],
+					filterElement[2], filterElement[3], i);
+			divgeneral.insertBefore(button, divgeneral.childNodes[0])
+			listing.appendChild(divgeneral);
+			var array = setListOfElement(elmt, filterElement[0]);
+			for (let l = 0; l < array.length; l++) {
+				var a = document.createElement("a");
+				a.innerHTML = array[l];
+				a.setAttribute("onclick", "setFilterValue('" + button.id
+						+ "','" + array[l] + "')");
+				div.appendChild(a);
+			}
 		}
 
 	}
@@ -663,7 +681,6 @@ function sendCriteriaToBackEnd(criteriaSendFromBackEnd) {
 	setCriteria(JSON.stringify(tosend));
 }
 
-
 function submitFilter(criteriaSendFromBackEnd, action, method) {
 	sendCriteriaToBackEnd(criteriaSendFromBackEnd)
 	var filter = getCriteria();
@@ -722,7 +739,6 @@ function loader() {
 	}
 }
 
-// TODO CheckJAVASCRIPT HERE
 function deleteSessionFilter(jspName) {
 	loader();
 	location.href = jspName;
@@ -732,13 +748,13 @@ function getAllData(action, method) {
 	submitFilter(null, action, method);
 }
 
-function addGetAllDataToButton(locationId,action,method){
+function addGetAllDataToButton(locationId, action, method) {
 	var button = document.getElementById(locationId);
-	if(button!=null){
-	button.setAttribute("onclick", "getAllData('"+action+"','"+method+"')");
+	if (button != null) {
+		button.setAttribute("onclick", "getAllData('" + action + "','" + method
+				+ "')");
 	}
 }
-
 
 function updateSessionStockage(filterSetted) {
 	var bool = filterSetted.includes("empty");
@@ -800,27 +816,26 @@ function pageNavigationOld(locationId, navArray) {
 	}
 }
 
-
-function listfilter(divId,searchId){
+function listfilter(divId, searchId) {
 	input = document.getElementById(searchId);
-	  filter = input.value.toUpperCase();
-	  div = document.getElementById(divId);
-	  a = div.getElementsByTagName('a');
-	  for (i = 0; i < a.length; i++) {
-		  if(filter.length>=2){
-		    txtValue = a[i].textContent || a[i].innerText;
-		    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-		      a[i].style.display = "";
-		    } else {
-		      a[i].style.display = "none";
-		    }
-		  }if(filter.length<2){
-			  a[i].style.display = ""; }
+	filter = input.value.toUpperCase();
+	div = document.getElementById(divId);
+	a = div.getElementsByTagName('a');
+	for (i = 0; i < a.length; i++) {
+		if (filter.length >= 2) {
+			txtValue = a[i].textContent || a[i].innerText;
+			if (txtValue.toUpperCase().indexOf(filter) > -1) {
+				a[i].style.display = "";
+			} else {
+				a[i].style.display = "none";
+			}
+		}
+		if (filter.length < 2) {
+			a[i].style.display = "";
+		}
 
-	  }}
-
-
-
+	}
+}
 
 function messagealert() {
 	window.alert(" value");

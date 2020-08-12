@@ -30,6 +30,8 @@
 	</button>
 	<br>
 </div>
+<br>
+<br>
 <div id="anchorage" style = "display: none">
 </div>
 <input type="hidden" id="refreshed" value="no">
@@ -63,7 +65,7 @@
 	dataTable.setStoredFilterArrayName(storedFilterArrayName);
 	dataTable.setFilterSettedFromBackEnd(filterSetted);
 	dataTable.setOrderLink(orderLink);
-	dataTable.setParentLoadingModal("loading");
+	dataTable.setLoadingModal("loading");
 	dataTable.generateTable("dataTable","dataTable",dataBaseData,"style1","id");
 	dataTable.createFilterList(filterHead, "filterList", tableElementsList);
 	dataTable.displayFilterSetted("filterAppliedList", filterHead , "aDisplay")

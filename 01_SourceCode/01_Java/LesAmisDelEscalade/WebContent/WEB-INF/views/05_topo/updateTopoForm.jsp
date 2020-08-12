@@ -29,4 +29,5 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/loadModalJavaScript.js"></script>
 <script type="text/javascript">
 	disableLoadModal();	
+	addButtonOnclickParentModalToggle("updateTopoFormularButton");
 </script>

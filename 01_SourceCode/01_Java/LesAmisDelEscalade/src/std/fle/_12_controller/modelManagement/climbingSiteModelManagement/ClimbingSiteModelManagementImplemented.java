@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import fle.toolBox.FredParser;
 import fle.toolBox.JspJavaScriptStringParser;
 import fle.toolBox.Internationalization.LocalMessage;
+import fle.toolBox.logger.Log4J2;
 import fle.toolBox.springFormManager.selectInputManagement.controllerClass.SelectInputForController;
 import fle.toolBox.springFormManager.springMVCValidation.SpringMVCValidation;
 import std.fle._03_sfc.climbingSiteSFC.ClimbingSiteSFC;
@@ -24,6 +25,7 @@ import std.fle._03_sfc.climbingSiteSFC.SiteRoutesSFC;
 import std.fle._07_service.climbingSiteCommentsService.ClimbingSiteCommentsService;
 import std.fle._07_service.climbingSiteService.ClinbingSiteService;
 import std.fle._10_security.SecurityLevel;
+import std.fle._12_controller.modelManagement.climbingSiteCommentsManagement.ClimbingSiteCommentsModelManagementImplemented;
 import std.fle._12_controller.modelManagement.deleteManager.DeleteConfirmationManager;
 import std.fle._12_controller.modelManagement.formsValidation.FormsValidation;
 
@@ -54,6 +56,8 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 
 	@Autowired
 	private LocalMessage localMesage;
+
+	private Log4J2<ClimbingSiteModelManagementImplemented> logger = new Log4J2<ClimbingSiteModelManagementImplemented>(this);
 
 	@Override
 	public ModelAndView createNewSiteFormVarInit() {
@@ -167,6 +171,7 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 			climbingSiteSFC.setOfficial("false");
 		}
 		climbingSiteService.saveClimbingSite(climbingSiteSFC, siteRoutesMap, routePitchsMap);
+		logger.log().info("Climbing site created");
 		return model;
 	}
 
@@ -182,6 +187,7 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 			return model;
 		}
 		climbingSiteService.updateClimbingSite(climbingSiteSFC, siteRoutesMap, routePitchsMap);
+		logger.log().info("Climbing site updated");
 		model.setViewName("redirect:/callListBack");
 		return model;
 	}
@@ -198,6 +204,7 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 	@Override
 	public ModelAndView manageClimbingSiteDelete(ModelAndView model) {
 		climbingSiteService.climbingSiteDelete(climbingSiteId);
+		logger.log().info("Climbing site deleted");
 		model.setViewName("redirect:/callListBack");
 		return model;
 	}
@@ -224,6 +231,7 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 		climbingFormsValidation.checkRouteExistence(siteRoutesMap, siteRouteSFC.getRouteName(), modelAttributeName,
 				result);
 		if (result.hasErrors()) {
+			result.getFieldErrors().forEach(o->System.out.println(o));
 			return setSiteRouteFormModelAttributes(model);
 		} else {
 			routeName = siteRouteSFC.getRouteName();
@@ -237,6 +245,7 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 			String modelAttributeName, BindingResult result) {
 		climbingFormsValidation.checkRouteListNotEmpty(siteRoutesMap, "route", result);
 		if (result.hasErrors()) {
+			result.getFieldErrors().forEach(o->System.out.println(o));
 			return setSiteRouteFormModelAttributes(model);
 		}
 		if (callFromCreateForm) {
@@ -280,6 +289,7 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 			climbingFormsValidation.checkRouteExistence(siteRoutesMap, siteRouteSFC.getRouteName(),
 					editRouteModelAttributName, result);
 			if (result.hasErrors()) {
+				result.getFieldErrors().forEach(o->System.out.println(o));
 				model.setViewName("06_climbingSite/editSiteRoute");
 				setCancelFromEdition(model, "cancelRouteNameEdit", "displaySiteRoutesList");
 				return model;
@@ -332,6 +342,7 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 					result);
 		}
 		if (result.hasErrors()) {
+			result.getFieldErrors().forEach(o->System.out.println(o));
 			return pitchFormBindingError(model, routePitchSFC);
 		}
 		model.setViewName("redirect:displayRoutePitchForm");
@@ -351,6 +362,7 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 			BindingResult result) {
 		climbingFormsValidation.checkPitchListNotEmpty(getRoutePitchListFromMap(routeName), "pitchNumber", result);
 		if (result.hasErrors()) {
+			result.getFieldErrors().forEach(o->System.out.println(o));
 			return pitchFormBindingError(model, routePitchSFC);
 		}
 		model.setViewName("redirect:displaySiteRoutesList");
@@ -501,6 +513,7 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 		if (!comment.isEmpty()) {
 			commentService.postComment(climbingSiteId, sessVar.getAccountID(), comment);
 		}
+		logger.log().info("Climbing site comment created");
 		return "06_climbingSite/climbingSiteDetailsDisplay";
 	}
 

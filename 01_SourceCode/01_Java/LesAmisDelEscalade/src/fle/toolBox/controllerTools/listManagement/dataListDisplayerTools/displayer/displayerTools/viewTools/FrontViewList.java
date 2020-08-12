@@ -331,9 +331,9 @@ public class FrontViewList<O extends Object> {
 
 	}
 
-	public void setComponentsToDisplay() {
+	public void setComponentsToDisplay(List<O> fulldata) {
 		boolean doSetData = true;
-
+		setFullData(fulldata);
 		setEmptyArray(empty);
 		if (getCriteria().isEmpty()) {
 			doSetData = false;

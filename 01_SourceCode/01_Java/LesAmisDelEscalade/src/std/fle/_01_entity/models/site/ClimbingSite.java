@@ -26,7 +26,7 @@ import std.fle._01_entity.assetsClasses.States;
 public class ClimbingSite extends ENT {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -2676843279455141121L;
 
@@ -64,10 +64,14 @@ public class ClimbingSite extends ENT {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "french_county_fk")
 	private Counties county;
-	
+
 	@OneToMany(mappedBy = "climbingSite",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private List<SiteRoutes> sitesRoutes;
-	
+
+	@OneToMany(mappedBy = "climbingSite",cascade = CascadeType.ALL)
+	private List<ClimbingSiteComments> climbingSiteComments;
+
+
 	@Column(name="official")
 	private Boolean official;
 
@@ -166,11 +170,19 @@ public class ClimbingSite extends ENT {
 	public void setOfficial(Boolean official) {
 		this.official = official;
 	}
-	
-	
-	
-	
-	
-	
+
+	public List<ClimbingSiteComments> getClimbingSiteComments() {
+		return climbingSiteComments;
+	}
+
+	public void setClimbingSiteComments(List<ClimbingSiteComments> climbingSiteComments) {
+		this.climbingSiteComments = climbingSiteComments;
+	}
+
+
+
+
+
+
 
 }

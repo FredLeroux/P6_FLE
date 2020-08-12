@@ -34,6 +34,7 @@ public class DisplayListController implements SetListManagementController {
 	@GetMapping(value = "04_listPage/setListPage")
 	@Override
 	public ModelAndView initiatePage(ModelAndView model, HttpServletRequest request) {
+		String update = request.getParameter("update");
 		LinkedHashMap<String, Object> map = new LinkedHashMap<>();
 		map = (LinkedHashMap<String, Object>) request.getAttribute("map");
 		if (map != null) {
@@ -42,6 +43,10 @@ public class DisplayListController implements SetListManagementController {
 			editControllerURI = (String) map.get("editControllerURI");
 			listName = (String) map.get("listName");
 			listType = (String) map.get("listType");
+		}
+		if(update != null) {
+			model.setViewName("redirect:setDataToDisplay");
+			return model;
 		}
 		return listControllerConfig().initiatePage(list, clazz, "frontViewAddObject", "label");// model; //list, clazz
 	}
@@ -53,16 +58,22 @@ public class DisplayListController implements SetListManagementController {
 				"selectedPage", "orderedPage", editControllerURI, listName);
 	}
 
+
 	@GetMapping(value = "04_listPage/listPage")
 	public ModelAndView base() {
 		return new ModelAndView("redirect:setListPage?listType=" + listType);
+	}
+
+	@GetMapping(value = "04_listPage/getUpdatedList")
+	public ModelAndView getUpdatedList() {
+		return new ModelAndView("redirect:setListPage?listType=" + listType+"&update=true");
 	}
 
 
 	@GetMapping(value = "04_listPage/setDataToDisplay")
 	@Override
 	public ModelAndView setDataToDisplay() {
-		return listControllerConfig().setDataToDisplay("frontViewAddObject");
+		return listControllerConfig().setDataToDisplay("frontViewAddObject",list);
 	}
 
 	@GetMapping(value = "04_listPage/sortList")

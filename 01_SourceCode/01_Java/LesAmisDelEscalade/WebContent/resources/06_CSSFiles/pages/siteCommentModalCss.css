@@ -60,14 +60,6 @@ textarea {
 	'commentNotAllowed4 commentNotAllowed4';
 }
 
-.commentNormalCSS{
-
-}
-
-.charLimitNormalCss{
-
-}
-
 .commentBadCSS{
 	color: var(--bad-color);
 	font-style: italic

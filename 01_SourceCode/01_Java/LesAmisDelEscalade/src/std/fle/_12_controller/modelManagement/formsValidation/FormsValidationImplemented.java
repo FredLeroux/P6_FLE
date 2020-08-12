@@ -40,7 +40,7 @@ public class FormsValidationImplemented implements FormsValidation {
 	private Boolean pitchError = null;
 
 	/**
-	 * Error can be setted via message source using code =
+	 * Error message can be setted via message source using code =
 	 * "routeListEmpty.modelAttributeName.fieldName"
 	 *
 	 */
@@ -53,7 +53,7 @@ public class FormsValidationImplemented implements FormsValidation {
 	}
 
 	/**
-	 * Error can be setted via message source using code =
+	 * Error message can be setted via message source using code =
 	 * "heightError.modelAttributeName.fieldName" (note: 2 errors key one for min
 	 * the other for max )
 	 *
@@ -70,7 +70,7 @@ public class FormsValidationImplemented implements FormsValidation {
 	}
 
 	/**
-	 * Error can be setted via message source using code =
+	 * Error message can be setted via message source using code =
 	 * "stateEmpty.modelAttributeName.fieldName"
 	 *
 	 */
@@ -97,7 +97,7 @@ public class FormsValidationImplemented implements FormsValidation {
 	}
 
 	/**
-	 * Error can be setted via message source using code =
+	 * Error message can be setted via message source using code =
 	 * "countyEmpty.modelAttributeName.fieldName"
 	 *
 	 */
@@ -113,7 +113,7 @@ public class FormsValidationImplemented implements FormsValidation {
 	}
 
 	/**
-	 * Error can be setted via message source using code =
+	 * Error message can be setted via message source using code =
 	 * "noRoute.modelAttributeName.fieldName"
 	 *
 	 */
@@ -127,7 +127,7 @@ public class FormsValidationImplemented implements FormsValidation {
 	}
 
 	/**
-	 * Error can be setted via message source using code =
+	 * Error message can be setted via message source using code =
 	 * "routeNotUnique.modelAttributeName.fieldName"
 	 *
 	 */
@@ -141,7 +141,7 @@ public class FormsValidationImplemented implements FormsValidation {
 	}
 
 	/**
-	 * Error can be setted via message source using code =
+	 * Error message can be setted via message source using code =
 	 * "pitchNotUnique.modelAttributeName.fieldName"
 	 *
 	 */
@@ -155,7 +155,7 @@ public class FormsValidationImplemented implements FormsValidation {
 	}
 
 	/**
-	 * Error can be setted via message source using code =
+	 * Error message can be setted via message source using code =
 	 * "pitchListEmpty.modelAttributeName.fieldName"
 	 *
 	 */

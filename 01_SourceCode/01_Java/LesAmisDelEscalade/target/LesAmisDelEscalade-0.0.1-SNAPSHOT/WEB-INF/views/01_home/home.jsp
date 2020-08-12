@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/iframeSetCss.css" />
 <title>Les Amis de l'escalade</title>
 </head>
-<body  id="budy" class="ladeIndex"  >
+<body  id="budy" class="ladeIndex"   >
 	<div class="indexHeader">
 		<%@ include file ="/resources/02_templatesJsp/jspCompoments/jspCompomentsFiles/headerJSP.jsp"%>
 	</div>
@@ -26,15 +26,16 @@
 	<script type="text/javascript">
 		window.onload = function displayWhenReady() {
 		//Allow to display page only when all elements are ready needs style body visibility="hidden"
-	 	 document.getElementById("budy").style.visibility= "visible";
+	 	 document.getElementById("budy").style.visibility= "visible";	 	
 		}
 	</script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/loadModalJavaScript.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/iFrameJavaScript.js"></script>
-	<script type="text/javascript">
+	<script type="text/javascript">	
 		var src= ${iFrameSource};
-		var loc =${iFrameLoc};
+		var loc =${iFrameLoc};		
 		var iframe = newIframe(loc);
-		iframe.loadIframe(src);	
+		iframe.loadIframe('iframeHome',src);
 	</script>
 </body>
 </html>

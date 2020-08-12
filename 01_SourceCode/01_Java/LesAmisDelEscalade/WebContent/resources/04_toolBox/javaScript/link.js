@@ -31,8 +31,16 @@ function navTo(toUrl){
 	changeLocation(toUrl);
 }
 
+function parentNavTo(toUrl){
+	changeParentLocation(toUrl);
+}
+
 function changeLocation(url){
 	location.href=url;
+}
+
+function changeParentLocation(url){
+	window.parent.location.href=url;
 }
 
 /**

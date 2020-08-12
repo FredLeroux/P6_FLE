@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/commentScrollBarCss.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/pageElmtCss.css" />
 </head>
-<button onclick= "window.parent.location ='../callListBack?listType=climbingSitesShow'" class="pageButtonNormal">
+<button onclick= "navBack('../callListBack')" class="pageButtonNormal">
 	<springTags:message code ="back.name"/>
 </button>
 <div class = "climbingDetailsContainer">	
@@ -48,17 +48,16 @@
 <br>
 <input id ="src" type="hidden" value ="${pageContext.request.contextPath}${listCommentSrc}">
 <script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/loadModalJavaScript.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/toggle.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/iFrameJavaScript.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/toggle.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/link.js"></script>
 <script type="text/javascript">
 	var iSrc = document.getElementById("src")
 	var iframe = newIframe("commentsList");
-		iframe.loadIframe("${pageContext.request.contextPath}${listCommentSrc}");
+	iframe.loadIframe('iframeCommentList',"${pageContext.request.contextPath}${listCommentSrc}");
 	var comment = ${commentModal};
 	var toggleComment = toggle();
 		toggleComment.addToElementToggleParentElementDisplayOnClick("commentSite", comment);
-	var modal = newLoadModal();
-		modal.killParentModalOnHashChange("siteCommentModal");
-		modal.killParentModalOnHashChange("siteCommentNotAllowedModal");
-		modal.killParentModalOnHashChange("loginModal");
+	var modal = newLoadModal();		
+		modal.disableLoadModal();		
 </script>

@@ -20,7 +20,7 @@ public interface AccountModelManagement {
 
 	public ModelAndView doUpdateMemberStatus(ModelAndView model,Integer id, UsersAccountInfoMemberStatusSFC memberStatusSFC);
 
-	public String manageAccountDeletion();
+	public void manageAccountDeletion();
 
 
 }

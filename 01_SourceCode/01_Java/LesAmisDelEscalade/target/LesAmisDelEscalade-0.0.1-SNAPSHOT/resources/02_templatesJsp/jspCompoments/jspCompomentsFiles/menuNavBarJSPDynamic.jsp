@@ -1,6 +1,6 @@
 <%@ taglib prefix="springTags" uri="http://www.springframework.org/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl"%>
-<link rel="stylesheet" type="text/css" href="jspCompomentsCss/02_01_01_01_menuNavBarCSS.css" />
+<link rel="stylesheet" type="text/css" href="jspCompomentsCss/menuNavBarCSS.css" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <div class="menuBar">
 	<div class="firstLign">
@@ -22,7 +22,7 @@
 				<label>
 					<springTags:message code="borrowDemands.name" />
 				</label>
-				<button onclick="location.href='borrowDemands'" >
+				<button onclick="navIframe('borrowDemands','iframeHome')" >
 					<springTags:message code="goBorrowDemands.name" />
 				</button>
 				<input type="hidden" id="displayNotification" value = true >
@@ -36,11 +36,12 @@
 			</div>
 		</div>		
 		<div class="menu">
-			<div class="menuDrop"><springTags:message code="siteMenu.name"/>				
+			<div class="menuDrop" onmouseover="toggleClassCss('menuNavBarList','list','hideList')" ><springTags:message code="siteMenu.name"/>				
 				<ul id="menuNavBarList" class="list">	
 					<jstl:forEach items="${optionList}" var="option">
 						<li>
-							<a id="${option.name}" href=<springTags:message code="${option.href}"/>>
+							<a id="${option.name}" 
+							onclick="displayLoadModal('loading'),navIframeAndHideMenu('<springTags:message code="${option.href}"/>','iframeHome','menuNavBarList','hideList')">
 								<span class="menuNavBarIcon">
 									<springTags:message code="${option.icon}"/>
 								</span>
@@ -56,14 +57,19 @@
 </div>
 <input id="connexionStatus" type="hidden" value ="${sessionScope.logged}">
 <script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/toggle.js"></script>
-<script type="text/javascript" src="/LesAmisDelEscalade/resources/04_toolBox/javaScript/ajaxUpdateByTimeInterval.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/ajaxUpdateByTimeInterval.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/iFrameJavaScript.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/loadModalJavaScript.js"></script>
 <script type="text/javascript">
 	var menuToggle = toggle();
 	menuToggle.addSwitchAndToggleDisplayOnClick("connexionStatus", "connexion",	"loginModal", "disconnect");
 	var updater = newAjaxUpdater();
 	updater.updateBorrowDemand("borrowInfoZone", "borrowDemandsNb", "05_topo/updateBorrow","displayNotification","connexionStatus");	
 	updater.launchUpdateInterval(3000,"borrowInfoZone", "borrowDemandsNb", "05_topo/updateBorrow","displayNotification","connexionStatus");	
+	
+</script>
 
-
+<script type="text/javascript">
+	
 </script>
 

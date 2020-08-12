@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import fle.toolBox.ConfigurationFileReader;
 import fle.toolBox.StreamListFilter;
 import std.fle._00_general.SessionVariables;
-import std.fle._05_slo.innerJoinSLO.ClimbingSiteCommentsSLO;
+import std.fle._05_slo.directSLO.ClimbingSiteCommentsSLO;
 import std.fle._05_slo.innerJoinSLO.ClimbingSiteSLO;
 import std.fle._05_slo.innerJoinSLO.MembersListSLO;
 import std.fle._05_slo.innerJoinSLO.TopoListSLO;

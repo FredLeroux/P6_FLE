@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import fle.toolBox.logger.Log4J2;
 import fle.toolBox.springFormManager.selectInputManagement.controllerClass.SelectInputForController;
 import std.fle._00_general.SessionVariables;
 import std.fle._03_sfc.usersAccountInfoSFC.UsersAccountInfoMemberStatusSFC;
@@ -50,6 +51,7 @@ public class AccountModelManagementImplemented implements AccountModelManagement
 
 
 	private SessionVariables sessVar = new SessionVariables();
+	private Log4J2<AccountModelManagementImplemented> logger = new Log4J2<AccountModelManagementImplemented>(this);
 
 	@Override
 	public ModelAndView manageUserFormUpdate(ModelAndView model) {
@@ -74,6 +76,7 @@ public class AccountModelManagementImplemented implements AccountModelManagement
 		userSFC.getUsersAccountInfoSFC().setPassword(encoder.hashedPassWord(toHash));
 		userService.save(userSFC);
 		mail.sendActivationLink(userSFC.getUsersInfoSFC().getEmail(),request);
+		logger.log().info("New account created");
 		return new ModelAndView("redirect:/accountCreated");
 	}
 
@@ -87,25 +90,16 @@ public class AccountModelManagementImplemented implements AccountModelManagement
 	@Override
 	public ModelAndView doUpdateMemberStatus(ModelAndView model,Integer id, UsersAccountInfoMemberStatusSFC memberStatusSFC) {
 		usersAccountInfoService.updateMemberStatus(id, memberStatusSFC);
-		model.setViewName("redirect:/callListBack?listType=members");
+		logger.log().info("Member status updated");
+		model.setViewName("redirect:/callListBack");
 		return model;
 	}
 	@Override
-	public String manageAccountDeletion() {
+	public void manageAccountDeletion() {
 	sessVar.setRequest(request);
-		//account.deleteAccount(sessVar.getAccountID());
-		System.out.println("simulation delete");
+		account.deleteAccount(sessVar.getAccountID());
+		logger.log().info("Account deleted");
 		sessVar.clearSession();
-		return "accountDeleted";
 	}
-
-	/*@Override
-	public ModelAndView manageAccountDeletion() {
-		sessVar.setRequest(request);
-		//account.deleteAccount(sessVar.getAccountID());
-		System.out.println("simulation delete");
-		sessVar.clearSession();
-		return new ModelAndView("redirect:/reinit");
-	}*/
 
 }

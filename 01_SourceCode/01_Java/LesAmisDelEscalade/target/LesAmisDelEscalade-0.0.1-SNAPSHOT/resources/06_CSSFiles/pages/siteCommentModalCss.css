@@ -1,5 +1,4 @@
-@import
-	url("@import url("/LesAmisDelEscalade/resources/00_centralisation/cssFiles/appSkin.css"););
+@import url("/LesAmisDelEscalade/resources/00_centralisation/cssFiles/appSkin.css");
 
 
 
@@ -28,7 +27,7 @@ textarea {
 	border-radius:20px;
 	padding:0.5%;
 	box-shadow: 5px 5px 10px var(--shadow-color);
-		
+
 }
 
 .commentModal-content{
@@ -36,7 +35,7 @@ textarea {
 }
 
 .commentNotAllowedModal-content{
-	width: 30%;	
+	width: 30%;
 }
 
 
@@ -46,8 +45,8 @@ textarea {
 	grid-gap: 2px;
 	grid-template-columns: 50% 50%;
 	grid-template-rows: auto auto auto ;
-	grid-template-areas: 
-	'charCounter closeComment' 
+	grid-template-areas:
+	'charCounter closeComment'
 	'textAreaZone textAreaZone'
 	'submitBtn submitBtn';
 }
@@ -55,18 +54,10 @@ textarea {
 .commentNotAllowedModalGrid {
 	display: grid;
 	grid-gap: 2px;
-	grid-template-areas: 
-	'commentNotAllowed2 commentNotAllowed1' 
+	grid-template-areas:
+	'commentNotAllowed2 commentNotAllowed1'
 	'commentNotAllowed3 commentNotAllowed3'
 	'commentNotAllowed4 commentNotAllowed4';
-}
-
-.commentNormalCSS{
-	
-}
-
-.charLimitNormalCss{
-	
 }
 
 .commentBadCSS{
@@ -82,9 +73,9 @@ textarea {
 
 
 .charCounter {
-	grid-area: charCounter;	 
+	grid-area: charCounter;
 	padding-top: 5px;
-	padding-left: 5px;	
+	padding-left: 5px;
 }
 
 
@@ -102,12 +93,12 @@ textarea {
 }
 
 .textAreaZone {
-	grid-area: textAreaZone;	
+	grid-area: textAreaZone;
 	text-align: center;
-	
+
 }
 
-.submitBtn {	
+.submitBtn {
 	grid-area: submitBtn;
 	text-align: center;
 
@@ -127,8 +118,8 @@ textarea {
 	margin: 2%;
 }
 
-.sendButton {	
-	width:70%;	
+.sendButton {
+	width:70%;
 }
 
 .sendButton:hover,.commentNotAllowed4 button:hover{
@@ -138,12 +129,12 @@ textarea {
 
 .commentNotAllowed1{
 	grid-area: commentNotAllowed1;
-	text-align: right;	
+	text-align: right;
 	padding-top: 5px;
 	padding-right: 5px;
 }
 
-.commentNotAllowed1>i:hover{	
+.commentNotAllowed1>i:hover{
 	color: var(--bad-color);
 	cursor: pointer;
 }
@@ -162,18 +153,18 @@ textarea {
 }
 
 .commentNotAllowed4{
-	grid-area: commentNotAllowed4;	
+	grid-area: commentNotAllowed4;
 	text-align: center;
 }
 
 .commentNotAllowed4>a{
 	color: var(--base-color);
-	font-weight: normal; 
+	font-weight: normal;
 }
 
 .commentNotAllowed4>a:hover{
 	color: var(--highlith-color);
-	font-weight: bold;	
+	font-weight: bold;
 }
 
 @media all and (max-width: 900px){
@@ -185,10 +176,10 @@ textarea {
 		padding-right:3%;
 		width:50%;
 		font-size: 2vw;
-		
+
 	}
-	
+
 	.sendButton {
 	font-size:2vw;
-	
+
 }

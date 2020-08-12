@@ -11,14 +11,18 @@
 	<div class = "messageTitleMitaMita">
 		<springTags:message code ="accountNotYetActivatedTitle.message"/>
 	</div>
+	<br>
 	<div class = "messageBodyLeftAlign">
 		<springTags:message code ="accountNotYetActivatedBody.message"/>
 	</div>
+	<br>
 	<div class = linkContainer>
 		<div>
-			<button onclick= "window.parent.location ='accountActivationError'" class="pageButtonNormal">
+			<button onclick= "navTo('accountActivationError')" class="pageButtonNormal">
 				<springTags:message code ="accountNotYetActivated.link"/>
 			</button>
 		</div>
+		<br>
 	</div>
 </div>
+<script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/link.js"></script>

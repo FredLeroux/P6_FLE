@@ -6,7 +6,7 @@
 	</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/pageElmtCss.css" />
 </head>
-<button onclick= "window.parent.location ='../../callListBack?listType=toposMine'" class="pageButtonNormal">
+<button onclick= "window.location ='../../callListBack?listType=members'" class="pageButtonNormal">
 		<springTags:message code ="back.name"/>
 </button>
 <div class="memberStatusFormPageTitle" >
@@ -15,4 +15,8 @@
 <div>
 	<%@ include file = "/resources/02_templatesJsp/formJsp/formFiles/updateMemberStatusTmplt.jsp" %>
 </div>
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/loadModalJavaScript.js"></script>
+<script type="text/javascript">
+	disableLoadModal();	
+	addButtonOnclickParentModalToggle("updateMemberStatusFormButton");	
+</script>

@@ -1,10 +1,8 @@
 package std.fle._12_controller.controllerClass.homeController;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import fle.toolBox.ConfigurationFileReader;
 import fle.toolBox.FredParser;
 import fle.toolBox.Internationalization.LocalMessage;
-import fle.toolBox.logger.Log4J2;
 import fle.toolBox.navBarManagement.NavBarOptions;
 import fle.toolBox.navBarManagement.NavBarOptionsList;
 import std.fle._00_general.SessionVariables;
@@ -28,7 +25,7 @@ public class HomeController {
 
 
 
-	private Log4J2<HomeController> log = new Log4J2<HomeController>(this);
+
 	private NavBarOptionsList optionList = new NavBarOptionsList(
 			"configuration/securitySettings/NavBarOptionsInfo.xml");
 	private ConfigurationFileReader tentative = new ConfigurationFileReader(
@@ -157,23 +154,15 @@ public class HomeController {
 		return model;
 	}
 
-	@GetMapping(value = "/error")
+	@GetMapping(value = "/accountAccesError")
 	public ModelAndView error(ModelAndView model,HttpServletRequest request) {
-		String externalCall = request.getParameter("externalCall");
-		if(externalCall.equals("true")) {
-			SessionVariables sessVar = new SessionVariables(request);
-			System.out.println(sessVar.getPseudo()+"++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-			model.setViewName("03_messagesPages/errorsPage");
-
-			return model;
-		}
 		model.addObject("iFrameSource", "'03_messagesPages/errorsPage'");
 		model.addObject("iFrameLoc","'pagesViewer'");
 		model.setViewName("forward:/navbar");
 		return model;
 	}
 
-	@GetMapping(value = { "/internalError","/errorNotException"})
+	@GetMapping(value = { "/internalError"})
 	public ModelAndView internalError(ModelAndView model) {
 		model.setViewName("03_messagesPages/errorsPage");
 		return model;
@@ -193,12 +182,16 @@ public class HomeController {
 	}
 
 	@GetMapping(value = "/callListBack")
-	public ModelAndView listBack(ModelAndView model) {
-		model.setViewName("redirect:04_listPage/frontViewAddObject");
+	public ModelAndView listBack(ModelAndView model,HttpServletRequest request) {
+		model.setViewName("redirect:04_listPage/getUpdatedList");
 		return model;
 	}
 
-
+			@GetMapping(value = "/callListInListBack")
+	public ModelAndView listInListBack(ModelAndView model,HttpServletRequest request) {
+		model.setViewName("redirect:04_listPage/getUpdatedListInList");
+		return model;
+	}
 
 
 	@GetMapping(value = "/accesDenied")

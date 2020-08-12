@@ -7,15 +7,17 @@
 	</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/pageElmtCss.css" />
 </head>
+<div id="editComentUpPage">
+</div>
 <div class="commentIframe">
 	<div class= cancelAndSupressGrid>
 		<div class="supressComment">
-			<button class="pageButtonWarning" onclick = "location.href = 'deleteComment'">
+			<button class="pageButtonWarning" onclick = "navTo('deleteComment')">
 				<springTags:message code ="deleteComment.name"/>
 			</button>
 		</div>
 		<div class = "cancelComment">
-			<button class="pageButtonNormal" onclick = "backCommentsList()">
+			<button class="pageButtonNormal" onclick = "navBack('../${commentListBackUrl}')">
 				<springTags:message code ="cancelComment.name"/>
 			</button>
 		</div>
@@ -43,10 +45,14 @@
 		</table>
 	</div>
 </div>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/iFrameJavaScript.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/link.js"></script>
 <script type="text/javascript">
-	function backCommentsList(){
-		var commentLoc = window.parent.document.getElementById("commentsList");
-		var iframes = commentLoc.getElementsByTagName("iframe");
-		iframes[0].src = "../04_listPage/listInListfrontViewAddObject";
-	}
+window.onload = function(){
+		window.location="#editComentUpPage"}
+</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/loadModalJavaScript.js"></script>
+<script type="text/javascript">
+	disableLoadModal();
+	addButtonOnclickParentModalToggle("updateTopoFormularButton");
 </script>

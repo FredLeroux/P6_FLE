@@ -5,13 +5,13 @@
  	<welcome-file>index</welcome-file>
  	<welcome-file>index.html</welcome-file>
 	<welcome-file>index.htm</welcome-file>
-	<welcome-file>index.jsp</welcome-file> 	
+	<welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
-  
+
   <!-- The front controller of this Spring Web application, responsible for handling all application requests -->
 	<servlet>
 		<servlet-name>lade</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>		
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 <!-- ask AiW -->
@@ -19,10 +19,10 @@
 		<servlet-name>lade</servlet-name>
 		<url-pattern>/home</url-pattern>
 		<url-pattern>/userinfo</url-pattern>
-		<url-pattern>/testconnexiondb</url-pattern>	
+		<url-pattern>/testconnexiondb</url-pattern>
 		<url-pattern>/savetest</url-pattern>
 		<url-pattern>/test/iframeTest.html</url-pattern>
-		<url-pattern>/test/iframeTest.jsp</url-pattern>	
+		<url-pattern>/test/iframeTest.jsp</url-pattern>
 		<url-pattern>/index.jsp</url-pattern>
 		<url-pattern>/index.html</url-pattern>
 		<url-pattern>/userRegistration.html</url-pattern>
@@ -31,7 +31,7 @@
 		<url-pattern>/test/userFormRegister.jsp</url-pattern>
 		<url-pattern>/</url-pattern>
 		<url-pattern>*.css</url-pattern>
-		<url-pattern>*.js</url-pattern>		
+		<url-pattern>*.js</url-pattern>
 	</servlet-mapping>
 	<!-- Start: Filter to correctly encode ééàà etc -->
 	<filter>
@@ -51,12 +51,7 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<!-- End: Encode project to correctly encode ééàà etc -->
-	<!--<error-page>
+	<error-page>
         <location>/errorNotException</location>
-    </error-page>-->
- <!--     <listener>
- <listener-class>
-    org.springframework.web.context.request.RequestContextListener
- </listener-class>
-</listener>-->
+    </error-page>
 </web-app>

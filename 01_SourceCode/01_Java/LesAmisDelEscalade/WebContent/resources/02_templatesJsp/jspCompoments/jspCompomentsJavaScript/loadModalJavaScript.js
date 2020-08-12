@@ -37,20 +37,16 @@ function elementToggleDisplay(elementId) {
 
 
 
-/**
- *
- * @param parentModalId the parent modal id
- * @apiNote on iframe allow to close modal if previous source has open it
- */
-function killParentModal(parentModalId) {
-	var element = window.parent.document.getElementById(parentModalId);
-	if (element.style.display == "block") {
-		element.style.display = "none";
-	}
-}
 
-function killModal(parentModalId) {
-	var element = document.getElementById(parentModalId);
+
+function killModal(modalId) {
+	var element = document.getElementById(modalId);
+	if(element == null){
+		var element = window.parent.document.getElementById(modalId);
+		if(element == null){
+			var element = window.parent.parent.document.getElementById(modalId);
+		}
+	}
 	if (element.style.display == "block") {
 		element.style.display = "none";
 	}
@@ -62,7 +58,7 @@ function killModal(parentModalId) {
  * @returns
  */
 function killParentModalOnHashChange() {
-	document.addEventListener("hashchange", killParentModal("loading"));
+	document.addEventListener("hashchange", killModal("loading"));
 }
 
 function killModalOnHashChange() {
@@ -70,7 +66,7 @@ function killModalOnHashChange() {
 }
 
 function killParentModalOnHashChange(modalName) {
-	document.addEventListener("hashchange", killParentModal(modalName));
+	document.addEventListener("hashchange", killModal(modalName));
 }
 
 function killModalOnHashChange(modalName) {

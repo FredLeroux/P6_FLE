@@ -33,6 +33,5 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/toolBoxJavaScript/toggle.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/loadModalJavaScript.js"></script>
 <script type="text/javascript">
-	var loadModal = newLoadModal();
-	loadModal.addButtonOnclickParentModalToggle("updatePassFormularButton");
+	addButtonOnclickParentModalToggle("updatePassFormularButton");
 </script>

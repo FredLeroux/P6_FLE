@@ -46,7 +46,7 @@ public class TopoLendingDAOImplemented implements TopoLendingDAO {
 	public void updateTopoLendingBorrowDemandRejected(Integer id) {
 		TopoLendingDTO dto = getTopoLendingDTOById(id);
 		setBorrowDemandRejected(dto);
-		//setClimbingTopoAvailable(dto);
+		setClimbingTopoAvailable(dto);
 		dao.updateDTO(topoLending, dto);
 	}
 
@@ -71,24 +71,24 @@ public class TopoLendingDAOImplemented implements TopoLendingDAO {
 	public String getLenderEmailAddress(Integer id) {
 		return getTopoLendingDTOById(id).getLenderUserInfo().getEmail();
 	}
-	
+
 	@Override
 	public String getBorrowerPseudo(Integer id) {
 		return getTopoLendingDTOById(id).getBorrowerUserInfo().getUserAccountInfo().getPseudonyme();
 	}
-	
+
 	@Override
 	public String getLenderPseudo(Integer id) {
 		return getTopoLendingDTOById(id).getLenderUserInfo().getUserAccountInfo().getPseudonyme();
 	}
 
-	
-	
+
+
 	@Override
 	public TopoLendingDTO getTopoLendingDTOById(Integer id) {
 		return dao.getDtoByID(topoLending, topoLendingDTO, id);
 	}
-	
-	
+
+
 
 }

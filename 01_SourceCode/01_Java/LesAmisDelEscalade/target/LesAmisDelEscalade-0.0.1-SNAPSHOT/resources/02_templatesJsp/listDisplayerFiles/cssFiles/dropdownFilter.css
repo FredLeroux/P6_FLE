@@ -132,8 +132,14 @@ html, body {
 	.dropdownList{
 	border-radius: 10px;
 	margin-top:0.5%;
-	margin-bottom: 2%;
-	height: 10%;
+	margin-bottom: 0.5%;
+	height: 5%;
+	width: 65%;
+	max-height: 8vw;
+	margin-left:2%;
+	text-align: left;
+	font-size: 2vw;
+	position: relative;
 	}
 
 	.dropdownList a{
@@ -141,6 +147,7 @@ html, body {
 	}
 
 	.dropdownList input{
+	width:65%;
 	margin-top:0.5%;
 	margin-bottom:0.5%;
 	}
@@ -158,21 +165,6 @@ html, body {
 
 
 
-	.dropdownList {
-	display: none;
-	max-height: 8vw;
-	margin-left:2%;
-	width:90%;
-	color: var(--base-color) ;
-	overflow-x: auto;
-	font-family: menu-font;
-	font-style: italic;
-	border: solid 1px black;
-	z-index: 1;
-	text-align: left;
-	position: relative;
-	font-size: 2vw;
-}
 
 .dropdownList::-webkit-scrollbar-track-piece:start {
     background: transparent;

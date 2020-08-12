@@ -15,4 +15,8 @@
 <div>
 	<%@ include file = "/resources/02_templatesJsp/formJsp/formFiles/updateMemberStatusTmplt.jsp" %>
 </div>
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/loadModalJavaScript.js"></script>
+<script type="text/javascript">
+	disableLoadModal();	
+	addButtonOnclickParentModalToggle("updateMemberStatusFormButton");	
+</script>

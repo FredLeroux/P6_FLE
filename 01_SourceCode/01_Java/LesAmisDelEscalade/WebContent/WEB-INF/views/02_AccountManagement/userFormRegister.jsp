@@ -6,14 +6,22 @@
 	</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cssFiles/pages/pageElmtCss.css" />
 </head>
+<div id ="userRegisterUpPage">
+</div>
+<br>
 <div class="userFormRegisterPageTitle" >
 	<springTags:message code = "userFormRegister.title"/>
 </div>
+<br>
 <div>
 <%@ include file = "/resources/02_templatesJsp/formJsp/formFiles/userForm.jsp" %>
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/jspCompomentsJavaScript/loadModalJavaScript.js"></script>
+<script type="text/javascript">	
+	addButtonOnclickParentModalToggle("userRegisterFormularButton");
+	disableLoadModal();	
+</script>
 <script type="text/javascript">
-	var loadModal = newLoadModal();
-	loadModal.addButtonOnclickParentModalToggle("userRegisterFormularButton");	
-	</script>
+window.onload = function(){
+		window.location="#userRegisterUpPage"}
+</script>

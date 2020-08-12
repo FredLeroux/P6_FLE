@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import fle.toolBox.PatternMatcher;
 import fle.toolBox.CRUD.daoList.daoListTools.ParseListObjectArrayToListObjectImplemented;
 import fle.toolBox.classType.DTO;
 import fle.toolBox.classType.ENT;
@@ -42,20 +43,20 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 	public E getEntityById(E entity, Integer id) {
 		return (E) session().get(entity.getClass(), id);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public<SE extends Object> SE getSpecificEntityById(SE entity, Integer id) {
 		return (SE) session().get(entity.getClass(), id);
 	}
-	
-	
+
+
 
 	@Override
 	public D getDtoByID(E entity, D dtoClass, Integer id) {
 		entity = getEntityById(entity, id);
 		D dto = converter.convertEntityToDTO(entity, dtoClass);
-		return dto; 
+		return dto;
 	}
 
 	@Override
@@ -67,7 +68,7 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 	public void saveEntity(ENT entity) {
 		session().save(entity);
 	}
-	
+
 	@Override
 	public void saveDTO(E entity, D dtoClass) {
 		save(converter.convertDTOToEntity(dtoClass, entity));
@@ -77,16 +78,16 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 	public<SE extends Object,SD extends Object> void saveSpecificDTO(SE entityClass, SD DTOClass) {
 		SD dto = (SD) converter().convertSourceToDestinationType(DTOClass, entityClass);
 		session().save(dto);
-		
+
 	}
 
 	@Override
 	public void saveSFC(E entity, D dtoClass, SFC sfcClass) {
 		save(converter.convertDTOToEntity(converter.convertSFCToDTO(sfcClass, dtoClass), entity));
 	}
-	
-	
-	
+
+
+
 	@Override
 	public void update(E entity) {
 		session().merge(entity);
@@ -101,9 +102,7 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 	@Override
 	public <SD extends DTO> SD getSpecificDTOWhereCondition(String fieldName, String condition, E entity,
 			SD specificDTOClass) {
-		Query query = session().createQuery(
-				"FROM " + entity.getClass().getName() + " T WHERE T." + fieldName + "=" + hibernateQueryArg(condition));
-		E newEntity = (E) query.getSingleResult();
+		E newEntity = (E) query(fieldName, condition, entity).getSingleResult();
 		return converter.convertEntityToDTO(newEntity, specificDTOClass);
 	}
 
@@ -111,9 +110,7 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 	@Override
 	public <SE extends ENT, SD extends DTO> SD getSpecificEntitySpecificDTOWhereCondition(String fieldName,
 			String condition, SE entity, SD specificDTOClass) {
-		Query query = session().createQuery(
-				"FROM " + entity.getClass().getName() + " T WHERE T." + fieldName + "=" + hibernateQueryArg(condition));
-		SE newEntity = (SE) query.getSingleResult();
+		SE newEntity = (SE) query(fieldName, condition, entity).getSingleResult();
 		return converter.convertEntityToDTO(newEntity, specificDTOClass);
 	}
 
@@ -142,12 +139,12 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 	public <SD extends DTO> SD getSpecificDTOById(E entity, SD specificDTOClass, Integer id) {
 		return converter.convertEntityToDTO(getEntityById(entity, id), specificDTOClass);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
-	public <SE extends ENT,SD extends DTO> SD getSpecificEntitySpecificDTOById(SE entity, SD specificDTOClass, Integer id) {		
+	public <SE extends ENT,SD extends DTO> SD getSpecificEntitySpecificDTOById(SE entity, SD specificDTOClass, Integer id) {
 		return (SD) converter.convertSourceToDestinationType(getSpecificEntityById(entity, id), specificDTOClass);
-	}	
+	}
 
 	@Override
 	public <S extends SFC> void updateSFC(E entity, D DTOCLass, S SFCCLass) {
@@ -163,19 +160,17 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 	@SuppressWarnings("unchecked")
 	@Override
 	public D getDTOWhereCondition(String fieldName, String condition, E entity, D DTOClass) {
-		Query query = session().createQuery(
-				"FROM " + entity.getClass().getName() + " A WHERE A." + fieldName + "=" + hibernateQueryArg(condition));
-		E newEntity = (E) query.getSingleResult();
+		E newEntity = (E) query(fieldName, condition, entity).getSingleResult();
 		return converter.convertEntityToDTO(newEntity, DTOClass);
 	}
 
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
-	public<O extends Object> List<O> getEntityData(O entity){		
+	public<O extends Object> List<O> getEntityData(O entity){
 		return session().createQuery("SELECT FROM "+ entity.getClass().getSimpleName()).getResultList();
 	}
-	
+
 	//TODO CHECK IF IT IS NEEDED
 	@SuppressWarnings("unchecked")
 	@Override
@@ -187,10 +182,22 @@ class DAOGenericImplemented<E extends ENT, D extends DTO> implements DAOGenericI
 	public void deleteById(Object toDelete,Integer id) {
 		session().createQuery("DELETE FROM "+toDelete.getClass().getSimpleName()+ " T WHERE T.id = "+id ).executeUpdate();
 	}
-	
+
 	@Override
 	public void removeByID(E entity,Integer id) {
 		session().remove(getEntityById(entity, id));
+	}
+
+	private Query query(String fieldName,String condition, Object entity) {
+		Query query = null;
+		if (PatternMatcher.isMatch("^[\\d]*$", condition)) {
+			query = session().createQuery("FROM " + entity.getClass().getName() + " T WHERE T." + fieldName + "="
+					+ hibernateQueryArg(condition));
+		} else {
+			query = session().createQuery("FROM " + entity.getClass().getName() + " T WHERE LOWER(T." + fieldName
+					+ ")=LOWER(" + hibernateQueryArg(condition) + ")");
+		}
+		return query;
 	}
 
 }

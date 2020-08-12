@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
 
+import fle.toolBox.logger.Log4J2;
 import std.fle._00_general.SessionVariables;
 import std.fle._03_sfc.climbingSiteSFC.ClimbingSiteCommentsSFC;
 import std.fle._07_service.climbingSiteCommentsService.ClimbingSiteCommentsService;
+import std.fle._08_interceptors.OnNoExceptionError;
 
 @Service
 public class ClimbingSiteCommentsModelManagementImplemented implements ClimbingSiteCommentsModelManagement {
@@ -20,8 +22,10 @@ public class ClimbingSiteCommentsModelManagementImplemented implements ClimbingS
 	@Autowired
 	ClimbingSiteCommentsService commentsService;
 
+	private Log4J2<ClimbingSiteCommentsModelManagementImplemented> logger = new Log4J2<ClimbingSiteCommentsModelManagementImplemented>(this);
 	private SessionVariables sessVar = new SessionVariables();
 	private Integer commentId = null;
+	private String callListInListBackUrl = "/callListInListBack";
 
 
 	@Override
@@ -36,7 +40,7 @@ public class ClimbingSiteCommentsModelManagementImplemented implements ClimbingS
 		model.setViewName("06_climbingSite/editCommentForm");
 		model.addObject(modelAttributName, commentsService.getClimbingSiteCommentsSFCForEdit(commentId));
 		model.addObject("log",commentsService.modificationLogI18N(commentId));
-		model.addObject("commentListBackUrl", "04_listPage/listInListfrontViewAddObject");
+		model.addObject("commentListBackUrl",callListInListBackUrl );
 		return model;
 	}
 
@@ -49,6 +53,7 @@ public class ClimbingSiteCommentsModelManagementImplemented implements ClimbingS
 			return model;
 		}
 		commentsService.updateComment(climbingSiteCommentsSFC,commentId,getAuthorPseudo());
+		logger.log().info("Comment updated");
 		setBackToList(model);
 		return model;
 	}
@@ -56,6 +61,7 @@ public class ClimbingSiteCommentsModelManagementImplemented implements ClimbingS
 	@Override
 	public ModelAndView manageDeleteComment(ModelAndView model, ClimbingSiteCommentsSFC climbingSiteCommentsSFC) {
 		commentsService.deleteComment(climbingSiteCommentsSFC,commentId, getAuthorPseudo());
+		logger.log().info("Comment deleted");
 		setBackToList(model);
 		return model;
 	}
@@ -66,7 +72,7 @@ public class ClimbingSiteCommentsModelManagementImplemented implements ClimbingS
 	}
 
 	private void setBackToList(ModelAndView model) {
-		model.setViewName("redirect:/04_listPage/listInListfrontViewAddObject");
+		model.setViewName("redirect:"+callListInListBackUrl);
 	}
 
 }

@@ -1,7 +1,8 @@
 @import url("/LesAmisDelEscalade/resources/00_centralisation/cssFiles/appSkin.css");
 
-.loader {	
+.loader {
 	position:absolute;
+	z-index: 100;
 	top: 50%;
 	left: 50%;
 	margin: auto;
@@ -14,14 +15,14 @@
 	'legend';
 }
 
-.hill {	
+.hill {
 	z-index: 11;
 	width: 7.1em;
 	height: 7.1em;
 	top: 1.7em;
 	left: 1.7em;
 	background-color:transparent;
-	border-left: .25em solid var(--highlith-color);
+	border-left: .25em solid var(--base-color);
 	transform: rotate(45deg);
 	grid-area: animation;
 }
@@ -34,51 +35,57 @@
 	height: 7.1em;
 	left: 0;
 	background-color:transparent;
-	
+
 }
 
-.box {	
+.box {
 	z-index: 11;
 	left: 0;
 	bottom: -.1em;
 	width: 1em;
 	height: 1em;
-	background-color:var(--base-color);
-	border: .25em solid var(--base-color);	
+	background-color:var(--base-color-opposite);
+	border: .25em solid var(--base-color-opposite);
 	border-radius: 15%;
 	transform: translate(-1.7em, 1.2em) rotate(-45deg);
 	animation: push 2.5s cubic-bezier(.79, 0, .47, .97) infinite;
 	grid-area: animation;
 }
 
-.modalDisplayer {	
-	display: block; 
-	position: fixed; 
+.modalDisplayer {
+	display: block;
+	position: fixed;
 	z-index: 10;
 	left: 0;
 	top: 0;
 	width: 100%;
 	height: 100%;
 	padding-top: 10%;
-	overflow: hidden;	
+	overflow: hidden;
 	background-color:rgba(0,0,0,0.4);
 }
 
 
-.legend{	
+.legend{
 	z-index: 11;
-	text-align: left;	
+	grid-area: legend;
+	text-align: left;
 	display: inline;
 	text-align:center;
 	font-family: menu-font;
 	font-size: 1.5vw;
-	width:auto;	
-	background-color:var(--base-color-opposite); 
-	color:var(--base-color);	
+	width:auto;
+	color:var(--base-color-opposite);
 	transform: translate(-50%,0%);
-	grid-area: legend;
-	
-	
+	background: linear-gradient(to bottom right, var(--base-color),
+		rgba(32, 95, 126, 1), var(--base-color));
+	border-radius: 20px;
+	border: solid;
+	border-color: var(--base-color);
+	text-shadow: 2px 1px 2px var(--shadow-color);
+	box-shadow: 5px 5px 5px var(--shadow-color);
+
+
 }
 
 
@@ -92,24 +99,24 @@
   20% {
     transform: translate(-0.7em, 0.3em) rotate(47deg);/*1em, -2em*/
     border-style:dashed;
-    background-color:var(--base-color-opposite);
-   
+    background-color:var(--base-color);
+
   }
   25% {
     transform: translate(-0.7em, 0.3em) rotate(45deg);/*1em, -2em*/
-     
+
   }
   30% {
     transform: translate(-0.7em, 0.3em) rotate(40deg);/*1em, -2em*/
-    
+
   }
   45% {
     transform: translate(0.3em, -0.8em) rotate(137deg);/*2em, -3em*/
-   
+
   }
   50% {
     transform: translate(0.3em, -0.8em) rotate(135deg);/*2em, -3em*/
-    
+	background-color:var(--bad-color);
   }
   55% {
     transform: translate(0.3em, -0.8em) rotate(130deg);/*2em, -3em*/
@@ -121,7 +128,7 @@
   }
   75% {
     transform: translate(1.3em, -1.8em) rotate(220deg);/*3em, -4em*/
-    background-color:red;
+    background-color:var(--bad-bad-color);
   }
   100% {
     transform: translate(-1.7em, 1.2em) rotate(-225deg);/*0, -1em*/
