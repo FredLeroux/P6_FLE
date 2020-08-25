@@ -473,8 +473,8 @@ public class ClimbingSiteModelManagementImplemented extends ClimbingSiteModelMgn
 			Integer pitchsNumber = sizeList.stream().mapToInt(o -> o).sum();
 			Integer routesNumber = sizeList.size();
 			Integer totalLine = pitchsNumber + routesNumber;
-			if (totalLine <= 12) { /*
-									 * 12 is 4*3, 3 is the accepted commons number of lines for a full routes info 1
+			if (totalLine <= 6) { /*
+									 * 6 is 2*3, 3 is the accepted commons number of lines for a full routes info 1
 									 * route name 2 pitchs
 									 */
 				page.add(new RoutesAndPitchsPage(key,
