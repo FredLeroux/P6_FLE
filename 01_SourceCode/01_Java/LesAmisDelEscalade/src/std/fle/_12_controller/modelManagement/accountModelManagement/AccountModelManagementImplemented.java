@@ -75,7 +75,7 @@ public class AccountModelManagementImplemented implements AccountModelManagement
 		String toHash = userSFC.getUsersAccountInfoSFC().getPassword();
 		userSFC.getUsersAccountInfoSFC().setPassword(encoder.hashedPassWord(toHash));
 		userService.save(userSFC);
-		mail.sendActivationLink(userSFC.getUsersInfoSFC().getEmail(),request);
+		//mail.sendActivationLink(userSFC.getUsersInfoSFC().getEmail(),request);
 		logger.log().info("New account created");
 		return new ModelAndView("redirect:/accountCreated");
 	}

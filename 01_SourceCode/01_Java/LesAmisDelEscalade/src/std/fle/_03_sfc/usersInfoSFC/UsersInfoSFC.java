@@ -1,5 +1,6 @@
 package std.fle._03_sfc.usersInfoSFC;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.validation.constraints.Email;
@@ -31,12 +32,12 @@ public class UsersInfoSFC extends SFC {
 	@HiddenPath
 	private Integer id;
 
-	
+
 	@PlaceHolderText(message = "firstName.pht")
 	@Length(max = 30)
 	private String firstName;
 
-	
+
 	@PlaceHolderText(message = "lastName.pht")
 	@Length(max = 30)
 	private String lastName;
@@ -55,7 +56,7 @@ public class UsersInfoSFC extends SFC {
 	@Past
 	@PlaceHolderText(message = "birthDate.pht")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date birthDate;
+	private LocalDate birthDate;
 
 	@SelectInputType(
 			selectListName = "gendersList",
@@ -131,11 +132,11 @@ public class UsersInfoSFC extends SFC {
 		this.email = email;
 	}
 
-	public Date getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
 

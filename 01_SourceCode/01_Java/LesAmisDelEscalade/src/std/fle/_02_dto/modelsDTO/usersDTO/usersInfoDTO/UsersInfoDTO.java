@@ -1,5 +1,6 @@
 package std.fle._02_dto.modelsDTO.usersDTO.usersInfoDTO;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import fle.toolBox.classType.DTO;
@@ -17,7 +18,7 @@ public class UsersInfoDTO extends DTO {
 
 	private String email;
 
-	private Date birthDate;
+	private LocalDate birthDate;
 
 	private String gender;
 
@@ -26,7 +27,7 @@ public class UsersInfoDTO extends DTO {
 	private CountiesDTO county;
 
 	private ClimbingLevelsDTO climbingLevel;
-	
+
 
 	public Integer getId() {
 		return id;
@@ -60,11 +61,11 @@ public class UsersInfoDTO extends DTO {
 		this.email = email;
 	}
 
-	public Date getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
 

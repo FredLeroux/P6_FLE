@@ -1,6 +1,7 @@
 package std.fle._01_entity.models.users;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -31,26 +32,26 @@ import std.fle._01_entity.models.topo.TopoLending;
 public class UsersInfo extends ENT implements Serializable {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -8778656555947368495L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@Column(name = "first_name")
 	private String firstName;
-	
+
 	@Column(name = "last_name")
 	private String lastName;
-	
+
 	@Column(name = "email_address")
 	private String email;
-	
+
 	@Column(name = "birth_date")
-	private Date birthDate;
-	
+	private LocalDate birthDate;
+
 	@Column(name = "gender")
 	private String gender;
 
@@ -72,17 +73,17 @@ public class UsersInfo extends ENT implements Serializable {
 	@OneToOne
 	@JoinColumn(name = "account_info_fk")
 	private UsersAccountInfo userAccountInfo;
-	
+
 	@OneToMany(mappedBy = "userInfo",cascade = CascadeType.ALL)
 	private List<ClimbingTopo> climbingTopos;
-	
+
 	@OneToMany(mappedBy = "lenderUserInfo",cascade = CascadeType.ALL)
 	private List<TopoLending> topoLendingLender;
-	
+
 	@OneToMany(mappedBy = "borrowerUserInfo",cascade = CascadeType.ALL)
 	private List<TopoLending> topoLendingBorrower;
-	
-	
+
+
 
 	public Integer getId() {
 		return id;
@@ -116,11 +117,11 @@ public class UsersInfo extends ENT implements Serializable {
 		this.email = email;
 	}
 
-	public Date getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
 
@@ -163,8 +164,8 @@ public class UsersInfo extends ENT implements Serializable {
 	public void setUserAccountInfo(UsersAccountInfo userAccountInfo) {
 		this.userAccountInfo = userAccountInfo;
 	}
-	
-	
+
+
 
 	public List<ClimbingTopo> getClimbingTopos() {
 		return climbingTopos;

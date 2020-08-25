@@ -36,6 +36,7 @@
 	<entry key="typeMismatch.createTopo.editionYear">N''est acceptée que l''année ici</entry>
 	<entry key="wrong.error"> tentative(s) restante</entry>
 	<entry key="wrongOldPass.error">Echec de la confirmation du mot de passe.... t'es bien celui que tu prétends être ??</entry>
+	<entry key="typeMismatch.userManagement.usersInfoSFC.birthDate">Format de date non valide, format attendu: "jj/mm/aaaa"</entry>
 </properties>
 
 
