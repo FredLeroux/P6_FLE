@@ -36,8 +36,8 @@ Créez un site communautaire autour de l’escalade';
 
 DROP SCHEMA public;
 
-CREATE SCHEMA cliff_schema
+CREATE SCHEMA cliff
     AUTHORIZATION "cliff_Admin";
 
-COMMENT ON SCHEMA cliff_schema
+COMMENT ON SCHEMA cliff
     IS 'cliff data base specific schema';
