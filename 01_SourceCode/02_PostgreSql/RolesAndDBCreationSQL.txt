@@ -1,0 +1,43 @@
+CREATE ROLE "cliff_Admin" WITH
+	LOGIN
+	NOSUPERUSER
+	NOCREATEDB
+	NOCREATEROLE
+	INHERIT
+	NOREPLICATION
+	CONNECTION LIMIT 1
+	PASSWORD 'K439Pki98BYoEeMmOmAYYnr3';
+
+GRANT pg_write_server_files TO "cliff_Admin";
+COMMENT ON ROLE "cliff_Admin" IS 'cliff data base administrator ';
+
+CREATE ROLE "cliff_Users" WITH
+	LOGIN
+	NOSUPERUSER
+	NOCREATEDB
+	NOCREATEROLE
+	NOINHERIT
+	NOREPLICATION
+	CONNECTION LIMIT -1
+	PASSWORD 'lldu1A320h6Q11qR28m5M1Xq';
+
+GRANT "cliff_Admin" TO "cliff_Users";
+
+CREATE DATABASE cliff
+    WITH 
+    OWNER = "cliff_Admin"
+    ENCODING = 'UTF8'
+    CONNECTION LIMIT = -1;
+
+COMMENT ON DATABASE cliff
+    IS 'cliff data base 
+for OpenClassRoom P6 : 
+Créez un site communautaire autour de l’escalade';
+
+DROP SCHEMA public;
+
+CREATE SCHEMA cliff
+    AUTHORIZATION "cliff_Admin";
+
+COMMENT ON SCHEMA cliff
+    IS 'cliff data base specific schema';

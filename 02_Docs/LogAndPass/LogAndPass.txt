@@ -1,0 +1,14 @@
+admin :
+
+login = Administrateur
+pass = Administrateur1
+
+Exemple de comptes :
+
+Membre de l association 
+login = Frederic 
+pass = AzertY1982
+
+Utilisateur lambda
+login = Redfirce
+pass = AzertY1982
