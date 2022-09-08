@@ -15,7 +15,7 @@
 		<hibernate.entitymanager.version>5.4.4.Final</hibernate.entitymanager.version>
 		<hibernate.validator.version>6.1.0.Final</hibernate.validator.version>
 		<c3p0.version>5.4.4.Final</c3p0.version>
-		<postgreSql.version>42.2.6</postgreSql.version>
+		<postgreSql.version>42.4.1</postgreSql.version>
 		<log4j.version>2.13.3</log4j.version>
 		<json.version>20190722</json.version>
 		<modelMapper.version>2.3.6</modelMapper.version>
